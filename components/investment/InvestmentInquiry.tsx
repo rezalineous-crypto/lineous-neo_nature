@@ -109,7 +109,7 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
 
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.05em] text-bone font-display">
               Your next
-              <span className="text-gradient-chrome"> investment</span>
+              <span className="text-gradient-chrome"> investment {" "}</span>
               starts here
             </h2>
 
