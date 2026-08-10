@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const WHATSAPP_NUMBER = "1234567890"; // Replace with actual number
-const WHATSAPP_MESSAGE = "Hello! I'm interested in Neo Nature.";
+const WHATSAPP_MESSAGE = "Hello! I'm interested in Purura.";
 
 export default function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);

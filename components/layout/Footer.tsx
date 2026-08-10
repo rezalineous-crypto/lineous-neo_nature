@@ -179,7 +179,7 @@ export default function Footer() {
             className="absolute bottom-12 left-6 md:left-8 lg:left-12"
           >
             <p className="text-[10px] uppercase tracking-[0.25em] text-haze font-mono">
-              © 2025 Neo Nature. All rights reserved.
+              © 2025 Purura. All rights reserved.
             </p>
           </motion.div>
         </div>

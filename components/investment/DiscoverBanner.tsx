@@ -28,7 +28,7 @@ export default function DiscoverBanner() {
             transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
             className="mt-8 text-lg md:text-xl text-haze max-w-2xl mx-auto leading-relaxed"
           >
-            Explore how Neo Nature is redefining luxury hospitality and creating
+            Explore how Purura is redefining luxury hospitality and creating
             unprecedented investment potential in Bangladesh.
           </motion.p>
 

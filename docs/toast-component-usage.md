@@ -2,7 +2,7 @@
 
 ## Overview
 
-The `Toast` component (`components/ui/Toast.tsx`) provides a unified notification system for the Neo Nature project. It replaces browser default `alert()`, `confirm()`, and `prompt()` dialogs with styled, theme-aware alternatives that match the site's visual design.
+The `Toast` component (`components/ui/Toast.tsx`) provides a unified notification system for the Purura project. It replaces browser default `alert()`, `confirm()`, and `prompt()` dialogs with styled, theme-aware alternatives that match the site's visual design.
 
 ## What It Exports
 

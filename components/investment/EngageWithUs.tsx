@@ -26,7 +26,7 @@ export default function EngageWithUs() {
           transition={{ duration: 0.8, delay: 0.1, ease: customEase }}
           className="text-base md:text-lg text-haze mb-14 md:mb-16 max-w-2xl"
         >
-          Discover how you can partner with Neo Nature and be part of this transformative project.
+          Discover how you can partner with Purura and be part of this transformative project.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-6">

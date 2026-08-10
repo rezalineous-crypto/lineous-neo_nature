@@ -82,7 +82,7 @@ export default function WhyInvest() {
           </h2>
 
           <p className="mt-6 text-lg leading-relaxed text-haze">
-            Neo Nature offers a rare combination of strategic location,
+            Purura offers a rare combination of strategic location,
             regulatory clarity, and diversified revenue streams designed for
             long-term investor returns.
           </p>

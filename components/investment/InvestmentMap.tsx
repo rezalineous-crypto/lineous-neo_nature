@@ -13,7 +13,7 @@ const mapPoints = [
     top: "28%",
     left: "22%",
     description:
-      "The main gateway to Neo Nature, featuring seamless arrival experiences and first impressions.",
+      "The main gateway to Purura, featuring seamless arrival experiences and first impressions.",
     features: ["VIP Lounge", "Express Check-in", "Concierge Services"],
   },
   {

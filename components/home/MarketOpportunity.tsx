@@ -42,7 +42,7 @@ export default function MarketOpportunity() {
           </span>
 
           <h2 className="text-6xl md:text-5xl font-bold mt-8 mb-10 leading-none tracking-[-0.06em] text-bone font-display">
-            Why Neo Nature?
+            Why Purura?
           </h2>
 
           <p className="text-xl text-haze max-w-2xl leading-relaxed">

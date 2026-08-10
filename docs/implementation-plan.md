@@ -1,4 +1,4 @@
-# Implementation Plan — Neo Nature Website
+# Implementation Plan — Purura Website
 
 ## Objective
 

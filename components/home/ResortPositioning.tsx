@@ -42,7 +42,7 @@ export default function ResortPositioning() {
       <div className="absolute inset-0">
         <ParallaxImage
           src="/purura_resort_images/purura_render_06.jpg"
-          alt="Neo Nature landscape"
+          alt="Purura landscape"
           fill
           intensity={0.3}
           className="object-cover"

@@ -34,8 +34,8 @@ export default function BrandIntro({
     };
   }, [minimumDuration, onComplete]);
 
-  const neoLetters = "NEO".split("");
-  const natureLetters = "NATURE".split("");
+  const neoLetters = "PURURA"
+  // const natureLetters = "NATURE".split("");
 
   return (
     <AnimatePresence>
@@ -73,7 +73,7 @@ export default function BrandIntro({
             >
               <Image
                 src="/logo_light_beige.png"
-                alt="Neo Nature Logo"
+                alt="Purura Logo"
                 width={200}
                 height={200}
                 className="h-[20%] w-auto object-contain"
@@ -86,44 +86,20 @@ export default function BrandIntro({
               transition={{ duration: 0.9, delay: 0.15, ease: customEase }}
               className="flex gap-2"
             >
-              {neoLetters.map((letter, index) => (
+
                 <motion.span
-                  key={`neo-${letter}-${index}`}
                   initial={{ opacity: 0, y: 90, filter: "blur(14px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   transition={{
                     duration: 1.05,
-                    delay: 0.35 + index * 0.08,
+                    delay: 0.35,
                     ease: customEase,
                   }}
                   className="text-[clamp(4.5rem,18vw,13rem)] font-bold leading-none tracking-[-0.08em] text-bone font-display"
                 >
-                  {letter}
+                  {neoLetters}
                 </motion.span>
-              ))}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.7, ease: customEase }}
-              className="mb-8 flex gap-1"
-            >
-              {natureLetters.map((letter, index) => (
-                <motion.span
-                  key={`nature-${letter}-${index}`}
-                  initial={{ opacity: 0, y: 70, filter: "blur(12px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{
-                    duration: 0.95,
-                    delay: 0.72 + index * 0.075,
-                    ease: customEase,
-                  }}
-                  className="text-[clamp(2.2rem,8vw,6.5rem)] font-bold leading-none tracking-[-0.07em] text-gradient-chrome font-display"
-                >
-                  {letter}
-                </motion.span>
-              ))}
+       
             </motion.div>
 
             <motion.div

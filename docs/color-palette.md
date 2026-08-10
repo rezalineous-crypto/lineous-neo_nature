@@ -1,8 +1,8 @@
-# Premium Color Palette — Neo Nature
+# Premium Color Palette — Purura
 
 ## Design Direction
 
-The Neo Nature website should feel like a luxury futuristic resort designed for high-value investors.
+The Purura website should feel like a luxury futuristic resort designed for high-value investors.
 
 The color system should be:
 
@@ -192,4 +192,4 @@ The final visual system should feel like:
 - high-end hospitality
 - confident and polished
 
-The goal is to attract investors by making Neo Nature feel exclusive, valuable, and future-ready.
+The goal is to attract investors by making Purura feel exclusive, valuable, and future-ready.
