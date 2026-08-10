@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "updatedAt": "2026-07-31T20:00:00Z",
+  "updatedBy": "Admin",
+  "calculator": {
+    "defaults": {
+      "investmentAmount": 300000,
+      "duration": 10,
+      "typeId": "premium"
+    },
+    "limits": {
+      "investmentMin": 100000,
+      "investmentMax": 2000000,
+      "investmentStep": 10000
+    },
+    "investmentTypes": [
+      {
+        "id": "luxury",
+        "name": "Luxury Villa",
+        "yield": 8,
+        "appreciation": 4,
+        "description": "Private pool, panoramic views, full concierge"
+      },
+      {
+        "id": "premium",
+        "name": "Premium Villa",
+        "yield": 10,
+        "appreciation": 5,
+        "description": "Spacious suite with private terrace"
+      },
+      {
+        "id": "resort",
+        "name": "Resort Share",
+        "yield": 12,
+        "appreciation": 6,
+        "description": "Fractional ownership with managed returns"
+      }
+    ],
+    "durationOptions": [5, 10, 15, 20]
+  }
+}
