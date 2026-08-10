@@ -52,7 +52,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 40, filter: "blur(10px)" }}
             transition={{ duration: 1.2, delay: 0.4, ease: customEase }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal dark:text-stone font-display max-w-4xl"
           >
             A rare
             <br />
@@ -62,7 +62,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6, ease: customEase }}
-            className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-charcoal/60 font-display"
+            className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-bone/60 font-display"
           >
             Positioned between Dhaka&rsquo;s expanding urban population and vast natural
             landscapes, Valuka presents a rare opportunity to create Bangladesh&rsquo;s
@@ -85,20 +85,20 @@ export default function Investment() {
                   delay: 0.8 + index * 0.1,
                   ease: customEase,
                 }}
-                className="bg-stone p-8 md:p-10"
+                className="bg-stone dark:bg-charcoal p-8 md:p-10"
               >
-                <p className="annotation text-charcoal/40 mb-4">
+                <p className="annotation text-charcoal/40m dark:text-bone mb-4">
                   {metric.label}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal font-display mb-4">
+                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-chrome1 font-display mb-4">
                   {metric.number}
                   {metric.suffix && (
-                    <span className="text-xl text-champagne ml-2">
+                    <span className="text-xl text-champagne/40 ml-2">
                       {metric.suffix}
                     </span>
                   )}
                 </p>
-                <p className="text-sm leading-relaxed text-charcoal/50 font-display">
+                <p className="text-sm leading-relaxed text-charcoal/50 dark:text-bone font-display">
                   {metric.description}
                 </p>
               </motion.div>

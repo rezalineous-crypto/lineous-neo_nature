@@ -88,12 +88,12 @@ export default function Residences() {
                 className="group"
               >
                 {/* Image */}
-                <div className="relative aspect-[3/4] overflow-hidden mb-6">
+                <div className="relative aspect-[3/4] overflow-hidden mb-6 drop-shadow-2xl">
                   <Image
                     src={villa.image}
                     alt={villa.title}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 rounded-xl"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                 </div>

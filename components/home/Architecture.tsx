@@ -121,6 +121,7 @@ function ChapterContent({
           leading-[0.88]
           tracking-[-0.055em]
           text-bone
+          dark:text-white/80
           font-display
           mb-6
         "
@@ -136,6 +137,7 @@ function ChapterContent({
           lg:text-xl
           leading-relaxed
           text-bone/70
+          dark:text-white/70
           font-display
           max-w-xl
         "
@@ -441,7 +443,7 @@ export default function Architecture() {
           <div className="flex flex-col items-end gap-2">
 
             <span className="annotation text-bone/40">
-              {chapters[activeIndex].number}
+              {chapters[activeIndex]?.number}
             </span>
 
             <div className="w-24 md:w-32 h-px bg-bone/20 relative overflow-hidden">

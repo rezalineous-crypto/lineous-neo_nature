@@ -212,9 +212,10 @@ BACKGROUND MOVEMENT
           className="
         absolute
         inset-0
-        opacity-[0.05]
+        opacity-[0.03]
         bg-[linear-gradient(to_right,#EDEDE8_1px,transparent_1px),linear-gradient(to_bottom,#EDEDE8_1px,transparent_1px)]
-        bg-[size:80px_80px]
+        dark:bg-[linear-gradient(to_right,#EDEDE8_1px,transparent_1px),linear-gradient(to_bottom,#EDEDE8_1px,transparent_1px)]
+        bg-size-[80px_80px]
       "
         />
 
@@ -407,7 +408,7 @@ BACKGROUND MOVEMENT
                     delay: 0.35,
                     ease: customEase,
                   }}
-                  className="block"
+                  className="block uppercase"
                 >
                   Curated moments
                 </motion.span>
@@ -432,7 +433,7 @@ BACKGROUND MOVEMENT
                     delay: 0.48,
                     ease: customEase,
                   }}
-                  className="block text-bone/45"
+                  className="block text-chrome1/80 uppercase"
                 >
                   of wonder
                 </motion.span>
@@ -675,7 +676,7 @@ BACKGROUND MOVEMENT
                       md:text-3xl
                       font-bold
                       tracking-[-0.03em]
-                      text-bone
+                      text-chrome1
                       font-display
                       mb-3
                     "
@@ -687,7 +688,8 @@ BACKGROUND MOVEMENT
                         className="
                       text-base
                       leading-relaxed
-                      text-bone/75
+                      text-gray-800
+                      dark:text-gray-300
                       font-display
                     "
                       >

@@ -37,9 +37,9 @@ export default function Legacy() {
               transition={{ duration: 1.6, delay: 0.5, ease: customEase }}
               className="text-giant font-display text-bone max-w-6xl mx-auto text-shadow-lg"
             >
-              THE FUTURE
+              THE <span className="dark:text-champagne text-chrome1">FUTURE</span>
               <br />
-              OF ESCAPE
+              OF <span className="dark:text-champagne text-chrome1">ESCAPE</span>
             </motion.h2>
 
             {/* Cinematic image reveal — positioned with intention */}
