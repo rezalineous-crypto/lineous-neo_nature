@@ -324,24 +324,3 @@ html.lenis {
   clip-path: inset(0 0 0 0);
 }
 
-/* Ensure all theme variables exist globally as CSS custom properties */
-:root {
-  --color-void: #0A0A0C;
-  --color-secondary: #1b281c;
-  --color-graphite: #1A1A1E;
-  --color-line: #2A2A2F;
-  --color-bone: #EDEDE8;
-  --color-haze: #9A9AA0;
-  --color-chrome1: #8EC5FF;
-  --color-chrome2: #C9A9FF;
-  --color-chrome3: #FF9EC4;
-  --color-ivory: #F5F5F0;
-  --color-cream: #EDEDE8;
-  --color-stone: #E5E5E0;
-  --color-sand: #D5D5D0;
-  --color-charcoal: #1A1A1E;
-  --color-charcoal-warm: #2A2520;
-  --color-forest: #1b281c;
-  --color-champagne: #C9A45A;
-  --color-overlay: #0A0A0C;
-}
