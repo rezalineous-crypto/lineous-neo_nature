@@ -6,9 +6,9 @@ import { customEase } from "@/components/home/Hero";
 
 const faqs = [
   {
-    question: "What is Neo Nature?",
+    question: "What is Purura?",
     answer:
-      "Neo Nature is a luxury eco-intelligent resort concept designed for premium hospitality, private villas, wellness, waterfront experiences, and investor-led growth.",
+      "Purura is a luxury eco-intelligent resort concept designed for premium hospitality, private villas, wellness, waterfront experiences, and investor-led growth.",
   },
   {
     question: "Where is the project located?",
@@ -47,7 +47,7 @@ export default function FAQPage() {
           </h1>
 
           <p className="mt-8 text-lg leading-relaxed text-haze">
-            Key information for investors, partners, and guests interested in Neo Nature.
+            Key information for investors, partners, and guests interested in Purura.
           </p>
         </motion.div>
 

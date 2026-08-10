@@ -20,7 +20,7 @@ export default function InvestmentStrategy() {
       <div className="absolute inset-0">
         <ParallaxImage
           src="/purura_resort_images/purura_render_20.jpg"
-          alt="Neo Nature investment"
+          alt="Purura investment"
           fill
           intensity={0.3}
           className="object-cover"
@@ -46,7 +46,7 @@ export default function InvestmentStrategy() {
             </h2>
 
             <p className="mt-8 max-w-3xl text-lg leading-relaxed text-haze">
-              Neo Nature is positioned as a premium, future-ready resort
+              Purura is positioned as a premium, future-ready resort
               opportunity for investors seeking exposure to luxury hospitality,
               experiential tourism, private villa demand, wellness, and
               intelligent infrastructure.

@@ -172,7 +172,7 @@ export default function Navbar(): React.JSX.Element {
                   {" "}
                   <img src="/logo_light_beige.png" alt="" className="-ml-10" />
                 </span>
-                <span className="-ml-12 font-normal">Neo Nature</span>
+                <span className="-ml-12 font-normal">Purura</span>
               </span>
 
               <motion.div

@@ -40,7 +40,7 @@ export default function HeroCinematic() {
       >
         <Image
           src="/purura_resort_images/purura_render_01.jpg"
-          alt="Neo Nature resort — architectural luxury"
+          alt="Purura resort — architectural luxury"
           fill
           priority
           className="object-cover"

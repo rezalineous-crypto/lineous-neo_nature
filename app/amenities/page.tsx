@@ -31,7 +31,7 @@ export default function AmenitiesPage() {
       <section id="amenities" className="relative min-h-[75vh] overflow-hidden bg-void">
         <ParallaxImage
           src="/purura_resort_images/purura_render_07.jpg"
-          alt="Neo Nature amenities"
+          alt="Purura amenities"
           fill
           intensity={0.5}
           className="object-cover"

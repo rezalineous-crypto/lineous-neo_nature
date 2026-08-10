@@ -13,15 +13,15 @@ import Image from "next/image";
 const slides = [
   {
     src: "/villa.jpg",
-    alt: "Neo Nature Resort Villa",
+    alt: "Purura Resort Villa",
   },
   {
     src: "/premiumvilla-privatepool.jpg",
-    alt: "Neo Nature private pool villa",
+    alt: "Purura private pool villa",
   },
   {
     src: "/prv05.jpg",
-    alt: "Neo Nature waterfront villa",
+    alt: "Purura waterfront villa",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function Hero() {
               </p>
 
               <h1 className="max-w-5xl text-[clamp(3.25rem,9vw,7.5rem)] font-bold leading-[0.88] tracking-[-0.07em] text-[var(--color-secondary)] drop-shadow-2xl">
-                Neo Nature{" "}
+                Purura{" "}
                 <span className="text-bone">Resort</span>
               </h1>
 

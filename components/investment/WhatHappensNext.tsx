@@ -38,7 +38,7 @@ const timelineSteps = [
     step: "04",
     title: "Investment",
     description:
-      "Finalize terms, complete documentation, and begin your journey as a Neo Nature investor.",
+      "Finalize terms, complete documentation, and begin your journey as a Purura investor.",
   },
 ];
 

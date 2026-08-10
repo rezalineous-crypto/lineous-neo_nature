@@ -31,7 +31,7 @@ const serif = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Neo Nature — Regenerative Hospitality",
+  title: "Purura — Regenerative Hospitality",
   description:
     "A premium eco-intelligent destination where regenerative landscapes, luxury hospitality, and future-ready technology meet.",
 };

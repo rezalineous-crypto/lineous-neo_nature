@@ -29,7 +29,7 @@ export default function InvestmentPage() {
       <section className="relative min-h-[75vh] overflow-hidden bg-void">
         <ParallaxImage
           src="/purura_resort_images/purura_render_20.jpg"
-          alt="Neo Nature investment consultation"
+          alt="Purura investment consultation"
           fill
           intensity={0.5}
           className="object-cover"

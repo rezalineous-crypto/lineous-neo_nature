@@ -19,7 +19,7 @@ export default function ExperiencePage() {
       <section id="experience" className="relative min-h-[75vh] overflow-hidden bg-void">
         <ParallaxImage
           src="/purura_resort_images/purura_render_15.jpg"
-          alt="Neo Nature experience"
+          alt="Purura experience"
           fill
           intensity={0.5}
           className="object-cover"
@@ -58,7 +58,7 @@ export default function ExperiencePage() {
             >
               <ParallaxImage
                 src="/purura_resort_images/purura_render_16.jpg"
-                alt="Neo Nature experience key image"
+                alt="Purura experience key image"
                 fill
                 intensity={0.5}
                 className="object-cover"
@@ -82,7 +82,7 @@ export default function ExperiencePage() {
 
               <p className="mt-8 text-lg leading-relaxed text-haze">
                 The experience layout should prioritize the color and atmosphere of
-                Neo Nature, using strong imagery and restrained editorial spacing.
+                Purura, using strong imagery and restrained editorial spacing.
               </p>
 
               <div className="mt-10 grid sm:grid-cols-2 gap-4">

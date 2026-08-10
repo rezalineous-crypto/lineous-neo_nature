@@ -22,11 +22,11 @@ export default function MasterplanPage() {
               Masterplan
             </p>
             <h1 className="mt-6 text-5xl md:text-7xl font-bold leading-none tracking-[-0.06em] text-bone font-display">
-              The heart of Neo Nature.
+              The heart of Purura.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-haze/80">
               Explore the resort masterplan. Hover over the holographic markers to discover
-              each location, its features, and the future vision of Neo Nature.
+              each location, its features, and the future vision of Purura.
             </p>
           </motion.div>
         </Container>

@@ -18,7 +18,7 @@ export default function KeyFacts() {
       <div className="absolute inset-0">
         <ParallaxImage
           src="/purura_resort_images/purura_render_09.jpg"
-          alt="Neo Nature resort scale"
+          alt="Purura resort scale"
           fill
           intensity={0.3}
           className="object-cover"

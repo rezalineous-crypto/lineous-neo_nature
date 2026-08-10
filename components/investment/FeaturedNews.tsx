@@ -25,7 +25,7 @@ export default function FeaturedNews() {
           transition={{ duration: 0.8, delay: 0.1, ease: customEase }}
           className="text-base md:text-lg text-haze mb-12 max-w-xl"
         >
-          Stay updated with the latest developments and investment insights from Neo Nature.
+          Stay updated with the latest developments and investment insights from Purura.
         </motion.p>
 
         <a

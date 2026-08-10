@@ -9,15 +9,15 @@ import RevealSection from "./RevealSection";
 const slides = [
   {
     src: "/purura_resort_images/purura_render_02.jpg",
-    alt: "Neo Nature aerial resort view",
+    alt: "Purura aerial resort view",
   },
   {
     src: "/purura_resort_images/purura_render_09.jpg",
-    alt: "Neo Nature villa exterior",
+    alt: "Purura villa exterior",
   },
   {
     src: "/purura_resort_images/purura_render_04.jpg",
-    alt: "Neo Nature resort landscape",
+    alt: "Purura resort landscape",
   },
 ];
 
@@ -52,7 +52,7 @@ export default function ProjectBrief() {
             </h2>
 
             <p className="mt-8 text-lg md:text-xl leading-loose text-haze font-display">
-              Neo Nature is conceived as a premium eco-intelligent destination
+              Purura is conceived as a premium eco-intelligent destination
               for investors, hospitality partners, and experience-driven
               travelers. The project blends private villas, wellness-led
               hospitality, intelligent infrastructure, and curated cultural

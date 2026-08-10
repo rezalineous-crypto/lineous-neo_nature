@@ -46,7 +46,7 @@ export default function KeyFeatures() {
           <div className="relative h-full overflow-hidden rounded-[2rem] bg-graphite">
             <ParallaxImage
               src="/purura_resort_images/purura_render_03.jpg"
-              alt="Neo Nature key features"
+              alt="Purura key features"
               fill
               intensity={1.15}
               className="object-cover"

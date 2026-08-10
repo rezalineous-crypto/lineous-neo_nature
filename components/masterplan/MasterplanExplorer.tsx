@@ -95,7 +95,7 @@ export default function MasterplanExplorer() {
       >
         <Image
           src="/purura_resort_images/purura_render_01.jpg"
-          alt="Neo Nature Resort Masterplan"
+          alt="Purura Resort Masterplan"
           fill
           priority
           quality={90}
@@ -195,7 +195,7 @@ export default function MasterplanExplorer() {
         transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
       >
         <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white mb-1">
-          Neo Nature Resort
+          Purura Resort
         </p>
         <h2 className="text-lg md:text-xl font-bold text-white font-display tracking-tight">
           Masterplan Explorer

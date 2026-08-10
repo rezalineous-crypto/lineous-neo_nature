@@ -43,7 +43,7 @@ export default function Loader() {
             },
           }}
         >
-          <span className="text-gradient-chrome">NEO NATURE</span>
+          <span className="text-gradient-chrome">Purura</span>
         </motion.h1>
 
         {/* Chrome progress bar */}

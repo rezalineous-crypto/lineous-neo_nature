@@ -44,7 +44,7 @@ export default function Masterplan() {
             transition={{ duration: 0.8, ease: customEase }}
             className="mt-6 text-5xl md:text-7xl font-bold leading-none tracking-[-0.06em] text-bone font-display"
           >
-            The heart of Neo Nature.
+            The heart of Purura.
           </motion.h2>
 
           <motion.p
