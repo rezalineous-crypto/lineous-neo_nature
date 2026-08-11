@@ -27,7 +27,7 @@ export default function OpenForBusiness() {
         >
           <div className="w-16 h-[2px] bg-chrome1" />
           <p className="text-lg md:text-xl leading-relaxed text-haze max-w-3xl">
-            With world-class partners in place and a growing pipeline of investment opportunities across regions and sectors, NEO-NATURE is open for business. Strategically located and economically attractive, NEO-NATURE provides partners and investors with the opportunity to incubate, develop and deploy scalable solutions to global challenges.
+            With world-class partners in place and a growing pipeline of investment opportunities across regions and sectors, PURURA is open for business. Strategically located and economically attractive, PURURA provides partners and investors with the opportunity to incubate, develop and deploy scalable solutions to global challenges.
           </p>
         </motion.div>
       </Container>

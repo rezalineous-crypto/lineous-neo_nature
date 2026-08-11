@@ -59,7 +59,7 @@ export default function ResortPositioning() {
             </p>
 
             <h2 className="mt-6 text-4xl md:text-6xl font-bold leading-none tracking-[-0.05em] text-bone font-display">
-              Why NEO-NATURE?
+              Why PURURA?
             </h2>
 
             <p className="mt-8 text-lg leading-relaxed text-bone/80 font-display">

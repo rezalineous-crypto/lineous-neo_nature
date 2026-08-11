@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import Container from "./Container";
 import BrandIntro from "./BrandIntro";
 import ThemeToggle from "@/components/ThemeToggle";
+import GoldCTAButton from "@/components/ui/GoldCTAButton";
 import { MenuIcon, X, ChevronDown } from "lucide-react";
 
 const EXPERIENCE_ITEMS = [
@@ -42,7 +43,6 @@ const NAV_ITEMS = [
     hasDropdown: true,
     items: AMENITIES_ITEMS,
   },
-  { label: "Invest", href: "/investment" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact Us", href: "/contact-us" },
 ];
@@ -277,6 +277,9 @@ export default function Navbar(): React.JSX.Element {
 
             <div className="flex items-center gap-4">
               <ThemeToggle />
+              <div className="hidden lg:block">
+                <GoldCTAButton />
+              </div>
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="lg:hidden relative w-12 h-12 flex items-center justify-center rounded-full text-[var(--color-bone)] hover:bg-[var(--color-graphite)] hover:text-[var(--color-void)] transition-colors"
