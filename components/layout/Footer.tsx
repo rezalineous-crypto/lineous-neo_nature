@@ -109,7 +109,7 @@ export default function Footer() {
             className="flex flex-col items-center mb-10"
           >
             <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone font-display">
-              Neo-Nature
+              Purura
             </h3>
             <motion.p
               initial={{ opacity: 0, y: 15, letterSpacing: "0.5em" }}

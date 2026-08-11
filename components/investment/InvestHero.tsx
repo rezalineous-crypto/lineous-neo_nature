@@ -19,7 +19,7 @@ export default function InvestHero() {
 
       <div className="relative z-10 px-6 pb-16 md:px-12 md:pb-24">
         <h1 className="text-lg md:text-7xl font-bold uppercase tracking-[0.35em] text-bone font-display">
-          INVEST IN NEO-NATURE
+          INVEST IN PURURA
         </h1>
       </div>
     </section>

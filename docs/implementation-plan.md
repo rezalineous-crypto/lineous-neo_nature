@@ -284,7 +284,7 @@ Update [`components/layout/Footer.tsx`](components/layout/Footer.tsx:3).
 
 ### Keep or replace with
 
-- Neo-Nature
+- Purura
 - relevant project description
 - investor contact details
 - location
