@@ -69,7 +69,7 @@ export default function Navbar(): React.JSX.Element {
 
   const toggleMobileDropdown = (label: string) => {
     setMobileOpenDropdowns((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label],
+      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]
     );
   };
 
@@ -170,7 +170,7 @@ export default function Navbar(): React.JSX.Element {
               >
                 <span className="w-28">
                   {" "}
-                  <img src="/logo_light_beige.png" alt="" className="-ml-10" />
+                  {/* <img src="/logo_light_beige.png" alt="" className="-ml-10" /> */}
                 </span>
                 <span className="-ml-12 font-normal">Purura</span>
               </span>
