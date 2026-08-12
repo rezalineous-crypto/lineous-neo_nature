@@ -52,7 +52,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
             animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 40, filter: "blur(10px)" }}
             transition={{ duration: 1.2, delay: 0.4, ease: customEase }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal dark:text-stone font-display max-w-4xl"
+            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
           >
             A rare
             <br />
@@ -74,7 +74,7 @@ export default function Investment() {
       {/* Metrics — highly structured, minimal decoration */}
       <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-charcoal/10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-charcoal/10 dark:bg-champagne">
             {metrics.map((metric, index) => (
               <motion.div
                 key={index}
@@ -85,15 +85,15 @@ export default function Investment() {
                   delay: 0.8 + index * 0.1,
                   ease: customEase,
                 }}
-                className="bg-stone dark:bg-charcoal p-8 md:p-10"
+                className="bg-stone dark:bg-champagne p-8 md:p-10"
               >
                 <p className="annotation text-charcoal/40m dark:text-bone mb-4">
                   {metric.label}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-chrome1 font-display mb-4">
+                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-white font-display mb-4">
                   {metric.number}
                   {metric.suffix && (
-                    <span className="text-xl text-champagne/40 ml-2">
+                    <span className="text-xl text-gray-200 ml-2">
                       {metric.suffix}
                     </span>
                   )}

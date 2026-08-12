@@ -49,7 +49,9 @@ interface InvestmentInquiryProps {
   onSuccess?: () => void;
 }
 
-export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps) {
+export default function InvestmentInquiry({
+  onSuccess,
+}: InvestmentInquiryProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,17 +62,24 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
     timeline: "",
     message: "",
   });
+
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+
     if (onSuccess) {
       setTimeout(onSuccess, 600);
     }
@@ -81,46 +90,94 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
   }
 
   return (
-    <section id="inquiry" className="relative bg-void py-20 md:py-28">
-      <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            background:
-              "radial-gradient(circle at 20% 80%, rgba(142,197,255,0.12), transparent 45%), radial-gradient(circle at 80% 20%, rgba(201,169,255,0.08), transparent 45%)",
-          }}
+    <section
+      id="inquiry"
+      className="relative overflow-hidden bg-ivory py-20 md:py-28"
+    >
+      {/* =========================================================
+          ARCHITECTURAL ATMOSPHERE
+          ========================================================= */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Soft warm ambient gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_42%,rgba(201,164,90,0.10),transparent_32%),radial-gradient(circle_at_18%_80%,rgba(27,40,28,0.035),transparent_30%)]" />
+
+        {/* Large architectural shell behind the form */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, x: 80 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.8, ease: customEase }}
+          className="absolute -right-[18%] top-[8%] hidden h-[900px] w-[900px] rotate-[18deg]  border-[120px] border-chrome1/30 lg:block blur-xs"
+        >
+          <div className="absolute inset-[70px]  border-[100px] border-champagne/20" />
+          <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-3xl" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, x: 80 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.8, ease: customEase }}
+          className="absolute left-[40%] top-[50%] hidden h-[600px] w-[400px] rotate-[18deg]  border-[80px] border-chrome1/30 lg:block blur-lg"
+        >
+          <div className="absolute inset-[50px]  border-[60px] border-champagne/40" />
+          <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-xl" />
+        </motion.div>
+
+        {/* Soft luminous form atmosphere */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 2, delay: 0.15, ease: customEase }}
+          className="absolute right-[2%] top-[25%] h-[600px] w-[600px] rounded-full bg-champagne/[0.08] blur-[100px]"
         />
+
+        {/* Soft champagne atmosphere */}
+        <div className="absolute right-[30%] top-[10%] h-[260px] w-[260px] rounded-full bg-champagne/[0.06] blur-[90px]" />
+
+        {/* Very subtle vignette */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(26,26,30,0.025)_100%)]" />
       </div>
 
       <Container className="relative z-10">
-        {/* ── Two-column layout: text left, form right ── */}
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-start">
-          {/* ── Left: Text content ── */}
+        {/* =========================================================
+            TWO COLUMN LAYOUT
+            ========================================================= */}
+
+        <div className="grid items-start gap-12 lg:grid-cols-5 lg:gap-16">
+          {/* =======================================================
+              LEFT — INVESTMENT INFORMATION
+              ======================================================= */}
+
           <motion.div
             initial={{ opacity: 0, y: 36 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: customEase }}
-            className="lg:col-span-2 space-y-8"
+            transition={{
+              duration: 0.8,
+              ease: customEase,
+            }}
+            className="space-y-8 lg:col-span-2"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.4em] text-chrome1 font-mono">
+            <p className="font-mono text-xs font-semibold uppercase tracking-[0.4em] text-charcoal-warm/60">
               Investment Consultation
             </p>
 
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-[0.95] tracking-[-0.05em] text-bone font-display">
+            <h2 className="font-display text-3xl font-bold leading-[0.95] tracking-[-0.05em] text-charcoal md:text-4xl lg:text-5xl">
               Your next
-              <span className="text-gradient-chrome"> investment {" "}</span>
+              <span className="text-champagne"> investment </span>
               starts here
             </h2>
 
-            <p className="text-lg leading-relaxed text-haze">
+            <p className="text-lg leading-relaxed text-charcoal-warm/65">
               Valuka is poised at the intersection of luxury hospitality and
               regenerative tourism. Our investors gain access to a premium
               destination with multiple revenue streams, long-term appreciation
               potential, and dedicated advisory support.
             </p>
 
-            {/* ── Key highlights ── */}
+            {/* Key highlights */}
             <div className="space-y-4">
               {[
                 {
@@ -141,10 +198,11 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
                 },
               ].map((item) => (
                 <div key={item.text} className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-chrome1/10 flex items-center justify-center text-chrome1 mt-0.5">
+                  <div className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-champagne/10 text-champagne">
                     <item.icon size={12} />
                   </div>
-                  <p className="text-sm text-haze leading-relaxed">
+
+                  <p className="text-sm leading-relaxed text-charcoal-warm/65">
                     {item.text}
                   </p>
                 </div>
@@ -152,101 +210,126 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
             </div>
           </motion.div>
 
-          {/* ── Right: Form ── */}
+          {/* =======================================================
+              RIGHT — INVESTMENT FORM
+              ======================================================= */}
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
+            transition={{
+              duration: 0.8,
+              delay: 0.15,
+              ease: customEase,
+            }}
             className="lg:col-span-3"
           >
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl border border-line bg-graphite/50 backdrop-blur-sm p-6 md:p-8 space-y-6"
+              className="relative space-y-6 overflow-hidden rounded-[28px] border border-charcoal/[0.10] bg-white/90 p-6 shadow-[0_35px_100px_rgba(26,26,30,0.12),0_8px_30px_rgba(26,26,30,0.05)] backdrop-blur-xl md:p-8"
             >
-              {/* ── Row: Name ── */}
-              <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                  <User className="w-3.5 h-3.5 text-chrome1" />
+              {/* Form atmospheric glow */}
+              <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-champagne/[0.12] blur-3xl" />
+
+              {/* =================================================
+                  NAME
+                  ================================================= */}
+
+              <div className="relative space-y-2">
+                <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                  <User className="h-3.5 w-3.5 text-champagne" />
                   Full Name
                 </label>
+
                 <input
                   type="text"
                   name="name"
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors text-sm"
+                  className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                   placeholder="Your full name"
                 />
               </div>
 
-              {/* ── Row: Email + Phone ── */}
-              <div className="grid md:grid-cols-2 gap-6">
+              {/* =================================================
+                  EMAIL + PHONE
+                  ================================================= */}
+
+              <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <Mail className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <Mail className="h-3.5 w-3.5 text-champagne" />
                     Email
                   </label>
+
                   <input
                     type="email"
                     name="email"
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors text-sm"
+                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                     placeholder="you@domain.com"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <Phone className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <Phone className="h-3.5 w-3.5 text-champagne" />
                     Phone
                   </label>
+
                   <input
                     type="tel"
                     name="phone"
                     required
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors text-sm"
+                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                     placeholder="+880 1XXX XXXXXX"
                   />
                 </div>
               </div>
 
-              {/* ── Row: Country + Budget ── */}
-              <div className="grid md:grid-cols-2 gap-6">
+              {/* =================================================
+                  COUNTRY + BUDGET
+                  ================================================= */}
+
+              <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <Globe className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <Globe className="h-3.5 w-3.5 text-champagne" />
                     Country
                   </label>
+
                   <input
                     type="text"
                     name="country"
                     required
                     value={formData.country}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors text-sm"
+                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                     placeholder="Your country"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <DollarSign className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <DollarSign className="h-3.5 w-3.5 text-champagne" />
                     Budget Range
                   </label>
+
                   <select
                     name="budget"
                     required
                     value={formData.budget}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer text-sm"
+                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                   >
                     <option value="">Select budget range</option>
+
                     {budgetRanges.map((range) => (
                       <option key={range.value} value={range.value}>
                         {range.label}
@@ -256,21 +339,26 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
                 </div>
               </div>
 
-              {/* ── Row: Interest Type + Timeline ── */}
-              <div className="grid md:grid-cols-2 gap-6">
+              {/* =================================================
+                  INTEREST + TIMELINE
+                  ================================================= */}
+
+              <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <Target className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <Target className="h-3.5 w-3.5 text-champagne" />
                     Interest Type
                   </label>
+
                   <select
                     name="interest"
                     required
                     value={formData.interest}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer text-sm"
+                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                   >
                     <option value="">Select interest type</option>
+
                     {interestTypes.map((type) => (
                       <option key={type.value} value={type.value}>
                         {type.label}
@@ -280,18 +368,20 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
                 </div>
 
                 <div className="space-y-2">
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-chrome1" />
+                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <Clock className="h-3.5 w-3.5 text-champagne" />
                     Timeline
                   </label>
+
                   <select
                     name="timeline"
                     required
                     value={formData.timeline}
                     onChange={handleChange}
-                    className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer text-sm"
+                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                   >
                     <option value="">Select timeline</option>
+
                     {timelineOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
                         {opt.label}
@@ -301,38 +391,48 @@ export default function InvestmentInquiry({ onSuccess }: InvestmentInquiryProps)
                 </div>
               </div>
 
-              {/* ── Message ── */}
+              {/* =================================================
+                  MESSAGE
+                  ================================================= */}
+
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono flex items-center gap-2">
-                  <MessageSquare className="w-3.5 h-3.5 text-chrome1" />
+                <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                  <MessageSquare className="h-3.5 w-3.5 text-champagne" />
                   Message
                 </label>
+
                 <textarea
                   name="message"
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full rounded-xl border border-line bg-void/60 px-4 py-3.5 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors text-sm resize-none"
+                  className="w-full resize-none rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
                   placeholder="Tell us about your investment goals..."
                 />
               </div>
 
-              {/* ── Trust note ── */}
-              <p className="text-xs text-haze/70 font-mono flex items-center gap-2">
-                <Shield className="w-3 h-3 text-chrome1/60" />
+              {/* =================================================
+                  TRUST NOTE
+                  ================================================= */}
+
+              <p className="flex items-center gap-2 font-mono text-xs text-charcoal-warm/50">
+                <Shield className="h-3 w-3 text-champagne/70" />
                 Your information is kept confidential and will only be used by
                 our investment advisory team.
               </p>
 
-              {/* ── Submit ── */}
+              {/* =================================================
+                  SUBMIT
+                  ================================================= */}
+
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full rounded-full bg-chrome2 px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-void transition hover:bg-chrome1 flex items-center justify-center gap-3"
+                className="flex w-full items-center justify-center gap-3 rounded-full bg-charcoal px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-ivory shadow-[0_12px_30px_rgba(26,26,30,0.16)] transition hover:bg-charcoal-warm hover:shadow-[0_16px_36px_rgba(26,26,30,0.20)]"
               >
                 Request Investment Proposal
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-4 w-4 text-champagne" />
               </motion.button>
             </form>
           </motion.div>

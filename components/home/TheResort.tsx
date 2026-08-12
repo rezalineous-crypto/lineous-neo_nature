@@ -43,37 +43,58 @@ export default function TheResort() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end start"],
   });
 
   // Horizontal scroll — vertical scroll drives horizontal movement
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", `-${(resortImages.length - 3.5) * 100}%`]);
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["70%", `-${(resortImages.length - 3.5) * 100}%`]
+  );
 
   // Typography moves at a different rate (slower)
-  const titleX = useTransform(scrollYProgress, [0, 1], ["0%", `-${(resortImages.length - 1) * 30}%`]);
+  const titleX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `-${(resortImages.length - 1) * 30}%`]
+  );
 
   return (
     <section
       ref={sectionRef}
-      className="relative h-[300vh] bg-void"
+      className="relative h-[300vh] bg-void dark:bg-ivory"
     >
+      {/* Large architectural shell behind the form */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.94, x: 80 }}
+        whileInView={{ opacity: 1, scale: 1, x: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 1.8, ease: customEase }}
+        className="absolute -right-[9%] top-[8%] hidden h-[900px] w-[900px] rotate-[18deg]  border-[120px] border-chrome1/30 lg:block"
+      >
+        <div className="absolute inset-[70px]  border-[100px] border-champagne/20" />
+        <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-3xl" />
+      </motion.div>
       {/* Pinned container */}
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Chapter title — moves at different rate */}
-        <div className="absolute top-12 left-8 md:top-16 md:left-16 lg:top-20 lg:left-24 z-20">
+        <div className="z-20 flex items-center justify-start border h-full">
           <motion.p
             style={{ x: titleX }}
-            className="annotation text-bone/70 mb-4 text-shadow-sm"
+            className="annotation text-white mb-4 text-shadow-sm"
           >
             THE RESORT
           </motion.p>
           <motion.h2
             style={{ x: titleX }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-[-0.04em] text-bone font-display text-shadow-md"
+            className="text-[22vw] md:text-[20vw] lg:text-[8vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display text-shadow-md uppercase font-extrabold"
           >
-            A journey through
+            A journey <br />
+            through
             <br />
-            <span className="text-chrome1">extraordinary</span> spaces
+            <span className="text-chrome1 uppercase">extraordinary</span> <br />
+            spaces
           </motion.h2>
         </div>
 
@@ -94,15 +115,19 @@ export default function TheResort() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 1, delay: index * 0.1, ease: customEase }}
-                  className={`relative ${index % 2 === 0 ? 'mt-12' : 'mb-12'}`}
+                  transition={{
+                    duration: 1,
+                    delay: index * 0.1,
+                    ease: customEase,
+                  }}
+                  className={`relative ${index % 2 === 0 ? "mt-12" : "mb-12"}`}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                  <div className="relative aspect-[4/5]">
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
-                      className="object-cover"
+                      className="object-cover rounded-xl drop-shadow-xl"
                       sizes="85vw"
                     />
                   </div>
@@ -131,10 +156,7 @@ export default function TheResort() {
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
           <div className="flex items-center gap-2">
             {resortImages.map((_, index) => (
-              <div
-                key={index}
-                className="w-8 h-px bg-bone/20"
-              />
+              <div key={index} className="w-8 h-px bg-bone/20" />
             ))}
           </div>
         </div>
