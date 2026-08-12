@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Pointer = {
   id: string;
@@ -16,28 +16,39 @@ const pointers: Pointer[] = [
   {
     id: "discover",
     label: "DISCOVER",
-    position: "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2",
-    expandPosition: "left-1/2 top-0 -translate-x-1/2 -translate-y-1/2",
+    position: "left-1/2 top-0",
+    expandPosition: "left-1/2 top-0",
     color: "rgba(53, 94, 104, 0.82)",
     border: "rgba(211, 225, 222, 0.7)",
   },
   {
     id: "invest",
     label: "INVEST",
-    position: "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2",
-    expandPosition: "bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2",
+    position: "left-1/2 top-full",
+    expandPosition: "left-1/2 top-full",
     color: "rgba(112, 99, 60, 0.78)",
     border: "rgba(221, 201, 146, 0.85)",
   },
   {
     id: "retreat",
     label: "RETREAT",
-    position: "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
-    expandPosition: "left-0 top-1/2 -translate-x-1/2 -translate-y-1/2",
+    position: "left-0 top-1/2",
+    expandPosition: "left-0 top-1/2",
     color: "rgba(61, 96, 105, 0.82)",
     border: "rgba(197, 168, 102, 0.9)",
   },
 ];
+
+const descriptions = {
+  discover:
+    "Discover a refined vision of progress, creating inspiring environments where timeless design and enduring quality come together seamlessly.",
+
+  retreat:
+    "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
+
+  invest:
+    "Invest in a destination where exceptional design, strategic vision, and enduring value converge to create lasting opportunity.",
+};
 
 const backgroundStates = {
   idle: "radial-gradient(circle at 50% 42%, rgba(105,143,150,0.24), transparent 32%), radial-gradient(circle at 20% 80%, rgba(30,94,108,0.35), transparent 38%), linear-gradient(135deg,#163f4d 0%,#0d3445 48%,#092c3b 100%)",
@@ -52,32 +63,125 @@ const backgroundStates = {
     "radial-gradient(circle at 38% 48%, rgba(105,151,158,0.34), transparent 32%), radial-gradient(circle at 70% 70%, rgba(42,91,103,0.4), transparent 40%), linear-gradient(135deg,#164956 0%,#0f3949 48%,#092f3e 100%)",
 };
 
+const backgroundVideos = {
+  discover: "/Animation/Entry.mp4",
+  retreat: "/Animation/Video1.mp4",
+  invest: "/Animation/Video2.mp4",
+};
+
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function InvestmentBanner() {
   const [hovered, setHovered] = useState<string | null>(null);
+  const [activeAutoPointer, setActiveAutoPointer] = useState("discover");
+  const [autoPhase, setAutoPhase] = useState<"open" | "hold" | "close">("open");
+  const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+  const activePointer = hovered ?? activeAutoPointer;
 
-  const background =
-    hovered === "discover"
-      ? backgroundStates.discover
-      : hovered === "invest"
-        ? backgroundStates.invest
-        : hovered === "retreat"
-          ? backgroundStates.retreat
-          : backgroundStates.idle;
+  useEffect(() => {
+    const sequence = ["discover", "retreat", "invest"];
+
+    let currentIndex = 0;
+    let timeout: ReturnType<typeof setTimeout>;
+
+    const run = () => {
+      // OPEN
+      setAutoPhase("open");
+
+      timeout = setTimeout(() => {
+        // HOLD
+        setAutoPhase("hold");
+
+        timeout = setTimeout(() => {
+          // CLOSE
+          setAutoPhase("close");
+
+          timeout = setTimeout(() => {
+            // NEXT
+            currentIndex = (currentIndex + 1) % sequence.length;
+            setActiveAutoPointer(sequence[currentIndex]);
+
+            run();
+          }, 650);
+        }, 5000);
+      }, 650);
+    };
+
+    run();
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  useEffect(() => {
+    const activeVideo = videoRefs.current[activePointer];
+
+    if (!activeVideo) return;
+
+    activeVideo.currentTime = 0;
+
+    const playVideo = async () => {
+      try {
+        await activeVideo.play();
+      } catch (error) {
+        console.warn("Video playback failed:", error);
+      }
+    };
+
+    playVideo();
+
+    Object.entries(videoRefs.current).forEach(([id, video]) => {
+      if (id !== activePointer && video) {
+        video.pause();
+      }
+    });
+  }, [activePointer]);
+
+  // const background =
+  //   hovered === "discover"
+  //     ? backgroundStates.discover
+  //     : hovered === "invest"
+  //     ? backgroundStates.invest
+  //     : hovered === "retreat"
+  //     ? backgroundStates.retreat
+  //     : backgroundStates.idle;
 
   return (
     <section className="relative min-h-[720px] w-full overflow-hidden bg-[#123f52] text-white md:min-h-screen">
-
       {/* =====================================================
-          BACKGROUND
+          BACKGROUND VIDEO
           ===================================================== */}
 
-      <motion.div
-        animate={{ background }}
-        transition={{ duration: 1.1, ease }}
-        className="absolute inset-0"
-      />
+      <div className="absolute inset-0 overflow-hidden">
+        {Object.entries(backgroundVideos).map(([id, src]) => (
+          <motion.video
+            key={id}
+            ref={(video) => {
+              videoRefs.current[id] = video;
+            }}
+            src={src}
+            muted
+            playsInline
+            autoPlay
+            preload="auto"
+            animate={{
+              opacity: activePointer === id ? 1 : 0,
+              scale: activePointer === id ? 1 : 1.04,
+            }}
+            transition={{
+              opacity: {
+                duration: 1.4,
+                ease,
+              },
+              scale: {
+                duration: 1.8,
+                ease,
+              },
+            }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 bg-black/70" />
 
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_20%_30%,white_0.6px,transparent_0.8px),radial-gradient(circle_at_70%_60%,white_0.5px,transparent_0.8px)] [background-size:90px_90px,130px_130px]" />
 
@@ -94,8 +198,7 @@ export default function InvestmentBanner() {
           CENTRAL SYSTEM
           ===================================================== */}
 
-      <div className="absolute left-1/2 top-[44%] h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 md:h-[500px] md:w-[500px]">
-
+      <div className="absolute left-1/2 top-[50%] h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 md:h-[450px] md:w-[450px]">
         {/* Orbit */}
         <motion.div
           animate={{
@@ -104,11 +207,11 @@ export default function InvestmentBanner() {
               hovered === "invest"
                 ? "rgba(221,201,146,0.6)"
                 : hovered
-                  ? "rgba(210,226,223,0.6)"
-                  : "rgba(255,255,255,0.45)",
+                ? "rgba(210,226,223,0.6)"
+                : "rgba(255,255,255,0.45)",
           }}
           transition={{ duration: 0.9, ease }}
-          className="absolute inset-0 rounded-full border"
+          className="absolute inset-0 rounded-full border-2"
         />
 
         {/* =================================================
@@ -117,6 +220,8 @@ export default function InvestmentBanner() {
 
         {pointers.map((pointer) => {
           const isHovered = hovered === pointer.id;
+          const isAutoActive = activeAutoPointer === pointer.id;
+          const isExpanded = isHovered || isAutoActive;
 
           return (
             <div
@@ -127,31 +232,27 @@ export default function InvestmentBanner() {
             >
               {/* ---------------------------------------------
                   EXTERNAL LABEL
-
                   This exists BEFORE hover.
                   --------------------------------------------- */}
 
               <motion.span
                 animate={{
-                  opacity: isHovered ? 0 : 1,
-                  x:
-                    pointer.id === "retreat"
-                      ? -12
-                      : 0,
+                  opacity: isExpanded ? 0 : 1,
+                  x: pointer.id === "retreat" ? -12 : 0,
                   y:
                     pointer.id === "discover"
                       ? -24
                       : pointer.id === "invest"
-                        ? 24
-                        : 0,
+                      ? 24
+                      : 0,
                 }}
                 transition={{ duration: 0.4, ease }}
                 className={`pointer-events-none absolute whitespace-nowrap font-sans text-[11px] font-medium tracking-[0.22em] text-white/90 ${
                   pointer.id === "discover"
                     ? "bottom-full left-1/2 -translate-x-1/2"
                     : pointer.id === "invest"
-                      ? "left-1/2 top-full -translate-x-1/2"
-                      : "right-full top-1/2 -translate-y-1/2"
+                    ? "left-1/2 top-full -translate-x-1/2"
+                    : "right-full top-1/2 -translate-y-1/2"
                 }`}
               >
                 {pointer.label}
@@ -165,12 +266,12 @@ export default function InvestmentBanner() {
                 type="button"
                 aria-label={pointer.label}
                 animate={{
-                  width: isHovered ? 140 : 16,
-                  height: isHovered ? 140 : 16,
-                  backgroundColor: isHovered ? pointer.color : "#ffffff",
-                  borderWidth: isHovered ? 1 : 0,
+                  width: isExpanded ? 140 : 16,
+                  height: isExpanded ? 140 : 16,
+                  backgroundColor: isExpanded ? pointer.color : "#ffffff",
+                  borderWidth: isExpanded ? 1 : 0,
                   borderColor: pointer.border,
-                  boxShadow: isHovered
+                  boxShadow: isExpanded
                     ? "0 0 55px rgba(190,210,205,0.16)"
                     : "0 0 20px rgba(255,255,255,0.35)",
                 }}
@@ -186,12 +287,12 @@ export default function InvestmentBanner() {
 
                 <motion.span
                   animate={{
-                    opacity: isHovered ? 1 : 0,
-                    scale: isHovered ? 1 : 0.75,
+                    opacity: isExpanded ? 1 : 0,
+                    scale: isExpanded ? 1 : 0.75,
                   }}
                   transition={{
                     duration: 0.35,
-                    delay: isHovered ? 0.18 : 0,
+                    delay: isExpanded ? 0.18 : 0,
                     ease,
                   }}
                   className="absolute whitespace-nowrap font-sans text-[11px] font-medium tracking-[0.22em] text-white"
@@ -213,10 +314,10 @@ export default function InvestmentBanner() {
               hovered === "discover"
                 ? 8
                 : hovered === "retreat"
-                  ? 14
-                  : hovered === "invest"
-                    ? -5
-                    : 0,
+                ? 14
+                : hovered === "invest"
+                ? -5
+                : 0,
             scale: hovered ? 1.015 : 1,
           }}
           transition={{ duration: 0.9, ease }}
@@ -251,14 +352,14 @@ export default function InvestmentBanner() {
           ===================================================== */}
 
       <motion.div
-        animate={{ opacity: hovered ? 0.65 : 0.9 }}
+        key={activePointer}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: hovered ? 0.65 : 0.9, y: 0 }}
         transition={{ duration: 0.6, ease }}
         className="absolute bottom-12 right-8 max-w-[390px] md:right-16 lg:right-[18%]"
       >
         <p className="font-sans text-sm leading-[1.45] text-white/90 md:text-[15px]">
-          The PURURA reflects a refined vision of progress, creating inspiring
-          environments where timeless design and enduring quality come together
-          seamlessly.
+          {descriptions[activePointer as keyof typeof descriptions]}
         </p>
       </motion.div>
 

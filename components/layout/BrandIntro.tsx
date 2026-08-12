@@ -34,7 +34,7 @@ export default function BrandIntro({
     };
   }, [minimumDuration, onComplete]);
 
-  const neoLetters = "PURURA"
+  const neoLetters = "PURURA";
   // const natureLetters = "NATURE".split("");
 
   return (
@@ -65,7 +65,7 @@ export default function BrandIntro({
             transition={{ duration: 1.2, ease: customEase }}
             className="relative flex flex-col items-center px-8"
           >
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.05, ease: customEase }}
@@ -78,7 +78,7 @@ export default function BrandIntro({
                 height={200}
                 className="h-[20%] w-auto object-contain"
               />
-            </motion.div>
+            </motion.div> */}
 
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -86,20 +86,18 @@ export default function BrandIntro({
               transition={{ duration: 0.9, delay: 0.15, ease: customEase }}
               className="flex gap-2"
             >
-
-                <motion.span
-                  initial={{ opacity: 0, y: 90, filter: "blur(14px)" }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                  transition={{
-                    duration: 1.05,
-                    delay: 0.35,
-                    ease: customEase,
-                  }}
-                  className="text-[clamp(4.5rem,18vw,13rem)] font-bold leading-none tracking-[-0.08em] text-bone font-display"
-                >
-                  {neoLetters}
-                </motion.span>
-       
+              <motion.span
+                initial={{ opacity: 0, y: 90, filter: "blur(14px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  duration: 1.05,
+                  delay: 0.35,
+                  ease: customEase,
+                }}
+                className="text-[clamp(4.5rem,18vw,13rem)] font-bold leading-none tracking-[-0.08em] text-bone font-display"
+              >
+                {neoLetters}
+              </motion.span>
             </motion.div>
 
             <motion.div
