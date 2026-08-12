@@ -35,8 +35,8 @@ export default function HomePage() {
             { label: "Legacy", href: "#legacy" },
           ]}
         />
-        <Hero />
-        <Banner/>
+        {/* <Hero /> */}
+        <Banner />
         {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Philosophy />
         {/* <SectionTransition fromBg="bg-ivory" toBg="bg-void" /> */}
@@ -45,6 +45,7 @@ export default function HomePage() {
         {/* <SectionTransition fromBg="bg-void" toBg="bg-void" /> */}
         <Architecture />
         <MasterplanExplorer />
+        <InvestmentInquiry />
         {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Experiences />
         {/* <SectionTransition fromBg="bg-ivory" toBg="bg-forest" /> */}
@@ -55,7 +56,6 @@ export default function HomePage() {
         <Legacy />
         {/* <VillaCollection /> */}
         <Technology />
-        <InvestmentInquiry />
       </main>
     </>
   );

@@ -201,7 +201,6 @@ BACKGROUND MOVEMENT
      lg:py-48
    "
     >
-    
       {/* =====================================================
       BACKGROUND ARCHITECTURAL ELEMENTS
       ===================================================== */}
@@ -536,7 +535,7 @@ BACKGROUND MOVEMENT
                * at exactly the same rhythm.
                */
 
-              const start = 0.16 + index * 0.135;
+              const start = 0.12 + index * 0.12;
               const end = start + 0.12;
 
               // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -656,15 +655,15 @@ BACKGROUND MOVEMENT
 
                   <ExperienceText
                     progress={scrollYProgress}
-                    start={end}
-                    end={end + 0.1}
+                    start={end - 0.04}
+                    end={end + 0.06}
                   >
                     <div className="mt-6 max-w-md">
                       <p
                         className="
                       annotation
-                      text-champagne/90
-                      mb-3
+                      text-champagne
+                      mb-3 font-bold
                     "
                       >
                         {exp.caption}
@@ -689,7 +688,7 @@ BACKGROUND MOVEMENT
                       text-base
                       leading-relaxed
                       text-gray-800
-                      dark:text-gray-300
+                      dark:text-gray-500
                       font-display
                     "
                       >

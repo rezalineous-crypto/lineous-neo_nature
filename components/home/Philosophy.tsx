@@ -543,7 +543,7 @@ ARCHITECTURAL BACKGROUND
             "
               >
                 <RevealLine progress={scrollYProgress} start={0.08} end={0.18}>
-                  A DIFFERENT
+                  A <span className="dark:text-chrome1">DIFFERENT</span>
                 </RevealLine>
 
                 <RevealLine
@@ -566,6 +566,7 @@ ARCHITECTURAL BACKGROUND
                 ml-[2vw]
                 md:ml-[3vw]
                 text-bone/40
+                dark:text-chrome1
               "
                 >
                   ESCAPE
