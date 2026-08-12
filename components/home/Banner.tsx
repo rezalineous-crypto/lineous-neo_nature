@@ -1,3 +1,5 @@
+// Update the colors and link video to the variable and good to go for this banner to work
+
 "use client";
 
 import { motion } from "framer-motion";
