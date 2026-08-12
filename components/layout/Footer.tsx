@@ -20,36 +20,108 @@ export default function Footer() {
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Row 1 */}
-          <path d="M0 0 L104 0 L130 60 L104 120 L0 120 L-26 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 0 L364 0 L390 60 L364 120 L260 120 L234 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 0 L624 0 L650 60 L624 120 L520 120 L494 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 0 L104 0 L130 60 L104 120 L0 120 L-26 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 0 L364 0 L390 60 L364 120 L260 120 L234 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 0 L624 0 L650 60 L624 120 L520 120 L494 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 2 - offset */}
-          <path d="M130 120 L234 120 L260 180 L234 240 L130 240 L104 180 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 120 L494 120 L520 180 L494 240 L390 240 L364 180 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 120 L234 120 L260 180 L234 240 L130 240 L104 180 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 120 L494 120 L520 180 L494 240 L390 240 L364 180 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 3 */}
-          <path d="M0 240 L104 240 L130 300 L104 360 L0 360 L-26 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 240 L364 240 L390 300 L364 360 L260 360 L234 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 240 L624 240 L650 300 L624 360 L520 360 L494 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 240 L104 240 L130 300 L104 360 L0 360 L-26 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 240 L364 240 L390 300 L364 360 L260 360 L234 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 240 L624 240 L650 300 L624 360 L520 360 L494 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 4 - offset */}
-          <path d="M130 360 L234 360 L260 420 L234 480 L130 480 L104 420 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 360 L494 360 L520 420 L494 480 L390 480 L364 420 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 360 L234 360 L260 420 L234 480 L130 480 L104 420 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 360 L494 360 L520 420 L494 480 L390 480 L364 420 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 5 */}
-          <path d="M0 480 L104 480 L130 540 L104 600 L0 600 L-26 540 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 480 L364 480 L390 540 L364 600 L260 600 L234 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 480 L624 480 L650 540 L624 600 L520 600 L494 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 480 L104 480 L130 540 L104 600 L0 600 L-26 540 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 480 L364 480 L390 540 L364 600 L260 600 L234 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 480 L624 480 L650 540 L624 600 L520 600 L494 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 6 - offset */}
-          <path d="M130 600 L234 600 L260 660 L234 720 L130 720 L104 660 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 600 L494 600 L520 660 L494 720 L390 720 L364 660 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 600 L234 600 L260 660 L234 720 L130 720 L104 660 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 600 L494 600 L520 660 L494 720 L390 720 L364 660 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 7 */}
-          <path d="M0 720 L104 720 L130 780 L104 840 L0 840 L-26 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 720 L364 720 L390 780 L364 840 L260 840 L234 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 720 L624 720 L650 780 L624 840 L520 840 L494 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 720 L104 720 L130 780 L104 840 L0 840 L-26 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 720 L364 720 L390 780 L364 840 L260 840 L234 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 720 L624 720 L650 780 L624 840 L520 840 L494 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
         </svg>
       </div>
 
@@ -62,36 +134,108 @@ export default function Footer() {
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Row 1 */}
-          <path d="M0 0 L104 0 L130 60 L104 120 L0 120 L-26 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 0 L364 0 L390 60 L364 120 L260 120 L234 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 0 L624 0 L650 60 L624 120 L520 120 L494 60 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 0 L104 0 L130 60 L104 120 L0 120 L-26 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 0 L364 0 L390 60 L364 120 L260 120 L234 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 0 L624 0 L650 60 L624 120 L520 120 L494 60 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 2 - offset */}
-          <path d="M130 120 L234 120 L260 180 L234 240 L130 240 L104 180 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 120 L494 120 L520 180 L494 240 L390 240 L364 180 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 120 L234 120 L260 180 L234 240 L130 240 L104 180 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 120 L494 120 L520 180 L494 240 L390 240 L364 180 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 3 */}
-          <path d="M0 240 L104 240 L130 300 L104 360 L0 360 L-26 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 240 L364 240 L390 300 L364 360 L260 360 L234 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 240 L624 240 L650 300 L624 360 L520 360 L494 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 240 L104 240 L130 300 L104 360 L0 360 L-26 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 240 L364 240 L390 300 L364 360 L260 360 L234 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 240 L624 240 L650 300 L624 360 L520 360 L494 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 4 - offset */}
-          <path d="M130 360 L234 360 L260 420 L234 480 L130 480 L104 420 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 360 L494 360 L520 420 L494 480 L390 480 L364 420 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 360 L234 360 L260 420 L234 480 L130 480 L104 420 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 360 L494 360 L520 420 L494 480 L390 480 L364 420 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 5 */}
-          <path d="M0 480 L104 480 L130 540 L104 600 L0 600 L-26 540 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 480 L364 480 L390 540 L364 600 L260 600 L234 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 480 L624 480 L650 540 L624 600 L520 600 L494 300 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 480 L104 480 L130 540 L104 600 L0 600 L-26 540 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 480 L364 480 L390 540 L364 600 L260 600 L234 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 480 L624 480 L650 540 L624 600 L520 600 L494 300 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 6 - offset */}
-          <path d="M130 600 L234 600 L260 660 L234 720 L130 720 L104 660 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M390 600 L494 600 L520 660 L494 720 L390 720 L364 660 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M130 600 L234 600 L260 660 L234 720 L130 720 L104 660 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M390 600 L494 600 L520 660 L494 720 L390 720 L364 660 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
 
           {/* Row 7 */}
-          <path d="M0 720 L104 720 L130 780 L104 840 L0 840 L-26 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M260 720 L364 720 L390 780 L364 840 L260 840 L234 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
-          <path d="M520 720 L624 720 L650 780 L624 840 L520 840 L494 780 Z" stroke="var(--color-line)" strokeWidth="1.5" />
+          <path
+            d="M0 720 L104 720 L130 780 L104 840 L0 840 L-26 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M260 720 L364 720 L390 780 L364 840 L260 840 L234 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
+          <path
+            d="M520 720 L624 720 L650 780 L624 840 L520 840 L494 780 Z"
+            stroke="var(--color-line)"
+            strokeWidth="1.5"
+          />
         </svg>
       </div>
 
@@ -108,10 +252,11 @@ export default function Footer() {
             transition={{ duration: 1.2, ease: customEase }}
             className="flex flex-col items-center mb-10"
           >
-            <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone font-display">
-              Purura
-            </h3>
-            <motion.p
+            <span className="w-40">
+              <img src="/purura-logo.png" alt="" className="" />
+            </span>
+
+            {/* <motion.p
               initial={{ opacity: 0, y: 15, letterSpacing: "0.5em" }}
               whileInView={{ opacity: 1, y: 0, letterSpacing: "0.35em" }}
               viewport={{ once: true }}
@@ -119,7 +264,7 @@ export default function Footer() {
               className="mt-2 text-xs font-semibold uppercase text-chrome1 font-mono"
             >
               Regenerative Hospitality
-            </motion.p>
+            </motion.p> */}
           </motion.div>
 
           {/* Main headline section - centered */}
