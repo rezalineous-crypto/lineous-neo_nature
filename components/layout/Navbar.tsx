@@ -162,19 +162,19 @@ export default function Navbar(): React.JSX.Element {
         transition={{ duration: 0.9, ease: "easeOut" }}
         className={`fixed ${
           isHome ? "top-0 md:top-4" : scrolled ? "top-4" : "top-0"
-        } left-1/2 -translate-x-1/2 z-[100] transition-all duration-500 ${
+        } left-1/2 -translate-x-1/2 z-[99] transition-all duration-500`}
+      >
+        <Container className={`overflow-hidden ${
           pathname === "/"
             ? scrolled
-              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.4)]"
+              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne"
               : "bg-transparent"
             : `bg-[var(--color-void)]/85 backdrop-blur-3xl ${
                 scrolled
-                  ? "rounded-3xl shadow-[0_18px_60px_rgba(10,10,12,0.4)]"
+                  ? "rounded-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)]"
                   : ""
               }`
-        }`}
-      >
-        <Container>
+        }`}>
           <div
             className={`flex items-center justify-between transition-all duration-500 ${
               scrolled ? "h-20" : "h-28"
@@ -188,11 +188,11 @@ export default function Navbar(): React.JSX.Element {
               className="group relative flex text-[var(--color-bone)] font-bold md:text-lg uppercase tracking-[0.35em]"
             >
               <span className="flex items-center transition-all duration-300">
-                <span className="w-28">
-                  {/* <img src="/logo_light_beige.png" alt="" className="-ml-10" /> */}
+                <span className="w-40">
+                  <img src="/purura-logo.png" alt="" className="" />
                 </span>
 
-                <span className={`-ml-12 font-normal ${scrolled ? " text-black": "text-white"}`}>Purura</span>
+                {/* <span className={`font-normal ${scrolled ? " text-black": "text-white"}`}>Purura</span> */}
               </span>
 
               <motion.div
@@ -269,9 +269,9 @@ export default function Navbar(): React.JSX.Element {
         {isOpen && (
           <motion.div
             className="fixed inset-0 z-[200] overflow-hidden bg-[#0D1A12]"
-            initial={{ y: "100%", opacity: 0.8 }}
-            animate={{ y: "0%", opacity: 1 }}
-            exit={{ y: "100%", opacity: 0.8 }}
+            initial={{ x: "100%", opacity: 0.8 }}
+            animate={{ x: "0%", opacity: 1 }}
+            exit={{ x: "100%", opacity: 1 }}
             transition={{
               duration: 0.8,
               ease: menuEase,

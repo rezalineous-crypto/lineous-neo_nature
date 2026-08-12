@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono, Playfair_Display } from "next/font/google";
+import {
+  Space_Grotesk,
+  JetBrains_Mono,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -46,6 +50,19 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${mono.variable} ${serif.variable}`}
     >
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+        (function() {
+          try {
+            var defaultTheme = localStorage.getItem('theme-default') || 'light';
+            var sessionTheme = localStorage.getItem('theme-session') || defaultTheme;
+            document.documentElement.setAttribute('data-theme', sessionTheme);
+          } catch (e) {}
+        })();
+      `,
+        }}
+      />
       <body>
         <ToastProvider>
           <ThemeProvider>

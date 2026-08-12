@@ -18,23 +18,23 @@ const pointers: Pointer[] = [
     label: "DISCOVER",
     position: "left-1/2 top-0",
     expandPosition: "left-1/2 top-0",
-    color: "rgba(53, 94, 104, 0.82)",
-    border: "rgba(211, 225, 222, 0.7)",
+    color: "rgba(0, 0, 0, 0.01)",
+    border: "rgba(197, 168, 102, 0.9)",
   },
   {
     id: "invest",
     label: "INVEST",
     position: "left-1/2 top-full",
     expandPosition: "left-1/2 top-full",
-    color: "rgba(112, 99, 60, 0.78)",
-    border: "rgba(221, 201, 146, 0.85)",
+    color: "rgba(0, 0, 0, 0.01)",
+    border: "rgba(197, 168, 102, 0.9)",
   },
   {
     id: "retreat",
     label: "RETREAT",
     position: "left-0 top-1/2",
     expandPosition: "left-0 top-1/2",
-    color: "rgba(61, 96, 105, 0.82)",
+    color: "rgba(0, 0, 0, 0.01)",
     border: "rgba(197, 168, 102, 0.9)",
   },
 ];
@@ -247,7 +247,7 @@ export default function InvestmentBanner() {
                       : 0,
                 }}
                 transition={{ duration: 0.4, ease }}
-                className={`pointer-events-none absolute whitespace-nowrap font-sans text-[11px] font-medium tracking-[0.22em] text-white/90 ${
+                className={`pointer-events-none absolute whitespace-nowrap font-sans ${isExpanded ? "text-lg" : "text-[11px]"} font-medium tracking-[0.22em] text-white/90 ${
                   pointer.id === "discover"
                     ? "bottom-full left-1/2 -translate-x-1/2"
                     : pointer.id === "invest"
@@ -295,7 +295,7 @@ export default function InvestmentBanner() {
                     delay: isExpanded ? 0.18 : 0,
                     ease,
                   }}
-                  className="absolute whitespace-nowrap font-sans text-[11px] font-medium tracking-[0.22em] text-white"
+                  className="absolute whitespace-nowrap font-sans text-[16px] font-medium tracking-[0.22em] text-white"
                 >
                   {pointer.label}
                 </motion.span>

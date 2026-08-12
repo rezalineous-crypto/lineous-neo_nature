@@ -25,7 +25,7 @@ export default function GoldCTAButton({
         tap: { scale: 0.97, boxShadow: "0 2px 10px rgba(196, 165, 82, 0.2)" },
       }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative inline-flex ${className} overflow-hidden z-[99]`}
+      className={`relative inline-flex ${className} overflow-hidden`}
     >
       <Link
         href={href}
