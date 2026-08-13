@@ -190,6 +190,7 @@ BACKGROUND MOVEMENT
 
   return (
     <section
+      id="experiences"
       ref={sectionRef}
       className="
      relative

@@ -7,14 +7,11 @@ import { customEase } from "@/components/home/Hero";
 import ParallaxImage from "@/components/home/ParallaxImage";
 import ROICalculator from "@/components/investment/ROICalculator";
 import InvestmentInquiry from "@/components/investment/InvestmentInquiry";
-import InquirySuccess from "@/components/investment/InquirySuccess";
 import WhyInvest from "@/components/investment/WhyInvest";
 import WhatHappensNext from "@/components/investment/WhatHappensNext";
 import SectionNav from "@/components/layout/SectionNav";
 
 export default function InvestmentPage() {
-  const [inquirySubmitted, setInquirySubmitted] = useState(false);
-
   return (
     <main className="relative bg-void">
       <SectionNav
@@ -63,11 +60,7 @@ export default function InvestmentPage() {
       <WhatHappensNext />
 
       {/* ── Lead-Gen Inquiry Form ── */}
-      {inquirySubmitted ? (
-        <InquirySuccess />
-      ) : (
-        <InvestmentInquiry onSuccess={() => setInquirySubmitted(true)} />
-      )}
+      <InvestmentInquiry />
 
       {/* ── ROI Calculator (Secondary) ── */}
       <section id="roi-calculator">

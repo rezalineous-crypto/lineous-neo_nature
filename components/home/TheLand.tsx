@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import { customEase } from "./Hero";
 
 export default function TheLand() {
@@ -17,22 +16,23 @@ export default function TheLand() {
 
   return (
     <section
+      id="the-land"
       ref={ref}
       className="relative min-h-screen bg-void overflow-hidden"
     >
-      {/* Full-bleed tall landscape image — extends beyond viewport */}
+      {/* Full-bleed tall landscape video — extends beyond viewport */}
       <motion.div
         style={{ y: imageY, scale: imageScale }}
         className="absolute inset-0 will-change-transform"
       >
         <div className="absolute inset-0 md:inset-[-5%] lg:inset-[-10%]">
-          <Image
-            src="/purura_resort_images/purura_render_06.jpg"
-            alt="Purura landscape — The Land"
-            fill
-            priority
-            className="object-cover"
-            sizes="100vw"
+          <video
+            src="/AnimationOpt/hero-video1.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="object-cover w-full h-full"
           />
         </div>
       </motion.div>

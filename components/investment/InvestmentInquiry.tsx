@@ -18,6 +18,8 @@ import {
   TrendingUp,
   MapPin,
   Star,
+  CheckCircle2,
+  Loader2,
 } from "lucide-react";
 
 const budgetRanges = [
@@ -49,6 +51,8 @@ interface InvestmentInquiryProps {
   onSuccess?: () => void;
 }
 
+type FormStatus = "idle" | "loading" | "success";
+
 export default function InvestmentInquiry({
   onSuccess,
 }: InvestmentInquiryProps) {
@@ -63,7 +67,15 @@ export default function InvestmentInquiry({
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<FormStatus>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("investmentInquirySuccess");
+      if (stored) {
+        return "success";
+      }
+    }
+    return "idle";
+  });
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -76,18 +88,35 @@ export default function InvestmentInquiry({
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setStatus("loading");
+
+    // Simulate network request
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setStatus("success");
+    localStorage.setItem("investmentInquirySuccess", "true");
 
     if (onSuccess) {
-      setTimeout(onSuccess, 600);
+      onSuccess();
     }
   };
 
-  if (submitted) {
-    return null;
-  }
+  const handleReset = () => {
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      country: "",
+      budget: "",
+      interest: "",
+      timeline: "",
+      message: "",
+    });
+    setStatus("idle");
+    localStorage.removeItem("investmentInquirySuccess");
+  };
 
   return (
     <section
@@ -233,207 +262,264 @@ export default function InvestmentInquiry({
               <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-champagne/[0.12] blur-3xl" />
 
               {/* =================================================
-                  NAME
+                  IDLE — FORM FIELDS
                   ================================================= */}
 
-              <div className="relative space-y-2">
-                <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                  <User className="h-3.5 w-3.5 text-champagne" />
-                  Full Name
-                </label>
+              {status === "idle" && (
+                <>
+                  {/* =================================================
+                      NAME
+                      ================================================= */}
 
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
-                  placeholder="Your full name"
-                />
-              </div>
+                  <div className="relative space-y-2">
+                    <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <User className="h-3.5 w-3.5 text-champagne" />
+                      Full Name
+                    </label>
 
-              {/* =================================================
-                  EMAIL + PHONE
-                  ================================================= */}
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                      placeholder="Your full name"
+                    />
+                  </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <Mail className="h-3.5 w-3.5 text-champagne" />
-                    Email
-                  </label>
+                  {/* =================================================
+                      EMAIL + PHONE
+                      ================================================= */}
 
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
-                    placeholder="you@domain.com"
-                  />
-                </div>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <Mail className="h-3.5 w-3.5 text-champagne" />
+                        Email
+                      </label>
 
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <Phone className="h-3.5 w-3.5 text-champagne" />
-                    Phone
-                  </label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                        placeholder="you@domain.com"
+                      />
+                    </div>
 
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
-                    placeholder="+880 1XXX XXXXXX"
-                  />
-                </div>
-              </div>
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <Phone className="h-3.5 w-3.5 text-champagne" />
+                        Phone
+                      </label>
 
-              {/* =================================================
-                  COUNTRY + BUDGET
-                  ================================================= */}
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={formData.phone}
+                        onChange={handleChange}
+                        className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                        placeholder="+880 1XXX XXXXXX"
+                      />
+                    </div>
+                  </div>
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <Globe className="h-3.5 w-3.5 text-champagne" />
-                    Country
-                  </label>
+                  {/* =================================================
+                      COUNTRY + BUDGET
+                      ================================================= */}
 
-                  <input
-                    type="text"
-                    name="country"
-                    required
-                    value={formData.country}
-                    onChange={handleChange}
-                    className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
-                    placeholder="Your country"
-                  />
-                </div>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <Globe className="h-3.5 w-3.5 text-champagne" />
+                        Country
+                      </label>
 
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <DollarSign className="h-3.5 w-3.5 text-champagne" />
-                    Budget Range
-                  </label>
+                      <input
+                        type="text"
+                        name="country"
+                        required
+                        value={formData.country}
+                        onChange={handleChange}
+                        className="w-full rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                        placeholder="Your country"
+                      />
+                    </div>
 
-                  <select
-                    name="budget"
-                    required
-                    value={formData.budget}
-                    onChange={handleChange}
-                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <DollarSign className="h-3.5 w-3.5 text-champagne" />
+                        Budget Range
+                      </label>
+
+                      <select
+                        name="budget"
+                        required
+                        value={formData.budget}
+                        onChange={handleChange}
+                        className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                      >
+                        <option value="">Select budget range</option>
+
+                        {budgetRanges.map((range) => (
+                          <option key={range.value} value={range.value}>
+                            {range.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* =================================================
+                      INTEREST + TIMELINE
+                      ================================================= */}
+
+                  <div className="grid gap-6 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <Target className="h-3.5 w-3.5 text-champagne" />
+                        Interest Type
+                      </label>
+
+                      <select
+                        name="interest"
+                        required
+                        value={formData.interest}
+                        onChange={handleChange}
+                        className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                      >
+                        <option value="">Select interest type</option>
+
+                        {interestTypes.map((type) => (
+                          <option key={type.value} value={type.value}>
+                            {type.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                        <Clock className="h-3.5 w-3.5 text-champagne" />
+                        Timeline
+                      </label>
+
+                      <select
+                        name="timeline"
+                        required
+                        value={formData.timeline}
+                        onChange={handleChange}
+                        className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                      >
+                        <option value="">Select timeline</option>
+
+                        {timelineOptions.map((opt) => (
+                          <option key={opt.value} value={opt.value}>
+                            {opt.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* =================================================
+                      MESSAGE
+                      ================================================= */}
+
+                  <div className="space-y-2">
+                    <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <MessageSquare className="h-3.5 w-3.5 text-champagne" />
+                      Message
+                    </label>
+
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      className="w-full resize-none rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+                      placeholder="Tell us about your investment goals..."
+                    />
+                  </div>
+
+                  {/* =================================================
+                      TRUST NOTE
+                      ================================================= */}
+
+                  <p className="flex items-center gap-2 font-mono text-xs text-charcoal-warm/50">
+                    <Shield className="h-3 w-3 text-champagne/70" />
+                    Your information is kept confidential and will only be used by
+                    our investment advisory team.
+                  </p>
+
+                  {/* =================================================
+                      SUBMIT
+                      ================================================= */}
+
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="flex w-full items-center justify-center gap-3 rounded-full bg-charcoal px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-ivory shadow-[0_12px_30px_rgba(26,26,30,0.16)] transition hover:bg-charcoal-warm hover:shadow-[0_16px_36px_rgba(26,26,30,0.20)]"
                   >
-                    <option value="">Select budget range</option>
-
-                    {budgetRanges.map((range) => (
-                      <option key={range.value} value={range.value}>
-                        {range.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+                    Request Investment Proposal
+                    <ArrowRight className="h-4 w-4 text-champagne" />
+                  </motion.button>
+                </>
+              )}
 
               {/* =================================================
-                  INTEREST + TIMELINE
+                  LOADING
                   ================================================= */}
 
-              <div className="grid gap-6 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <Target className="h-3.5 w-3.5 text-champagne" />
-                    Interest Type
-                  </label>
-
-                  <select
-                    name="interest"
-                    required
-                    value={formData.interest}
-                    onChange={handleChange}
-                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+              {status === "loading" && (
+                <div className="flex flex-col items-center justify-center py-16 text-center">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
                   >
-                    <option value="">Select interest type</option>
-
-                    {interestTypes.map((type) => (
-                      <option key={type.value} value={type.value}>
-                        {type.label}
-                      </option>
-                    ))}
-                  </select>
+                    <Loader2 className="h-10 w-10 text-champagne" />
+                  </motion.div>
+                  <p className="mt-6 font-mono text-sm font-semibold uppercase tracking-[0.25em] text-charcoal-warm/70">
+                    Request is being submitted
+                  </p>
+                  <p className="mt-2 text-xs text-charcoal-warm/50">
+                    Please wait while we process your inquiry
+                  </p>
                 </div>
+              )}
 
-                <div className="space-y-2">
-                  <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                    <Clock className="h-3.5 w-3.5 text-champagne" />
-                    Timeline
-                  </label>
+              {/* =================================================
+                  SUCCESS
+                  ================================================= */}
 
-                  <select
-                    name="timeline"
-                    required
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    className="w-full cursor-pointer rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
+              {status === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex flex-col items-center justify-center py-12 text-center"
+                >
+                  <CheckCircle2 className="h-12 w-12 text-champagne mb-4" />
+                  <h3 className="font-display text-2xl font-bold text-charcoal mb-2">
+                    Inquiry Received
+                  </h3>
+                  <p className="text-sm text-charcoal-warm/65 max-w-sm mx-auto mb-6">
+                    Thank you for your interest. Our investment team will review your inquiry and prepare a tailored proposal. You can expect to hear from us within 24 hours.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="inline-flex items-center gap-2 rounded-full bg-charcoal px-6 py-3 text-xs font-bold uppercase tracking-[0.25em] text-ivory shadow-[0_12px_30px_rgba(26,26,30,0.16)] transition hover:bg-charcoal-warm hover:shadow-[0_16px_36px_rgba(26,26,30,0.20)]"
                   >
-                    <option value="">Select timeline</option>
-
-                    {timelineOptions.map((opt) => (
-                      <option key={opt.value} value={opt.value}>
-                        {opt.label}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              {/* =================================================
-                  MESSAGE
-                  ================================================= */}
-
-              <div className="space-y-2">
-                <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
-                  <MessageSquare className="h-3.5 w-3.5 text-champagne" />
-                  Message
-                </label>
-
-                <textarea
-                  name="message"
-                  rows={4}
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full resize-none rounded-xl border border-charcoal/[0.10] bg-ivory/70 px-4 py-3.5 text-sm text-charcoal shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300 placeholder:text-charcoal-warm/35 hover:border-charcoal/[0.18] hover:bg-white focus:border-champagne focus:bg-white focus:outline-none focus:ring-4 focus:ring-champagne/10"
-                  placeholder="Tell us about your investment goals..."
-                />
-              </div>
-
-              {/* =================================================
-                  TRUST NOTE
-                  ================================================= */}
-
-              <p className="flex items-center gap-2 font-mono text-xs text-charcoal-warm/50">
-                <Shield className="h-3 w-3 text-champagne/70" />
-                Your information is kept confidential and will only be used by
-                our investment advisory team.
-              </p>
-
-              {/* =================================================
-                  SUBMIT
-                  ================================================= */}
-
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                type="submit"
-                className="flex w-full items-center justify-center gap-3 rounded-full bg-charcoal px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-ivory shadow-[0_12px_30px_rgba(26,26,30,0.16)] transition hover:bg-charcoal-warm hover:shadow-[0_16px_36px_rgba(26,26,30,0.20)]"
-              >
-                Request Investment Proposal
-                <ArrowRight className="h-4 w-4 text-champagne" />
-              </motion.button>
+                    Submit another inquiry
+                    <ArrowRight className="h-4 w-4 text-champagne" />
+                  </button>
+                </motion.div>
+              )}
             </form>
           </motion.div>
         </div>

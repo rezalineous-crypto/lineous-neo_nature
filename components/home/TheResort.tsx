@@ -62,6 +62,7 @@ export default function TheResort() {
 
   return (
     <section
+      id="the-resort"
       ref={sectionRef}
       className="relative h-[300vh] bg-void dark:bg-ivory"
     >

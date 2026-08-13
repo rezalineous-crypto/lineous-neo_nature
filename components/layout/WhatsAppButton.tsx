@@ -36,7 +36,7 @@ export default function WhatsAppButton() {
             : "opacity-0 translate-x-2"
         }`}
         style={{
-          backgroundColor: "var(--color-graphite)",
+          backgroundColor: "var(--color-ivory)",
           color: "var(--color-bone)",
         }}
       >
@@ -59,7 +59,7 @@ export default function WhatsAppButton() {
         style={{
           backgroundColor: isHovered
             ? "var(--color-chrome2)"
-            : "var(--color-chrome1)",
+            : "var(--color-champagne)",
           boxShadow: isHovered
             ? "0 8px 30px rgba(201, 169, 255, 0.4)"
             : "0 4px 20px rgba(142, 197, 255, 0.35)",
@@ -72,7 +72,7 @@ export default function WhatsAppButton() {
           style={{
             backgroundColor: isHovered
               ? "var(--color-chrome2)"
-              : "var(--color-chrome1)",
+              : "var(--color-champagne)",
           }}
         />
 

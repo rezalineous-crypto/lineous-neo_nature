@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { customEase } from "./Hero";
+import { ArrowUpRight } from "lucide-react";
 
 const metrics = [
   {
@@ -34,6 +35,7 @@ export default function Investment() {
 
   return (
     <section
+      id="investment"
       ref={ref}
       className="relative py-32 md:py-40 bg-stone dark:bg-void text-charcoal dark:text-bone overflow-hidden"
     >
@@ -71,10 +73,10 @@ export default function Investment() {
         </div>
       </div>
 
-      {/* Metrics — highly structured, minimal decoration */}
+      {/* Metrics — enhanced cards */}
       <div className="px-6 md:px-12 lg:px-20">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-charcoal/10 dark:bg-champagne">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {metrics.map((metric, index) => (
               <motion.div
                 key={index}
@@ -85,20 +87,23 @@ export default function Investment() {
                   delay: 0.8 + index * 0.1,
                   ease: customEase,
                 }}
-                className="bg-stone dark:bg-champagne p-8 md:p-10"
+                className="group relative bg-white dark:bg-white rounded-2xl border border-charcoal/10 dark:border-champagne/20 p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-champagne/30 dark:hover:border-champagne/40 transition-all duration-500 hover:-translate-y-1"
               >
-                <p className="annotation text-charcoal/40m dark:text-bone mb-4">
+                {/* Top accent line */}
+                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <p className="annotation text-charcoal/50 dark:text-bone/60 mb-4 text-xs">
                   {metric.label}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-white font-display mb-4">
+                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-champagne font-display mb-4">
                   {metric.number}
                   {metric.suffix && (
-                    <span className="text-xl text-gray-200 ml-2">
+                    <span className="text-xl text-charcoal/60 dark:text-bone/60 ml-2">
                       {metric.suffix}
                     </span>
                   )}
                 </p>
-                <p className="text-sm leading-relaxed text-charcoal/50 dark:text-bone font-display">
+                <p className="text-sm leading-relaxed text-charcoal/60 dark:text-bone/70 font-display">
                   {metric.description}
                 </p>
               </motion.div>
@@ -107,8 +112,31 @@ export default function Investment() {
         </div>
       </div>
 
+      {/* ROI Calculator CTA */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.8, delay: 1.4, ease: customEase }}
+        className="px-6 md:px-12 lg:px-20 mt-16 md:mt-24"
+      >
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm font-mono uppercase tracking-[0.25em] text-charcoal/50 dark:text-bone/50 mb-6">
+            Explore your returns
+          </p>
+          <motion.a
+            href="/investment#roi-calculator"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-3 rounded-full bg-charcoal dark:bg-champagne px-8 py-4 text-xs font-bold uppercase tracking-[0.28em] text-ivory dark:text-void shadow-[0_12px_30px_rgba(26,26,30,0.16)] transition hover:bg-charcoal-warm dark:hover:bg-champagne/90 hover:shadow-[0_16px_36px_rgba(26,26,30,0.20)]"
+          >
+            Calculate Your ROI
+            <ArrowUpRight className="h-4 w-4 text-champagne dark:text-void" />
+          </motion.a>
+        </div>
+      </motion.div>
+
       {/* Thin architectural line */}
-      <div className="absolute bottom-0 inset-x-0 h-px bg-charcoal/10" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-charcoal/10 dark:bg-champagne/20" />
     </section>
   );
 }
