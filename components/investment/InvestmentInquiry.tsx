@@ -107,9 +107,9 @@ export default function InvestmentInquiry({
           whileInView={{ opacity: 1, scale: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.8, ease: customEase }}
-          className="absolute -right-[18%] top-[8%] hidden h-[900px] w-[900px] rotate-[18deg]  border-[120px] border-chrome1/30 lg:block blur-xs"
+          className="absolute -right-[18%] top-[8%] hidden h-[900px] w-[900px] rotate-[18deg]  border-[120px] border-chrome1/30 lg:block blur-xs rounded-full"
         >
-          <div className="absolute inset-[70px]  border-[100px] border-champagne/20" />
+          <div className="absolute inset-[70px]  border-[100px] border-champagne/20 rounded-full" />
           <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-3xl" />
         </motion.div>
 
@@ -118,9 +118,9 @@ export default function InvestmentInquiry({
           whileInView={{ opacity: 1, scale: 1, x: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.8, ease: customEase }}
-          className="absolute left-[40%] top-[50%] hidden h-[600px] w-[400px] rotate-[18deg]  border-[80px] border-chrome1/30 lg:block blur-lg"
+          className="absolute left-[40%] top-[50%] hidden h-[600px] w-[400px] rotate-[18deg]  border-[80px] border-chrome1/30 lg:block blur-lg rounded-full" 
         >
-          <div className="absolute inset-[50px]  border-[60px] border-champagne/40" />
+          <div className="absolute inset-[50px]  border-[60px] border-champagne/40 rounded-full" />
           <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-xl" />
         </motion.div>
 

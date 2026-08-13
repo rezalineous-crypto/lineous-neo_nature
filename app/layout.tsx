@@ -50,9 +50,10 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${mono.variable} ${serif.variable}`}
     >
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
         (function() {
           try {
             var defaultTheme = localStorage.getItem('theme-default') || 'light';
@@ -61,8 +62,9 @@ export default function RootLayout({
           } catch (e) {}
         })();
       `,
-        }}
-      />
+          }}
+        />
+      </head>
       <body>
         <ToastProvider>
           <ThemeProvider>
