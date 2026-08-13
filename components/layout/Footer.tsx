@@ -255,16 +255,6 @@ export default function Footer() {
             <span className="w-40">
               <img src="/purura-logo.png" alt="" className="" />
             </span>
-
-            {/* <motion.p
-              initial={{ opacity: 0, y: 15, letterSpacing: "0.5em" }}
-              whileInView={{ opacity: 1, y: 0, letterSpacing: "0.35em" }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: 0.2, ease: customEase }}
-              className="mt-2 text-xs font-semibold uppercase text-chrome1 font-mono"
-            >
-              Regenerative Hospitality
-            </motion.p> */}
           </motion.div>
 
           {/* Main headline section - centered */}

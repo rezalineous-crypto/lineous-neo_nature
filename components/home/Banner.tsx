@@ -66,9 +66,9 @@ const backgroundStates = {
 };
 
 const backgroundVideos = {
-  discover: "/Animation/Entry.mp4",
-  retreat: "/Animation/Video1.mp4",
-  invest: "/Animation/Video2.mp4",
+  discover: "/AnimationOpt/resort-entry.mp4",
+  retreat: "/AnimationOpt/hero-video2.mp4",
+  invest: "/AnimationOpt/video2.mp4",
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -179,11 +179,11 @@ export default function InvestmentBanner() {
                 ease,
               },
             }}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover brightness-75 contrast-125"
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-black/70" />
+      <div className="absolute inset-0 bg-black/60" />
 
       <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_20%_30%,white_0.6px,transparent_0.8px),radial-gradient(circle_at_70%_60%,white_0.5px,transparent_0.8px)] [background-size:90px_90px,130px_130px]" />
 
