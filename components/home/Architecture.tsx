@@ -224,6 +224,7 @@ export default function Architecture() {
 
   return (
     <section
+      id="architecture"
       ref={sectionRef}
       className="relative h-[400vh]"
     >

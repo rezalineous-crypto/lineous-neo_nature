@@ -125,6 +125,7 @@ COORDINATE MOVEMENT
 
   return (
     <section
+      id="philosophy"
       ref={sectionRef}
       className="
      relative

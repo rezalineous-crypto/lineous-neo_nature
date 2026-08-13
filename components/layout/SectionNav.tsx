@@ -235,12 +235,12 @@ export default function SectionNav({ items }: SectionNavProps) {
 
         .dash-item.active .dash-line {
           width: 32px;
-          background: #B8A88A;
+          background: var(--color-champagne);
         }
 
         .dash-item:hover .dash-line {
           background: ${
-            isDark ? "rgba(245, 240, 232, 0.55)" : "rgba(44, 40, 35, 0.55)"
+            isDark ? "rgba(245, 240, 232, 0.55)" : "var(--color-champagne)"
           };
              width: 35px;
         }
@@ -257,7 +257,7 @@ export default function SectionNav({ items }: SectionNavProps) {
           text-transform: uppercase;
           white-space: nowrap;
           color: ${
-            isDark ? "rgba(245, 240, 232, 0.75)" : "rgba(44, 40, 35, 0.75)"
+            isDark ? "rgba(245, 240, 232, 0.75)" : "var(--color-champagne)"
           };
           clip-path: inset(0 100% 0 0);
           max-width: 0;

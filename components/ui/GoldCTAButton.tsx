@@ -29,7 +29,7 @@ export default function GoldCTAButton({
     >
       <Link
         href={href}
-        className="group relative flex h-10 w-[142px] items-center overflow-visible bg-[#C4A552] px-5 md:h-11 md:w-[154px] md:px-6"
+        className="group relative flex h-10 w-[142px] items-center overflow-visible bg-[#C4A552] px-5 md:h-11 md:w-[154px] md:px-6 rounded-lg"
       >
         {/* Subtle surface movement */}
         <motion.span
@@ -48,7 +48,7 @@ export default function GoldCTAButton({
             hover: { x: 2 },
           }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 whitespace-nowrap font-display text-[20px] font-light tracking-[-0.045em] text-[#182019] md:text-[21px]"
+          className="relative z-10 whitespace-nowrap font-display text-[20px] font-light tracking-[-0.045em] text-[#f4fcf5] md:text-[21px]"
         >
           {label}
         </motion.span>

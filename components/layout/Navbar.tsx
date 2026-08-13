@@ -167,9 +167,9 @@ export default function Navbar(): React.JSX.Element {
         <Container className={`overflow-hidden ${
           pathname === "/"
             ? scrolled
-              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne"
+              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne/70"
               : "bg-transparent"
-            : `bg-[var(--color-void)]/85 backdrop-blur-3xl ${
+            : `bg-transparent  ${
                 scrolled
                   ? "rounded-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)]"
                   : ""
@@ -188,7 +188,7 @@ export default function Navbar(): React.JSX.Element {
               className="group relative flex text-[var(--color-bone)] font-bold md:text-lg uppercase tracking-[0.35em]"
             >
               <span className="flex items-center transition-all duration-300">
-                <span className="w-40">
+                <span className="lg:w-36">
                   <img src="/purura-logo.png" alt="" className="" />
                 </span>
 
@@ -229,28 +229,31 @@ export default function Navbar(): React.JSX.Element {
                   className="pointer-events-none relative h-[35px] w-[78px]"
                   style={
                     {
-                      "--menu-line-color": scrolled
-                        ? "rgba(0,0,0,1)"
-                        : "rgba(255,255,255,1)",
+                      "--menu-line-color":
+                        pathname === "/"
+                          ? scrolled
+                            ? "#000000"
+                            : "#ffffff"
+                          : "#000000",
                     } as React.CSSProperties
                   }
                 >
                   <motion.span
-                    animate={{ x: 0, width: 50 }}
+                    animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
                     className="absolute left-0 top-[3px] h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
                   />
 
                   <motion.span
-                    animate={{ x: 0, width: 50 }}
+                    animate={{ x: 0, width: 40 }}
                     whileHover={{ x: -4, width: 58 }}
                     transition={{ duration: 0.6, ease: menuEase }}
                     className="absolute left-[-14px] top-1/2 h-px origin-center -translate-y-1/2 bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
                   />
 
                   <motion.span
-                    animate={{ x: 0, width: 50 }}
+                    animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
                     className="absolute bottom-[4px] left-0 h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
