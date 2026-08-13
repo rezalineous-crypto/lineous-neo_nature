@@ -120,7 +120,7 @@ body {
   pointer-events: none;
   opacity: 0.035;
   mix-blend-mode: overlay;
-  background-image: url("/noise.svg");
+  /* background-image: url("/noise.svg"); */
   background-size: 180px;
 }
 
