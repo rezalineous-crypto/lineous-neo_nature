@@ -64,7 +64,7 @@ export default function TheResort() {
     <section
       id="the-resort"
       ref={sectionRef}
-      className="relative h-[300vh] bg-void dark:bg-ivory"
+      className="relative bg-void dark:bg-ivory lg:h-[300vh]"
     >
       {/* Large architectural shell behind the form */}
       <motion.div
@@ -77,88 +77,146 @@ export default function TheResort() {
         <div className="absolute inset-[70px]  border-[100px] border-champagne/20" />
         <div className="absolute inset-[150px] rounded-[44%] bg-champagne/[0.035] blur-3xl" />
       </motion.div>
-      {/* Pinned container */}
-      <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Chapter title — moves at different rate */}
-        <div className="z-20 flex items-center justify-start border h-full">
-          <motion.p
-            style={{ x: titleX }}
-            className="annotation text-white mb-4 text-shadow-sm"
-          >
+
+      {/* Mobile: Vertical stack layout */}
+      <div className="lg:hidden py-16 px-6">
+        <div className="mb-12">
+          <p className="annotation text-white mb-4 text-shadow-sm">
             THE RESORT
-          </motion.p>
-          <motion.h2
-            style={{ x: titleX }}
-            className="text-[22vw] md:text-[20vw] lg:text-[8vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display text-shadow-md uppercase font-extrabold"
-          >
+          </p>
+          <h2 className="text-4xl leading-[0.95] tracking-[-0.04em] text-champagne font-display text-shadow-md uppercase font-extrabold">
             A journey <br />
-            through
-            <br />
+            through <br />
             <span className="text-chrome1 uppercase">extraordinary</span> <br />
             spaces
-          </motion.h2>
+          </h2>
         </div>
-
-        {/* Horizontal scroll container */}
-        <motion.div
-          style={{ x }}
-          className="absolute inset-0 flex items-center will-change-transform"
-        >
-          <div className="flex gap-8 md:gap-12 px-8 md:px-16 lg:px-24 pt-32">
-            {resortImages.map((image, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 relative"
-                style={{ width: "min(85vw, 600px)" }}
+        <div className="flex flex-col gap-12">
+          {resortImages.map((image, index) => (
+            <div key={index} className="relative" style={{ width: "min(85vw, 600px)" }}>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 1,
+                  delay: index * 0.1,
+                  ease: customEase,
+                }}
+                className={`relative ${index % 2 === 0 ? "mt-12" : "mb-12"}`}
               >
-                {/* Image with varying vertical positions */}
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1,
-                    delay: index * 0.1,
-                    ease: customEase,
-                  }}
-                  className={`relative ${index % 2 === 0 ? "mt-12" : "mb-12"}`}
-                >
-                  <div className="relative aspect-[4/5]">
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      className="object-cover rounded-xl drop-shadow-xl"
-                      sizes="85vw"
-                    />
-                  </div>
-
-                  {/* Caption and description — architectural style */}
-                  <div className="mt-4">
-                    <div className="flex items-center justify-between mb-2">
-                      <p className="annotation text-bone/70 text-shadow-sm">
-                        {image.caption}
-                      </p>
-                      <p className="annotation text-bone/60 text-shadow-sm">
-                        0{index + 1} / 0{resortImages.length}
-                      </p>
-                    </div>
-                    <p className="text-sm text-bone/80 font-display max-w-xs text-shadow-sm">
-                      {image.description}
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover rounded-xl drop-shadow-xl"
+                    sizes="85vw"
+                  />
+                </div>
+                <div className="mt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="annotation text-bone/70 text-shadow-sm">
+                      {image.caption}
+                    </p>
+                    <p className="annotation text-bone/60 text-shadow-sm">
+                      0{index + 1} / 0{resortImages.length}
                     </p>
                   </div>
-                </motion.div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+                  <p className="text-sm text-bone/80 font-display max-w-xs text-shadow-sm">
+                    {image.description}
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-        {/* Progress indicator — subtle */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-          <div className="flex items-center gap-2">
-            {resortImages.map((_, index) => (
-              <div key={index} className="w-8 h-px bg-bone/20" />
-            ))}
+      {/* Desktop: Horizontal scroll container */}
+      <div className="hidden lg:block h-[300vh]">
+        <div className="sticky top-0 h-screen overflow-hidden">
+          {/* Chapter title — moves at different rate */}
+          <div className="z-20 flex items-center justify-start border h-full">
+            <motion.p
+              style={{ x: titleX }}
+              className="annotation text-white mb-4 text-shadow-sm"
+            >
+              THE RESORT
+            </motion.p>
+            <motion.h2
+              style={{ x: titleX }}
+              className="text-[22vw] md:text-[20vw] lg:text-[8vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display text-shadow-md uppercase font-extrabold"
+            >
+              A journey <br />
+              through
+              <br />
+              <span className="text-chrome1 uppercase">extraordinary</span> <br />
+              spaces
+            </motion.h2>
+          </div>
+
+          {/* Horizontal scroll container */}
+          <motion.div
+            style={{ x }}
+            className="absolute inset-0 flex items-center will-change-transform"
+          >
+            <div className="flex gap-8 md:gap-12 px-8 md:px-16 lg:px-24 pt-32">
+              {resortImages.map((image, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 relative"
+                  style={{ width: "min(85vw, 600px)" }}
+                >
+                  {/* Image with varying vertical positions */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 1,
+                      delay: index * 0.1,
+                      ease: customEase,
+                    }}
+                    className={`relative ${index % 2 === 0 ? "mt-12" : "mb-12"}`}
+                  >
+                    <div className="relative aspect-[4/5]">
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        className="object-cover rounded-xl drop-shadow-xl"
+                        sizes="85vw"
+                      />
+                    </div>
+
+                    {/* Caption and description — architectural style */}
+                    <div className="mt-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="annotation text-bone/70 text-shadow-sm">
+                          {image.caption}
+                        </p>
+                        <p className="annotation text-bone/60 text-shadow-sm">
+                          0{index + 1} / 0{resortImages.length}
+                        </p>
+                      </div>
+                      <p className="text-sm text-bone/80 font-display max-w-xs text-shadow-sm">
+                        {image.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Progress indicator — subtle */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+            <div className="flex items-center gap-2">
+              {resortImages.map((_, index) => (
+                <div key={index} className="w-8 h-px bg-bone/20" />
+              ))}
+            </div>
           </div>
         </div>
       </div>
