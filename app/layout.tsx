@@ -56,9 +56,12 @@ export default function RootLayout({
             __html: `
         (function() {
           try {
-            var defaultTheme = localStorage.getItem('theme-default') || 'light';
-            var sessionTheme = localStorage.getItem('theme-session') || defaultTheme;
-            document.documentElement.setAttribute('data-theme', sessionTheme);
+            if (!localStorage.getItem('theme-cleanup-done')) {
+              localStorage.removeItem('theme-default');
+              localStorage.removeItem('theme-session');
+              localStorage.setItem('theme-cleanup-done', '1');
+              document.documentElement.setAttribute('data-theme', 'light');
+            }
           } catch (e) {}
         })();
       `,

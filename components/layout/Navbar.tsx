@@ -188,7 +188,7 @@ export default function Navbar(): React.JSX.Element {
               className="group relative flex text-[var(--color-bone)] font-bold md:text-lg uppercase tracking-[0.35em]"
             >
               <span className="flex items-center transition-all duration-300">
-                <span className="lg:w-36">
+                <span className="w-28 lg:w-36">
                   <img src="/purura-logo.png" alt="" className="" />
                 </span>
 
@@ -226,7 +226,7 @@ export default function Navbar(): React.JSX.Element {
                 className="group relative flex h-7 w-[40px] cursor-pointer items-center justify-center bg-transparent"
               >
                 <div
-                  className="pointer-events-none relative h-[35px] w-[78px]"
+                  className="pointer-events-none relative h-8 md:h-[35px] w-[78px]"
                   style={
                     {
                       "--menu-line-color":
@@ -242,21 +242,21 @@ export default function Navbar(): React.JSX.Element {
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
-                    className="absolute left-0 top-[3px] h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
+                    className="absolute left-0 top-[3px] h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
                   />
 
                   <motion.span
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: -4, width: 58 }}
                     transition={{ duration: 0.6, ease: menuEase }}
-                    className="absolute left-[-14px] top-1/2 h-px origin-center -translate-y-1/2 bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
+                    className="absolute left-[-14px] top-1/2 h-px origin-center -translate-y-1/2 bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
                   />
 
                   <motion.span
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
-                    className="absolute bottom-[4px] left-0 h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)]"
+                    className="absolute bottom-[4px] left-0 h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
                   />
                 </div>
               </motion.button>
