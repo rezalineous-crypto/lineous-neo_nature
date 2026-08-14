@@ -24,22 +24,33 @@ const DEFAULT_THEME_KEY = "theme-default";
 const SESSION_THEME_KEY = "theme-session";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [mounted, setMounted] = useState(false);
-  const [defaultTheme, setDefaultThemeState] = useState<Theme>("light");
-  const [theme, setThemeState] = useState<Theme>("light");
+  const [defaultTheme, setDefaultThemeState] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
+    const cleanupDone = localStorage.getItem("theme-cleanup-done");
+    if (!cleanupDone) {
+      localStorage.removeItem(DEFAULT_THEME_KEY);
+      localStorage.removeItem(SESSION_THEME_KEY);
+      localStorage.setItem("theme-cleanup-done", "1");
+      return "light";
+    }
+    const storedDefault = localStorage.getItem(DEFAULT_THEME_KEY) as Theme | null;
+    return storedDefault || "light";
+  });
+
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "light";
+    const cleanupDone = localStorage.getItem("theme-cleanup-done");
+    if (!cleanupDone) {
+      return "light";
+    }
+    const storedSession = localStorage.getItem(SESSION_THEME_KEY) as Theme | null;
+    const storedDefault = localStorage.getItem(DEFAULT_THEME_KEY) as Theme | null;
+    return storedSession || storedDefault || "light";
+  });
 
   useEffect(() => {
-    setMounted(true);
-    const storedDefault = localStorage.getItem(DEFAULT_THEME_KEY) as Theme | null;
-    const storedSession = localStorage.getItem(SESSION_THEME_KEY) as Theme | null;
-
-    const initialDefault = storedDefault || "light";
-    const initialTheme = storedSession || initialDefault;
-
-    setDefaultThemeState(initialDefault);
-    setThemeState(initialTheme);
-    document.documentElement.setAttribute("data-theme", initialTheme);
-  }, []);
+    document.documentElement.setAttribute("data-theme", theme);
+  }, [theme]);
 
   const setTheme = useCallback(
     (newTheme: Theme) => {
@@ -63,16 +74,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
   }, [theme, setTheme]);
-
-  if (!mounted) {
-    return (
-      <ThemeContext.Provider
-        value={{ theme: "light", defaultTheme: "light", setTheme, setDefaultTheme, toggleTheme }}
-      >
-        {children}
-      </ThemeContext.Provider>
-    );
-  }
 
   return (
     <ThemeContext.Provider
