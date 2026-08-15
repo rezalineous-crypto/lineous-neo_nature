@@ -1,21 +1,11 @@
 "use client";
 
-import {
-  motion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { customEase } from "./Hero";
 
-const smoothEase: [number, number, number, number] = [
-  0.16,
-  1,
-  0.3,
-  1,
-];
+const smoothEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export default function Legacy() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -52,11 +42,7 @@ export default function Legacy() {
    * ================================================================
    */
 
-  const trackX = useTransform(
-    progress,
-    [0, 1],
-    ["0vw", "-200vw"]
-  );
+  const trackX = useTransform(progress, [0, 1], ["0vw", "-200vw"]);
 
   /*
    * ================================================================
@@ -70,17 +56,9 @@ export default function Legacy() {
     ["0vw", "-5vw", "-22vw"]
   );
 
-  const titleScale = useTransform(
-    progress,
-    [0, 0.25, 0.4],
-    [1, 0.96, 0.82]
-  );
+  const titleScale = useTransform(progress, [0, 0.25, 0.4], [1, 0.96, 0.82]);
 
-  const titleOpacity = useTransform(
-    progress,
-    [0, 0.28, 0.43],
-    [1, 1, 0]
-  );
+  const titleOpacity = useTransform(progress, [0, 0.28, 0.43], [1, 1, 0]);
 
   /*
    * ================================================================
@@ -100,11 +78,7 @@ export default function Legacy() {
     ["8vh", "0vh", "-3vh"]
   );
 
-  const imageOpacity = useTransform(
-    progress,
-    [0.27, 0.36, 0.68],
-    [0, 1, 1]
-  );
+  const imageOpacity = useTransform(progress, [0.27, 0.36, 0.68], [0, 1, 1]);
 
   const imageRotate = useTransform(
     progress,
@@ -136,11 +110,7 @@ export default function Legacy() {
    * ================================================================
    */
 
-  const closingOpacity = useTransform(
-    progress,
-    [0.62, 0.74, 0.92],
-    [0, 1, 1]
-  );
+  const closingOpacity = useTransform(progress, [0.62, 0.74, 0.92], [0, 1, 1]);
 
   const closingY = useTransform(
     progress,
@@ -148,11 +118,7 @@ export default function Legacy() {
     ["80px", "0px", "-20px"]
   );
 
-  const closingScale = useTransform(
-    progress,
-    [0.65, 0.78, 1],
-    [0.92, 1, 1.02]
-  );
+  const closingScale = useTransform(progress, [0.65, 0.78, 1], [0.92, 1, 1.02]);
 
   /*
    * ================================================================
@@ -166,11 +132,7 @@ export default function Legacy() {
     ["12vw", "0vw", "-6vw"]
   );
 
-  const escapeOpacity = useTransform(
-    progress,
-    [0.66, 0.8, 1],
-    [0, 0.08, 0.13]
-  );
+  const escapeOpacity = useTransform(progress, [0.66, 0.8, 1], [0, 0.08, 0.13]);
 
   /*
    * ================================================================
@@ -178,11 +140,7 @@ export default function Legacy() {
    * ================================================================
    */
 
-  const gridX = useTransform(
-    progress,
-    [0, 1],
-    ["0vw", "-35vw"]
-  );
+  const gridX = useTransform(progress, [0, 1], ["0vw", "-35vw"]);
 
   /*
    * ================================================================
@@ -202,11 +160,7 @@ export default function Legacy() {
    * ================================================================
    */
 
-  const progressWidth = useTransform(
-    progress,
-    [0, 1],
-    ["0%", "100%"]
-  );
+  const progressWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   return (
     <section
@@ -232,12 +186,10 @@ export default function Legacy() {
           </p>
 
           <h2 className="font-display text-4xl font-bold leading-[0.9] tracking-[-0.05em] text-bone">
-            THE{" "}
-            <span className="text-chrome1">FUTURE</span>
+            THE <span className="text-chrome1">FUTURE</span>
             <br />
             <span className="ml-[4vw]">
-              OF{" "}
-              <span className="text-chrome1">ESCAPE</span>
+              OF <span className="text-chrome1">ESCAPE</span>
             </span>
           </h2>
         </motion.div>
@@ -267,13 +219,9 @@ export default function Legacy() {
             <span className="h-px w-12 bg-champagne/50" />
 
             <div>
-              <p className="annotation text-bone/45">
-                ARCHITECTURAL VISION
-              </p>
+              <p className="annotation text-bone/45">ARCHITECTURAL VISION</p>
 
-              <p className="mt-1 annotation text-bone/20">
-                MASTERPLAN / 01
-              </p>
+              <p className="mt-1 annotation text-bone/20">MASTERPLAN / 01</p>
             </div>
           </div>
         </motion.div>
@@ -294,17 +242,16 @@ export default function Legacy() {
             <br />
             technology, and
             <br />
-            <span className="text-chrome1">human aspiration</span>{" "}
-            converge.
+            <span className="text-chrome1">human aspiration</span> converge.
           </h3>
 
           <div className="mt-8 flex max-w-[500px] items-start gap-5">
             <span className="mt-2 h-px w-12 shrink-0 bg-champagne/50" />
 
             <p className="font-display text-base leading-[1.7] text-bone/45">
-              A destination shaped around the idea that hospitality
-              can become more than an escape — it can become a
-              relationship between people, place, and the future.
+              A destination shaped around the idea that hospitality can become
+              more than an escape — it can become a relationship between people,
+              place, and the future.
             </p>
           </div>
         </motion.div>
@@ -388,7 +335,7 @@ export default function Legacy() {
           ============================================================ */}
 
           <div className="pointer-events-none absolute left-8 right-8 top-8 z-50 flex items-start justify-between md:left-12 md:right-12 md:top-10 lg:left-20 lg:right-20 lg:top-14">
-            <div>
+            {/* <div>
               <p className="annotation text-bone/50">
                 37° 41&rsquo; 22&Prime;N
               </p>
@@ -396,16 +343,12 @@ export default function Legacy() {
               <div className="mt-2 flex items-center gap-3">
                 <span className="h-px w-7 bg-champagne/40" />
 
-                <p className="annotation text-bone/25">
-                  VALUKA / BANGLADESH
-                </p>
+                <p className="annotation text-bone/25">VALUKA / BANGLADESH</p>
               </div>
-            </div>
+            </div> */}
 
             <div className="text-right">
-              <p className="annotation text-bone/25">
-                PURURA / 001
-              </p>
+              <p className="annotation text-bone/25">PURURA / 001</p>
 
               <p className="mt-2 annotation text-champagne/40">
                 FUTURE / PLACE / VALUE
@@ -456,9 +399,7 @@ export default function Legacy() {
                   <span className="text-chrome1 dark:text-champagne">
                     FUTURE
                   </span>
-
                   <br />
-
                   <span className="ml-[7vw]">
                     OF{" "}
                     <span className="text-chrome1 dark:text-champagne">
@@ -494,9 +435,7 @@ export default function Legacy() {
 
               {/* Panel edge marker */}
               <div className="absolute bottom-[14%] left-[7vw]">
-                <p className="annotation text-bone/20">
-                  01 / 03
-                </p>
+                <p className="annotation text-bone/20">01 / 03</p>
               </div>
             </div>
 
@@ -579,9 +518,7 @@ export default function Legacy() {
 
                 {/* Top right coordinates */}
                 <div className="absolute -right-1 -top-9 text-right">
-                  <p className="annotation text-bone/20">
-                    01.03
-                  </p>
+                  <p className="annotation text-bone/20">01.03</p>
 
                   <p className="mt-1 annotation text-champagne/35">
                     FUTURE RESORT
@@ -591,9 +528,7 @@ export default function Legacy() {
 
               {/* Panel number */}
               <div className="absolute bottom-[14%] left-[13vw]">
-                <p className="annotation text-bone/20">
-                  02 / 03
-                </p>
+                <p className="annotation text-bone/20">02 / 03</p>
               </div>
             </div>
 
@@ -643,24 +578,20 @@ export default function Legacy() {
                   <span className="mt-2 h-px w-12 shrink-0 bg-champagne/50" />
 
                   <p className="font-display text-base leading-[1.7] text-bone/45 md:text-lg">
-                    A destination shaped around the idea that hospitality
-                    can become more than an escape — it can become a
-                    relationship between people, place, and the future.
+                    A destination shaped around the idea that hospitality can
+                    become more than an escape — it can become a relationship
+                    between people, place, and the future.
                   </p>
                 </div>
               </motion.div>
 
               {/* Final technical data */}
               <div className="absolute bottom-[14%] left-[10vw] flex items-center gap-8">
-                <p className="annotation text-bone/20">
-                  03 / 03
-                </p>
+                <p className="annotation text-bone/20">03 / 03</p>
 
                 <span className="h-px w-12 bg-bone/10" />
 
-                <p className="annotation text-bone/20">
-                  PURURA / VALUKA
-                </p>
+                <p className="annotation text-bone/20">PURURA / VALUKA</p>
               </div>
             </div>
           </motion.div>
@@ -686,21 +617,15 @@ export default function Legacy() {
 
           <div className="pointer-events-none absolute bottom-7 left-8 right-8 z-50 flex items-center justify-between md:left-12 md:right-12 lg:left-20 lg:right-20">
             <div className="flex items-center gap-3">
-              <span className="annotation text-bone/25">
-                LEGACY
-              </span>
+              <span className="annotation text-bone/25">LEGACY</span>
 
               <span className="h-px w-10 bg-bone/10" />
 
-              <span className="annotation text-bone/20">
-                PURURA
-              </span>
+              <span className="annotation text-bone/20">PURURA</span>
             </div>
 
             <div className="hidden items-center gap-4 sm:flex">
-              <span className="annotation text-bone/20">
-                SCROLL TO EXPLORE
-              </span>
+              <span className="annotation text-bone/20">SCROLL TO EXPLORE</span>
 
               <div className="relative h-px w-24 overflow-hidden bg-white/10">
                 <motion.div

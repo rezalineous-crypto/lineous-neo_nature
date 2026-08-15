@@ -171,7 +171,7 @@ export default function Navbar(): React.JSX.Element {
               : "bg-transparent"
             : `bg-transparent  ${
                 scrolled
-                  ? "rounded-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)]"
+                  ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne/70"
                   : ""
               }`
         }`}>
@@ -547,7 +547,7 @@ export default function Navbar(): React.JSX.Element {
                                     duration: 0.4,
                                     ease: menuEase,
                                   }}
-                                  className="absolute left-0 top-full z-[50] w-[calc(100%+2rem)] overflow-hidden"
+                                  className="absolute left-0 top-full z-[40] w-[calc(100%+2rem)] overflow-hidden"
                                 >
                                   <div className="border-b border-[var(--color-champagne)]/25 bg-[#112117]/95 px-1 py-4 backdrop-blur-md">
                                     {item.items.map((subItem, subIndex) => (

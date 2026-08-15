@@ -442,7 +442,7 @@ export default function Residences() {
           MOBILE
       ========================================================= */}
 
-      <div className="relative overflow-hidden py-28 md:hidden">
+      <div className="relative overflow-hidden py-16 md:hidden">
         <div className="pointer-events-none absolute inset-0">
           <div className="absolute -left-[40%] top-[5%] h-[500px] w-[500px] rounded-full bg-[radial-gradient(circle,rgba(210,180,120,0.08)_0%,transparent_68%)]" />
 
@@ -516,7 +516,7 @@ export default function Residences() {
                   fill
                   priority={index === 0}
                   className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.045]"
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-white/[0.04]" />

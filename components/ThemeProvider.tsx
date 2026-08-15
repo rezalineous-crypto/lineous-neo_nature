@@ -31,6 +31,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       localStorage.removeItem(DEFAULT_THEME_KEY);
       localStorage.removeItem(SESSION_THEME_KEY);
       localStorage.setItem("theme-cleanup-done", "1");
+      localStorage.setItem(DEFAULT_THEME_KEY, "light");
       return "light";
     }
     const storedDefault = localStorage.getItem(DEFAULT_THEME_KEY) as Theme | null;

@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { customEase } from "./Hero";
 import { ArrowUpRight } from "lucide-react";
+import { architecturalEase } from "../layout/Footer";
 
 const metrics = [
   {
@@ -20,7 +21,8 @@ const metrics = [
   {
     number: "0",
     label: "DIRECT COMPETITORS",
-    description: "No destination combines luxury, nature and technology at this scale",
+    description:
+      "No destination combines luxury, nature and technology at this scale",
   },
   {
     number: "↑",
@@ -39,6 +41,23 @@ export default function Investment() {
       ref={ref}
       className="relative py-32 md:py-40 bg-stone dark:bg-void text-charcoal dark:text-bone overflow-hidden"
     >
+      {/* =====================================================
+          ABSTRACT ARCHITECTURAL MASS
+          ===================================================== */}
+
+      <motion.div
+        initial={{ opacity: 0, x: 80, rotate: 8 }}
+        whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.8, delay: 0.15, ease: architecturalEase }}
+        className="pointer-events-none absolute -right-[180px] top-[0%] h-[860px] w-[860px] opacity-[0.12] blur-[8px] *:rounded-2xl"
+      >
+        <div className="absolute inset-0 rotate-45 border-8 border-champagne/40" />
+        <div className="absolute inset-[55px] rotate-45 border-4 border-champagne/50" />
+        <div className="absolute inset-[115px] rotate-45 border-4 border-champagne/30" />
+
+      </motion.div>
+      
       {/* Section header */}
       <div className="px-6 md:px-12 lg:px-20 mb-16 md:mb-24">
         <div className="max-w-7xl mx-auto">
@@ -52,7 +71,11 @@ export default function Investment() {
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 40, filter: "blur(10px)" }}
+            animate={
+              isInView
+                ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                : { opacity: 0, y: 40, filter: "blur(10px)" }
+            }
             transition={{ duration: 1.2, delay: 0.4, ease: customEase }}
             className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
           >
@@ -66,9 +89,9 @@ export default function Investment() {
             transition={{ duration: 1, delay: 0.6, ease: customEase }}
             className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-bone/60 font-display"
           >
-            Positioned between Dhaka&rsquo;s expanding urban population and vast natural
-            landscapes, Valuka presents a rare opportunity to create Bangladesh&rsquo;s
-            first eco-intelligent destination.
+            Positioned between Dhaka&rsquo;s expanding urban population and vast
+            natural landscapes, Valuka presents a rare opportunity to create
+            Bangladesh&rsquo;s first eco-intelligent destination.
           </motion.p>
         </div>
       </div>
@@ -81,7 +104,9 @@ export default function Investment() {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                animate={
+                  isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
+                }
                 transition={{
                   duration: 0.8,
                   delay: 0.8 + index * 0.1,
@@ -91,7 +116,7 @@ export default function Investment() {
               >
                 {/* Top accent line */}
                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+
                 <p className="annotation text-charcoal/50 dark:text-bone/60 mb-4 text-xs">
                   {metric.label}
                 </p>

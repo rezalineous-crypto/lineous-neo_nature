@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useTheme } from "@/components/ThemeProvider";
 
 const customEase: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const shutterEase: [number, number, number, number] = [0.62, 0, 0.78, 0.28];
@@ -18,6 +19,8 @@ export default function BrandIntro({
   minimumDuration = 3000,
 }: BrandIntroProps) {
   const [isExiting, setIsExiting] = useState(false);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   useEffect(() => {
     const revealTimer = window.setTimeout(() => {
@@ -55,8 +58,9 @@ export default function BrandIntro({
           }}
           className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
           style={{
-            background:
-              "radial-gradient(circle at 50% 44%, rgba(142,197,255,0.15), transparent 30%), radial-gradient(circle at 50% 70%, rgba(201,169,255,0.1), transparent 34%), var(--color-void)",
+            background: isDark
+              ? "radial-gradient(circle at 50% 44%, rgba(142,197,255,0.15), transparent 30%), radial-gradient(circle at 50% 70%, rgba(201,169,255,0.1), transparent 34%), var(--color-void)"
+              : "radial-gradient(circle at 50% 44%, rgba(142,197,255,0.2), transparent 30%), radial-gradient(circle at 50% 70%, rgba(201,169,255,0.15), transparent 34%), var(--color-ivory)",
           }}
         >
           <motion.div
@@ -94,7 +98,7 @@ export default function BrandIntro({
                   delay: 0.35,
                   ease: customEase,
                 }}
-                className="text-[clamp(4.5rem,18vw,13rem)] font-bold leading-none tracking-[-0.08em] text-bone font-display"
+                className={`text-[clamp(4.5rem,18vw,13rem)] font-bold leading-none tracking-[-0.08em] font-display ${isDark ? "text-bone" : "text-graphite"}`}
               >
                 {neoLetters}
               </motion.span>
@@ -104,14 +108,14 @@ export default function BrandIntro({
               initial={{ opacity: 0, scaleX: 0 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 1.1, delay: 1.35, ease: customEase }}
-              className="h-px w-32 bg-chrome1"
+              className={`h-px w-32 ${isDark ? "bg-chrome1" : "bg-champagne"}`}
             />
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.55, ease: customEase }}
-              className="mt-6 text-[10px] font-semibold uppercase tracking-[0.42em] text-haze font-mono"
+              className={`mt-6 text-[10px] font-semibold uppercase tracking-[0.42em] font-mono ${isDark ? "text-haze" : "text-graphite/60"}`}
             >
               Regenerative Hospitality
             </motion.p>

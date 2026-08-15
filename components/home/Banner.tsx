@@ -200,7 +200,7 @@ export default function InvestmentBanner() {
           CENTRAL SYSTEM
           ===================================================== */}
 
-      <div className="absolute left-1/2 top-[50%] h-[450px] w-[450px] -translate-x-1/2 -translate-y-1/2 md:h-[450px] md:w-[450px]">
+      <div className="absolute left-1/2 top-[50%] h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 sm:h-[350px] sm:w-[350px] md:h-[450px] md:w-[450px]">
         {/* Orbit */}
         <motion.div
           animate={{
@@ -323,7 +323,7 @@ export default function InvestmentBanner() {
             scale: hovered ? 1.015 : 1,
           }}
           transition={{ duration: 0.9, ease }}
-          className="absolute left-[38%] top-1/2 w-[390px] -translate-y-1/2 md:left-[34%] md:w-[470px]"
+          className="absolute left-1/2 top-1/2 w-[85vw] max-w-[390px] -translate-x-1/2 -translate-y-1/2 md:left-[58%] md:w-[470px]"
         >
           <h1 className="font-display text-[62px] font-light leading-[0.88] tracking-[-0.045em] text-white md:text-[76px] lg:text-[82px]">
             <span className="block">ELEGANCE</span>

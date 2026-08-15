@@ -111,7 +111,7 @@ export default function TheResort() {
                     alt={image.alt}
                     fill
                     className="object-cover rounded-xl drop-shadow-xl"
-                    sizes="85vw"
+                    sizes="(max-width: 768px) 85vw, (max-width: 1024px) 50vw, 33vw"
                   />
                 </div>
                 <div className="mt-4">
