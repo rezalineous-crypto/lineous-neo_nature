@@ -29,10 +29,9 @@ export default function HomePage() {
             { label: "The Resort", href: "#the-resort" },
             { label: "Architecture", href: "#architecture" },
             { label: "Masterplan", href: "#masterplan-explorer" },
-            { label: "InvestmentInquiry", href: "#inquiry" },
+            { label: "Investment", href: "#inquiry" },
             { label: "Experiences", href: "#experiences" },
             { label: "Residences", href: "#residences" },
-            { label: "Investment", href: "#investment" },
             { label: "Legacy", href: "#legacy" },
           ]}
         />
