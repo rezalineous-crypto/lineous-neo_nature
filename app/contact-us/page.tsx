@@ -40,10 +40,11 @@ export default function ContactUsPage() {
           <form className="space-y-8">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+                <label htmlFor="contact-first-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                   First name
                 </label>
                 <input
+                  id="contact-first-name"
                   type="text"
                   className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                   placeholder="First name"
@@ -51,10 +52,11 @@ export default function ContactUsPage() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+                <label htmlFor="contact-last-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                   Last name
                 </label>
                 <input
+                  id="contact-last-name"
                   type="text"
                   className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                   placeholder="Last name"
@@ -63,10 +65,11 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Email
               </label>
               <input
+                id="contact-email"
                 type="email"
                 className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                 placeholder="your@email.com"
@@ -74,10 +77,11 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Message
               </label>
               <textarea
+                id="contact-message"
                 rows={5}
                 className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors resize-none"
                 placeholder="Tell us about your interest..."

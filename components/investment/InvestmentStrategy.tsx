@@ -110,10 +110,11 @@ export default function InvestmentStrategy() {
                 className="mt-8 space-y-6"
               >
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
+                  <label htmlFor="strategy-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
                     Name
                   </label>
                   <input
+                    id="strategy-name"
                     required
                     className="mt-2 w-full rounded-2xl border border-line bg-void px-5 py-4 text-bone outline-none focus:border-chrome1 transition-colors"
                     placeholder="Investor name"
@@ -121,10 +122,11 @@ export default function InvestmentStrategy() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
+                  <label htmlFor="strategy-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
                     Email
                   </label>
                   <input
+                    id="strategy-email"
                     type="email"
                     required
                     className="mt-2 w-full rounded-2xl border border-line bg-void px-5 py-4 text-bone outline-none focus:border-chrome1 transition-colors"
@@ -133,10 +135,11 @@ export default function InvestmentStrategy() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
+                  <label htmlFor="strategy-interest" className="text-xs font-semibold uppercase tracking-[0.25em] text-haze font-mono">
                     Investment Interest
                   </label>
                   <select
+                    id="strategy-interest"
                     required
                     className="mt-2 w-full rounded-2xl border border-line bg-void px-5 py-4 text-bone outline-none focus:border-chrome1 transition-colors"
                   >
