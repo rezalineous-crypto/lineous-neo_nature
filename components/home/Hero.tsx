@@ -50,7 +50,7 @@ export default function Hero() {
         playsInline
         className="absolute inset-0 h-full w-full object-cover"
       >
-        <source src="/demo.mp4" type="video/mp4" />
+        <source src="/AnimationOpt/hero-video1.mp4" type="video/mp4" />
       </video>
 
       <AnimatePresence mode="sync">

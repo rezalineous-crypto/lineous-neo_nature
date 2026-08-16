@@ -63,10 +63,10 @@ export default function ResortPositioning() {
             </h2>
 
             <p className="mt-8 text-lg leading-relaxed text-bone/80 font-display">
-              Positioned between Dhakas expanding urban population and vast
-              natural landscapes, Valuka presents a rare opportunity to create
-              Bangladeshs first eco-inteligent desitination
-            </p>
+                Positioned between Dhaka&#39;s expanding urban population and vast
+                natural landscapes, Valuka presents a rare opportunity to create
+                Bangladesh&#39;s first eco-intelligent destination
+              </p>
           </RevealSection>
 
           <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
