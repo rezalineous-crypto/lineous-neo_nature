@@ -272,12 +272,13 @@ export default function InvestmentInquiry({
                       ================================================= */}
 
                   <div className="relative space-y-2">
-                    <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <label htmlFor="inquiry-name" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                       <User className="h-3.5 w-3.5 text-champagne" />
                       Full Name
                     </label>
 
                     <input
+                      id="inquiry-name"
                       type="text"
                       name="name"
                       required
@@ -294,12 +295,13 @@ export default function InvestmentInquiry({
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-email" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <Mail className="h-3.5 w-3.5 text-champagne" />
                         Email
                       </label>
 
                       <input
+                        id="inquiry-email"
                         type="email"
                         name="email"
                         required
@@ -311,12 +313,13 @@ export default function InvestmentInquiry({
                     </div>
 
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-phone" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <Phone className="h-3.5 w-3.5 text-champagne" />
                         Phone
                       </label>
 
                       <input
+                        id="inquiry-phone"
                         type="tel"
                         name="phone"
                         required
@@ -334,12 +337,13 @@ export default function InvestmentInquiry({
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-country" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <Globe className="h-3.5 w-3.5 text-champagne" />
                         Country
                       </label>
 
                       <input
+                        id="inquiry-country"
                         type="text"
                         name="country"
                         required
@@ -351,12 +355,13 @@ export default function InvestmentInquiry({
                     </div>
 
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-budget" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <DollarSign className="h-3.5 w-3.5 text-champagne" />
                         Budget Range
                       </label>
 
                       <select
+                        id="inquiry-budget"
                         name="budget"
                         required
                         value={formData.budget}
@@ -380,12 +385,13 @@ export default function InvestmentInquiry({
 
                   <div className="grid gap-6 md:grid-cols-2">
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-interest" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <Target className="h-3.5 w-3.5 text-champagne" />
                         Interest Type
                       </label>
 
                       <select
+                        id="inquiry-interest"
                         name="interest"
                         required
                         value={formData.interest}
@@ -403,12 +409,13 @@ export default function InvestmentInquiry({
                     </div>
 
                     <div className="space-y-2">
-                      <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                      <label htmlFor="inquiry-timeline" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                         <Clock className="h-3.5 w-3.5 text-champagne" />
                         Timeline
                       </label>
 
                       <select
+                        id="inquiry-timeline"
                         name="timeline"
                         required
                         value={formData.timeline}
@@ -431,12 +438,13 @@ export default function InvestmentInquiry({
                       ================================================= */}
 
                   <div className="space-y-2">
-                    <label className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
+                    <label htmlFor="inquiry-message" className="flex items-center gap-2 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-charcoal-warm/75">
                       <MessageSquare className="h-3.5 w-3.5 text-champagne" />
                       Message
                     </label>
 
                     <textarea
+                      id="inquiry-message"
                       name="message"
                       rows={4}
                       value={formData.message}

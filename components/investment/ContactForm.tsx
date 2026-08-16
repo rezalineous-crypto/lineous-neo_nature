@@ -49,10 +49,11 @@ export default function ContactForm() {
           <form className="space-y-8">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+                <label htmlFor="contact-first-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                   First name
                 </label>
                 <input
+                  id="contact-first-name"
                   type="text"
                   className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                   placeholder="First name"
@@ -60,10 +61,11 @@ export default function ContactForm() {
               </div>
 
               <div className="space-y-2">
-                <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+                <label htmlFor="contact-last-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                   Last name
                 </label>
                 <input
+                  id="contact-last-name"
                   type="text"
                   className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                   placeholder="Last name"
@@ -72,10 +74,11 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Business Email address
               </label>
               <input
+                id="contact-email"
                 type="email"
                 className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                 placeholder="Business Email address"
@@ -83,14 +86,15 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-phone" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Phone number
               </label>
               <div className="flex gap-3">
-                <select className="w-28 bg-transparent border-0 border-b border-bone/25 px-2 py-4 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer">
+                <select id="contact-phone-prefix" className="w-28 bg-transparent border-0 border-b border-bone/25 px-2 py-4 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer">
                   <option value="+880">+880</option>
                 </select>
                 <input
+                  id="contact-phone"
                   type="tel"
                   className="flex-1 bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                   placeholder="Phone number"
@@ -99,10 +103,11 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-company" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Company name
               </label>
               <input
+                id="contact-company"
                 type="text"
                 className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                 placeholder="Company name"
@@ -110,10 +115,11 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-website" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Company website
               </label>
               <input
+                id="contact-website"
                 type="url"
                 className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone placeholder:text-bone/40 focus:outline-none focus:border-chrome1 transition-colors"
                 placeholder="Company website"
@@ -121,10 +127,10 @@ export default function ContactForm() {
             </div>
 
             <div className="space-y-2">
-              <label className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
+              <label htmlFor="contact-interest" className="text-xs font-semibold uppercase tracking-[0.25em] text-bone/80 font-mono">
                 Investment Interest
               </label>
-              <select className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer">
+              <select id="contact-interest" className="w-full bg-transparent border-0 border-b border-bone/25 px-0 py-4 text-bone focus:outline-none focus:border-chrome1 transition-colors cursor-pointer">
                 <option value="">Select interest</option>
                 <option value="villas">Private Villas</option>
                 <option value="hospitality">Hospitality</option>
@@ -135,13 +141,14 @@ export default function ContactForm() {
 
             <div className="flex items-start gap-3">
               <input
+                id="contact-agree"
                 type="checkbox"
                 className="mt-1 w-4 h-4 rounded-sm border border-bone/40 bg-transparent checked:bg-chrome1 checked:border-chrome1 accent-chrome1"
               />
-              <span className="text-xs leading-relaxed text-bone/70">
+              <label htmlFor="contact-agree" className="text-xs leading-relaxed text-bone/70 cursor-pointer">
                 By completing this form you are agreeing to being contacted
                 by our team.
-              </span>
+              </label>
             </div>
 
             <button

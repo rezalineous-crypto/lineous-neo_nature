@@ -48,6 +48,7 @@ export default function ROICalculator() {
   const [duration, setDuration] = useState<number>(10);
   const [config, setConfig] = useState<CalculatorConfig | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const selectedType =
     config?.calculator.investmentTypes.find(
@@ -61,12 +62,18 @@ export default function ROICalculator() {
 
   useEffect(() => {
     fetch("/api/roi-config")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load calculator configuration");
+        return res.json();
+      })
       .then((data: CalculatorConfig) => {
         setConfig(data);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch((err) => {
+        setError(err.message || "Something went wrong");
+        setLoading(false);
+      });
   }, []);
 
   const yearlyData: Array<{
@@ -216,6 +223,10 @@ export default function ROICalculator() {
                 </label>
                 {loading ? (
                   <div className="h-20 rounded-xl bg-void/50 animate-pulse" />
+                ) : error ? (
+                  <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-400">
+                    {error}
+                  </div>
                 ) : (
                   <div className="space-y-2">
                     {investmentTypes.map((type: InvestmentType) => (
