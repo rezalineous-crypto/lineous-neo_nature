@@ -148,7 +148,7 @@ export default function InvestmentBanner() {
   //     : backgroundStates.idle;
 
   return (
-    <section className="relative min-h-[720px] w-full overflow-hidden bg-[#123f52] text-white md:min-h-screen">
+    <section className="relative min-h-[720px] w-full overflow-hidden bg-charcoal text-ivory md:min-h-screen">
       {/* =====================================================
           BACKGROUND VIDEO
           ===================================================== */}
@@ -183,9 +183,9 @@ export default function InvestmentBanner() {
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-charcoal/60" />
 
-      <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_20%_30%,white_0.6px,transparent_0.8px),radial-gradient(circle_at_70%_60%,white_0.5px,transparent_0.8px)] [background-size:90px_90px,130px_130px]" />
+      <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_20%_30%,var(--color-bone)_0.6px,transparent_0.8px),radial-gradient(circle_at_70%_60%,var(--color-bone)_0.5px,transparent_0.8px)] [background-size:90px_90px,130px_130px]" />
 
       <motion.div
         animate={{
@@ -193,7 +193,7 @@ export default function InvestmentBanner() {
           opacity: hovered ? 0.2 : 0.12,
         }}
         transition={{ duration: 1.2, ease }}
-        className="absolute left-1/2 top-[42%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#9bb9b4]/20 blur-[100px]"
+        className="absolute left-1/2 top-[42%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-champagne/20 blur-[100px]"
       />
 
       {/* =====================================================
@@ -209,8 +209,8 @@ export default function InvestmentBanner() {
               hovered === "invest"
                 ? "rgba(221,201,146,0.6)"
                 : hovered
-                ? "rgba(210,226,223,0.6)"
-                : "rgba(255,255,255,0.45)",
+                ? "rgba(201,164,90,0.6)"
+                : "rgba(248,243,234,0.45)",
           }}
           transition={{ duration: 0.9, ease }}
           className="absolute inset-0 rounded-full border-2"
@@ -249,7 +249,7 @@ export default function InvestmentBanner() {
                       : 0,
                 }}
                 transition={{ duration: 0.4, ease }}
-                className={`pointer-events-none absolute whitespace-nowrap font-sans ${isExpanded ? "text-lg" : "text-[11px]"} font-medium tracking-[0.22em] text-white/90 ${
+                className={`pointer-events-none absolute whitespace-nowrap font-sans ${isExpanded ? "text-lg" : "text-[11px]"} font-medium tracking-[0.22em] text-ivory/90 ${
                   pointer.id === "discover"
                     ? "bottom-full left-1/2 -translate-x-1/2"
                     : pointer.id === "invest"
@@ -270,12 +270,12 @@ export default function InvestmentBanner() {
                 animate={{
                   width: isExpanded ? 140 : 16,
                   height: isExpanded ? 140 : 16,
-                  backgroundColor: isExpanded ? pointer.color : "#ffffff",
+                  backgroundColor: isExpanded ? pointer.color : "var(--color-bone)",
                   borderWidth: isExpanded ? 1 : 0,
                   borderColor: pointer.border,
                   boxShadow: isExpanded
-                    ? "0 0 55px rgba(190,210,205,0.16)"
-                    : "0 0 20px rgba(255,255,255,0.35)",
+                    ? "0 0 55px rgba(201,164,90,0.16)"
+                    : "0 0 20px rgba(248,243,234,0.35)",
                 }}
                 transition={{
                   duration: 0.65,
@@ -297,7 +297,7 @@ export default function InvestmentBanner() {
                     delay: isExpanded ? 0.18 : 0,
                     ease,
                   }}
-                  className="absolute whitespace-nowrap font-sans text-[16px] font-medium tracking-[0.22em] text-white"
+                  className="absolute whitespace-nowrap font-sans text-[16px] font-medium tracking-[0.22em] text-ivory"
                 >
                   {pointer.label}
                 </motion.span>
@@ -325,7 +325,7 @@ export default function InvestmentBanner() {
           transition={{ duration: 0.9, ease }}
           className="absolute left-1/2 top-1/2 w-[85vw] max-w-[390px] -translate-x-1/2 -translate-y-1/2 md:left-[58%] md:w-[470px]"
         >
-          <h1 className="font-display text-[62px] font-light leading-[0.88] tracking-[-0.045em] text-white md:text-[76px] lg:text-[82px]">
+          <h1 className="font-display text-[62px] font-light leading-[0.88] tracking-[-0.045em] text-ivory md:text-[76px] lg:text-[82px]">
             <span className="block">ELEGANCE</span>
             <span className="block">DRIVES</span>
             <span className="block">VALUE</span>
@@ -338,14 +338,14 @@ export default function InvestmentBanner() {
           ===================================================== */}
 
       <div className="absolute bottom-12 left-8 hidden flex-col items-center gap-5 md:flex">
-        <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[11px] font-medium tracking-[0.28em] text-white/90">
+        <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[11px] font-medium tracking-[0.28em] text-ivory/90">
           SCROLL
         </span>
 
         <motion.span
           animate={{ scaleY: [0.35, 1, 0.35], opacity: [0.35, 1, 0.35] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="h-20 w-px origin-top bg-white/70"
+          className="h-20 w-px origin-top bg-ivory/70"
         />
       </div>
 
@@ -360,12 +360,12 @@ export default function InvestmentBanner() {
         transition={{ duration: 0.6, ease }}
         className="absolute bottom-12 right-8 max-w-[390px] md:right-16 lg:right-[18%]"
       >
-        <p className="font-sans text-sm leading-[1.45] text-white/90 md:text-[15px]">
+        <p className="font-sans text-sm leading-[1.45] text-ivory/90 md:text-[15px]">
           {descriptions[activePointer as keyof typeof descriptions]}
         </p>
       </motion.div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-white/10" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-ivory/10" />
     </section>
   );
 }

@@ -77,12 +77,13 @@ export default function ExperiencePage() {
               </p>
 
               <h2 className="mt-6 text-4xl md:text-6xl font-bold leading-none tracking-[-0.05em] text-bone font-display">
-                Every zone should feel premium, visual, and connected to the project palette.
+                Curated zones for every moment of discovery.
               </h2>
 
               <p className="mt-8 text-lg leading-relaxed text-haze">
-                The experience layout should prioritize the color and atmosphere of
-                Purura, using strong imagery and restrained editorial spacing.
+                From the lobby lounge to private villa retreats, each zone is
+                designed to immerse you in nature while maintaining the highest
+                standards of comfort and elegance.
               </p>
 
               <div className="mt-10 grid sm:grid-cols-2 gap-4">

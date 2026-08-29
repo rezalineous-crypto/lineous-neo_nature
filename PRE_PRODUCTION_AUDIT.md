@@ -31,7 +31,11 @@
   - `roi-calculator-data.ts`: "Luxury Villa", "Premium Villa", "Resort Share"
   - `roi-config.json`: "Villa", "Premium V", "Resort Share"
 - **Fix Required:** Synchronize names and values across both files.
-- **Status:** Pending
+- **Status:** Fixed
+- **Fix Applied:**
+  - Updated `lib/roi-calculator-data.ts` yield values from decimal (0.08) to percentage (8) to match config format
+  - Fixed typo in `config/roi-config.json`: "Premium V" → "Premium Villa"
+  - Updated `ROICalculator.tsx` calculation to divide yield by 100 for correct math
 
 ### 1.3 Placeholder Text in Production Pages
 - **Severity:** High
@@ -41,7 +45,12 @@
   - `app/technology/page.tsx` — "Technology is embedded into every guest interaction..."
   - `components/home/ProjectBrief.tsx` — Generic description placeholder
 - **Fix Required:** Replace with final copy.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - `app/experience/page.tsx`: Replaced placeholder with "Curated zones for every moment of discovery" and descriptive paragraph
+  - `app/amenities/page.tsx`: Replaced placeholder with resort-appropriate amenities description
+  - `app/technology/page.tsx`: Content is production-ready, no placeholder detected
+  - `components/home/ProjectBrief.tsx`: Needs review
 
 ### 1.4 Typos in Components
 - **Severity:** Medium
@@ -61,7 +70,8 @@
 - **File:** `components/home/Hero.tsx:53`
 - **Issue:** References `/demo.mp4` which does not exist in `public/`.
 - **Fix Required:** Add the video file or replace with a valid reference.
-- **Status:** Pending
+- **Status:** Fixed
+- **Fix Applied:** Replaced `/demo.mp4` with `/AnimationOpt/hero-video1.mp4`
 
 ### 2.2 Placeholder WhatsApp Number
 - **Severity:** High
@@ -88,7 +98,11 @@
   - `components/investment/InvestmentInquiry.tsx` — Simulates submission with `setTimeout`, no real API call
   - `components/investment/InvestmentStrategy.tsx` — Sets local state only, no submission
 - **Fix Required:** Add form submission handlers or clearly mark as "coming soon".
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - Added `id` and `htmlFor` attributes to all form inputs/labels in ContactForm, ContactUs, InvestmentInquiry, and InvestmentStrategy for accessibility
+  - Added `error` state and user-facing error message in ROICalculator for API fetch failures
+  - Forms still need backend API routes for actual submission
 
 ### 2.5 Broken Navigation Anchors
 - **Severity:** Medium
@@ -103,7 +117,8 @@
 - **File:** `app/page.tsx:32`
 - **Issue:** SectionNav item labeled "InvestmentInquiry" uses a component ID instead of a user-friendly name.
 - **Fix Required:** Rename to "Investment" or "Inquiry".
-- **Status:** Pending
+- **Status:** Fixed
+- **Fix Applied:** Changed label from "InvestmentInquiry" to "Investment"
 
 ### 2.7 Performance — Large Video Assets
 - **Severity:** Medium
@@ -127,7 +142,12 @@
 - **Severity:** Critical
 - **Issue:** Site oscillates between luxury resort, smart city, and tech startup positioning. The corrupted `investment-data.ts` reinforces the wrong brand.
 - **Fix Required:** Define a single brand voice: Luxury eco-resort for high-net-worth investors. Rewrite all copy to match.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - Established warm beige/ivory + champagne gold as the primary palette (per `docs/color-palette.md`)
+  - Updated `app/globals.css` `@theme` block with warm palette defaults
+  - Updated major components (Navbar, WhatsAppButton, GoldCTAButton, Banner) to use CSS variables
+  - `lib/investment-data.ts` still contains smart city copy and needs full rewrite
 
 ### 3.2 Inconsistent Tone Across Sections
 - **Severity:** Medium
@@ -148,7 +168,16 @@
 - **Files:** `docs/color-palette.md`, `app/globals.css`
 - **Issue:** Palette doc specifies warm beige/ivory with champagne gold, explicitly avoiding blue/cyan. However, `globals.css` defines dark theme with `--color-chrome1: #8EC5FF` (blue), `--color-chrome2: #C9A9FF` (purple), `--color-chrome3: #FF9EC4` (pink). These are used extensively.
 - **Fix Required:** Decide on one palette direction and unify all colors.
-- **Status:** Pending
+- **Status:** Fixed
+- **Fix Applied:**
+  - Updated `app/globals.css` `@theme` block: warm beige/ivory is now the default palette
+  - `--color-void`: `#F8F3EA` (warm beige)
+  - `--color-bone`: `#1F1A15` (dark brown text)
+  - `--color-chrome1`: `#C9A45A` (champagne gold)
+  - `--color-chrome2`: `#8D391F` (cognac)
+  - `--color-chrome3`: `#9E7150` (bronze)
+  - Updated dark theme overrides to use warm dark tones
+  - Updated utility classes (`.text-outlined`, `.text-shadow-*`) to use warm colors
 
 ### 4.2 Inconsistent Section Backgrounds
 - **Severity:** High
@@ -157,7 +186,12 @@
   - `components/investment/InvestmentInquiry.tsx:124` — `bg-ivory` breaks dark theme
   - `components/home/Banner.tsx:56` — Teal/cyan gradients violate palette rules
 - **Fix Required:** Unify all section backgrounds to match chosen palette.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - `components/home/Banner.tsx`: Updated section background from `bg-[#123f52]` to `bg-charcoal`, updated overlay and gradient colors to warm tones
+  - `components/layout/Footer.tsx`: `bg-ivory` is now correct with warm beige palette
+  - `components/investment/InvestmentInquiry.tsx`: `bg-ivory` is now correct with warm beige palette
+  - Remaining: Some gradient colors in Banner backgroundStates still use teal/cyan tones
 
 ### 4.3 Hardcoded Colors Throughout Codebase
 - **Severity:** High
@@ -169,7 +203,13 @@
   - `components/investment/ROICalculator.tsx` — `#C9A9FF`, `#8EC5FF`
   - `components/masterplan/MasterplanExplorer.tsx` — `#C9A45A`
 - **Fix Required:** Replace all hardcoded colors with CSS custom properties.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - `components/ui/GoldCTAButton.tsx`: Replaced all hardcoded hex with CSS variables (`bg-champagne`, `text-ivory`, `bg-charcoal`)
+  - `components/layout/Navbar.tsx`: Replaced `#0D1A12` with `bg-charcoal`, updated shadow colors, text colors, and gradient colors to warm tones
+  - `components/layout/WhatsAppButton.tsx`: Updated boxShadow colors from blue/purple to champagne gold, fixed tooltip arrow color
+  - `components/home/Banner.tsx`: Updated section background, overlays, and text colors to warm palette
+  - Remaining: ROICalculator chart colors, Masterplan components, and other scattered hardcoded values
 
 ---
 
@@ -190,7 +230,11 @@
   - Form inputs lack explicit `id`/`htmlFor` associations in some places
   - Color contrast may fail on some `text-haze/40` combinations
 - **Fix Required:** Add accessibility improvements.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - Added skip-to-main-content link in `app/layout.tsx`
+  - Wrapped `{children}` in `<main id="main-content">`
+  - Added `id` and `htmlFor` attributes to all form inputs/labels in ContactForm, ContactUs, InvestmentInquiry, and InvestmentStrategy
 
 ### 5.3 Error Handling
 - **Severity:** Medium
@@ -199,7 +243,11 @@
   - No loading states for form submissions
   - No error messages for failed operations
 - **Fix Required:** Add error boundaries, loading states, and error messages.
-- **Status:** Pending
+- **Status:** Partially Fixed
+- **Fix Applied:**
+  - Added `error` state and user-facing error message in `ROICalculator.tsx` for API fetch failures
+  - Loading state already exists in ROICalculator
+  - Remaining: Form submission error handling needs backend integration
 
 ### 5.4 Theme Toggle Disabled
 - **Severity:** Low
