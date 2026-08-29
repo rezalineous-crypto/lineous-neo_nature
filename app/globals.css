@@ -6,16 +6,16 @@
   --font-mono: "JetBrains Mono", monospace;
   --font-serif: "Playfair Display", serif;
 
-  /* Color tokens - dark (default) */
-  --color-void: #0A0A0C;
-  --color-secondary: #1b281c;
-  --color-graphite: #1A1A1E;
-  --color-line: #2A2A2F;
-  --color-bone: #EDEDE8;
-  --color-haze: #9A9AA0;
-  --color-chrome1: #8EC5FF;
-  --color-chrome2: #C9A9FF;
-  --color-chrome3: #FF9EC4;
+  /* Color tokens - warm beige/ivory (default) */
+  --color-void: #F8F3EA;
+  --color-secondary: #F1E6D8;
+  --color-graphite: #FFFDF8;
+  --color-line: #D8C8B7;
+  --color-bone: #1F1A15;
+  --color-haze: #5A4A3A;
+  --color-chrome1: #C9A45A;
+  --color-chrome2: #8D391F;
+  --color-chrome3: #9E7150;
 
   /* Luxury palette - warm neutrals */
   --color-ivory: #F5F5F0;
@@ -24,7 +24,7 @@
   --color-sand: #D5D5D0;
   --color-charcoal: #1A1A1E;
   --color-charcoal-warm: #2A2520;
-  --color-forest: #1b281c;
+  --color-forest: #4E4524;
   --color-champagne: #C9A45A;
 
   /* Fluid typography */
@@ -33,7 +33,7 @@
   --text-giant-fluid: clamp(4rem, 12vw, 14rem);
   --text-annotation: 10px;
 
-  --color-overlay: #0A0A0C;
+  --color-overlay: #2B2119;
 
   /* Letter spacing */
   --tracking-tightest2: -0.05em;
@@ -44,26 +44,26 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Light theme overrides */
-[data-theme="light"] {
-  --color-void: #F5F5F0;
-  --color-secondary: #1b281c;
-  --color-graphite: #FFFFFF;
-  --color-line: #E5E5E0;
-  --color-bone: #1A1A1E;
-  --color-haze: #6B6B70;
-  --color-chrome1: #5B9FE5;
-  --color-chrome2: #A87BE0;
-  --color-chrome3: #E07BA8;
+/* Dark theme overrides */
+[data-theme="dark"] {
+  --color-void: #2B2119;
+  --color-secondary: #1F1A15;
+  --color-graphite: #1A1A1E;
+  --color-line: #3A3530;
+  --color-bone: #F5F5F0;
+  --color-haze: #9A9AA0;
+  --color-chrome1: #C9A45A;
+  --color-chrome2: #8D391F;
+  --color-chrome3: #9E7150;
   --color-ivory: #F5F5F0;
   --color-cream: #EDEDE8;
   --color-stone: #E5E5E0;
   --color-sand: #D5D5D0;
   --color-charcoal: #1A1A1E;
   --color-charcoal-warm: #2A2520;
-  --color-forest: #1b281c;
+  --color-forest: #4E4524;
   --color-champagne: #C9A45A;
-  --color-overlay: #F5F5F0;
+  --color-overlay: #2B2119;
 }
 
 /* Smooth theme transitions */
@@ -157,7 +157,7 @@ body {
 
 /* Outlined watermark text */
 .text-outlined {
-  -webkit-text-stroke: 3px rgba(255, 255, 255, 0.25);
+  -webkit-text-stroke: 3px rgba(31, 26, 21, 0.25);
   color: transparent;
   font-weight: 900;
   letter-spacing: -0.02em;
@@ -210,19 +210,19 @@ html.lenis {
 
 /* Text shadow for readability over images */
 .text-shadow-sm {
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 2px rgba(31, 26, 21, 0.5);
 }
 
 .text-shadow-md {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 4px rgba(31, 26, 21, 0.5), 0 1px 2px rgba(31, 26, 21, 0.3);
 }
 
 .text-shadow-lg {
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 4px 8px rgba(31, 26, 21, 0.5), 0 2px 4px rgba(31, 26, 21, 0.3);
 }
 
 .text-shadow-light {
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.3), 0 1px 2px rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 3px rgba(245, 245, 240, 0.3), 0 1px 2px rgba(245, 245, 240, 0.2);
 }
 
 /* Dark theme support for light sections */
@@ -236,6 +236,10 @@ html.lenis {
 
 [data-theme="dark"] .dark\:text-charcoal {
   color: var(--color-charcoal);
+}
+
+[data-theme="dark"] .text-outlined {
+  -webkit-text-stroke: 3px rgba(245, 245, 240, 0.25);
 }
 
 /* Architectural annotation style */

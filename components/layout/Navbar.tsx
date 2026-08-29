@@ -167,11 +167,11 @@ export default function Navbar(): React.JSX.Element {
         <Container className={`overflow-hidden ${
           pathname === "/"
             ? scrolled
-              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne/70"
+              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
               : "bg-transparent"
             : `bg-transparent  ${
                 scrolled
-                  ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(10,10,12,0.1)] border border-champagne/70"
+                  ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
                   : ""
               }`
         }`}>
@@ -232,9 +232,9 @@ export default function Navbar(): React.JSX.Element {
                       "--menu-line-color":
                         pathname === "/"
                           ? scrolled
-                            ? "#000000"
-                            : "#ffffff"
-                          : "#000000",
+                            ? "var(--color-bone)"
+                            : "var(--color-bone)"
+                          : "var(--color-bone)",
                     } as React.CSSProperties
                   }
                 >
@@ -271,7 +271,7 @@ export default function Navbar(): React.JSX.Element {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-[200] overflow-hidden bg-[#0D1A12]"
+            className="fixed inset-0 z-[200] overflow-hidden bg-charcoal"
             initial={{ x: "100%", opacity: 0.8 }}
             animate={{ x: "0%", opacity: 1 }}
             exit={{ x: "100%", opacity: 1 }}
@@ -285,11 +285,11 @@ export default function Navbar(): React.JSX.Element {
       ============================================================ */}
 
             <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -left-[10%] -top-[15%] h-[55vw] w-[55vw] rounded-full bg-[radial-gradient(circle,rgba(118,143,104,0.12)_0%,rgba(118,143,104,0)_68%)]" />
+              <div className="absolute -left-[10%] -top-[15%] h-[55vw] w-[55vw] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.08)_0%,rgba(201,164,90,0)_68%)]" />
 
-              <div className="absolute -right-[10%] top-[20%] h-[45vw] w-[45vw] rounded-full bg-[radial-gradient(circle,rgba(190,165,95,0.06)_0%,rgba(190,165,95,0)_68%)]" />
+              <div className="absolute -right-[10%] top-[20%] h-[45vw] w-[45vw] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.05)_0%,rgba(201,164,90,0)_68%)]" />
 
-              <div className="absolute bottom-[-20%] left-[35%] h-[50vw] w-[50vw] rounded-full bg-[radial-gradient(circle,rgba(70,105,76,0.10)_0%,rgba(70,105,76,0)_70%)]" />
+              <div className="absolute bottom-[-20%] left-[35%] h-[50vw] w-[50vw] rounded-full bg-[radial-gradient(circle,rgba(158,113,80,0.06)_0%,rgba(158,113,80,0)_70%)]" />
             </div>
 
             {/* ============================================================
@@ -297,7 +297,7 @@ export default function Navbar(): React.JSX.Element {
       ============================================================ */}
 
             <motion.div
-              className="absolute left-0 right-0 top-[96px] z-[210] h-px bg-white/10"
+              className="absolute left-0 right-0 top-[96px] z-[210] h-px bg-bone/10"
               initial={{ scaleX: 0, transformOrigin: "left" }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
@@ -315,7 +315,7 @@ export default function Navbar(): React.JSX.Element {
               transition={{ duration: 0.6, delay: 0.25, ease: menuEase }}
               className="absolute left-8 top-7 z-[220] md:left-12 md:top-8"
             >
-              <p className="text-[9px] uppercase tracking-[0.45em] text-white/45">
+              <p className="text-[9px] uppercase tracking-[0.45em] text-bone/45">
                 PURURA / NAVIGATION
               </p>
             </motion.div>
@@ -334,8 +334,8 @@ export default function Navbar(): React.JSX.Element {
               transition={{ duration: 0.6, delay: 0.3, ease: menuEase }}
               className="absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6"
             >
-              <span className="absolute h-px w-8 rotate-45 bg-white/70 transition-all duration-500 hover:w-10" />
-              <span className="absolute h-px w-8 -rotate-45 bg-white/70 transition-all duration-500 hover:w-10" />
+              <span className="absolute h-px w-8 rotate-45 bg-bone/70 transition-all duration-500 hover:w-10" />
+              <span className="absolute h-px w-8 -rotate-45 bg-bone/70 transition-all duration-500 hover:w-10" />
             </motion.button>
 
             {/* ============================================================
@@ -364,9 +364,9 @@ export default function Navbar(): React.JSX.Element {
                 />
 
                 {/* Cinematic image treatment */}
-                <div className="absolute inset-0 bg-black/10" />
+                <div className="absolute inset-0 bg-charcoal/10" />
 
-                <div className="absolute inset-0 bg-gradient-to-r from-black/5 via-transparent to-[#0D1A12]/20" />
+                <div className="absolute inset-0 bg-gradient-to-r from-charcoal/5 via-transparent to-charcoal/20" />
 
                 {/* ========================================================
               GOLD ARCHITECTURAL LINE
@@ -406,11 +406,11 @@ export default function Navbar(): React.JSX.Element {
                   }}
                   className="absolute bottom-10 left-10"
                 >
-                  <p className="text-[9px] uppercase tracking-[0.45em] text-white/55">
+                  <p className="text-[9px] uppercase tracking-[0.45em] text-bone/55">
                     PURURA / VALUKA
                   </p>
 
-                  <p className="mt-3 max-w-xs font-display text-2xl font-light leading-tight text-white/90">
+                  <p className="mt-3 max-w-xs font-display text-2xl font-light leading-tight text-bone/90">
                     A different kind
                     <br />
                     of escape.
@@ -419,8 +419,8 @@ export default function Navbar(): React.JSX.Element {
 
                 {/* Vertical architectural marker */}
                 <div className="absolute bottom-10 right-8 flex items-center gap-3">
-                  <span className="h-px w-8 bg-white/25" />
-                  <span className="text-[8px] uppercase tracking-[0.35em] text-white/35">
+                  <span className="h-px w-8 bg-bone/25" />
+                  <span className="text-[8px] uppercase tracking-[0.35em] text-bone/35">
                     01 / 01
                   </span>
                 </div>
@@ -430,7 +430,7 @@ export default function Navbar(): React.JSX.Element {
             RIGHT — NAVIGATION / 50%
         ========================================================== */}
 
-              <div className="relative flex h-full min-h-0 flex-col bg-[#0D1A12] col-span-2">
+              <div className="relative flex h-full min-h-0 flex-col bg-charcoal col-span-2">
                 {/* Additional subtle atmosphere */}
                 {/* <div className="pointer-events-none absolute inset-0">
                   <div className="absolute right-[-15%] top-[5%] h-[45%] w-[70%] rounded-full bg-[radial-gradient(circle,rgba(125,151,110,0.075)_0%,rgba(125,151,110,0)_70%)]" />
@@ -549,7 +549,7 @@ export default function Navbar(): React.JSX.Element {
                                   }}
                                   className="absolute left-0 top-full z-[40] w-[calc(100%+2rem)] overflow-hidden"
                                 >
-                                  <div className="border-b border-[var(--color-champagne)]/25 bg-[#112117]/95 px-1 py-4 backdrop-blur-md">
+                                  <div className="border-b border-[var(--color-champagne)]/25 bg-charcoal/95 px-1 py-4 backdrop-blur-md">
                                     {item.items.map((subItem, subIndex) => (
                                       <motion.div
                                         key={subItem.label}
@@ -574,7 +574,7 @@ export default function Navbar(): React.JSX.Element {
                                         <Link
                                           href={subItem.href}
                                           onClick={closeMenu}
-                                          className="group/sub flex items-center gap-3 px-4 py-2.5 text-[9px] uppercase tracking-[0.22em] text-white/45 transition-colors duration-300 hover:text-[var(--color-champagne)]"
+                                          className="group/sub flex items-center gap-3 px-4 py-2.5 text-[9px] uppercase tracking-[0.22em] text-bone/45 transition-colors duration-300 hover:text-[var(--color-champagne)]"
                                         >
                                           <span className="h-px w-0 bg-[var(--color-champagne)] transition-all duration-300 group-hover/sub:w-5" />
                                           {subItem.label}
@@ -603,14 +603,14 @@ export default function Navbar(): React.JSX.Element {
                       delay: 0.85,
                       ease: menuEase,
                     }}
-                    className="mt-10 border-t border-white/10 pt-6"
+                    className="mt-10 border-t border-bone/10 pt-6"
                   >
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
                       <div>
                         <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
                           Location
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-white/50">
+                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
                           Valuka
                           <br />
                           Bangladesh
@@ -621,7 +621,7 @@ export default function Navbar(): React.JSX.Element {
                         <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
                           Contact
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-white/50">
+                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
                           +880 1332 831207
                         </p>
                       </div>
@@ -630,7 +630,7 @@ export default function Navbar(): React.JSX.Element {
                         <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
                           Email
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-white/50">
+                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
                           info@purura.com
                         </p>
                       </div>

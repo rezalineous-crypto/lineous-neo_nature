@@ -76,8 +76,9 @@ export default function AmenitiesPage() {
             </h2>
 
             <p className="mt-8 text-lg leading-relaxed text-haze">
-              The amenities should be presented through strong key imagery, calm
-              spacing, and the centralized dark palette with chrome accents.
+              From world-class dining to cultural experiences, every amenity is
+              crafted to complement the natural beauty of the resort while
+              delivering exceptional service.
             </p>
           </motion.div>
 

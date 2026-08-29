@@ -86,7 +86,7 @@ export default function ROICalculator() {
   let cumulativeReturn = 0;
 
   for (let i = 1; i <= duration; i++) {
-    const yearGrossReturn = investmentAmount * yieldRate;
+    const yearGrossReturn = investmentAmount * (yieldRate / 100);
     const yearCosts = yearGrossReturn * 0.15;
     const yearNetReturn = yearGrossReturn - yearCosts;
     cumulativeReturn += yearNetReturn;

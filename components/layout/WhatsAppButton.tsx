@@ -48,7 +48,7 @@ export default function WhatsAppButton() {
             height: 0,
             borderTop: "6px solid transparent",
             borderBottom: "6px solid transparent",
-            borderLeft: `6px solid var(--color-graphite)`,
+            borderLeft: `6px solid var(--color-bone)`,
           }}
         />
       </div>
@@ -61,8 +61,8 @@ export default function WhatsAppButton() {
             ? "var(--color-chrome2)"
             : "var(--color-champagne)",
           boxShadow: isHovered
-            ? "0 8px 30px rgba(201, 169, 255, 0.4)"
-            : "0 4px 20px rgba(142, 197, 255, 0.35)",
+            ? "0 8px 30px rgba(201, 164, 90, 0.4)"
+            : "0 4px 20px rgba(201, 164, 90, 0.35)",
           transform: isHovered ? "scale(1.08)" : "scale(1)",
         }}
       >
