@@ -2,7 +2,6 @@
 
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import { customEase } from "./Hero";
 
 /* ============================================================
@@ -86,36 +85,20 @@ BACKGROUND PARALLAX
   );
 
   /* ==========================================================
-IMAGE PARALLAX
-========================================================== */
+ VIDEO REVEAL
+ ========================================================== */
 
-  const imageY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
+  const videoClip1 = useTransform(scrollYProgress, [0.22, 0.36], ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]);
+  const videoScale1 = useTransform(scrollYProgress, [0.22, 0.36], [1.05, 1]);
 
-  const imageRotate = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [-1.5, 0, 1.5]
-  );
+  const videoClip2 = useTransform(scrollYProgress, [0.30, 0.44], ["inset(0% 0% 0% 100%)", "inset(0% 0% 0% 0%)"]);
+  const videoScale2 = useTransform(scrollYProgress, [0.30, 0.44], [1.05, 1]);
 
-  const imageScale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1.08, 1, 1.05]
-  );
+  const videoClip3 = useTransform(scrollYProgress, [0.38, 0.52], ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]);
+  const videoScale3 = useTransform(scrollYProgress, [0.38, 0.52], [1.05, 1]);
 
-  const imageClip = useTransform(
-    scrollYProgress,
-    [0.3, 0.48],
-    ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]
-  );
-
-  const imageCaptionOpacity = useTransform(
-    scrollYProgress,
-    [0.42, 0.52],
-    [0, 1]
-  );
-
-  const imageCaptionX = useTransform(scrollYProgress, [0.42, 0.52], [-20, 0]);
+  const videoClip4 = useTransform(scrollYProgress, [0.46, 0.60], ["inset(0% 0% 0% 100%)", "inset(0% 0% 0% 0%)"]);
+  const videoScale4 = useTransform(scrollYProgress, [0.46, 0.60], [1.05, 1]);
 
   /* ==========================================================
 COORDINATE MOVEMENT
@@ -127,12 +110,7 @@ COORDINATE MOVEMENT
     <section
       id="philosophy"
       ref={sectionRef}
-      className="
-     relative
-     min-h-screen
-     overflow-hidden
-     bg-void
-     text-bone
+      className=" relative min-h-screen overflow-hidden bg-void text-bone
    "
     >
       {/* =====================================================
@@ -145,12 +123,7 @@ ARCHITECTURAL BACKGROUND
         ----------------------------------------------- */}
 
         <div
-          className="
-        absolute
-        inset-0
-        opacity-[0.06]
-        bg-[linear-gradient(to_right,#EDEDE8_1px,transparent_1px),linear-gradient(to_bottom,#EDEDE8_1px,transparent_1px)]
-        bg-[size:80px_80px]
+          className=" absolute inset-0 opacity-[0.06] bg-[linear-gradient(to_right,#EDEDE8_1px,transparent_1px),linear-gradient(to_bottom,#EDEDE8_1px,transparent_1px)] bg-[size:80px_80px]
       "
         />
 
@@ -159,17 +132,7 @@ ARCHITECTURAL BACKGROUND
         ----------------------------------------------- */}
 
         <div
-          className="
-        absolute
-        top-1/2
-        left-1/2
-        -translate-x-1/2
-        -translate-y-1/2
-        w-[70vw]
-        h-[70vw]
-        rounded-full
-        bg-bone/[0.03]
-        blur-3xl
+          className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full bg-bone/[0.03] blur-3xl
       "
         />
 
@@ -182,15 +145,7 @@ ARCHITECTURAL BACKGROUND
             y: backgroundY,
             rotate: orbitRotate,
           }}
-          className="
-        absolute
-        top-[8%]
-        right-[-15%]
-        w-[55vw]
-        h-[55vw]
-        rounded-full
-        border
-        border-bone/[0.12]
+          className=" absolute top-[8%] right-[-15%] w-[55vw] h-[55vw] rounded-full border border-bone/[0.12]
       "
         >
           <div
@@ -451,18 +406,7 @@ ARCHITECTURAL BACKGROUND
       LEFT SITE INFORMATION
       ===================================================== */}
       <div
-        className="
-      absolute
-      left-6
-      md:left-12
-      lg:left-20
-      bottom-[20%]
-      z-10
-      hidden
-      md:flex
-      flex-col
-      gap-3
-      pointer-events-none
+        className=" absolute left-6 md:left-12 lg:left-20 bottom-[20%] z-10 hidden md:flex flex-col gap-3 pointer-events-none
     "
       >
         <span className="annotation text-bone/30">MASTERPLAN</span>
@@ -585,6 +529,8 @@ ARCHITECTURAL BACKGROUND
             mt-24
             md:mt-32
             lg:mt-40
+            space-y-16
+            md:space-y-24
           "
             >
               {/* Vertical measurement line */}
@@ -616,86 +562,141 @@ ARCHITECTURAL BACKGROUND
               top-0
               bottom-0
               w-px
-              bg-bone/20
+              bg-bone/0
             "
               />
 
-              {/* Image */}
-              <motion.div
-                style={{
-                  y: imageY,
-                  scale: imageScale,
-                  rotate: imageRotate,
-                  clipPath: imageClip,
-                }}
-                className="
-    relative
-    ml-auto
-    mr-4
-    md:mr-16
-    lg:mr-32
-    w-[78vw]
-    md:w-[48vw]
-    lg:w-[36vw]
-    max-w-[560px]
-    will-change-transform
-  "
-              >
-                <div
-                  className="
-      relative
-      aspect-[4/5]
-      overflow-hidden
-    "
+              {/* Row 1: Text (1/3) - Video (2/3) */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center">
+                <motion.div
+                  style={{ opacity: videoClip1 }}
+                  className="lg:col-span-1 order-2 lg:order-1"
                 >
-                  <Image
-                    src="/purura_resort_images/purura_render_03.jpg"
-                    alt="PURURA architectural detail"
-                    fill
-                    className="object-cover"
-                    sizes="
-        (max-width: 768px) 78vw,
-        (max-width: 1200px) 48vw,
-        36vw
-      "
-                  />
-
-                  <div
-                    className="
-        absolute
-        inset-0
-        bg-gradient-to-t
-        from-black/20
-        via-transparent
-        to-white/10
-      "
-                  />
-                </div>
-
-                <div
-                  className="
-      mt-4
-      flex
-      items-start
-      justify-between
-    "
+                  <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-chrome1/60 mb-3">
+                    Sports & Recreation
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone/90 font-display mb-3">
+                    Badminton Courts
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-bone/50 font-display">
+                    World-class courts designed for both casual play and competitive matches, surrounded by lush landscape.
+                  </p>
+                </motion.div>
+                <motion.div
+                  style={{ clipPath: videoClip1, scale: videoScale1 }}
+                  className="lg:col-span-2 order-1 lg:order-2 relative aspect-[16/10] overflow-hidden rounded-2xl bg-graphite"
                 >
-                  <motion.p
-                    style={{
-                      opacity: imageCaptionOpacity,
-                      x: imageCaptionX,
-                    }}
-                    className="
-        annotation
-        text-bone/50
-      "
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
                   >
-                    ARCHITECTURAL VISION / 01
-                  </motion.p>
+                    <source src="/Opt video/Badminto Court-01.webm" type="video/webm" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                </motion.div>
+              </div>
 
-                  <span className="annotation text-bone/30">PURURA</span>
-                </div>
-              </motion.div>
+              {/* Row 2: Video (2/3) - Text (1/3) */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center">
+                <motion.div
+                  style={{ clipPath: videoClip2, scale: videoScale2 }}
+                  className="lg:col-span-2 relative aspect-[16/10] overflow-hidden rounded-2xl bg-graphite"
+                >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/Opt video/Pool Side View with hotel.webm" type="video/webm" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                </motion.div>
+                <motion.div
+                  style={{ opacity: videoClip2 }}
+                  className="lg:col-span-1"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-chrome1/60 mb-3">
+                    Hotel & Leisure
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone/90 font-display mb-3">
+                    Infinity Pools
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-bone/50 font-display">
+                    Crystal-clear infinity pools that merge with the horizon, offering panoramic views of the resort landscape.
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Row 3: Text (1/3) - Video (2/3) */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center">
+                <motion.div
+                  style={{ opacity: videoClip3 }}
+                  className="lg:col-span-1 order-2 lg:order-1"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-chrome1/60 mb-3">
+                    Arrival Experience
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone/90 font-display mb-3">
+                    Reception Pavilion
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-bone/50 font-display">
+                    A futuristic gateway where autonomous mobility meets biometric check-in, framed by living walls and water features.
+                  </p>
+                </motion.div>
+                <motion.div
+                  style={{ clipPath: videoClip3, scale: videoScale3 }}
+                  className="lg:col-span-2 order-1 lg:order-2 relative aspect-[16/10] overflow-hidden rounded-2xl bg-graphite"
+                >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/Opt video/reception building from pool view.webm" type="video/webm" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                </motion.div>
+              </div>
+
+              {/* Row 4: Video (2/3) - Text (1/3) */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-10 items-center">
+                <motion.div
+                  style={{ clipPath: videoClip4, scale: videoScale4 }}
+                  className="lg:col-span-2 relative aspect-[16/10] overflow-hidden rounded-2xl bg-graphite"
+                >
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src="/Opt video/Swiming activity-02.webm" type="video/webm" />
+                  </video>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                </motion.div>
+                <motion.div
+                  style={{ opacity: videoClip4 }}
+                  className="lg:col-span-1"
+                >
+                  <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-chrome1/60 mb-3">
+                    Wellness & Aquatics
+                  </p>
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-[-0.03em] text-bone/90 font-display mb-3">
+                    Aquatic Activities
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed text-bone/50 font-display">
+                    Bio-filtered lagoons and hydrotherapy spaces where water becomes a medium for restoration and play.
+                  </p>
+                </motion.div>
+              </div>
             </div>
 
             {/* =================================================

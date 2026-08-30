@@ -279,7 +279,7 @@ export default function Navbar(): React.JSX.Element {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-[200] overflow-hidden bg-charcoal"
+            className="fixed inset-0 z-[200] overflow-hidden bg-[#1a2e1a]"
             initial={{ x: "100%", opacity: 0.8 }}
             animate={{ x: "0%", opacity: 1 }}
             exit={{ x: "100%", opacity: 1 }}
@@ -305,7 +305,7 @@ export default function Navbar(): React.JSX.Element {
       ============================================================ */}
 
             <motion.div
-              className="absolute left-0 right-0 top-[96px] z-[210] h-px bg-bone/10"
+              className="absolute left-0 right-0 top-[96px] z-[210] h-px bg-white/10"
               initial={{ scaleX: 0, transformOrigin: "left" }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
@@ -323,7 +323,7 @@ export default function Navbar(): React.JSX.Element {
               transition={{ duration: 0.6, delay: 0.25, ease: menuEase }}
               className="absolute left-8 top-7 z-[220] md:left-12 md:top-8"
             >
-              <p className="text-[9px] uppercase tracking-[0.45em] text-bone/45">
+              <p className="text-[9px] uppercase tracking-[0.45em] text-gray-400">
                 PURURA / NAVIGATION
               </p>
             </motion.div>
@@ -342,8 +342,8 @@ export default function Navbar(): React.JSX.Element {
               transition={{ duration: 0.6, delay: 0.3, ease: menuEase }}
               className="absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6"
             >
-              <span className="absolute h-px w-8 rotate-45 bg-bone/70 transition-all duration-500 hover:w-10" />
-              <span className="absolute h-px w-8 -rotate-45 bg-bone/70 transition-all duration-500 hover:w-10" />
+              <span className="absolute h-px w-8 rotate-45 bg-white transition-all duration-500 hover:w-10" />
+              <span className="absolute h-px w-8 -rotate-45 bg-white transition-all duration-500 hover:w-10" />
             </motion.button>
 
             {/* ============================================================
@@ -438,7 +438,7 @@ export default function Navbar(): React.JSX.Element {
             RIGHT — NAVIGATION / 50%
         ========================================================== */}
 
-              <div className="relative flex h-full min-h-0 flex-col bg-charcoal col-span-2">
+              <div className="relative flex h-full min-h-0 flex-col bg-[#1a2e1a] col-span-2">
                 {/* Additional subtle atmosphere */}
                 {/* <div className="pointer-events-none absolute inset-0">
                   <div className="absolute right-[-15%] top-[5%] h-[45%] w-[70%] rounded-full bg-[radial-gradient(circle,rgba(125,151,110,0.075)_0%,rgba(125,151,110,0)_70%)]" />
@@ -477,13 +477,13 @@ export default function Navbar(): React.JSX.Element {
                                 type="button"
                                 onClick={() => toggleMenuItem(item.label)}
                                 aria-expanded={isExpanded}
-                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 text-left transition-colors duration-500 hover:border-champagne/45 md:py-5"
+                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 text-left transition-colors duration-500 hover:border-[#C9A45A]/45 md:py-5"
                               >
                                 <span
                                   className={`font-display text-[clamp(1.8rem,3.2vw,3.2rem)] font-light leading-none tracking-[-0.035em] transition-all duration-500 ${
                                     isExpanded
-                                      ? "text-[var(--color-champagne)]"
-                                      : "text-white/90 group-hover:text-[var(--color-champagne)]"
+                                      ? "text-[#C9A45A]"
+                                      : "text-white/90 group-hover:text-[#C9A45A]"
                                   }`}
                                 >
                                   {item.label}
@@ -498,7 +498,7 @@ export default function Navbar(): React.JSX.Element {
                                     duration: 0.4,
                                     ease: menuEase,
                                   }}
-                                  className="text-[var(--color-champagne)]"
+                                  className="text-[#C9A45A]"
                                 >
                                   <ChevronDown
                                     className="h-4 w-4"
@@ -510,19 +510,19 @@ export default function Navbar(): React.JSX.Element {
                               <Link
                                 href={item.href}
                                 onClick={closeMenu}
-                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 transition-all duration-500 hover:border-[var(--color-champagne)]/45 md:py-5"
+                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 transition-all duration-500 hover:border-[#C9A45A]/45 md:py-5"
                               >
                                 <span
                                   className={`font-display text-[clamp(1.8rem,3.2vw,3.2rem)] font-light leading-none tracking-[-0.035em] transition-all duration-500 ${
                                     isActive(item.href)
-                                      ? "text-[var(--color-champagne)]"
-                                      : "text-white/90 group-hover:text-[var(--color-champagne)]"
+                                      ? "text-[#C9A45A]"
+                                      : "text-white/90 group-hover:text-[#C9A45A]"
                                   }`}
                                 >
                                   {item.label}
                                 </span>
 
-                                <span className="translate-x-[-4px] text-[var(--color-champagne)] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+                                <span className="translate-x-[-4px] text-[#C9A45A] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
                                   ↗
                                 </span>
                               </Link>
@@ -557,7 +557,7 @@ export default function Navbar(): React.JSX.Element {
                                   }}
                                   className="absolute left-0 top-full z-[40] w-[calc(100%+2rem)] overflow-hidden"
                                 >
-                                  <div className="border-b border-[var(--color-champagne)]/25 bg-charcoal/95 px-1 py-4 backdrop-blur-md">
+                                  <div className="border-b border-[#C9A45A]/25 bg-[#1a2e1a]/95 px-1 py-4 backdrop-blur-md">
                                     {item.items.map((subItem, subIndex) => (
                                       <motion.div
                                         key={subItem.label}
@@ -582,9 +582,9 @@ export default function Navbar(): React.JSX.Element {
                                         <Link
                                           href={subItem.href}
                                           onClick={closeMenu}
-                                          className="group/sub flex items-center gap-3 px-4 py-2.5 text-[9px] uppercase tracking-[0.22em] text-bone/45 transition-colors duration-300 hover:text-[var(--color-champagne)]"
+                                          className="group/sub flex items-center gap-3 px-4 py-2.5 text-sm uppercase tracking-[0.22em] text-gray-300 transition-colors duration-300 hover:text-[#C9A45A]"
                                         >
-                                          <span className="h-px w-0 bg-[var(--color-champagne)] transition-all duration-300 group-hover/sub:w-5" />
+                                          <span className="h-px w-0 bg-[#C9A45A] transition-all duration-300 group-hover/sub:w-5" />
                                           {subItem.label}
                                         </Link>
                                       </motion.div>
@@ -611,14 +611,14 @@ export default function Navbar(): React.JSX.Element {
                       delay: 0.85,
                       ease: menuEase,
                     }}
-                    className="mt-10 border-t border-bone/10 pt-6"
+                    className="mt-10 border-t border-white/10 pt-6"
                   >
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
                       <div>
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
+                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
                           Location
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
+                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
                           Valuka
                           <br />
                           Bangladesh
@@ -626,19 +626,19 @@ export default function Navbar(): React.JSX.Element {
                       </div>
 
                       <div>
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
+                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
                           Contact
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
+                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
                           +880 1332 831207
                         </p>
                       </div>
 
                       <div className="hidden md:block">
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/55">
+                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
                           Email
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-bone/50">
+                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
                           info@purura.com
                         </p>
                       </div>
