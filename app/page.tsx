@@ -45,7 +45,7 @@ export default function HomePage() {
         {/* <SectionTransition fromBg="bg-void" toBg="bg-void" /> */}
         <Architecture />
         <MasterplanExplorer />
-        <InvestmentInquiry />
+        {/* <InvestmentInquiry /> */}
         {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Experiences />
         {/* <SectionTransition fromBg="bg-ivory" toBg="bg-forest" /> */}

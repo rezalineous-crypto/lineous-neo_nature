@@ -164,17 +164,19 @@ export default function Navbar(): React.JSX.Element {
           isHome ? "top-0 md:top-4" : scrolled ? "top-4" : "top-0"
         } left-1/2 -translate-x-1/2 z-[99] transition-all duration-500`}
       >
-        <Container className={`overflow-hidden ${
-          pathname === "/"
-            ? scrolled
-              ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
-              : "bg-transparent"
-            : `bg-transparent  ${
-                scrolled
-                  ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
-                  : ""
-              }`
-        }`}>
+        <Container
+          className={`overflow-hidden ${
+            pathname === "/"
+              ? scrolled
+                ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
+                : "bg-transparent"
+              : `bg-transparent  ${
+                  scrolled
+                    ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
+                    : ""
+                }`
+          }`}
+        >
           <div
             className={`flex items-center justify-between transition-all duration-500 ${
               scrolled ? "h-20" : "h-28"
@@ -209,9 +211,9 @@ export default function Navbar(): React.JSX.Element {
             <div className="flex items-center gap-3 md:gap-10">
               {/* <ThemeToggle /> */}
 
-              <div className="hidden sm:block">
+              {/* <div className="hidden sm:block">
                 <GoldCTAButton />
-              </div>
+              </div> */}
 
               {/* =================================================
                   CUSTOM MENU BUTTON
@@ -242,21 +244,27 @@ export default function Navbar(): React.JSX.Element {
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
-                    className="absolute left-0 top-[3px] h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
+                    className={`absolute left-0 top-[3px] h-0.5 origin-left ${
+                      scrolled ? "bg-[var(--menu-line-color)]" : "bg-white"
+                    } transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100`}
                   />
 
                   <motion.span
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: -4, width: 58 }}
                     transition={{ duration: 0.6, ease: menuEase }}
-                    className="absolute left-[-14px] top-1/2 h-px origin-center -translate-y-1/2 bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
+                    className={`absolute left-[-14px] top-1/2 h-px origin-center -translate-y-1/2 ${
+                      scrolled ? "bg-[var(--menu-line-color)]" : "bg-white"
+                    } transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100`}
                   />
 
                   <motion.span
                     animate={{ x: 0, width: 40 }}
                     whileHover={{ x: 4, width: 58 }}
                     transition={{ duration: 0.55, ease: menuEase }}
-                    className="absolute bottom-[4px] left-0 h-0.5 origin-left bg-[var(--menu-line-color)] transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100"
+                    className={`absolute bottom-[4px] left-0 h-0.5 origin-left ${
+                      scrolled ? "bg-[var(--menu-line-color)]" : "bg-white"
+                    } transition-colors duration-500 group-hover:bg-[var(--color-champagne)] scale-50 md:scale-100`}
                   />
                 </div>
               </motion.button>
