@@ -6,6 +6,7 @@ import Architecture from "@/components/home/Architecture";
 import MasterplanExplorer from "@/components/masterplan/MasterplanExplorer";
 import Experiences from "@/components/home/Experiences";
 import Residences from "@/components/home/Residences";
+import VillaShowcase from "@/components/villas/VillaShowcase";
 import Investment from "@/components/home/Investment";
 import Legacy from "@/components/home/Legacy";
 import VillaCollection from "@/components/villas/VillaCollection";
@@ -42,9 +43,9 @@ export default function HomePage() {
         {/* <SectionTransition fromBg="bg-ivory" toBg="bg-void" /> */}
         <TheLand />
         <TheResort />
+        <VillaShowcase />
         {/* <SectionTransition fromBg="bg-void" toBg="bg-void" /> */}
-        <Architecture />
-        <MasterplanExplorer />
+        {/* <MasterplanExplorer /> */}
         {/* <InvestmentInquiry /> */}
         {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Experiences />
@@ -52,6 +53,8 @@ export default function HomePage() {
         <Residences />
         {/* <SectionTransition fromBg="bg-forest" toBg="bg-stone" /> */}
         <Investment />
+        <Architecture />
+
         {/* <SectionTransition fromBg="bg-stone" toBg="bg-void" />o */}
         <Legacy />
         {/* <VillaCollection /> */}
