@@ -11,6 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import Container from "./Container";
 import BrandIntro from "./BrandIntro";
+import VideoIntro from "@/components/intro/VideoIntro";
 // import ThemeToggle from "@/components/ThemeToggle";
 import GoldCTAButton from "@/components/ui/GoldCTAButton";
 import { ChevronDown } from "lucide-react";
@@ -58,6 +59,7 @@ export default function Navbar(): React.JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
+  const [showVideoIntro, setShowVideoIntro] = useState(false);
 
   const isHome = pathname === "/";
 
@@ -71,6 +73,17 @@ export default function Navbar(): React.JSX.Element {
       setScrolled(latest > 40);
     });
   }, [scrollY]);
+
+  useEffect(() => {
+    try {
+      const played = localStorage.getItem("purura-intro-played");
+      if (!played) {
+        setShowVideoIntro(true);
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
 
   /*
    * Lock the entire document while the menu is open.
@@ -144,11 +157,22 @@ export default function Navbar(): React.JSX.Element {
   return (
     <>
       <AnimatePresence>
-        {isLoading && (
-          <BrandIntro
-            minimumDuration={3000}
-            onComplete={() => setIsLoading(false)}
+        {showVideoIntro ? (
+          <VideoIntro
+            key="video-intro"
+            onComplete={() => {
+              setShowVideoIntro(false);
+              setIsLoading(false);
+            }}
           />
+        ) : (
+          isLoading && (
+            <BrandIntro
+              key="brand-intro"
+              minimumDuration={3000}
+              onComplete={() => setIsLoading(false)}
+            />
+          )
         )}
       </AnimatePresence>
 
@@ -187,6 +211,7 @@ export default function Navbar(): React.JSX.Element {
             ===================================================== */}
             <Link
               href="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="group relative flex text-[var(--color-bone)] font-bold md:text-lg uppercase tracking-[0.35em]"
             >
               <span className="flex items-center transition-all duration-300">

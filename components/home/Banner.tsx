@@ -24,10 +24,10 @@ const pointers: Pointer[] = [
     border: "rgba(197, 168, 102, 0.9)",
   },
   {
-    id: "invest",
-    label: "INVEST",
-    position: "left-1/2 top-full",
-    expandPosition: "left-1/2 top-full",
+    id: "experience",
+    label: "EXPERIENCE",
+    position: "left-1/2 top-[calc(100%-8px)]",
+    expandPosition: "left-1/2 top-[calc(100%-8px)]",
     color: "rgba(0, 0, 0, 0.01)",
     border: "rgba(197, 168, 102, 0.9)",
   },
@@ -39,17 +39,28 @@ const pointers: Pointer[] = [
     color: "rgba(0, 0, 0, 0.01)",
     border: "rgba(197, 168, 102, 0.9)",
   },
+{
+  id: "amenities",
+  label: "AMENITIES",
+  position: "-right-4 top-1/2",
+  expandPosition: "right-[-140px] top-1/2",
+  color: "rgba(0, 0, 0, 0.01)",
+  border: "rgba(197, 168, 102, 0.9)",
+},
 ];
 
 const descriptions = {
   discover:
     "Discover a refined vision of progress, creating inspiring environments where timeless design and enduring quality come together seamlessly.",
 
+  experience:
+    "Experience a destination where every detail is curated, from architectural elegance to natural immersion, offering moments that linger long after you leave.",
+
   retreat:
     "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
 
-  invest:
-    "Invest in a destination where exceptional design, strategic vision, and enduring value converge to create lasting opportunity.",
+  amenities:
+    "Enjoy world-class amenities designed for the discerning traveler, where every comfort is anticipated and every space invites relaxation.",
 };
 
 const backgroundStates = {
@@ -67,8 +78,9 @@ const backgroundStates = {
 
 const backgroundVideos = {
   discover: "/AnimationOpt/resort-entry.mp4",
-  retreat: "/AnimationOpt/hero-video2.mp4",
-  invest: "/AnimationOpt/video2.mp4",
+  experience: "/AnimationOpt/hero-video2.mp4",
+  retreat: "/AnimationOpt/resort-entry.mp4",
+  amenities: "/AnimationOpt/hero-video2.mp4",
 };
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -81,7 +93,7 @@ export default function InvestmentBanner() {
   const activePointer = hovered ?? activeAutoPointer;
 
   useEffect(() => {
-    const sequence = ["discover", "retreat", "invest"];
+    const sequence = ["discover", "retreat", "experience", "amenities"];
 
     let currentIndex = 0;
     let timeout: ReturnType<typeof setTimeout>;
@@ -205,12 +217,12 @@ export default function InvestmentBanner() {
         <motion.div
           animate={{
             scale: hovered ? 1.015 : 1,
-            borderColor:
-              hovered === "invest"
-                ? "rgba(221,201,146,0.6)"
-                : hovered
-                ? "rgba(201,164,90,0.6)"
-                : "rgba(248,243,234,0.45)",
+              borderColor:
+                hovered === "experience"
+                  ? "rgba(221,201,146,0.6)"
+                  : hovered
+                  ? "rgba(201,164,90,0.6)"
+                  : "rgba(248,243,234,0.45)",
           }}
           transition={{ duration: 0.9, ease }}
           className="absolute inset-0 rounded-full border-2"
@@ -228,7 +240,7 @@ export default function InvestmentBanner() {
           return (
             <div
               key={pointer.id}
-              className={`absolute z-30 ${pointer.position}`}
+              className={`absolute z-30 ${isExpanded ? pointer.expandPosition : pointer.position}`}
               onMouseEnter={() => setHovered(pointer.id)}
               onMouseLeave={() => setHovered(null)}
             >
@@ -252,8 +264,10 @@ export default function InvestmentBanner() {
                 className={`pointer-events-none absolute whitespace-nowrap font-sans ${isExpanded ? "text-lg" : "text-[11px]"} font-medium tracking-[0.22em] text-ivory/90 ${
                   pointer.id === "discover"
                     ? "bottom-full left-1/2 -translate-x-1/2"
-                    : pointer.id === "invest"
+                    : pointer.id === "experience"
                     ? "left-1/2 top-full -translate-x-1/2"
+                    : pointer.id === "amenities"
+                    ? "left-full top-1/2 -translate-y-1/2"
                     : "right-full top-1/2 -translate-y-1/2"
                 }`}
               >
