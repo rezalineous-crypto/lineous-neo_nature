@@ -339,7 +339,7 @@ export default function InvestmentBanner() {
           transition={{ duration: 0.9, ease }}
           className="absolute left-1/2 top-1/2 w-[85vw] max-w-[390px] -translate-x-1/2 -translate-y-1/2 md:left-[58%] md:w-[470px]"
         >
-          <h1 className="font-display text-[62px] font-light leading-[0.88] tracking-[-0.045em] text-ivory md:text-[76px] lg:text-[82px]">
+          <h1 className="font-display text-[50px] font-light leading-[0.88] tracking-[-0.045em] text-ivory md:text-[70px] ">
             <span className="block">ELEGANCE</span>
             <span className="block">DRIVES</span>
             <span className="block">VALUE</span>
