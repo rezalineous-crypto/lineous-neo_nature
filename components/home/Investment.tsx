@@ -55,9 +55,8 @@ export default function Investment() {
         <div className="absolute inset-0 rotate-45 border-8 border-champagne/40" />
         <div className="absolute inset-[55px] rotate-45 border-4 border-champagne/50" />
         <div className="absolute inset-[115px] rotate-45 border-4 border-champagne/30" />
-
       </motion.div>
-      
+
       {/* Section header */}
       <div className="px-6 md:px-12 lg:px-20 mb-16 md:mb-24">
         <div className="max-w-7xl mx-auto">
@@ -138,7 +137,7 @@ export default function Investment() {
       </div>
 
       {/* ROI Calculator CTA */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
         transition={{ duration: 0.8, delay: 1.4, ease: customEase }}
@@ -158,7 +157,7 @@ export default function Investment() {
             <ArrowUpRight className="h-4 w-4 text-champagne dark:text-void" />
           </motion.a>
         </div>
-      </motion.div>
+      </motion.div> */}
 
       {/* Thin architectural line */}
       <div className="absolute bottom-0 inset-x-0 h-px bg-charcoal/10 dark:bg-champagne/20" />
