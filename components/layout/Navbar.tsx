@@ -8,7 +8,7 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import BrandIntro from "./BrandIntro";
 import VideoIntro from "@/components/intro/VideoIntro";
@@ -57,9 +57,16 @@ export default function Navbar(): React.JSX.Element {
 
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [showBrandIntro, setShowBrandIntro] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
-  const [showVideoIntro, setShowVideoIntro] = useState(false);
+  const hasMounted = useRef(false);
+  const [showVideoIntro, setShowVideoIntro] = useState<boolean>(() => {
+    try {
+      return !localStorage.getItem("purura-intro-played");
+    } catch {
+      return false;
+    }
+  });
 
   const isHome = pathname === "/";
 
@@ -74,16 +81,6 @@ export default function Navbar(): React.JSX.Element {
     });
   }, [scrollY]);
 
-  useEffect(() => {
-    try {
-      const played = localStorage.getItem("purura-intro-played");
-      if (!played) {
-        setShowVideoIntro(true);
-      }
-    } catch {
-      // ignore storage errors
-    }
-  }, []);
 
   /*
    * Lock the entire document while the menu is open.
@@ -138,6 +135,21 @@ export default function Navbar(): React.JSX.Element {
     };
   }, [isOpen]);
 
+  /*
+   * Mark component as mounted after the initial render cycle.
+   */
+  useEffect(() => {
+    hasMounted.current = true;
+  }, []);
+
+  /*
+   * Trigger BrandIntro on route changes only (not on initial mount).
+   */
+  useLayoutEffect(() => {
+    if (!hasMounted.current) return;
+    setShowBrandIntro(true);
+  }, [pathname]);
+
   const width = useTransform(scrollY, [0, 120], ["100%", "92%"]);
 
   const openMenu = () => {
@@ -156,24 +168,21 @@ export default function Navbar(): React.JSX.Element {
 
   return (
     <>
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {showVideoIntro ? (
           <VideoIntro
             key="video-intro"
             onComplete={() => {
               setShowVideoIntro(false);
-              setIsLoading(false);
             }}
           />
-        ) : (
-          isLoading && (
-            <BrandIntro
-              key="brand-intro"
-              minimumDuration={3000}
-              onComplete={() => setIsLoading(false)}
-            />
-          )
-        )}
+        ) : showBrandIntro ? (
+          <BrandIntro
+            key={`brand-intro-${pathname}`}
+            minimumDuration={3000}
+            onComplete={() => setShowBrandIntro(false)}
+          />
+        ) : null}
       </AnimatePresence>
 
       {/* =========================================================
