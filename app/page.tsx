@@ -36,26 +36,17 @@ export default function HomePage() {
             { label: "Legacy", href: "#legacy" },
           ]}
         />
-        {/* <Hero /> */}
         <Banner />
-        {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Philosophy />
-        {/* <SectionTransition fromBg="bg-ivory" toBg="bg-void" /> */}
         <TheLand />
         <TheResort />
         <VillaShowcase />
-        {/* <SectionTransition fromBg="bg-void" toBg="bg-void" /> */}
-        {/* <MasterplanExplorer /> */}
+        <MasterplanExplorer />
         {/* <InvestmentInquiry /> */}
-        {/* <SectionTransition fromBg="bg-void" toBg="bg-ivory" /> */}
         <Experiences />
-        {/* <SectionTransition fromBg="bg-ivory" toBg="bg-forest" /> */}
         <Residences />
-        {/* <SectionTransition fromBg="bg-forest" toBg="bg-stone" /> */}
         <Investment />
         <Architecture />
-
-        {/* <SectionTransition fromBg="bg-stone" toBg="bg-void" />o */}
         <Legacy />
         {/* <VillaCollection /> */}
         <Technology />

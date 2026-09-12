@@ -1,130 +1,122 @@
-// Update the colors and link video to the variable and good to go for this banner to work
-
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-type Pointer = {
-  id: string;
-  label: string;
-  position: string;
-  expandPosition: string;
-  color: string;
-  border: string;
+type Scene = {
+  id: keyof typeof descriptions;
+  heading: string;
+  subheading: string;
 };
 
-const pointers: Pointer[] = [
+const scenes: Scene[] = [
   {
     id: "discover",
-    label: "DISCOVER",
-    position: "left-1/2 top-0",
-    expandPosition: "left-1/2 top-0",
-    color: "rgba(0, 0, 0, 0.01)",
-    border: "rgba(197, 168, 102, 0.9)",
+    heading: "THE NEW",
+    subheading: "ERA OF LUXUARY",
   },
+  // {
+  //   id: "retreat",
+  //   heading: "WHERE NATURE",
+  //   subheading: "BECOMES LUXURY",
+  // },
   {
     id: "experience",
-    label: "EXPERIENCE",
-    position: "left-1/2 top-[calc(100%-8px)]",
-    expandPosition: "left-1/2 top-[calc(100%-8px)]",
-    color: "rgba(0, 0, 0, 0.01)",
-    border: "rgba(197, 168, 102, 0.9)",
+    heading: "BESPOKEN",
+    subheading: "ESCAPE",
   },
   {
-    id: "retreat",
-    label: "RETREAT",
-    position: "left-0 top-1/2",
-    expandPosition: "left-0 top-1/2",
-    color: "rgba(0, 0, 0, 0.01)",
-    border: "rgba(197, 168, 102, 0.9)",
+    id: "amenities",
+    heading: "WHERE DETAIL",
+    subheading: "BECOMES EXPERIENCE",
   },
-{
-  id: "amenities",
-  label: "AMENITIES",
-  position: "-right-4 top-1/2",
-  expandPosition: "right-[-140px] top-1/2",
-  color: "rgba(0, 0, 0, 0.01)",
-  border: "rgba(197, 168, 102, 0.9)",
-},
 ];
 
 const descriptions = {
   discover:
     "Discover a refined vision of progress, creating inspiring environments where timeless design and enduring quality come together seamlessly.",
 
+  // retreat:
+  //   "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
+
   experience:
     "Experience a destination where every detail is curated, from architectural elegance to natural immersion, offering moments that linger long after you leave.",
-
-  retreat:
-    "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
 
   amenities:
     "Enjoy world-class amenities designed for the discerning traveler, where every comfort is anticipated and every space invites relaxation.",
 };
 
-const backgroundStates = {
-  idle: "radial-gradient(circle at 50% 42%, rgba(105,143,150,0.24), transparent 32%), radial-gradient(circle at 20% 80%, rgba(30,94,108,0.35), transparent 38%), linear-gradient(135deg,#163f4d 0%,#0d3445 48%,#092c3b 100%)",
-
-  discover:
-    "radial-gradient(circle at 50% 38%, rgba(143,181,185,0.38), transparent 30%), radial-gradient(circle at 20% 70%, rgba(36,111,126,0.42), transparent 42%), linear-gradient(135deg,#1b5260 0%,#104052 48%,#0b3040 100%)",
-
-  invest:
-    "radial-gradient(circle at 50% 55%, rgba(181,159,101,0.22), transparent 30%), radial-gradient(circle at 70% 30%, rgba(72,101,85,0.35), transparent 40%), linear-gradient(135deg,#183f45 0%,#123b43 48%,#0d3039 100%)",
-
-  retreat:
-    "radial-gradient(circle at 38% 48%, rgba(105,151,158,0.34), transparent 32%), radial-gradient(circle at 70% 70%, rgba(42,91,103,0.4), transparent 40%), linear-gradient(135deg,#164956 0%,#0f3949 48%,#092f3e 100%)",
-};
-
 const backgroundVideos = {
-  discover: "/AnimationOpt/resort-entry.mp4",
-  experience: "/AnimationOpt/hero-video2.mp4",
-  retreat: "/AnimationOpt/resort-entry.mp4",
-  amenities: "/AnimationOpt/hero-video2.mp4",
+  discover: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+  // retreat: "/AnimationOpt/hero-video2.mp4",
+  experience: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192143/BirdView3Ending.webm",
+  amenities: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
 };
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const ease = [0.16, 1, 0.3, 1] as const;
 
 export default function InvestmentBanner() {
   const [hovered, setHovered] = useState<string | null>(null);
-  const [activeAutoPointer, setActiveAutoPointer] = useState("discover");
+  const [activeAutoPointer, setActiveAutoPointer] =
+    useState<keyof typeof descriptions>("discover");
+
   const [autoPhase, setAutoPhase] = useState<"open" | "hold" | "close">("open");
+
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
-  const activePointer = hovered ?? activeAutoPointer;
+
+  const activePointer =
+    (hovered as keyof typeof descriptions | null) ?? activeAutoPointer;
+
+  const activeScene =
+    scenes.find((scene) => scene.id === activePointer) ?? scenes[0];
+
+  /*
+   * ============================================================
+   * AUTOMATIC CINEMATIC SEQUENCE
+   * ============================================================
+   */
 
   useEffect(() => {
-    const sequence = ["discover", "retreat", "experience", "amenities"];
+    const sequence: (keyof typeof descriptions)[] = [
+      "discover",
+      // "retreat",
+      "experience",
+      "amenities",
+    ];
 
     let currentIndex = 0;
     let timeout: ReturnType<typeof setTimeout>;
 
     const run = () => {
-      // OPEN
       setAutoPhase("open");
 
       timeout = setTimeout(() => {
-        // HOLD
         setAutoPhase("hold");
 
         timeout = setTimeout(() => {
-          // CLOSE
           setAutoPhase("close");
 
           timeout = setTimeout(() => {
-            // NEXT
             currentIndex = (currentIndex + 1) % sequence.length;
+
             setActiveAutoPointer(sequence[currentIndex]);
 
             run();
-          }, 650);
+          }, 900);
         }, 5000);
-      }, 650);
+      }, 900);
     };
 
     run();
 
     return () => clearTimeout(timeout);
   }, []);
+
+  /*
+   * ============================================================
+   * VIDEO CONTROL
+   * ============================================================
+   */
 
   useEffect(() => {
     const activeVideo = videoRefs.current[activePointer];
@@ -150,20 +142,11 @@ export default function InvestmentBanner() {
     });
   }, [activePointer]);
 
-  // const background =
-  //   hovered === "discover"
-  //     ? backgroundStates.discover
-  //     : hovered === "invest"
-  //     ? backgroundStates.invest
-  //     : hovered === "retreat"
-  //     ? backgroundStates.retreat
-  //     : backgroundStates.idle;
-
   return (
-    <section className="relative min-h-[720px] w-full overflow-hidden bg-charcoal text-ivory md:min-h-screen">
-      {/* =====================================================
-          BACKGROUND VIDEO
-          ===================================================== */}
+    <section className="relative min-h-[720px] w-full overflow-hidden bg-black text-ivory md:min-h-screen">
+      {/* ============================================================
+          CINEMATIC VIDEO BACKGROUND
+          ============================================================ */}
 
       <div className="absolute inset-0 overflow-hidden">
         {Object.entries(backgroundVideos).map(([id, src]) => (
@@ -179,205 +162,285 @@ export default function InvestmentBanner() {
             preload="auto"
             animate={{
               opacity: activePointer === id ? 1 : 0,
-              scale: activePointer === id ? 1 : 1.04,
+              scale: activePointer === id ? 1 : 1.035,
             }}
             transition={{
               opacity: {
-                duration: 1.4,
-                ease,
-              },
-              scale: {
                 duration: 1.8,
                 ease,
               },
+              scale: {
+                duration: 2.8,
+                ease,
+              },
             }}
-            className="absolute inset-0 h-full w-full object-cover brightness-75 contrast-125"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         ))}
       </div>
-      <div className="absolute inset-0 bg-charcoal/60" />
 
-      <div className="absolute inset-0 opacity-[0.08] [background-image:radial-gradient(circle_at_20%_30%,var(--color-bone)_0.6px,transparent_0.8px),radial-gradient(circle_at_70%_60%,var(--color-bone)_0.5px,transparent_0.8px)] [background-size:90px_90px,130px_130px]" />
+      {/* ============================================================
+          CINEMATIC GRADING
+          ============================================================ */}
 
       <motion.div
         animate={{
-          scale: hovered ? 1.15 : 1,
-          opacity: hovered ? 0.2 : 0.12,
+          opacity: hovered ? 0.18 : 0.28,
         }}
         transition={{ duration: 1.2, ease }}
-        className="absolute left-1/2 top-[42%] h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-champagne/20 blur-[100px]"
+        className="absolute inset-0 bg-black"
       />
 
-      {/* =====================================================
-          CENTRAL SYSTEM
-          ===================================================== */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/15" />
 
-      <div className="absolute left-1/2 top-[50%] h-[280px] w-[280px] -translate-x-1/2 -translate-y-1/2 sm:h-[350px] sm:w-[350px] md:h-[450px] md:w-[450px]">
-        {/* Orbit */}
-        <motion.div
-          animate={{
-            scale: hovered ? 1.015 : 1,
-              borderColor:
-                hovered === "experience"
-                  ? "rgba(221,201,146,0.6)"
-                  : hovered
-                  ? "rgba(201,164,90,0.6)"
-                  : "rgba(248,243,234,0.45)",
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.28)_100%)]" />
+
+      {/* ============================================================
+          SCENE HEADING
+          ============================================================ */}
+
+      <div className="absolute bottom-[15%] left-7 z-20 w-[calc(100%-3.5rem)] md:bottom-[13%] md:left-[7%] md:w-[65vw] lg:w-[58vw]">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activePointer}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={{
+              initial: {
+                opacity: 0,
+                y: 80,
+              },
+              animate: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 1.15,
+                  ease,
+                  staggerChildren: 0.08,
+                },
+              },
+              exit: {
+                opacity: 0,
+                y: -35,
+                transition: {
+                  duration: 0.7,
+                  ease,
+                },
+              },
+            }}
+          >
+            {/* Small animated line */}
+
+            <motion.div
+              variants={{
+                initial: {
+                  width: 0,
+                  opacity: 0,
+                },
+                animate: {
+                  width: 72,
+                  opacity: 0.8,
+                  transition: {
+                    duration: 0.9,
+                    ease,
+                  },
+                },
+                exit: {
+                  width: 0,
+                  opacity: 0,
+                  transition: {
+                    duration: 0.35,
+                    ease,
+                  },
+                },
+              }}
+              className="mb-6 h-px bg-champagne md:mb-8"
+            />
+
+            {/* First line */}
+
+            <div className="overflow-hidden">
+              <motion.h1
+                variants={{
+                  initial: {
+                    y: "110%",
+                  },
+                  animate: {
+                    y: "0%",
+                    transition: {
+                      duration: 1.15,
+                      ease,
+                    },
+                  },
+                  exit: {
+                    y: "-110%",
+                    transition: {
+                      duration: 0.65,
+                      ease,
+                    },
+                  },
+                }}
+                className="font-display text-[clamp(3rem,6.5vw,4rem)] font-light leading-[0.86] tracking-[-0.055em] text-ivory"
+              >
+                {activeScene.heading}
+              </motion.h1>
+            </div>
+
+            {/* Second line */}
+
+            <div className="overflow-hidden">
+              <motion.h1
+                variants={{
+                  initial: {
+                    y: "110%",
+                  },
+                  animate: {
+                    y: "0%",
+                    transition: {
+                      duration: 1.2,
+                      delay: 0.08,
+                      ease,
+                    },
+                  },
+                  exit: {
+                    y: "-110%",
+                    transition: {
+                      duration: 0.65,
+                      ease,
+                    },
+                  },
+                }}
+                className="ml-[7vw] font-display text-[clamp(3rem,6.5vw,4.5rem)] font-light leading-[0.86] tracking-[-0.055em] text-ivory/85"
+              >
+                {activeScene.subheading}
+              </motion.h1>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* ============================================================
+          DESCRIPTION — VERY SUBTLE
+          ============================================================ */}
+
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={activePointer}
+          initial={{
+            opacity: 0,
+            y: 15,
           }}
-          transition={{ duration: 0.9, ease }}
-          className="absolute inset-0 rounded-full border-2"
-        />
+          animate={{
+            opacity: hovered ? 0.4 : 0.62,
+            y: 0,
+          }}
+          exit={{
+            opacity: 0,
+            y: -10,
+          }}
+          transition={{
+            duration: 0.8,
+            ease,
+          }}
+          className="absolute bottom-[8%] right-7 z-20 max-w-[270px] text-right font-sans text-[11px] leading-[1.55] text-ivory md:bottom-[9%] md:right-[7%] md:max-w-[310px] md:text-[12px]"
+        >
+          {descriptions[activePointer]}
+        </motion.p>
+      </AnimatePresence>
 
-        {/* =================================================
-            POINTERS
-            ================================================= */}
+      {/* ============================================================
+          CINEMATIC SCENE NAVIGATION
+          ============================================================ */}
 
-        {pointers.map((pointer) => {
-          const isHovered = hovered === pointer.id;
-          const isAutoActive = activeAutoPointer === pointer.id;
-          const isExpanded = isHovered || isAutoActive;
+      <div className="absolute bottom-8 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3">
+        {scenes.map((scene) => {
+          const isActive = activePointer === scene.id;
 
           return (
-            <div
-              key={pointer.id}
-              className={`absolute z-30 ${isExpanded ? pointer.expandPosition : pointer.position}`}
-              onMouseEnter={() => setHovered(pointer.id)}
+            <button
+              key={scene.id}
+              type="button"
+              aria-label={scene.id}
+              onMouseEnter={() => setHovered(scene.id)}
               onMouseLeave={() => setHovered(null)}
+              onFocus={() => setHovered(scene.id)}
+              onBlur={() => setHovered(null)}
+              className="relative flex h-5 items-center"
             >
-              {/* ---------------------------------------------
-                  EXTERNAL LABEL
-                  This exists BEFORE hover.
-                  --------------------------------------------- */}
-
               <motion.span
                 animate={{
-                  opacity: isExpanded ? 0 : 1,
-                  x: pointer.id === "retreat" ? -12 : 0,
-                  y:
-                    pointer.id === "discover"
-                      ? -24
-                      : pointer.id === "invest"
-                      ? 24
-                      : 0,
-                }}
-                transition={{ duration: 0.4, ease }}
-                className={`pointer-events-none absolute whitespace-nowrap font-sans ${isExpanded ? "text-lg" : "text-[11px]"} font-medium tracking-[0.22em] text-ivory/90 ${
-                  pointer.id === "discover"
-                    ? "bottom-full left-1/2 -translate-x-1/2"
-                    : pointer.id === "experience"
-                    ? "left-1/2 top-full -translate-x-1/2"
-                    : pointer.id === "amenities"
-                    ? "left-full top-1/2 -translate-y-1/2"
-                    : "right-full top-1/2 -translate-y-1/2"
-                }`}
-              >
-                {pointer.label}
-              </motion.span>
-
-              {/* ---------------------------------------------
-                  DOT → CIRCLE
-                  --------------------------------------------- */}
-
-              <motion.button
-                type="button"
-                aria-label={pointer.label}
-                animate={{
-                  width: isExpanded ? 140 : 16,
-                  height: isExpanded ? 140 : 16,
-                  backgroundColor: isExpanded ? pointer.color : "var(--color-bone)",
-                  borderWidth: isExpanded ? 1 : 0,
-                  borderColor: pointer.border,
-                  boxShadow: isExpanded
-                    ? "0 0 55px rgba(201,164,90,0.16)"
-                    : "0 0 20px rgba(248,243,234,0.35)",
+                  width: isActive ? 38 : 6,
+                  opacity: isActive ? 0.9 : 0.4,
                 }}
                 transition={{
                   duration: 0.65,
                   ease,
                 }}
-                className="relative flex -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full backdrop-blur-md"
-              >
-                {/* -----------------------------------------
-                    LABEL INSIDE EXPANDED CIRCLE
-                    ----------------------------------------- */}
+                className="h-px bg-ivory"
+              />
 
+              {isActive && !hovered && (
                 <motion.span
+                  key={`${activePointer}-${autoPhase}`}
+                  initial={{ scaleX: 0 }}
                   animate={{
-                    opacity: isExpanded ? 1 : 0,
-                    scale: isExpanded ? 1 : 0.75,
+                    scaleX: autoPhase === "hold" ? 1 : 0,
                   }}
                   transition={{
-                    duration: 0.35,
-                    delay: isExpanded ? 0.18 : 0,
-                    ease,
+                    duration: autoPhase === "hold" ? 5 : 0.9,
+                    ease: autoPhase === "hold" ? "linear" : ease,
                   }}
-                  className="absolute whitespace-nowrap font-sans text-[16px] font-medium tracking-[0.22em] text-ivory"
-                >
-                  {pointer.label}
-                </motion.span>
-              </motion.button>
-            </div>
+                  className="absolute left-0 h-px w-full origin-left bg-champagne"
+                />
+              )}
+            </button>
           );
         })}
-
-        {/* =================================================
-            MAIN HEADLINE
-            ================================================= */}
-
-        <motion.div
-          animate={{
-            x:
-              hovered === "discover"
-                ? 8
-                : hovered === "retreat"
-                ? 14
-                : hovered === "invest"
-                ? -5
-                : 0,
-            scale: hovered ? 1.015 : 1,
-          }}
-          transition={{ duration: 0.9, ease }}
-          className="absolute left-1/2 top-1/2 w-[85vw] max-w-[390px] -translate-x-1/2 -translate-y-1/2 md:left-[58%] md:w-[470px]"
-        >
-          <h1 className="font-display text-[50px] font-light leading-[0.88] tracking-[-0.045em] text-ivory md:text-[70px] ">
-            <span className="block">ELEGANCE</span>
-            <span className="block">DRIVES</span>
-            <span className="block">VALUE</span>
-          </h1>
-        </motion.div>
       </div>
 
-      {/* =====================================================
+      {/* ============================================================
           SCROLL
-          ===================================================== */}
+          ============================================================ */}
 
-      <div className="absolute bottom-12 left-8 hidden flex-col items-center gap-5 md:flex">
-        <span className="[writing-mode:vertical-rl] rotate-180 font-sans text-[11px] font-medium tracking-[0.28em] text-ivory/90">
+      <motion.div
+        animate={{
+          opacity: hovered ? 0.25 : 0.55,
+        }}
+        transition={{ duration: 0.6, ease }}
+        className="absolute bottom-8 left-7 z-20 hidden items-center gap-4 md:flex"
+      >
+        <span className="font-sans text-[8px] tracking-[0.32em] text-ivory">
           SCROLL
         </span>
 
         <motion.span
-          animate={{ scaleY: [0.35, 1, 0.35], opacity: [0.35, 1, 0.35] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="h-20 w-px origin-top bg-ivory/70"
+          animate={{
+            width: [15, 38, 15],
+            opacity: [0.25, 0.75, 0.25],
+          }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="h-px bg-ivory"
         />
+      </motion.div>
+
+      {/* ============================================================
+          MOBILE DESCRIPTION
+          ============================================================ */}
+
+      <div className="absolute bottom-8 right-7 z-20 md:hidden">
+        <span className="font-mono text-[8px] tracking-[0.18em] text-ivory/45">
+          0{scenes.findIndex((scene) => scene.id === activePointer) + 1} / 04
+        </span>
       </div>
 
-      {/* =====================================================
-          DESCRIPTION
-          ===================================================== */}
-
-      <motion.div
-        key={activePointer}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: hovered ? 0.65 : 0.9, y: 0 }}
-        transition={{ duration: 0.6, ease }}
-        className="absolute bottom-12 right-8 max-w-[390px] md:right-16 lg:right-[18%]"
-      >
-        <p className="font-sans text-sm leading-[1.45] text-ivory/90 md:text-[15px]">
-          {descriptions[activePointer as keyof typeof descriptions]}
-        </p>
-      </motion.div>
+      {/* ============================================================
+          BOTTOM EDGE
+          ============================================================ */}
 
       <div className="absolute bottom-0 left-0 right-0 h-px bg-ivory/10" />
     </section>
