@@ -42,7 +42,7 @@ export default function VideoIntro({ onComplete }: VideoIntroProps) {
     const handleEnded = () => {
       controls.start(fadeOut.exit).then(() => {
         try {
-          localStorage.setItem(STORAGE_KEY, "1");
+          sessionStorage.setItem(STORAGE_KEY, "1");
         } catch {
           // ignore storage errors
         }

@@ -47,10 +47,13 @@ const descriptions = {
 };
 
 const backgroundVideos = {
-  discover: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+  discover:
+    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
   // retreat: "/AnimationOpt/hero-video2.mp4",
-  experience: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192143/BirdView3Ending.webm",
-  amenities: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+  experience:
+    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192143/BirdView3Ending.webm",
+  amenities:
+    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -281,7 +284,7 @@ export default function InvestmentBanner() {
                     },
                   },
                 }}
-                className="font-display text-[clamp(3rem,6.5vw,4rem)] font-light leading-[0.86] tracking-[-0.055em] text-ivory"
+                className="font-display text-[clamp(3rem,6.5vw,4rem)] leading-[0.86] tracking-[-0.055em] text-ivory font-light"
               >
                 {activeScene.heading}
               </motion.h1>
@@ -311,7 +314,7 @@ export default function InvestmentBanner() {
                     },
                   },
                 }}
-                className="ml-[7vw] font-display text-[clamp(3rem,6.5vw,4.5rem)] font-light leading-[0.86] tracking-[-0.055em] text-ivory/85"
+                className="ml-[7vw] font-display text-[clamp(3rem,6.5vw,4.5rem)] leading-[0.86] tracking-[-0.055em] text-ivory/85 font-bold"
               >
                 {activeScene.subheading}
               </motion.h1>

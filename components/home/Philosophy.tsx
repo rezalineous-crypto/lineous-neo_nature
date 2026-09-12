@@ -178,6 +178,32 @@ export default function InvestmentBanner() {
 
   /*
    * ============================================================
+   * SCROLL-BASED TEXT REVEAL
+   * ============================================================
+   */
+  // Heading line 1 reveal (THE ART OF)
+  const headingLine1Reveal = useTransform(
+    scrollYProgress,
+    [0.15, 0.3],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+  );
+
+  // Heading line 2 reveal (ESCAPE WITH ELEGANCE)
+  const headingLine2Reveal = useTransform(
+    scrollYProgress,
+    [0.25, 0.4],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+  );
+
+  // Description reveal
+  const descriptionReveal = useTransform(
+    scrollYProgress,
+    [0.35, 0.55],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+  );
+
+  /*
+   * ============================================================
    * AUTOMATIC SCENE CHANGE
    * ============================================================
    */
@@ -313,32 +339,26 @@ export default function InvestmentBanner() {
                 }}
               >
                 {/* Heading */}
-                <h2 className="font-display text-[clamp(2.8rem,4.7vw,5.1rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-[#151613]">
-                  <span className="block">
+                <h2 className="font-display text-[clamp(2.8rem,4.7vw,5.1rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-chrome1">
+                  <motion.span
+                    style={{ clipPath: headingLine1Reveal }}
+                    className="block"
+                  >
                     {activeScene.heading}
-                  </span>
+                  </motion.span>
 
-                  <span className="mt-1 block max-w-130">
+                  <motion.span
+                    style={{ clipPath: headingLine2Reveal }}
+                    className="mt-1 block max-w-130"
+                  >
                     {activeScene.accent}
-                  </span>
+                  </motion.span>
                 </h2>
 
                 {/* Description */}
                 <motion.p
-                  initial={{
-                    opacity: 0,
-                    y: 12,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.7,
-                    delay: 0.22,
-                    ease,
-                  }}
-                  className="mt-8 max-w-90 pl-[8%] font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[13px]"
+                  style={{ clipPath: descriptionReveal }}
+                  className="mt-8 max-w-90 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[13px]"
                 >
                   {activeScene.description}
                 </motion.p>

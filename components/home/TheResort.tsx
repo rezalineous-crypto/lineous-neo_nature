@@ -7,27 +7,27 @@ import { customEase } from "./Hero";
 
 const resortImages = [
   {
-    src: "/purura_resort_images/purura_render_02.jpg",
+    src: "/Purura/NewImages/Overall 1.png",
     alt: "Aerial resort view",
     caption: "AERIAL VISTA",
     description: "A bird's-eye view of the entire resort ecosystem",
   },
+  // {
+  //   src: "/purura_resort_images/purura_render_10.jpg",
+  //   alt: "Wellness and waterfront",
+  //   caption: "WELLNESS",
+  //   description: "Bio-filtered lagoons and restorative programming",
+  // },
   {
-    src: "/purura_resort_images/purura_render_10.jpg",
-    alt: "Wellness and waterfront",
-    caption: "WELLNESS",
-    description: "Bio-filtered lagoons and restorative programming",
-  },
-  {
-    src: "/purura_resort_images/purura_render_11.jpg",
+    src: "/Purura/NewImages/Villa 4.png",
     alt: "Private villa district",
     caption: "PRIVATE VILLAS",
-    description: "Pod, sky, and floating villa clusters",
+    description: "Intelligent, sky, and floating villa clusters",
   },
   {
-    src: "/purura_resort_images/purura_render_16.jpg",
+    src: "/Purura/NewImages/Restaurant 2.png",
     alt: "Cultural experiences",
-    caption: "CULTURE",
+    caption: "RESTAURANT",
     description: "Curated events, dining, and performances",
   },
   {
@@ -50,7 +50,7 @@ export default function TheResort() {
   const x = useTransform(
     scrollYProgress,
     [0, 1],
-    ["70%", `-${(resortImages.length - 3.5) * 100}%`]
+    ["70%", `-${(resortImages.length - 2.8) * 100}%`]
   );
 
   // Typography moves at a different rate (slower)
@@ -93,7 +93,11 @@ export default function TheResort() {
         </div>
         <div className="flex flex-col gap-12">
           {resortImages.map((image, index) => (
-            <div key={index} className="relative" style={{ width: "min(85vw, 600px)" }}>
+            <div
+              key={index}
+              className="relative"
+              style={{ width: "min(85vw, 600px)" }}
+            >
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +155,8 @@ export default function TheResort() {
               A journey <br />
               through
               <br />
-              <span className="text-chrome1 uppercase">extraordinary</span> <br />
+              <span className="text-chrome1 uppercase">extraordinary</span>{" "}
+              <br />
               spaces
             </motion.h2>
           </div>
@@ -178,14 +183,16 @@ export default function TheResort() {
                       delay: index * 0.1,
                       ease: customEase,
                     }}
-                    className={`relative ${index % 2 === 0 ? "mt-12" : "mb-12"}`}
+                    className={`relative ${
+                      index % 2 === 0 ? "mt-12" : "mb-12"
+                    }`}
                   >
-                    <div className="relative aspect-[4/5]">
+                    <div className="relative w-[600px] h-[600px]">
                       <Image
                         src={image.src}
                         alt={image.alt}
                         fill
-                        className="object-cover rounded-xl drop-shadow-xl"
+                        className="object-cover rounded-xl drop-shadow-2xl"
                         sizes="85vw"
                       />
                     </div>

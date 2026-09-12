@@ -54,17 +54,17 @@ const experiences = [
     offset: "mt-32 md:mt-48",
     reveal: "diagonal",
   },
-  {
-    src: "/purura_resort_images/purura_render_20.jpg",
-    alt: "Dining experience",
-    caption: "DINING",
-    title: "Culinary Journey",
-    description:
-      "Eight venues, twelve cuisines. From rooftop bars to beachside grills, every meal is an event.",
-    size: "large",
-    offset: "mt-16 md:mt-24",
-    reveal: "top",
-  },
+  // {
+  //   src: "/purura_resort_images/purura_render_20.jpg",
+  //   alt: "Dining experience",
+  //   caption: "DINING",
+  //   title: "Culinary Journey",
+  //   description:
+  //     "Eight venues, twelve cuisines. From rooftop bars to beachside grills, every meal is an event.",
+  //   size: "large",
+  //   offset: "mt-16 md:mt-24",
+  //   reveal: "top",
+  // },
 ];
 
 /* ============================================================

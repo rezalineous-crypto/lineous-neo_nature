@@ -373,15 +373,14 @@ export default function BrandIntro({
                     ease: smoothEase,
                   }}
                 >
-                  <span
-                    className="relative block whitespace-nowrap font-display text-[clamp(4.8rem,16vw,13.5rem)] font-semibold leading-[0.78] tracking-[-0.095em]"
+                  <img
+                    src="/purura-logo.png"
+                    alt="Purura"
+                    className="relative block whitespace-nowrap h-[clamp(8rem,24vw,20rem)] w-auto"
                     style={{
-                      color: "#c8a158",
-                      textShadow: "0 8px 30px rgba(163, 126, 55, 0.08)",
+                      filter: "drop-shadow(0 12px 40px rgba(163, 126, 55, 0.12))",
                     }}
-                  >
-                    PURURA
-                  </span>
+                  />
                 </motion.div>
               </div>
 

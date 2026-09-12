@@ -62,7 +62,7 @@ export default function Navbar(): React.JSX.Element {
   const hasMounted = useRef(false);
   const [showVideoIntro, setShowVideoIntro] = useState<boolean>(() => {
     try {
-      return !localStorage.getItem("purura-intro-played");
+      return !sessionStorage.getItem("purura-intro-played");
     } catch {
       return false;
     }
@@ -80,7 +80,6 @@ export default function Navbar(): React.JSX.Element {
       setScrolled(latest > 40);
     });
   }, [scrollY]);
-
 
   /*
    * Lock the entire document while the menu is open.
@@ -313,12 +312,12 @@ export default function Navbar(): React.JSX.Element {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="fixed inset-0 z-[200] overflow-hidden bg-[#1a2e1a]"
-            initial={{ x: "100%", opacity: 0.8 }}
-            animate={{ x: "0%", opacity: 1 }}
-            exit={{ x: "100%", opacity: 1 }}
+            className="fixed inset-0 z-[200] overflow-hidden bg-[#101b10]"
+            initial={{ x: "100%" }}
+            animate={{ x: "0%" }}
+            exit={{ x: "100%" }}
             transition={{
-              duration: 0.8,
+              duration: 0.9,
               ease: menuEase,
             }}
           >
@@ -326,333 +325,277 @@ export default function Navbar(): React.JSX.Element {
           ATMOSPHERE
       ============================================================ */}
 
-            <div className="pointer-events-none absolute inset-0">
-              <div className="absolute -left-[10%] -top-[15%] h-[55vw] w-[55vw] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.08)_0%,rgba(201,164,90,0)_68%)]" />
+            <div className="pointer-events-none absolute inset-0 z-0">
+              <div className="absolute -left-[15%] -top-[20%] h-[65vw] w-[65vw] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.07)_0%,rgba(201,164,90,0)_65%)]" />
 
-              <div className="absolute -right-[10%] top-[20%] h-[45vw] w-[45vw] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.05)_0%,rgba(201,164,90,0)_68%)]" />
+              <div className="absolute -right-[15%] bottom-[-25%] h-[60vw] w-[60vw] rounded-full bg-[radial-gradient(circle,rgba(158,113,80,0.07)_0%,rgba(158,113,80,0)_68%)]" />
 
-              <div className="absolute bottom-[-20%] left-[35%] h-[50vw] w-[50vw] rounded-full bg-[radial-gradient(circle,rgba(158,113,80,0.06)_0%,rgba(158,113,80,0)_70%)]" />
+              <div
+                className="absolute inset-0 opacity-[0.018]"
+                style={{
+                  backgroundImage:
+                    "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.8'/%3E%3C/svg%3E\")",
+                }}
+              />
             </div>
 
             {/* ============================================================
-          TOP ARCHITECTURAL LINE
+          TOP LINE
       ============================================================ */}
 
             <motion.div
-              className="absolute left-0 right-0 top-[96px] z-[210] h-px bg-white/10"
-              initial={{ scaleX: 0, transformOrigin: "left" }}
-              animate={{ scaleX: 1 }}
-              exit={{ scaleX: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: menuEase }}
+              className="absolute left-0 right-0 top-[96px] z-[220] h-px bg-white/[0.09]"
+              initial={{
+                scaleX: 0,
+                transformOrigin: "left",
+              }}
+              animate={{
+                scaleX: 1,
+              }}
+              exit={{
+                scaleX: 0,
+              }}
+              transition={{
+                duration: 1.1,
+                delay: 0.15,
+                ease: menuEase,
+              }}
             />
 
             {/* ============================================================
-          TOP LABEL
-      ============================================================ */}
-
-            <motion.div
-              initial={{ opacity: 0, y: -12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -12 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: menuEase }}
-              className="absolute left-8 top-7 z-[220] md:left-12 md:top-8"
-            >
-              <p className="text-[9px] uppercase tracking-[0.45em] text-gray-400">
-                PURURA / NAVIGATION
-              </p>
-            </motion.div>
-
-            {/* ============================================================
-          CLOSE
+          CLOSE BUTTON
       ============================================================ */}
 
             <motion.button
               type="button"
               onClick={closeMenu}
               aria-label="Close navigation"
-              initial={{ opacity: 0, rotate: -15 }}
-              animate={{ opacity: 1, rotate: 0 }}
-              exit={{ opacity: 0, rotate: 15 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: menuEase }}
-              className="absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6"
+              initial={{
+                opacity: 0,
+                rotate: -20,
+              }}
+              animate={{
+                opacity: 1,
+                rotate: 0,
+              }}
+              exit={{
+                opacity: 0,
+                rotate: 20,
+              }}
+              transition={{
+                duration: 0.65,
+                delay: 0.25,
+                ease: menuEase,
+              }}
+              className="group absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6"
             >
-              <span className="absolute h-px w-8 rotate-45 bg-white transition-all duration-500 hover:w-10" />
-              <span className="absolute h-px w-8 -rotate-45 bg-white transition-all duration-500 hover:w-10" />
+              <span className="absolute h-px w-8 rotate-45 bg-white/80 transition-all duration-500 group-hover:w-10 group-hover:bg-[var(--color-champagne)]" />
+              <span className="absolute h-px w-8 -rotate-45 bg-white/80 transition-all duration-500 group-hover:w-10 group-hover:bg-[var(--color-champagne)]" />
             </motion.button>
 
             {/* ============================================================
           MAIN SPLIT
       ============================================================ */}
 
-            <div className="relative z-10 grid h-full w-full grid-cols-1 lg:grid-cols-3">
+            <div className="relative z-10 grid h-full w-full grid-cols-1 lg:grid-cols-2">
               {/* ==========================================================
-            LEFT — FULL HEIGHT IMAGE / 50%
+            LEFT — CINEMATIC IMAGE
         ========================================================== */}
 
               <motion.div
-                initial={{ opacity: 0, scale: 1.035 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.035 }}
-                transition={{ duration: 1.15, ease: menuEase }}
+                initial={{
+                  opacity: 0,
+                  scale: 1.08,
+                }}
+                animate={{
+                  opacity: 1,
+                  scale: 1,
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 1.04,
+                }}
+                transition={{
+                  duration: 1.3,
+                  ease: menuEase,
+                }}
                 className="relative hidden h-full overflow-hidden lg:block"
               >
-                <Image
-                  src="/purura_resort_images/purura_render_03.jpg"
-                  alt="PURURA resort interior"
-                  fill
-                  priority
-                  className="object-cover"
-                  sizes="50vw"
+                <motion.div
+                  initial={{
+                    scale: 1.08,
+                    y: "2%",
+                  }}
+                  animate={{
+                    scale: 1,
+                    y: "0%",
+                  }}
+                  transition={{
+                    duration: 1.8,
+                    ease: menuEase,
+                  }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src="/Purura/NewImages/Overall 5.png"
+                    alt="PURURA resort"
+                    fill
+                    priority
+                    sizes="50vw"
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {/* Cinematic grade */}
+
+                <div className="absolute inset-0 bg-[#071008]/20" />
+
+                <div className="absolute inset-0 bg-gradient-to-r from-[#071008]/5 via-transparent to-[#071008]/35" />
+
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071008]/45 via-transparent to-[#071008]/10" />
+
+                {/* Image edge */}
+
+                <motion.div
+                  initial={{
+                    scaleY: 0,
+                    transformOrigin: "bottom",
+                  }}
+                  animate={{
+                    scaleY: 1,
+                  }}
+                  transition={{
+                    duration: 1.2,
+                    delay: 0.45,
+                    ease: menuEase,
+                  }}
+                  className="absolute bottom-0 right-0 top-0 w-px bg-white/10"
                 />
 
-                {/* Cinematic image treatment */}
-                <div className="absolute inset-0 bg-charcoal/10" />
+                {/* Minimal image marker */}
 
-                <div className="absolute inset-0 bg-gradient-to-r from-charcoal/5 via-transparent to-charcoal/20" />
-
-                {/* ========================================================
-              GOLD ARCHITECTURAL LINE
-          ======================================================== */}
-
-                {/* <motion.div
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 15,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
                   transition={{
-                    duration: 1.3,
-                    delay: 0.35,
+                    duration: 0.7,
+                    delay: 0.8,
                     ease: menuEase,
                   }}
-                  className="absolute left-0 right-[-100%] top-[32%] h-px origin-left bg-[var(--color-champagne)]/65"
-                /> */}
-
-                {/* Small point on architectural line */}
-                {/* <motion.span
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 1.1,
-                    ease: menuEase,
-                  }}
-                  className="absolute left-[17%] top-[calc(32%-3px)] h-[7px] w-[7px] rounded-full bg-[var(--color-champagne)]"
-                /> */}
-
-                {/* Image metadata */}
-                {/* <motion.div
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.7,
-                    ease: menuEase,
-                  }}
-                  className="absolute bottom-10 left-10"
+                  className="absolute bottom-9 left-9 flex items-center gap-3"
                 >
-                  <p className="text-[9px] uppercase tracking-[0.45em] text-bone/55">
-                    PURURA / VALUKA
-                  </p>
+                  <span className="h-px w-8 bg-white/30" />
 
-                  <p className="mt-3 max-w-xs font-display text-2xl font-light leading-tight text-bone/90">
-                    A different kind
-                    <br />
-                    of escape.
-                  </p>
-                </motion.div> */}
-
-                {/* Vertical architectural marker */}
-                <div className="absolute bottom-10 right-8 flex items-center gap-3">
-                  <span className="h-px w-8 bg-bone/25" />
-                  <span className="text-[8px] uppercase tracking-[0.35em] text-bone/35">
+                  <span className="text-[8px] uppercase tracking-[0.35em] text-white/45">
                     01 / 01
                   </span>
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* ==========================================================
-            RIGHT — NAVIGATION / 50%
+            RIGHT — NAVIGATION
         ========================================================== */}
 
-              <div className="relative flex h-full min-h-0 flex-col bg-[#1a2e1a] col-span-2">
-                {/* Additional subtle atmosphere */}
-                {/* <div className="pointer-events-none absolute inset-0">
-                  <div className="absolute right-[-15%] top-[5%] h-[45%] w-[70%] rounded-full bg-[radial-gradient(circle,rgba(125,151,110,0.075)_0%,rgba(125,151,110,0)_70%)]" />
+              <div className="relative flex h-full min-h-0 flex-col bg-[#071307]">
+                {/* Subtle right-side atmosphere */}
 
-                  <div className="absolute bottom-[-20%] left-[5%] h-[50%] w-[80%] rounded-full bg-[radial-gradient(circle,rgba(194,167,93,0.035)_0%,rgba(194,167,93,0)_70%)]" />
-                </div> */}
+                <div className="pointer-events-none absolute inset-0">
+                  <div className="absolute right-[-25%] top-[5%] h-[60%] w-[75%] rounded-full bg-[radial-gradient(circle,rgba(119,144,102,0.06)_0%,rgba(119,144,102,0)_68%)]" />
+
+                  <div className="absolute bottom-[-20%] left-[-10%] h-[55%] w-[70%] rounded-full bg-[radial-gradient(circle,rgba(201,164,90,0.035)_0%,rgba(201,164,90,0)_70%)]" />
+                </div>
 
                 {/* ========================================================
               NAVIGATION
           ======================================================== */}
 
-                <div className="relative z-10 flex h-full flex-col px-8 pb-10 pt-32 md:px-12 lg:px-16 border w-full">
+                <div className="relative z-10 flex h-full flex-col px-8 pb-10 pt-32 md:px-12 lg:px-16">
                   <nav className="flex-1">
-                    <div className="grid grid-cols-1 gap-x-10 gap-y-2 md:grid-cols-2">
-                      {NAV_ITEMS.map((item, index) => {
-                        const isExpanded = expandedMenu === item.label;
-
-                        return (
-                          <motion.div
-                            key={item.label}
-                            initial={{ opacity: 0, x: 25 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{
-                              duration: 0.7,
-                              delay: 0.35 + index * 0.06,
-                              ease: menuEase,
-                            }}
-                            className="relative"
+                    <div className="flex flex-col">
+                      {NAV_ITEMS.map((item, index) => (
+                        <motion.div
+                          key={item.label}
+                          initial={{
+                            opacity: 0,
+                            x: 35,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                          }}
+                          transition={{
+                            duration: 0.8,
+                            delay: 0.3 + index * 0.075,
+                            ease: menuEase,
+                          }}
+                        >
+                          <Link
+                            href={item.href}
+                            onClick={closeMenu}
+                            className="group relative flex w-full items-center justify-between border-b border-white/[0.09] py-5 md:py-6"
                           >
-                            {/* ==================================================
-                          PARENT
-                      ================================================== */}
+                            {/* Number */}
 
-                            {item.hasDropdown ? (
-                              <button
-                                type="button"
-                                onClick={() => toggleMenuItem(item.label)}
-                                aria-expanded={isExpanded}
-                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 text-left transition-colors duration-500 hover:border-[#C9A45A]/45 md:py-5"
-                              >
-                                <span
-                                  className={`font-display text-[clamp(1.8rem,3.2vw,3.2rem)] font-light leading-none tracking-[-0.035em] transition-all duration-500 ${
-                                    isExpanded
-                                      ? "text-[#C9A45A]"
-                                      : "text-white/90 group-hover:text-[#C9A45A]"
-                                  }`}
-                                >
-                                  {item.label}
-                                </span>
+                            <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+                              <span className="block h-px w-5 bg-[var(--color-champagne)]" />
+                            </span>
 
-                                <motion.span
-                                  animate={{
-                                    rotate: isExpanded ? 180 : 0,
-                                    opacity: isExpanded ? 1 : 0.35,
-                                  }}
-                                  transition={{
-                                    duration: 0.4,
-                                    ease: menuEase,
-                                  }}
-                                  className="text-[#C9A45A]"
-                                >
-                                  <ChevronDown
-                                    className="h-4 w-4"
-                                    strokeWidth={1}
-                                  />
-                                </motion.span>
-                              </button>
-                            ) : (
-                              <Link
-                                href={item.href}
-                                onClick={closeMenu}
-                                className="group flex w-full items-center justify-between border-b border-white/10 py-4 transition-all duration-500 hover:border-[#C9A45A]/45 md:py-5"
-                              >
-                                <span
-                                  className={`font-display text-[clamp(1.8rem,3.2vw,3.2rem)] font-light leading-none tracking-[-0.035em] transition-all duration-500 ${
-                                    isActive(item.href)
-                                      ? "text-[#C9A45A]"
-                                      : "text-white/90 group-hover:text-[#C9A45A]"
-                                  }`}
-                                >
-                                  {item.label}
-                                </span>
+                            {/* Main label */}
 
-                                <span className="translate-x-[-4px] text-[#C9A45A] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
-                                  ↗
-                                </span>
-                              </Link>
-                            )}
+                            <span
+                              className={`font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-none tracking-[-0.045em] transition-all duration-600 ${
+                                isActive(item.href)
+                                  ? "translate-x-6 text-[var(--color-champagne)]"
+                                  : "text-white/90 group-hover:translate-x-6 group-hover:text-[var(--color-champagne)]"
+                              }`}
+                            >
+                              {item.label}
+                            </span>
 
-                            {/* ==================================================
-                          CHILDREN
+                            {/* Arrow */}
 
-                          IMPORTANT:
-                          Absolute positioning means opening this menu
-                          NEVER changes the position of other items.
-                      ================================================== */}
-
-                            <AnimatePresence initial={false}>
-                              {item.hasDropdown && item.items && isExpanded && (
-                                <motion.div
-                                  initial={{
-                                    opacity: 0,
-                                    height: 0,
-                                  }}
-                                  animate={{
-                                    opacity: 1,
-                                    height: "auto",
-                                  }}
-                                  exit={{
-                                    opacity: 0,
-                                    height: 0,
-                                  }}
-                                  transition={{
-                                    duration: 0.4,
-                                    ease: menuEase,
-                                  }}
-                                  className="absolute left-0 top-full z-[40] w-[calc(100%+2rem)] overflow-hidden"
-                                >
-                                  <div className="border-b border-[#C9A45A]/25 bg-[#1a2e1a]/95 px-1 py-4 backdrop-blur-md">
-                                    {item.items.map((subItem, subIndex) => (
-                                      <motion.div
-                                        key={subItem.label}
-                                        initial={{
-                                          opacity: 0,
-                                          x: -12,
-                                        }}
-                                        animate={{
-                                          opacity: 1,
-                                          x: 0,
-                                        }}
-                                        exit={{
-                                          opacity: 0,
-                                          x: -12,
-                                        }}
-                                        transition={{
-                                          duration: 0.3,
-                                          delay: subIndex * 0.045,
-                                          ease: menuEase,
-                                        }}
-                                      >
-                                        <Link
-                                          href={subItem.href}
-                                          onClick={closeMenu}
-                                          className="group/sub flex items-center gap-3 px-4 py-2.5 text-sm uppercase tracking-[0.22em] text-gray-300 transition-colors duration-300 hover:text-[#C9A45A]"
-                                        >
-                                          <span className="h-px w-0 bg-[#C9A45A] transition-all duration-300 group-hover/sub:w-5" />
-                                          {subItem.label}
-                                        </Link>
-                                      </motion.div>
-                                    ))}
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </motion.div>
-                        );
-                      })}
+                            <span className="translate-x-[-8px] text-[var(--color-champagne)] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+                              ↗
+                            </span>
+                          </Link>
+                        </motion.div>
+                      ))}
                     </div>
                   </nav>
 
                   {/* ========================================================
-                BOTTOM CONTACT / META
+                BOTTOM INFORMATION
             ======================================================== */}
 
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{
+                      opacity: 0,
+                      y: 20,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
                     transition={{
                       duration: 0.8,
                       delay: 0.85,
                       ease: menuEase,
                     }}
-                    className="mt-10 border-t border-white/10 pt-6"
+                    className="border-t border-white/[0.09] pt-6"
                   >
-                    <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
+                    <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
                       <div>
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
+                        <p className="text-[8px] uppercase tracking-[0.35em] text-[var(--color-champagne)]/70">
                           Location
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
+
+                        <p className="mt-2 text-xs leading-relaxed text-white/45">
                           Valuka
                           <br />
                           Bangladesh
@@ -660,25 +603,119 @@ export default function Navbar(): React.JSX.Element {
                       </div>
 
                       <div>
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
+                        <p className="text-[8px] uppercase tracking-[0.35em] text-[var(--color-champagne)]/70">
                           Contact
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
+
+                        <p className="mt-2 text-xs text-white/45">
                           +880 1332 831207
                         </p>
                       </div>
 
-                      <div className="hidden md:block">
-                        <p className="text-[8px] uppercase tracking-[0.3em] text-[#C9A45A]">
+                      <div className="hidden sm:block">
+                        <p className="text-[8px] uppercase tracking-[0.35em] text-[var(--color-champagne)]/70">
                           Email
                         </p>
-                        <p className="mt-2 text-xs leading-relaxed text-gray-300">
+
+                        <p className="mt-2 text-xs text-white/45">
                           info@purura.com
                         </p>
                       </div>
                     </div>
                   </motion.div>
                 </div>
+              </div>
+            </div>
+
+            {/* ============================================================
+          MOBILE NAVIGATION
+      ============================================================ */}
+
+            <div className="absolute inset-0 z-20 flex flex-col bg-[#071307] lg:hidden">
+              <div className="pointer-events-none absolute inset-0">
+                <div className="absolute right-[-30%] top-[20%] h-[70vw] w-[70vw] rounded-full bg-[radial-gradient(circle,rgba(119,144,102,0.08)_0%,rgba(119,144,102,0)_70%)]" />
+              </div>
+
+              <div className="relative z-10 flex h-full flex-col px-7 pb-8 pt-28 sm:px-10">
+                <nav className="flex-1">
+                  {NAV_ITEMS.map((item, index) => (
+                    <motion.div
+                      key={item.label}
+                      initial={{
+                        opacity: 0,
+                        x: 25,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        duration: 0.7,
+                        delay: 0.25 + index * 0.07,
+                        ease: menuEase,
+                      }}
+                    >
+                      <Link
+                        href={item.href}
+                        onClick={closeMenu}
+                        className="group flex items-center justify-between border-b border-white/[0.09] py-5"
+                      >
+                        <span
+                          className={`font-display text-[clamp(2rem,9vw,3rem)] font-light leading-none tracking-[-0.045em] transition-all duration-500 ${
+                            isActive(item.href)
+                              ? "translate-x-4 text-[var(--color-champagne)]"
+                              : "text-white/90 group-hover:translate-x-4 group-hover:text-[var(--color-champagne)]"
+                          }`}
+                        >
+                          {item.label}
+                        </span>
+
+                        <span className="text-[var(--color-champagne)] opacity-0 transition-all duration-500 group-hover:opacity-100">
+                          ↗
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: 15,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.7,
+                    delay: 0.75,
+                    ease: menuEase,
+                  }}
+                  className="border-t border-white/[0.09] pt-5"
+                >
+                  <div className="flex justify-between gap-6">
+                    <div>
+                      <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/70">
+                        Valuka
+                      </p>
+
+                      <p className="mt-2 text-[10px] text-white/40">
+                        Bangladesh
+                      </p>
+                    </div>
+
+                    <div className="text-right">
+                      <p className="text-[8px] uppercase tracking-[0.3em] text-[var(--color-champagne)]/70">
+                        Contact
+                      </p>
+
+                      <p className="mt-2 text-[10px] text-white/40">
+                        +880 1332 831207
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>
