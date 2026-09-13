@@ -35,9 +35,9 @@ const serif = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Purura — Regenerative Hospitality",
+  title: "Purura — The Living Archipelago",
   description:
-    "A premium eco-intelligent destination where regenerative landscapes, luxury hospitality, and future-ready technology meet.",
+    "A Regenerative Waterfront Futuristic Resort Integrating Landscape, Architecture, and Intelligent Infrastructure",
 };
 
 export default function RootLayout({

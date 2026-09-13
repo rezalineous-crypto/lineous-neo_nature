@@ -226,7 +226,7 @@ export default function Legacy() {
           </div>
         </motion.div>
 
-        {/* Panel 03 — Regenerative Hospitality */}
+        {/* Panel 03 — The Living Archipelago */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}

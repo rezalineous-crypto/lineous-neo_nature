@@ -442,7 +442,7 @@ export default function BrandIntro({
                   className="font-mono text-[9px] font-medium uppercase tracking-[0.52em]"
                   style={{ color: "rgba(57, 53, 47, 0.62)" }}
                 >
-                  Regenerative Hospitality
+                  The Living Archipelago
                 </span>
 
                 <span

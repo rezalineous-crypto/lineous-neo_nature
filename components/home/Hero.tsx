@@ -125,7 +125,7 @@ export default function Hero() {
               className="mt-16 flex flex-wrap gap-6 text-xs uppercase tracking-[0.32em] text-bone/70"
             >
               <span>Valuka, Bangladesh</span>
-              <span>Regenerative Hospitality</span>
+              <span>The Living Archipelago</span>
               <span>Smart Resort Infrastructure</span>
             </motion.div>
           </div>

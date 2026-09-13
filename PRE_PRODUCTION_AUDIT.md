@@ -154,7 +154,7 @@
 - **Issue:**
   - Footer: "BEGIN your journey" — poetic
   - Investment pages: "OPEN FOR BUSINESS" — corporate
-  - Homepage: "Regenerative Hospitality" — nature-focused
+  - Homepage: "The Living Archipelago" — nature-focused
   - Corrupted data: "15 sectors", "global talent" — smart city
 - **Fix Required:** Align tone across all sections.
 - **Status:** Pending

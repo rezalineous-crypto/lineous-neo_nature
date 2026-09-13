@@ -94,7 +94,7 @@ export default function MasterplanExplorer() {
         style={{ x: springX, y: springY }}
       >
         <Image
-          src="/purura_resort_images/purura_render_01.jpg"
+          src="/Purura/NewImages/Overall 11.png"
           alt="Purura Resort Masterplan"
           fill
           priority
