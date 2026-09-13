@@ -64,7 +64,7 @@ export default function TheResort() {
     <section
       id="the-resort"
       ref={sectionRef}
-      className="relative bg-void dark:bg-ivory lg:h-[300vh]"
+      className="relative bg-void dark:bg-ivory lg:h-[310dvh]"
     >
       {/* Large architectural shell behind the form */}
       <motion.div
@@ -141,7 +141,7 @@ export default function TheResort() {
       <div className="hidden lg:block h-[300vh]">
         <div className="sticky top-0 h-screen overflow-hidden">
           {/* Chapter title — moves at different rate */}
-          <div className="z-20 flex items-center justify-start border h-full">
+          <div className="z-20 flex items-center justify-start h-full">
             <motion.p
               style={{ x: titleX }}
               className="annotation text-white mb-4 text-shadow-sm"

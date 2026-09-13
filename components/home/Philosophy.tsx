@@ -1,6 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
@@ -15,6 +20,40 @@ type Scene = {
     front: string;
   };
 };
+
+{
+  /* ======================================================
+  ROUNDED OUTER CORNER FRAME
+  ====================================================== */
+}
+
+const RoundedCornerFrame = ({ className = "" }: { className?: string }) => (
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 106 106"
+    preserveAspectRatio="none"
+    className={`pointer-events-none absolute -inset-1 z-20 h-[calc(100%+30px)] w-[calc(100%+30px)] overflow-visible ${className}`}
+    fill="none"
+  >
+    {/* Exposed top-left corner */}
+    <path
+      d="M 4 34 V 9 Q 4 4 9 4 H 34"
+      stroke="#c8a158"
+      strokeWidth="1.15"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+
+    {/* Exposed bottom-right corner */}
+    <path
+      d="M 72 102 H 97 Q 102 102 102 97 V 72"
+      stroke="#c8a158"
+      strokeWidth="1.15"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 const scenes: Scene[] = [
   {
@@ -92,89 +131,45 @@ export default function InvestmentBanner() {
   /*
    * Background botanical movement
    */
-  const botanicalY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-12%", "12%"],
-  );
+  const botanicalY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
 
-  const botanicalRotate = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [-4, 5],
-  );
+  const botanicalRotate = useTransform(scrollYProgress, [0, 1], [-4, 5]);
 
   /*
    * Back image
    */
-  const backY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-12%", "16%"],
-  );
+  const backY = useTransform(scrollYProgress, [0, 1], ["-12%", "16%"]);
 
-  const backX = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["2%", "-2%"],
-  );
+  const backX = useTransform(scrollYProgress, [0, 1], ["2%", "-2%"]);
 
-  const backScale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1.08, 1, 1.08],
-  );
+  const backScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.08, 1, 1.08]);
 
   /*
    * Center image
    */
-  const centerY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["10%", "-13%"],
-  );
+  const centerY = useTransform(scrollYProgress, [0, 1], ["10%", "-13%"]);
 
-  const centerX = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-2%", "3%"],
-  );
+  const centerX = useTransform(scrollYProgress, [0, 1], ["-2%", "3%"]);
 
   const centerScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
-    [1.12, 1, 1.1],
+    [1.12, 1, 1.1]
   );
 
   /*
    * Front image
    */
-  const frontY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-17%", "18%"],
-  );
+  const frontY = useTransform(scrollYProgress, [0, 1], ["-17%", "18%"]);
 
-  const frontX = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["3%", "-4%"],
-  );
+  const frontX = useTransform(scrollYProgress, [0, 1], ["3%", "-4%"]);
 
-  const frontScale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1.1, 1, 1.08],
-  );
+  const frontScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.1, 1, 1.08]);
 
   /*
    * Text parallax
    */
-  const textY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["8%", "-8%"],
-  );
+  const textY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
 
   /*
    * ============================================================
@@ -185,21 +180,21 @@ export default function InvestmentBanner() {
   const headingLine1Reveal = useTransform(
     scrollYProgress,
     [0.15, 0.3],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
   );
 
   // Heading line 2 reveal (ESCAPE WITH ELEGANCE)
   const headingLine2Reveal = useTransform(
     scrollYProgress,
     [0.25, 0.4],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
   );
 
   // Description reveal
   const descriptionReveal = useTransform(
     scrollYProgress,
     [0.35, 0.55],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"],
+    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
   );
 
   /*
@@ -372,8 +367,8 @@ export default function InvestmentBanner() {
 
           <div className="relative mx-auto h-125 w-full max-w-175 sm:h-145 md:h-162.5 lg:h-172.5">
             {/* ======================================================
-                BACK / LARGE ARCHITECTURAL IMAGE
-                ====================================================== */}
+      BACK / LARGE ARCHITECTURAL IMAGE
+      ====================================================== */}
 
             <motion.div
               style={{
@@ -381,44 +376,48 @@ export default function InvestmentBanner() {
                 x: backX,
                 scale: backScale,
               }}
-              className="absolute right-0 top-0 h-[61%] w-[67%] overflow-hidden"
+              className="absolute right-0 top-0 h-[61%] w-[67%] overflow-visible"
             >
-              <AnimatePresence mode="sync">
-                <motion.div
-                  key={activeScene.images.back}
-                  initial={{
-                    opacity: 0,
-                    scale: 1.08,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 1.03,
-                  }}
-                  transition={{
-                    duration: 1.15,
-                    ease,
-                  }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={activeScene.images.back}
-                    alt=""
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 70vw, 45vw"
-                    className="object-cover rounded-2xl"
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <RoundedCornerFrame />
+
+              <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+                <AnimatePresence mode="sync">
+                  <motion.div
+                    key={activeScene.images.back}
+                    initial={{
+                      opacity: 0,
+                      scale: 1.08,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 1.03,
+                    }}
+                    transition={{
+                      duration: 1.15,
+                      ease,
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={activeScene.images.back}
+                      alt=""
+                      fill
+                      priority
+                      sizes="(max-width: 768px) 70vw, 45vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             {/* ======================================================
-                BOTANICAL OVERLAY ON RIGHT
-                ====================================================== */}
+      BOTANICAL OVERLAY ON RIGHT
+      ====================================================== */}
 
             <motion.div
               style={{
@@ -516,8 +515,8 @@ export default function InvestmentBanner() {
             </motion.div>
 
             {/* ======================================================
-                CENTER IMAGE
-                ====================================================== */}
+      CENTER IMAGE
+      ====================================================== */}
 
             <motion.div
               style={{
@@ -525,43 +524,47 @@ export default function InvestmentBanner() {
                 x: centerX,
                 scale: centerScale,
               }}
-              className="absolute left-[19%] top-[24%] z-20 h-[57%] w-[43%] overflow-hidden"
+              className="absolute left-[19%] top-[24%] z-20 h-[57%] w-[43%] overflow-visible"
             >
-              <AnimatePresence mode="sync">
-                <motion.div
-                  key={activeScene.images.center}
-                  initial={{
-                    opacity: 0,
-                    scale: 1.08,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 1.04,
-                  }}
-                  transition={{
-                    duration: 1.1,
-                    ease,
-                  }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={activeScene.images.center}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 45vw, 30vw"
-                    className="object-cover rounded-2xl"
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <RoundedCornerFrame />
+
+              <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+                <AnimatePresence mode="sync">
+                  <motion.div
+                    key={activeScene.images.center}
+                    initial={{
+                      opacity: 0,
+                      scale: 1.08,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 1.04,
+                    }}
+                    transition={{
+                      duration: 1.1,
+                      ease,
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={activeScene.images.center}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 45vw, 30vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             {/* ======================================================
-                FRONT / BOTTOM IMAGE
-                ====================================================== */}
+      FRONT / BOTTOM IMAGE
+      ====================================================== */}
 
             <motion.div
               style={{
@@ -569,43 +572,47 @@ export default function InvestmentBanner() {
                 x: frontX,
                 scale: frontScale,
               }}
-              className="absolute bottom-[1%] left-0 z-30 h-[29%] w-[40%] overflow-hidden"
+              className="absolute bottom-[1%] left-0 z-30 h-[29%] w-[40%] overflow-visible"
             >
-              <AnimatePresence mode="sync">
-                <motion.div
-                  key={activeScene.images.front}
-                  initial={{
-                    opacity: 0,
-                    scale: 1.1,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    scale: 1,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 1.04,
-                  }}
-                  transition={{
-                    duration: 1,
-                    ease,
-                  }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={activeScene.images.front}
-                    alt=""
-                    fill
-                    sizes="(max-width: 768px) 42vw, 28vw"
-                    className="object-cover rounded-2xl"
-                  />
-                </motion.div>
-              </AnimatePresence>
+              <RoundedCornerFrame />
+
+              <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+                <AnimatePresence mode="sync">
+                  <motion.div
+                    key={activeScene.images.front}
+                    initial={{
+                      opacity: 0,
+                      scale: 1.1,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scale: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 1.04,
+                    }}
+                    transition={{
+                      duration: 1,
+                      ease,
+                    }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={activeScene.images.front}
+                      alt=""
+                      fill
+                      sizes="(max-width: 768px) 42vw, 28vw"
+                      className="object-cover"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
             </motion.div>
 
             {/* ======================================================
-                SUBTLE IMAGE SHADOWS
-                ====================================================== */}
+      SUBTLE IMAGE SHADOWS
+      ====================================================== */}
 
             <div className="pointer-events-none absolute right-0 top-0 z-10 h-[61%] w-[67%] shadow-[0_30px_70px_rgba(30,30,20,0.08)]" />
 
