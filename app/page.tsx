@@ -17,6 +17,7 @@ import SectionTransition from "@/components/home/SectionTransition";
 import ScrollColorTransition from "@/components/home/ScrollColorTransition";
 import Hero from "@/components/home/Hero";
 import Banner from "@/components/home/Banner";
+import DesignPhilosophy from "@/components/home/DesignPhilosophy";
 
 export default function HomePage() {
   return (
@@ -38,7 +39,8 @@ export default function HomePage() {
         />
         <Banner />
         <Philosophy />
-        <TheLand />
+        <DesignPhilosophy />
+        {/* <TheLand /> */}
         <TheResort />
         {/* <VillaShowcase /> */}
         <MasterplanExplorer />

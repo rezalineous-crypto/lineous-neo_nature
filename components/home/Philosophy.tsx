@@ -96,9 +96,9 @@ const scenes: Scene[] = [
     description:
       "The Living Archipelago is envisioned as a next-generation luxury resort where futuristic architecture, immersive landscape, and intelligent water systems operate as a unified ecological framework that collectively create an immersive hospitality experience.",
     images: {
-      back: "/Purura/NewImages/Villa2CR.png",
-      center: "/Purura/NewImages/Restaurant2CR.png",
-      front: "/Purura/NewImages/Villa2CR2.png",
+      back: "/Purura/NewImages/Overall 11.png",
+      center: "/Purura/NewImages/Overall 2.png",
+      front: "/Purura/NewImages/Overall 5.png",
     },
   },
   // {
@@ -832,7 +832,7 @@ export function WaterVision() {
 
               <motion.div
                 style={{ clipPath: bodyReveal }}
-                  className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px] text-left"
+                className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px] text-left"
               >
                 {waterBodyCopy.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
