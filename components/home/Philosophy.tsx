@@ -368,7 +368,7 @@ export default function InvestmentBanner() {
                   }}
                 >
                   {/* Heading */}
-                  <h2 className="font-display text-[clamp(2.8rem,4.7vw,5.1rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-chrome1">
+                  <h2 className="font-display text-[clamp(2.8rem,4.7vw,4rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-chrome1">
                     <motion.span
                       style={{ clipPath: headingLine1Reveal }}
                       className="block"
@@ -717,7 +717,7 @@ export default function InvestmentBanner() {
         </div>
       </section>
 
-      <WaterVision />
+      {/* <WaterVision /> */}
     </>
   );
 }
@@ -741,107 +741,107 @@ const waterBodyCopy = [
   "and contemporary hospitality within a cohesive masterplanning strategy.",
 ];
 
-export function WaterVision() {
-  const sectionRef = useRef<HTMLElement>(null);
+// export function WaterVision() {
+//   const sectionRef = useRef<HTMLElement>(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
+//   const { scrollYProgress } = useScroll({
+//     target: sectionRef,
+//     offset: ["start end", "end start"],
+//   });
 
-  const waterY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const waterScale = useTransform(
-    scrollYProgress,
-    [0, 0.5, 1],
-    [1.04, 1, 1.04]
-  );
+//   const waterY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+//   const waterScale = useTransform(
+//     scrollYProgress,
+//     [0, 0.5, 1],
+//     [1.04, 1, 1.04]
+//   );
 
-  const bodyReveal = useTransform(
-    scrollYProgress,
-    [0.2, 0.45],
-    ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
-  );
+//   const bodyReveal = useTransform(
+//     scrollYProgress,
+//     [0.2, 0.45],
+//     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
+//   );
 
-  return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen pt-20 lg:pb-40"
-    >
-      <div className="relative z-10 mx-auto flex min-h-190 max-w-375 items-center px-6 py-20 sm:px-10 md:min-h-screen md:px-12 lg:px-16 xl:px-20">
-        <div className="grid w-full grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-          {/* LEFT — VIDEO */}
-          <motion.div
-            style={{ y: waterY, scale: waterScale }}
-            className="relative mx-auto h-125 w-full max-w-175 overflow-hidden sm:h-145 md:h-162.5 lg:h-172.5"
-          >
-            <RoundedCornerFrame className="z-20" />
+//   return (
+//     <section
+//       ref={sectionRef}
+//       className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen pt-20 lg:pb-40"
+//     >
+//       <div className="relative z-10 mx-auto flex min-h-190 max-w-375 items-center px-6 py-20 sm:px-10 md:min-h-screen md:px-12 lg:px-16 xl:px-20">
+//         <div className="grid w-full grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
+//           {/* LEFT — VIDEO */}
+//           <motion.div
+//             style={{ y: waterY, scale: waterScale }}
+//             className="relative mx-auto h-125 w-full max-w-175 overflow-hidden sm:h-145 md:h-162.5 lg:h-172.5"
+//           >
+//             <RoundedCornerFrame className="z-20" />
 
-            <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
-              <video
-                className="h-full w-full object-cover"
-                playsInline
-                muted
-                loop
-                autoPlay
-                preload="auto"
-                poster="/Purura/NewImages/Villa2CR.png"
-                aria-label="Water and architecture at Purura"
-              >
-                <source
-                  src="/Opt video/Pool Side View with hotel.webm"
-                  type="video/webm"
-                />
-                <source
-                  src="/Opt video/reception building from pool view.webm"
-                  type="video/webm"
-                />
-              </video>
+//             <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+//               <video
+//                 className="h-full w-full object-cover"
+//                 playsInline
+//                 muted
+//                 loop
+//                 autoPlay
+//                 preload="auto"
+//                 poster="/Purura/NewImages/Villa2CR.png"
+//                 aria-label="Water and architecture at Purura"
+//               >
+//                 <source
+//                   src="/Opt video/Pool Side View with hotel.webm"
+//                   type="video/webm"
+//                 />
+//                 <source
+//                   src="/Opt video/reception building from pool view.webm"
+//                   type="video/webm"
+//                 />
+//               </video>
 
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171713]/25 via-transparent to-[#171713]/10" />
-            </div>
+//               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171713]/25 via-transparent to-[#171713]/10" />
+//             </div>
 
-            <div className="pointer-events-none absolute -inset-1 z-30 rounded-2xl shadow-[0_30px_70px_rgba(30,30,20,0.12)]" />
-          </motion.div>
+//             <div className="pointer-events-none absolute -inset-1 z-30 rounded-2xl shadow-[0_30px_70px_rgba(30,30,20,0.12)]" />
+//           </motion.div>
 
-          {/* RIGHT — EDITORIAL TEXT */}
-          <motion.div
-            style={{ y: waterY }}
-            className="relative z-30 max-w-132.5 lg:pl-4"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.9, ease }}
-            >
-              {/* <span className="mb-6 block font-mono text-[8px] uppercase tracking-[0.5em] text-[#b99147] sm:text-[9px]">
-                Water &amp; Masterplan
-              </span> */}
+//           {/* RIGHT — EDITORIAL TEXT */}
+//           <motion.div
+//             style={{ y: waterY }}
+//             className="relative z-30 max-w-132.5 lg:pl-4"
+//           >
+//             <motion.div
+//               initial={{ opacity: 0, y: 30 }}
+//               whileInView={{ opacity: 1, y: 0 }}
+//               viewport={{ once: true, amount: 0.3 }}
+//               transition={{ duration: 0.9, ease }}
+//             >
+//               {/* <span className="mb-6 block font-mono text-[8px] uppercase tracking-[0.5em] text-[#b99147] sm:text-[9px]">
+//                 Water &amp; Masterplan
+//               </span> */}
 
-              <h2 className="font-display text-[clamp(2.4rem,4vw,4.4rem)] font-light uppercase leading-[0.92] tracking-[-0.04em] text-chrome1">
-                <motion.span style={{ clipPath: bodyReveal }} className="block">
-                  Regenerative
-                </motion.span>
-                <motion.span
-                  style={{ clipPath: bodyReveal }}
-                  className="mt-1 block max-w-130"
-                >
-                  Landscape
-                </motion.span>
-              </h2>
+//               <h2 className="font-display text-[clamp(2.4rem,4vw,4.4rem)] font-light uppercase leading-[0.92] tracking-[-0.04em] text-chrome1">
+//                 <motion.span style={{ clipPath: bodyReveal }} className="block">
+//                   Regenerative
+//                 </motion.span>
+//                 <motion.span
+//                   style={{ clipPath: bodyReveal }}
+//                   className="mt-1 block max-w-130"
+//                 >
+//                   Landscape
+//                 </motion.span>
+//               </h2>
 
-              <motion.div
-                style={{ clipPath: bodyReveal }}
-                className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px] text-left"
-              >
-                {waterBodyCopy.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
+//               <motion.div
+//                 style={{ clipPath: bodyReveal }}
+//                 className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px] text-left"
+//               >
+//                 {waterBodyCopy.map((paragraph, index) => (
+//                   <p key={index}>{paragraph}</p>
+//                 ))}
+//               </motion.div>
+//             </motion.div>
+//           </motion.div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// }

@@ -47,11 +47,9 @@ const descriptions = {
 };
 
 const backgroundVideos = {
-  discover:
-    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+  discover: "/Purura/NewVideos/Video Project 1.mp4",
   // retreat: "/AnimationOpt/hero-video2.mp4",
-  experience:
-    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192143/BirdView3Ending.webm",
+  experience: "/Purura/NewVideos/Video Project 2.mp4",
   amenities:
     "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
 };
@@ -186,13 +184,13 @@ export default function InvestmentBanner() {
           CINEMATIC GRADING
           ============================================================ */}
 
-      <motion.div
+      {/* <motion.div
         animate={{
           opacity: hovered ? 0.18 : 0.28,
         }}
         transition={{ duration: 1.2, ease }}
         className="absolute inset-0 bg-black"
-      />
+      /> */}
 
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/5 to-black/15" />
 

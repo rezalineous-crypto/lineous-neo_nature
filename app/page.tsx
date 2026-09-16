@@ -45,13 +45,13 @@ export default function HomePage() {
         {/* <VillaShowcase /> */}
         <MasterplanExplorer />
         {/* <InvestmentInquiry /> */}
-        <Experiences />
-        <Residences />
+        {/* <Experiences /> */}
+        {/* <Residences /> */}
         <Investment />
-        <Architecture />
-        <Legacy />
+        {/* <Architecture /> */}
+        {/* <Legacy /> */}
         {/* <VillaCollection /> */}
-        <Technology />
+        {/* <Technology /> */}
       </main>
     </>
   );

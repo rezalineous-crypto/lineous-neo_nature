@@ -443,14 +443,7 @@ function PhilosophyHeroTitle() {
                 }}
               >
                 <h2
-                  className="
-                    font-sans
-                    text-[clamp(5rem,11vw,12rem)]
-                    font-medium
-                    leading-[0.76]
-                    tracking-[-0.105em]
-                    text-[#f4efe5]
-                    [text-shadow:0_3px_24px_rgba(0,0,0,0.18)]
+                  className=" font-sans text-[clamp(5rem,11vw,7rem)] font-medium leading-[0.76] tracking-[-0.105em] text-[#f4efe5] [text-shadow:0_3px_24px_rgba(0,0,0,0.18)]
                   "
                 >
                   Design
@@ -483,7 +476,7 @@ function PhilosophyHeroTitle() {
                     block
                     whitespace-nowrap
                     font-sans
-                    text-[clamp(5rem,11vw,12rem)]
+                    text-[clamp(5rem,11vw,6rem)]
                     font-medium
                     leading-[0.76]
                     tracking-[-0.105em]

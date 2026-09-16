@@ -12,29 +12,29 @@ const resortImages = [
     caption: "AERIAL VISTA",
     description: "A bird's-eye view of the entire resort ecosystem",
   },
-  // {
-  //   src: "/purura_resort_images/purura_render_10.jpg",
-  //   alt: "Wellness and waterfront",
-  //   caption: "WELLNESS",
-  //   description: "Bio-filtered lagoons and restorative programming",
-  // },
   {
-    src: "/Purura/NewImages/Villa 4.png",
+    src: "/Purura/NewImages/Entry 1.png",
     alt: "Private villa district",
-    caption: "PRIVATE VILLAS",
-    description: "Intelligent, sky, and floating villa clusters",
+    caption: "THE ENTRY POINT",
+    description: "Intelligent, modern and futuristic welcome",
   },
   {
-    src: "/Purura/NewImages/Restaurant 2.png",
+    src: "/Purura/NewImages/Hotel 3.png",
+    alt: "Cultural experiences",
+    caption: "HOTEL & LOUNGE",
+    description: "Spacious, Elegant & Timeless",
+  },
+  {
+    src: "/Purura/NewImages/Mosque 1.png",
+    alt: "Intelligent hospitality",
+    caption: "MOSQUE",
+    description: "Find your peace at your place",
+  },
+  {
+    src: "/Purura/NewImages/Restaurant 1.png",
     alt: "Cultural experiences",
     caption: "RESTAURANT",
     description: "Curated events, dining, and performances",
-  },
-  {
-    src: "/purura_resort_images/purura_render_19.jpg",
-    alt: "Intelligent hospitality",
-    caption: "INTELLIGENCE",
-    description: "AI-powered guest experiences throughout",
   },
 ];
 
@@ -150,12 +150,12 @@ export default function TheResort() {
             </motion.p>
             <motion.h2
               style={{ x: titleX }}
-              className="text-[22vw] md:text-[20vw] lg:text-[8vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display text-shadow-md uppercase font-extrabold"
+              className="text-[22vw] md:text-[20vw] lg:text-[6vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display uppercase font-extralight"
             >
-              A journey <br />
+              A <span className="font-extrabold text-chrome3 text-shadow-md">journey</span> <br />
               through
               <br />
-              <span className="text-chrome1 uppercase">extraordinary</span>{" "}
+              <span className="text-chrome3 text-shadow-chrome3 uppercase font-extrabold  text-shadow-md">extraordinary</span>{" "}
               <br />
               spaces
             </motion.h2>

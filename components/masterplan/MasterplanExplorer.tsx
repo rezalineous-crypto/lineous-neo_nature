@@ -1,61 +1,55 @@
 "use client";
 
-import { useState, useRef, useCallback, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useCallback, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Image from "next/image";
-import { customEase } from "@/components/home/Hero";
+
 import { masterplanLocations } from "@/lib/masterplan-locations";
 import Hotspot from "./Hotspot";
-import InfoPanel from "./InfoPanel";
-import AnimatedConnection from "./AnimatedConnection";
-import HUD from "./HUD";
-import Particles from "./Particles";
 
 export default function MasterplanExplorer() {
-  const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
 
-  // Mouse parallax values
+  const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(
+    null
+  );
+
+  // ---------------------------------------------------------
+  // Mouse parallax
+  // ---------------------------------------------------------
+
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const springX = useSpring(useTransform(mouseX, [-0.5, 0.5], [8, -8]), {
-    damping: 30,
-    stiffness: 120,
-  });
-  const springY = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
-    damping: 30,
-    stiffness: 120,
-  });
 
-  // Detect mobile
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const imageX = useSpring(
+    useTransform(mouseX, [-0.5, 0.5], [4, -4]),
+    {
+      damping: 35,
+      stiffness: 100,
+    }
+  );
 
-  // Escape key handler
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && activeLocationId) {
-        setActiveLocationId(null);
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [activeLocationId]);
+  const imageY = useSpring(
+    useTransform(mouseY, [-0.5, 0.5], [4, -4]),
+    {
+      damping: 35,
+      stiffness: 100,
+    }
+  );
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       if (!containerRef.current) return;
+
       const rect = containerRef.current.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      mouseX.set(x);
-      mouseY.set(y);
+
+      mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+      mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
     },
     [mouseX, mouseY]
   );
@@ -63,35 +57,29 @@ export default function MasterplanExplorer() {
   const handleMouseLeave = useCallback(() => {
     mouseX.set(0);
     mouseY.set(0);
+    setHoveredLocationId(null);
   }, [mouseX, mouseY]);
 
-  const activeLocation =
-    masterplanLocations.find((l) => l.id === activeLocationId) || null;
-
-  // Calculate panel anchor point for connection line (center of panel)
-  const panelAnchorX = isMobile ? 50 : 82; // percentage from left
-  const panelAnchorY = 50; // center vertically
+  const isExploring = hoveredLocationId !== null;
 
   return (
     <section
+      ref={containerRef}
       id="masterplan-explorer"
-      className="relative w-full h-screen overflow-hidden bg-void"
+      className="relative h-screen w-full overflow-hidden bg-void"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 80% 60% at 50% 40%, rgba(201,164,90,0.06) 0%, transparent 60%), radial-gradient(ellipse 60% 80% at 30% 70%, rgba(142,197,255,0.04) 0%, transparent 50%)",
-        }}
-      />
+      {/* =====================================================
+          MASTERPLAN IMAGE
+      ====================================================== */}
 
-      {/* Parallax image container */}
       <motion.div
-        className="absolute inset-0"
-        style={{ x: springX, y: springY }}
+        className="absolute -inset-2"
+        style={{
+          x: imageX,
+          y: imageY,
+        }}
       >
         <Image
           src="/Purura/NewImages/Overall 11.png"
@@ -99,121 +87,122 @@ export default function MasterplanExplorer() {
           fill
           priority
           quality={90}
+          sizes="100vw"
           className="object-cover"
         />
-        {/* Cinematic overlay */}
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-overlay/60 via-overlay/20 to-overlay/40" /> */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-overlay/30 via-transparent to-overlay/30" /> */}
       </motion.div>
 
-      {/* Ambient particles */}
-      <Particles count={30} />
+      {/* =====================================================
+          CINEMATIC OVERLAY
+      ====================================================== */}
 
-      {/* HUD overlay */}
-      <HUD accentColor="#C9A45A" />
+      <div className="pointer-events-none absolute inset-0 bg-black/8" />
 
-      {/* Building highlight overlay (SVG) */}
-      <svg
-        className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ zIndex: 5 }}
-        aria-hidden="true"
-      >
-        {masterplanLocations.map((loc) => {
-          const isActive = activeLocationId === loc.id;
-          if (!isActive) return null;
-
-          return (
-            <motion.ellipse
-              key={`highlight-${loc.id}`}
-              cx={`${loc.x}%`}
-              cy={`${loc.y}%`}
-              rx="8%"
-              ry="6%"
-              fill="none"
-              stroke={loc.accentColor}
-              strokeWidth="1.5"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 0.6, scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              style={{
-                filter: `drop-shadow(0 0 12px ${loc.accentColor}50)`,
-                transformOrigin: `${loc.x}% ${loc.y}%`,
-              }}
-            />
-          );
-        })}
-      </svg>
-
-      {/* Dim overlay when active */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none bg-overlay/40"
-        animate={{ opacity: activeLocationId ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-        style={{ zIndex: 6 }}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(circle at center, transparent 45%, rgba(0,0,0,.18) 100%)",
+        }}
       />
 
-      {/* Connection line */}
-      {activeLocation && (
-        <AnimatedConnection
-          fromX={activeLocation.x}
-          fromY={activeLocation.y}
-          toX={panelAnchorX}
-          toY={panelAnchorY}
-          accentColor={activeLocation.accentColor}
-          isActive={!!activeLocationId}
-        />
-      )}
+      {/* =====================================================
+          DIM EVERYTHING WHEN HOVERING
+      ====================================================== */}
 
-      {/* Hotspots */}
-      {masterplanLocations.map((loc) => (
-        <Hotspot
-          key={loc.id}
-          x={loc.x}
-          y={loc.y}
-          accentColor={loc.accentColor}
-          label={loc.title}
-          isActive={activeLocationId === loc.id}
-          isDimmed={!!activeLocationId && activeLocationId !== loc.id}
-          onActivate={() => setActiveLocationId(loc.id)}
-          onDeactivate={() => setActiveLocationId(null)}
-        />
-      ))}
-
-      {/* Info Panel */}
-      <InfoPanel
-        location={activeLocation}
-        isOpen={!!activeLocationId}
-        onClose={() => setActiveLocationId(null)}
-        panelRef={panelRef}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-10 bg-[#06100d]"
+        animate={{
+          opacity: isExploring ? 0.34 : 0,
+        }}
+        transition={{
+          duration: 0.4,
+          ease: "easeOut",
+        }}
       />
 
-      {/* Section title overlay */}
+      {/* =====================================================
+          TITLE
+      ====================================================== */}
+
       <motion.div
-        className="absolute top-6 left-6 md:top-8 md:left-8 z-20"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
+        className="absolute left-6 top-6 z-[60] md:left-8 md:top-8"
+        animate={{
+          opacity: isExploring ? 0.4 : 1,
+        }}
+        transition={{ duration: 0.3 }}
       >
-        <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white mb-1">
+        <p className="mb-1 font-mono text-[9px] uppercase tracking-[0.28em] text-white/60">
           Purura Resort
         </p>
-        <h2 className="text-lg md:text-xl font-bold text-white font-display tracking-tight">
-          Masterplan Explorer
+
+        <h2 className="font-display text-lg font-medium tracking-tight text-white md:text-xl">
+          Masterplan
         </h2>
       </motion.div>
 
-      {/* Instruction hint */}
+      {/* =====================================================
+          HOTSPOTS
+      ====================================================== */}
+
+      <div className="absolute inset-0 z-20">
+        {masterplanLocations.map((location, index) => (
+          <Hotspot
+            key={location.id}
+            x={location.x}
+            y={location.y}
+            popupX={location.popupX}
+            popupY={location.popupY}
+            label={location.title}
+            description={location.description}
+            index={index + 1}
+            align={location.align}
+            isHovered={hoveredLocationId === location.id}
+            isDimmed={
+              isExploring &&
+              hoveredLocationId !== location.id
+            }
+            onHover={() => setHoveredLocationId(location.id)}
+            onLeave={() => setHoveredLocationId(null)}
+          />
+        ))}
+      </div>
+
+      {/* =====================================================
+          BOTTOM INSTRUCTION
+      ====================================================== */}
+
       <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: activeLocationId ? 0 : 0.5 }}
-        transition={{ duration: 0.4 }}
+        className="absolute bottom-6 left-1/2 z-[60] -translate-x-1/2"
+        animate={{
+          opacity: isExploring ? 0 : 0.6,
+        }}
+        transition={{ duration: 0.3 }}
       >
-        <p className="text-[15px] font-mono uppercase tracking-[0.2em] text-white flex items-center gap-2">
-          <span className="w-1 h-1 rounded-full bg-white" />
-          Hover over markers to explore
-          <span className="w-1 h-1 rounded-full bg-white" />
-        </p>
+        <div className="flex items-center gap-3 whitespace-nowrap">
+          <span className="h-px w-8 bg-white/30" />
+
+          <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-white/60">
+            Explore the masterplan
+          </span>
+
+          <span className="h-px w-8 bg-white/30" />
+        </div>
+      </motion.div>
+
+      {/* =====================================================
+          TECHNICAL LABEL
+      ====================================================== */}
+
+      <motion.div
+        className="absolute bottom-6 right-6 z-[60] hidden md:block"
+        animate={{
+          opacity: isExploring ? 0.15 : 0.4,
+        }}
+      >
+        <span className="font-mono text-[7px] uppercase tracking-[0.22em] text-white/40">
+          PURURA / MASTERPLAN 01
+        </span>
       </motion.div>
     </section>
   );

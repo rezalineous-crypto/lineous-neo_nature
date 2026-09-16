@@ -1,246 +1,251 @@
-export interface LocationFeature {
-  label: string;
-  value: string;
-}
-
 export interface MasterplanLocation {
   id: string;
   title: string;
   description: string;
-  x: number; // percentage from left
-  y: number; // percentage from top
-  status: "planned" | "under-construction" | "completed";
-  completion: string;
-  capacity: string;
-  technology: string[];
-  sustainability: string[];
-  features: LocationFeature[];
-  accentColor: string;
-  icon: string;
+
+  // EXACT point on the masterplan
+  x: number;
+  y: number;
+
+  // Popup position — completely independent from x/y
+  popupX: number;
+  popupY: number;
+
+  align?: "left" | "center" | "right";
 }
 
 export const masterplanLocations: MasterplanLocation[] = [
+  /*
+   * ============================================================
+   * VILLA ISLANDS
+   * ============================================================
+   */
+
   {
-    id: "arrival-pavilion",
-    title: "Arrival Pavilion",
+    id: "island-01",
+    title: "Island-01",
     description:
-      "A futuristic gateway experience featuring autonomous mobility, AI concierge services, biometric check-in, and a landmark arrival plaza with living walls.",
-    x: 18,
-    y: 22,
-    status: "planned",
-    completion: "Phase 1 — 2027",
-    capacity: "500 guests/hr",
-    technology: ["AI Concierge", "Biometric Entry", "Autonomous Transport", "Smart Climate"],
-    sustainability: ["Living Walls", "Rainwater Harvest", "Solar Canopy", "Zero-Waste Operations"],
-    features: [
-      { label: "Check-in", value: "Biometric" },
-      { label: "Transport", value: "Autonomous EV" },
-      { label: "Plaza", value: "2,400 m²" },
-      { label: "Green Wall", value: "180 m²" },
-    ],
-    accentColor: "#C9A45A",
-    icon: "compass",
+      "Private villa residences integrated into the island landscape.",
+    x: 46.7,
+    y: 17.0,
+    popupX: 47,
+    popupY: 24,
+    align: "center",
   },
+
   {
-    id: "luxury-hotel",
-    title: "Luxury Hotel",
+    id: "island-02",
+    title: "Island-02",
     description:
-      "A 5-star boutique hotel with 120 suites, sky gardens, infinity pools, and panoramic views of the resort landscape.",
-    x: 35,
-    y: 38,
-    status: "under-construction",
-    completion: "Phase 1 — 2027",
-    capacity: "120 suites",
-    technology: ["Smart Room OS", "AI Butler", "Holographic Concierge", "Energy AI"],
-    sustainability: ["Net-Zero Energy", "Greywater Recycling", "Green Roof", "Local Materials"],
-    features: [
-      { label: "Suites", value: "120" },
-      { label: "Pools", value: "3 Infinity" },
-      { label: "Dining", value: "6 venues" },
-      { label: "Spa", value: "2,000 m²" },
-    ],
-    accentColor: "#8EC5FF",
-    icon: "building",
+      "A collection of private residences surrounded by water and landscape.",
+    x: 30.3,
+    y: 31.6,
+    popupX: 34,
+    popupY: 40,
+    align: "center",
   },
+
   {
-    id: "resort-villas",
-    title: "Resort Villas",
+    id: "island-03",
+    title: "Island-03",
     description:
-      "Clusters of pod villas, floating villas, and elevated sky villas seamlessly integrated into the natural landscape.",
-    x: 55,
-    y: 52,
-    status: "planned",
-    completion: "Phase 2 — 2028",
-    capacity: "48 villas",
-    technology: ["Smart Home OS", "Private Infinity Pool", "AI Climate Control", "Secure Access"],
-    sustainability: ["Off-Grid Ready", "Solar Roof", "Rainwater System", "Native Landscaping"],
-    features: [
-      { label: "Villas", value: "48" },
-      { label: "Types", value: "Pod / Sky / Float" },
-      { label: "Pool", value: "Private each" },
-      { label: "Butler", value: "24/7" },
-    ],
-    accentColor: "#C9A9FF",
-    icon: "home",
+      "A secluded villa island positioned along the western waterfront.",
+    x: 14.9,
+    y: 52.2,
+    popupX: 21,
+    popupY: 58,
+    align: "center",
   },
+
+  /*
+   * ============================================================
+   * RECREATION
+   * ============================================================
+   */
+
   {
-    id: "lagoon",
-    title: "Lagoon",
+    id: "badminton-court",
+    title: "Badminton Court",
     description:
-      "Bio-filtered water systems, floating experiences, reflective landscapes, and aquatic wellness spaces.",
-    x: 28,
-    y: 68,
-    status: "planned",
-    completion: "Phase 2 — 2028",
-    capacity: "200 swimmers",
-    technology: ["Bio-Filtration", "Smart Lighting", "Water Quality AI", "Aquatic Sensors"],
-    sustainability: ["Natural Filtration", "Zero Chemicals", "Native Flora", "Wildlife Habitat"],
-    features: [
-      { label: "Area", value: "12,000 m²" },
-      { label: "Depth", value: "0–3 m" },
-      { label: "Water", value: "Bio-filtered" },
-      { label: "Deck", value: "Floating" },
-    ],
-    accentColor: "#4a8c3f",
-    icon: "waves",
+      "Dedicated badminton facilities within the resort recreation zone.",
+    x: 58.3,
+    y: 37.0,
+    popupX: 58,
+    popupY: 27,
+    align: "center",
   },
+
   {
-    id: "marina",
-    title: "Marina",
+    id: "tennis-court",
+    title: "Tennis Court",
     description:
-      "Private marina with yacht charter services, deep-water docking, and a waterfront promenade.",
-    x: 72,
-    y: 28,
-    status: "planned",
-    completion: "Phase 3 — 2029",
-    capacity: "40 berths",
-    technology: ["Smart Docking", "Yacht Charter AI", "Marine Sensors", "Helipad"],
-    sustainability: ["Electric Charging", "Wave Energy", "Seagrass Restoration", "Eco-Moorings"],
-    features: [
-      { label: "Berths", value: "40" },
-      { label: "Depth", value: "5 m" },
-      { label: "Helipad", value: "1" },
-      { label: "Charter", value: "On-site" },
-    ],
-    accentColor: "#8b7355",
-    icon: "anchor",
+      "Dedicated tennis facilities integrated into the recreation zone.",
+    x: 65.5,
+    y: 31.0,
+    popupX: 69,
+    popupY: 20,
+    align: "center",
   },
+
   {
-    id: "sports-complex",
-    title: "Sports Complex",
-    description:
-      "A world-class sports facility with tennis courts, a fitness center, and adventure sports.",
-    x: 62,
-    y: 42,
-    status: "planned",
-    completion: "Phase 2 — 2028",
-    capacity: "500 users",
-    technology: ["Smart Courts", "Performance AI", "Wearable Integration", "Booking App"],
-    sustainability: ["Solar Shading", "Recycled Surfaces", "Native Trees", "Water Recycling"],
-    features: [
-      { label: "Courts", value: "8 Tennis" },
-      { label: "Fitness", value: "1,500 m²" },
-      { label: "Adventure", value: "Zip / Climb" },
-      { label: "Padel", value: "4 courts" },
-    ],
-    accentColor: "#3ab0c0",
-    icon: "dumbbell",
+    id: "gaming",
+    title: "Gaming",
+    description: "An indoor entertainment and gaming destination.",
+    x: 25.6,
+    y: 66.8,
+    popupX: 20,
+    popupY: 72,
+    align: "center",
   },
+
   {
-    id: "wellness-center",
-    title: "Wellness Center",
+    id: "multi-purpose-field",
+    title: "Multi Purpose field",
     description:
-      "A holistic wellness sanctuary with hydrotherapy, meditation pods, yoga pavilions, and thermal suites.",
-    x: 42,
-    y: 58,
-    status: "under-construction",
-    completion: "Phase 1 — 2027",
-    capacity: "80 guests",
-    technology: ["Hydrotherapy AI", "Meditation App", "Thermal Sensors", "Sound Therapy"],
-    sustainability: ["Natural Materials", "Living Roof", "Spring Water", "Zero Chemicals"],
-    features: [
-      { label: "Hydrotherapy", value: "Yes" },
-      { label: "Saunas", value: "6" },
-      { label: "Yoga", value: "2 Pavilions" },
-      { label: "Meditation", value: "12 Pods" },
-    ],
-    accentColor: "#4a8c3f",
-    icon: "leaf",
+      "Flexible outdoor grounds for sports and recreational activities.",
+    x: 47.1,
+    y: 61.2,
+    popupX: 44,
+    popupY: 69,
+    align: "center",
   },
+
+  /*
+   * ============================================================
+   * HOSPITALITY
+   * ============================================================
+   */
+
   {
-    id: "amphitheater",
-    title: "Amphitheater",
+    id: "secondary-lobby",
+    title: "Secondary Lobby, Lounge, Cafe",
     description:
-      "An open-air amphitheater carved into the landscape for cultural events, performances, and stargazing nights.",
-    x: 48,
-    y: 75,
-    status: "planned",
-    completion: "Phase 3 — 2029",
-    capacity: "1,200 seats",
-    technology: ["360° Sound", "Holographic Stage", "Starlight Projection", "Climate Control"],
-    sustainability: ["Earth-Sheltered", "Natural Acoustics", "Solar Lighting", "Native Planting"],
-    features: [
-      { label: "Seats", value: "1,200" },
-      { label: "Stage", value: "Holographic" },
-      { label: "Sound", value: "360° Spatial" },
-      { label: "Events", value: "200+/yr" },
-    ],
-    accentColor: "#C9A45A",
-    icon: "music",
+      "A secondary hospitality hub connecting the resort's central zones.",
+    x: 34.6,
+    y: 50.1,
+    popupX: 40,
+    popupY: 43,
+    align: "center",
   },
+
   {
-    id: "restaurants",
-    title: "Restaurants",
-    description:
-      "A curated collection of fine-dining restaurants, beachside grills, and rooftop bars with farm-to-table experiences.",
-    x: 68,
-    y: 55,
-    status: "planned",
-    completion: "Phase 2 — 2028",
-    capacity: "600 covers",
-    technology: ["AI Sommelier", "Holographic Menus", "Kitchen Robotics", "Reservation AI"],
-    sustainability: ["Zero-Km Sourcing", "Composting", "Solar Kitchens", "Edible Gardens"],
-    features: [
-      { label: "Venues", value: "8" },
-      { label: "Cuisines", value: "12+" },
-      { label: "Bars", value: "4" },
-      { label: "Farm", value: "On-site" },
-    ],
-    accentColor: "#f5e6d3",
-    icon: "utensils",
+    id: "cafe",
+    title: "Cafe",
+    description: "A waterfront cafe positioned within the central resort area.",
+    x: 64.2,
+    y: 40.1,
+    popupX: 68,
+    popupY: 47,
+    align: "center",
   },
+
   {
-    id: "event-hall",
-    title: "Event Hall",
+    id: "indoor-themed-restaurant",
+    title: "Indoor Themed Restaurant",
     description:
-      "A grand event hall for conferences, galas, and exhibitions with modular spaces and cutting-edge AV.",
-    x: 78,
-    y: 45,
-    status: "planned",
-    completion: "Phase 3 — 2029",
-    capacity: "2,000 guests",
-    technology: ["Modular AV", "Holographic Displays", "Live Translation AI", "Smart Booking"],
-    sustainability: ["Modular Build", "Recyclable Materials", "Energy Storage", "EV Charging"],
-    features: [
-      { label: "Capacity", value: "2,000" },
-      { label: "Modular", value: "Yes" },
-      { label: "AV", value: "Holographic" },
-      { label: "Parking", value: "200 EV" },
-    ],
-    accentColor: "#C9A9FF",
-    icon: "calendar",
+      "An immersive indoor dining destination with a distinctive themed environment.",
+    x: 25.6,
+    y: 66.9,
+    popupX: 29,
+    popupY: 57,
+    align: "center",
+  },
+
+  {
+    id: "entrance-reception",
+    title: "Entrance, Reception Lobby, Lounge, Restaurant",
+    description:
+      "The principal arrival and hospitality destination of the resort.",
+    x: 75.2,
+    y: 27.0,
+    popupX: 76,
+    popupY: 39,
+    align: "center",
+  },
+
+  {
+    id: "hotel-building",
+    title: "Hotel Building",
+    description:
+      "The main hotel destination overlooking the resort's central landscape.",
+    x: 77.2,
+    y: 42.6,
+    popupX: 84,
+    popupY: 52,
+    align: "center",
+  },
+
+  /*
+   * ============================================================
+   * OTHER FACILITIES
+   * ============================================================
+   */
+
+  {
+    id: "staff-accommodation",
+    title: "Staff accommodation",
+    description: "Dedicated accommodation supporting resort operations.",
+    x: 55.5,
+    y: 5.5,
+    popupX: 45,
+    popupY: 12,
+    align: "center",
+  },
+
+  {
+    id: "security-north",
+    title: "Security",
+    description:
+      "Controlled access and security facility serving the northern zone.",
+    x: 55.5,
+    y: 5.5,
+    popupX: 48,
+    popupY: 13,
+    align: "center",
+  },
+
+  {
+    id: "mosque",
+    title: "Mosque",
+    description: "A dedicated spiritual and community space within the resort.",
+    x: 70.3,
+    y: 13.8,
+    popupX: 76,
+    popupY: 16,
+    align: "center",
+  },
+
+  {
+    id: "security-east",
+    title: "Security",
+    description:
+      "Controlled access point serving the eastern side of the resort.",
+    x: 79.9,
+    y: 19.8,
+    popupX: 86,
+    popupY: 24,
+    align: "center",
+  },
+
+  {
+    id: "service-east",
+    title: "Service",
+    description: "Dedicated operational and service facilities.",
+    x: 89.6,
+    y: 37.6,
+    popupX: 84,
+    popupY: 43,
+    align: "center",
+  },
+
+  {
+    id: "service-west",
+    title: "Service",
+    description: "Dedicated operational and service facilities.",
+    x: 4.8,
+    y: 64.2,
+    popupX: 10,
+    popupY: 70,
+    align: "left",
   },
 ];
-
-export const locationIconMap: Record<string, React.ReactNode> = {
-  compass: null,
-  building: null,
-  home: null,
-  waves: null,
-  anchor: null,
-  dumbbell: null,
-  leaf: null,
-  music: null,
-  utensils: null,
-  calendar: null,
-};

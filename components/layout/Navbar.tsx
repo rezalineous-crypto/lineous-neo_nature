@@ -538,31 +538,63 @@ export default function Navbar(): React.JSX.Element {
                           <Link
                             href={item.href}
                             onClick={closeMenu}
-                            className="group relative flex w-full items-center justify-between border-b border-white/[0.09] py-5 md:py-6"
+                            className="group relative flex w-full items-center justify-between border-b border-white/[0.09] py-5 md:py-6 [transform:translateZ(0)]"
                           >
                             {/* Number */}
 
-                            <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1 opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+                            <motion.span
+                              className="absolute left-0 top-1/2 -translate-y-1/2 opacity-0"
+                              variants={{
+                                rest: { x: -4, opacity: 0 },
+                                hover: { x: 0, opacity: 1 },
+                              }}
+                              initial="rest"
+                              animate="rest"
+                              whileHover="hover"
+                              transition={{ duration: 0.4, ease: menuEase, delay: 0.02 }}
+                              style={{ willChange: "transform, opacity" }}
+                            >
                               <span className="block h-px w-5 bg-[var(--color-champagne)]" />
-                            </span>
+                            </motion.span>
 
                             {/* Main label */}
 
-                            <span
-                              className={`font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-none tracking-[-0.045em] transition-all duration-600 ${
+                            <motion.span
+                              className={`font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-none tracking-[-0.045em] transition-colors duration-500 ${
                                 isActive(item.href)
-                                  ? "translate-x-6 text-[var(--color-champagne)]"
-                                  : "text-white/90 group-hover:translate-x-6 group-hover:text-[var(--color-champagne)]"
+                                  ? "text-[var(--color-champagne)]"
+                                  : "text-white/90 group-hover:text-[var(--color-champagne)]"
                               }`}
+                              variants={{
+                                rest: { x: 0 },
+                                active: { x: 24 },
+                                hover: { x: 24 },
+                              }}
+                              initial="rest"
+                              animate={isActive(item.href) ? "active" : "rest"}
+                              whileHover="hover"
+                              transition={{ duration: 0.55, ease: menuEase }}
+                              style={{ willChange: "transform" }}
                             >
                               {item.label}
-                            </span>
+                            </motion.span>
 
                             {/* Arrow */}
 
-                            <span className="translate-x-[-8px] text-[var(--color-champagne)] opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100">
+                            <motion.span
+                              className="text-[var(--color-champagne)] opacity-0"
+                              variants={{
+                                rest: { x: -8, opacity: 0 },
+                                hover: { x: 0, opacity: 1 },
+                              }}
+                              initial="rest"
+                              animate="rest"
+                              whileHover="hover"
+                              transition={{ duration: 0.45, ease: menuEase, delay: 0.04 }}
+                              style={{ willChange: "transform, opacity" }}
+                            >
                               ↗
-                            </span>
+                            </motion.span>
                           </Link>
                         </motion.div>
                       ))}
@@ -658,21 +690,42 @@ export default function Navbar(): React.JSX.Element {
                       <Link
                         href={item.href}
                         onClick={closeMenu}
-                        className="group flex items-center justify-between border-b border-white/[0.09] py-5"
+                        className="group flex items-center justify-between border-b border-white/[0.09] py-5 [transform:translateZ(0)]"
                       >
-                        <span
-                          className={`font-display text-[clamp(2rem,9vw,3rem)] font-light leading-none tracking-[-0.045em] transition-all duration-500 ${
+                        <motion.span
+                          className={`font-display text-[clamp(2rem,9vw,3rem)] font-light leading-none tracking-[-0.045em] transition-colors duration-500 ${
                             isActive(item.href)
-                              ? "translate-x-4 text-[var(--color-champagne)]"
-                              : "text-white/90 group-hover:translate-x-4 group-hover:text-[var(--color-champagne)]"
+                              ? "text-[var(--color-champagne)]"
+                              : "text-white/90 group-hover:text-[var(--color-champagne)]"
                           }`}
+                          variants={{
+                            rest: { x: 0 },
+                            active: { x: 16 },
+                            hover: { x: 16 },
+                          }}
+                          initial="rest"
+                          animate={isActive(item.href) ? "active" : "rest"}
+                          whileHover="hover"
+                          transition={{ duration: 0.5, ease: menuEase }}
+                          style={{ willChange: "transform" }}
                         >
                           {item.label}
-                        </span>
+                        </motion.span>
 
-                        <span className="text-[var(--color-champagne)] opacity-0 transition-all duration-500 group-hover:opacity-100">
+                        <motion.span
+                          className="text-[var(--color-champagne)] opacity-0"
+                          variants={{
+                            rest: { x: -8, opacity: 0 },
+                            hover: { x: 0, opacity: 1 },
+                          }}
+                          initial="rest"
+                          animate="rest"
+                          whileHover="hover"
+                          transition={{ duration: 0.4, ease: menuEase, delay: 0.03 }}
+                          style={{ willChange: "transform, opacity" }}
+                        >
                           ↗
-                        </span>
+                        </motion.span>
                       </Link>
                     </motion.div>
                   ))}
