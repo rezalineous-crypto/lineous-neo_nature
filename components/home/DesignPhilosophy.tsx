@@ -443,7 +443,7 @@ function PhilosophyHeroTitle() {
                 }}
               >
                 <h2
-                  className=" font-sans text-[clamp(5rem,11vw,7rem)] font-medium leading-[0.76] tracking-[-0.105em] text-[#f4efe5] [text-shadow:0_3px_24px_rgba(0,0,0,0.18)]
+                  className=" font-sans text-[clamp(2rem,4.7vw,3rem)] font-medium leading-[0.76] tracking-[-0.105em] text-[#f4efe5] [text-shadow:0_3px_24px_rgba(0,0,0,0.18)]
                   "
                 >
                   Design
@@ -476,7 +476,7 @@ function PhilosophyHeroTitle() {
                     block
                     whitespace-nowrap
                     font-sans
-                    text-[clamp(5rem,11vw,6rem)]
+                    text-[clamp(2rem,4.7vw,3rem)]
                     font-medium
                     leading-[0.76]
                     tracking-[-0.105em]
@@ -642,12 +642,12 @@ function StackedPrinciples() {
   });
 
   return (
-    <section ref={stageRef} className="relative hidden h-[560vh] lg:block">
+    <section ref={stageRef} className="relative hidden h-[560vh] lg:block bg-[#f1f1e0]">
       {/* IMPORTANT:
 This is intentionally NOT inside an overflow-hidden parent.
 The sticky viewport must be allowed to remain sticky for the
 entire 560vh stage. */}{" "}
-      <div className="sticky top-20 h-svh w-full overflow-hidden bg-[#0d100e]">
+      <div className="sticky top-20 h-svh w-full overflow-hidden ">
         {" "}
         <PhilosophyStackAtmosphere progress={progress} />
         {/* Main stack */}
@@ -684,69 +684,74 @@ entire 560vh stage. */}{" "}
 /* -------------------------------------------------------------------------- */
 
 function PhilosophyStackAtmosphere({
-    progress,
-  }: {
-    progress: MotionValue<number>;
-  }) {
-    const contourY = useTransform(progress, [0, 1], [0, -120]);
-    const contourRotate = useTransform(progress, [0, 1], [-2, 4]);
-  
-    const organicY = useTransform(progress, [0, 1], [80, -100]);
-    const organicX = useTransform(progress, [0, 1], [-30, 60]);
-    const organicScale = useTransform(progress, [0, 0.5, 1], [1, 1.08, 0.94]);
-  
-    const waterY = useTransform(progress, [0, 1], [100, -160]);
-    const waterRotate = useTransform(progress, [0, 1], [0, 8]);
-  
-    return (
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
-        {/* Ambient atmospheric glow */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_35%,rgba(196,178,140,0.045),transparent_38%)]" />
-  
-        {/* Topographic landscape */}
-        <motion.div
-          style={{
-            y: contourY,
-            rotate: contourRotate,
-          }}
-          className="absolute -right-[12vw] top-[8vh] h-[70vh] w-[70vw] opacity-[0.12]"
-        >
-          <svg
-            viewBox="0 0 800 700"
-            className="h-full w-full"
-            fill="none"
-          >
-            {[...Array(9)].map((_, i) => (
-              <ellipse
-                key={i}
-                cx="400"
-                cy="350"
-                rx={180 + i * 34}
-                ry={100 + i * 25}
-                stroke="currentColor"
-                strokeWidth="0.7"
-                className="text-chrome1"
-              />
-            ))}
-          </svg>
-        </motion.div>
-  
-        {/* Organic botanical silhouette */}
-        <motion.div
-          style={{
-            x: organicX,
-            y: organicY,
-            scale: organicScale,
-          }}
-          className="absolute -left-[10vw] bottom-[-18vh] h-[75vh] w-[55vw] opacity-[0.055]"
-        >
-          <svg
-            viewBox="0 0 600 800"
-            className="h-full w-full"
-            fill="none"
-          >
-            <path
-              d="
+  progress,
+}: {
+  progress: MotionValue<number>;
+}) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const contourY = useTransform(progress, [0, 1], [0, -120]);
+  const contourRotate = useTransform(progress, [0, 1], [-2, 4]);
+
+  const organicY = useTransform(progress, [0, 1], [80, -100]);
+  const organicX = useTransform(progress, [0, 1], [-30, 60]);
+  const organicScale = useTransform(progress, [0, 0.5, 1], [1, 1.08, 0.94]);
+
+  const waterY = useTransform(progress, [0, 1], [100, -160]);
+  const waterRotate = useTransform(progress, [0, 1], [0, 8]);
+
+  /*
+   * Background botanical movement
+   */
+  const botanicalY = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
+
+  const botanicalRotate = useTransform(scrollYProgress, [0, 1], [-4, 5]);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+      {/* Ambient atmospheric glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_35%,rgba(196,178,140,0.045),transparent_38%)]" />
+
+      {/* Topographic landscape */}
+      <motion.div
+        style={{
+          y: contourY,
+          rotate: contourRotate,
+        }}
+        className="absolute -right-[12vw] top-[8vh] h-[70vh] w-[70vw] opacity-[0.12]"
+      >
+        <svg viewBox="0 0 800 700" className="h-full w-full" fill="none">
+          {[...Array(9)].map((_, i) => (
+            <ellipse
+              key={i}
+              cx="400"
+              cy="350"
+              rx={180 + i * 34}
+              ry={100 + i * 25}
+              stroke="currentColor"
+              strokeWidth="0.7"
+              className="text-charcoal"
+            />
+          ))}
+        </svg>
+      </motion.div>
+
+      {/* Organic botanical silhouette */}
+      {/* <motion.div
+        style={{
+          x: organicX,
+          y: organicY,
+          scale: organicScale,
+        }}
+        className="absolute -left-[10vw] bottom-[-18vh] h-[75vh] w-[55vw] opacity-[0.055]"
+      >
+        <svg viewBox="0 0 600 800" className="h-full w-full" fill="none">
+          <path
+            d="
                 M80 760
                 C130 620 120 470 210 350
                 C275 265 370 210 450 110
@@ -759,57 +764,134 @@ function PhilosophyStackAtmosphere({
                 M160 470
                 C230 450 290 415 340 370
               "
-              stroke="currentColor"
-              strokeWidth="1"
-              className="text-chrome1"
-            />
-  
-            <ellipse
-              cx="100"
-              cy="170"
-              rx="58"
-              ry="24"
-              transform="rotate(-48 100 170)"
-              className="fill-chrome1"
-            />
-  
-            <ellipse
-              cx="405"
-              cy="230"
-              rx="70"
-              ry="26"
-              transform="rotate(-40 405 230)"
-              className="fill-chrome1"
-            />
-  
-            <ellipse
-              cx="45"
-              cy="330"
-              rx="62"
-              ry="23"
-              transform="rotate(-55 45 330)"
-              className="fill-chrome1"
-            />
-          </svg>
-        </motion.div>
-  
-        {/* Water / ripple structure */}
-        <motion.div
-          style={{
-            y: waterY,
-            rotate: waterRotate,
-          }}
-          className="absolute -right-[8vw] bottom-[-20vh] h-[55vh] w-[65vw] opacity-[0.07]"
+            stroke="currentColor"
+            strokeWidth="1"
+            className="text-charcoal"
+          />
+
+          <ellipse
+            cx="100"
+            cy="170"
+            rx="58"
+            ry="24"
+            transform="rotate(-48 100 170)"
+            className="fill-charcoal"
+          />
+
+          <ellipse
+            cx="405"
+            cy="230"
+            rx="70"
+            ry="26"
+            transform="rotate(-40 405 230)"
+            className="fill-charcoal"
+          />
+
+          <ellipse
+            cx="45"
+            cy="330"
+            rx="62"
+            ry="23"
+            transform="rotate(-55 45 330)"
+            className="fill-charcoal"
+          />
+        </svg>
+      </motion.div> */}
+
+      {/* ============================================================
+          BOTANICAL BACKGROUND
+          ============================================================ */}
+
+      <motion.div
+        style={{
+          y: botanicalY,
+          rotate: botanicalRotate,
+        }}
+        className="pointer-events-none absolute bottom-[-22%] left-[-10%] z-0 h-[80%] w-[55%] opacity-[0.07]"
+      >
+        <svg
+          viewBox="0 0 700 800"
+          className="h-full w-full"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            viewBox="0 0 900 500"
-            className="h-full w-full"
-            fill="none"
-          >
-            {[...Array(7)].map((_, i) => (
-              <path
-                key={i}
-                d={`
+          <path
+            d="M330 800C327 654 313 508 260 375C211 252 127 151 0 75"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M263 382C196 334 116 315 28 325"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M289 454C365 390 449 369 548 383"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M234 312C166 251 103 220 24 212"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M216 261C274 190 346 154 432 151"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M189 215C140 150 81 110 11 91"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M176 185C207 113 260 64 327 35"
+            stroke="currentColor"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M263 382C218 348 172 337 113 340C154 375 206 391 263 382Z"
+            fill="currentColor"
+          />
+
+          <path
+            d="M289 454C332 411 383 389 445 385C402 431 348 454 289 454Z"
+            fill="currentColor"
+          />
+
+          <path
+            d="M234 312C188 270 137 244 76 232C113 278 164 305 234 312Z"
+            fill="currentColor"
+          />
+
+          <path
+            d="M216 261C262 206 317 172 380 157C343 211 289 246 216 261Z"
+            fill="currentColor"
+          />
+        </svg>
+      </motion.div>
+
+      {/* Water / ripple structure */}
+      <motion.div
+        style={{
+          y: waterY,
+          rotate: waterRotate,
+        }}
+        className="absolute -right-[8vw] bottom-[-20vh] h-[55vh] w-[65vw] opacity-[0.07]"
+      >
+        <svg viewBox="0 0 900 500" className="h-full w-full" fill="none">
+          {[...Array(7)].map((_, i) => (
+            <path
+              key={i}
+              d={`
                   M 0 ${220 + i * 30}
                   C 180 ${130 + i * 25},
                     330 ${310 + i * 15},
@@ -818,35 +900,35 @@ function PhilosophyStackAtmosphere({
                     780 ${260 + i * 20},
                     900 ${170 + i * 25}
                 `}
-                stroke="currentColor"
-                strokeWidth="0.7"
-                className="text-chrome1"
-              />
-            ))}
-          </svg>
-        </motion.div>
-  
-        {/* Fine atmospheric particles */}
-        <motion.div
-          style={{
-            y: useTransform(progress, [0, 1], [0, -70]),
-          }}
-          className="absolute inset-0 opacity-[0.18]"
-        >
-          {[...Array(24)].map((_, i) => (
-            <span
-              key={i}
-              className="absolute h-[1px] w-[1px] rounded-full bg-chrome1"
-              style={{
-                left: `${(i * 37) % 100}%`,
-                top: `${(i * 61) % 100}%`,
-              }}
+              stroke="currentColor"
+              strokeWidth="0.7"
+              className="text-charcoal"
             />
           ))}
-        </motion.div>
-      </div>
-    );
-  }
+        </svg>
+      </motion.div>
+
+      {/* Fine atmospheric particles */}
+      <motion.div
+        style={{
+          y: useTransform(progress, [0, 1], [0, -70]),
+        }}
+        className="absolute inset-0 opacity-[0.18]"
+      >
+        {[...Array(24)].map((_, i) => (
+          <span
+            key={i}
+            className="absolute h-[1px] w-[1px] rounded-full bg-charcoal"
+            style={{
+              left: `${(i * 37) % 100}%`,
+              top: `${(i * 61) % 100}%`,
+            }}
+          />
+        ))}
+      </motion.div>
+    </div>
+  );
+}
 /* -------------------------------------------------------------------------- */
 /* Stack navigation                                                            */
 /* -------------------------------------------------------------------------- */
@@ -1159,13 +1241,12 @@ function MobilePrinciple({
 
 export default function DesignPhilosophy() {
   return (
-    <section id="design-philosophy" className="relative bg-[#101713]">
+    <section id="design-philosophy" className="relative ">
       {/* ================================================================== */}
       {/* HERO                                                               */}
       {/* ================================================================== */}
 
       <div className="relative flex min-h-dvh items-center overflow-hidden border-b border-line/50">
-
         <div className="relative z-10 w-full">
           <div className="">
             {/* Actual animated heading */}
@@ -1190,7 +1271,7 @@ export default function DesignPhilosophy() {
       {/* END                                                                */}
       {/* ================================================================== */}
 
-      <Container>
+      {/* <Container>
         <div className="flex items-center justify-between py-8">
           <span className="font-mono text-[8px] uppercase tracking-[0.35em] text-chrome1/30">
             PURURA / Design Philosophy
@@ -1200,7 +1281,7 @@ export default function DesignPhilosophy() {
             01 — 05
           </span>
         </div>
-      </Container>
+      </Container> */}
     </section>
   );
 }

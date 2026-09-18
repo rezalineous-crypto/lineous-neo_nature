@@ -38,7 +38,7 @@ export default function Investment() {
     <section
       id="investment"
       ref={ref}
-      className="relative py-32 md:py-40 bg-stone dark:bg-void text-charcoal dark:text-bone overflow-hidden"
+      className="relative py-32 md:py-40 bg-[#051601] text-charcoal dark:text-bone overflow-hidden"
     >
       {/* =====================================================
           ABSTRACT ARCHITECTURAL MASS
@@ -63,7 +63,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 1, delay: 0.2, ease: customEase }}
-            className="annotation text-charcoal/60 dark:text-bone/60 mb-6"
+            className="annotation text-void mb-6"
           >
             INVESTMENT STRATEGY / 01
           </motion.p>
@@ -75,7 +75,7 @@ export default function Investment() {
                 : { opacity: 0, y: 40, filter: "blur(10px)" }
             }
             transition={{ duration: 1.2, delay: 0.4, ease: customEase }}
-            className="text-5xl md:text-6xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
+            className="text-[clamp(2rem,4.7vw,3rem)] font-bold leading-[0.95] tracking-[-0.04em] text-champagne font-display max-w-4xl"
           >
             A rare
             <br />
@@ -85,7 +85,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6, ease: customEase }}
-            className="mt-8 max-w-xl text-lg md:text-lg leading-relaxed text-bone/60 font-display"
+            className="mt-8 max-w-xl text-lg md:text-lg leading-relaxed text-void/60 font-display"
           >
             Positioned between Dhaka&rsquo;s expanding urban population and vast
             natural landscapes, Valuka presents a rare opportunity to create
@@ -110,23 +110,23 @@ export default function Investment() {
                   delay: 0.8 + index * 0.1,
                   ease: customEase,
                 }}
-                className="group relative bg-white dark:bg-white rounded-2xl border border-charcoal/10 dark:border-champagne/20 p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-champagne/30 dark:hover:border-champagne/40 transition-all duration-500 hover:-translate-y-1"
+                className="group relative bg-[#051b00]/50 rounded-2xl border border-void/10 dark:border-champagne/20 p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-champagne/30 dark:hover:border-champagne/40 transition-all duration-500 hover:-translate-y-1"
               >
                 {/* Top accent line */}
                 <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <p className="annotation text-charcoal/50 dark:text-bone/60 mb-4 text-xs">
+                <p className="annotation text-champagne mb-4 text-xs">
                   {metric.label}
                 </p>
-                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-charcoal dark:text-champagne font-display mb-4">
+                <p className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-void-display mb-4 text-champagne">
                   {metric.number}
                   {metric.suffix && (
-                    <span className="text-xl text-charcoal/60 dark:text-bone/60 ml-2">
+                    <span className="text-xl text-champagne ml-2">
                       {metric.suffix}
                     </span>
                   )}
                 </p>
-                <p className="text-sm leading-relaxed text-charcoal/60 dark:text-bone/70 font-display">
+                <p className="text-sm leading-relaxed text-void/60 font-display">
                   {metric.description}
                 </p>
               </motion.div>

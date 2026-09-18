@@ -66,7 +66,7 @@ export default function MasterplanExplorer() {
     <section
       ref={containerRef}
       id="masterplan-explorer"
-      className="relative h-screen w-full overflow-hidden bg-void"
+      className="relative h-screen w-full overflow-hidden bg-transparent"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -74,7 +74,7 @@ export default function MasterplanExplorer() {
           MASTERPLAN IMAGE
       ====================================================== */}
 
-      <motion.div
+<motion.div
         className="absolute -inset-2"
         style={{
           x: imageX,
@@ -90,7 +90,28 @@ export default function MasterplanExplorer() {
           sizes="100vw"
           className="object-cover"
         />
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-sm" />
       </motion.div>
+
+      <motion.div
+        className="absolute -inset-2"
+        style={{
+          x: imageX,
+          y: imageY,
+        }}
+      >
+        <Image
+          src="/Purura/NewImages/Overall 11.png"
+          alt="Purura Resort Masterplan"
+          fill
+          priority
+          quality={90}
+          sizes="100vw"
+          className="object-contain"
+        />
+      </motion.div>
+
+ 
 
       {/* =====================================================
           CINEMATIC OVERLAY

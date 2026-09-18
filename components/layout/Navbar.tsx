@@ -60,6 +60,7 @@ export default function Navbar(): React.JSX.Element {
   const [showBrandIntro, setShowBrandIntro] = useState(false);
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const hasMounted = useRef(false);
+  const hasNavigated = useRef(false);
   const [showVideoIntro, setShowVideoIntro] = useState<boolean>(() => {
     try {
       return !sessionStorage.getItem("purura-intro-played");
@@ -145,7 +146,10 @@ export default function Navbar(): React.JSX.Element {
    * Trigger BrandIntro on route changes only (not on initial mount).
    */
   useLayoutEffect(() => {
-    if (!hasMounted.current) return;
+    if (!hasMounted.current || !hasNavigated.current) {
+      hasNavigated.current = true;
+      return;
+    }
     setShowBrandIntro(true);
   }, [pathname]);
 
@@ -387,7 +391,7 @@ export default function Navbar(): React.JSX.Element {
                 delay: 0.25,
                 ease: menuEase,
               }}
-              className="group absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6"
+              className="group absolute right-6 top-5 z-[230] flex h-12 w-12 items-center justify-center md:right-10 md:top-6 cursor-pointer"
             >
               <span className="absolute h-px w-8 rotate-45 bg-white/80 transition-all duration-500 group-hover:w-10 group-hover:bg-[var(--color-champagne)]" />
               <span className="absolute h-px w-8 -rotate-45 bg-white/80 transition-all duration-500 group-hover:w-10 group-hover:bg-[var(--color-champagne)]" />
@@ -543,7 +547,7 @@ export default function Navbar(): React.JSX.Element {
                             {/* Number */}
 
                             <motion.span
-                              className="absolute left-0 top-1/2 -translate-y-1/2 opacity-0"
+                              className="absolute left-0 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100"
                               variants={{
                                 rest: { x: -4, opacity: 0 },
                                 hover: { x: 0, opacity: 1 },
@@ -560,7 +564,7 @@ export default function Navbar(): React.JSX.Element {
                             {/* Main label */}
 
                             <motion.span
-                              className={`font-display text-[clamp(2rem,3.5vw,3.5rem)] font-light leading-none tracking-[-0.045em] transition-colors duration-500 ${
+                              className={`font-display text-[clamp(2rem,3.5vw,2.5rem)] font-light leading-none tracking-[-0.045em] transition-colors duration-500 ${
                                 isActive(item.href)
                                   ? "text-[var(--color-champagne)]"
                                   : "text-white/90 group-hover:text-[var(--color-champagne)]"
@@ -582,7 +586,7 @@ export default function Navbar(): React.JSX.Element {
                             {/* Arrow */}
 
                             <motion.span
-                              className="text-[var(--color-champagne)] opacity-0"
+                              className="text-[var(--color-champagne)] opacity-0 group-hover:opacity-100"
                               variants={{
                                 rest: { x: -8, opacity: 0 },
                                 hover: { x: 0, opacity: 1 },

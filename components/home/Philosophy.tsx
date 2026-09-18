@@ -93,8 +93,11 @@ const scenes: Scene[] = [
     headingBoldWords: ["CONCEPT"],
     accent: "THE VISION",
     accentBoldWords: ["VISION"],
-    description:
-      "The Living Archipelago is envisioned as a next-generation luxury resort where futuristic architecture, immersive landscape, and intelligent water systems operate as a unified ecological framework that collectively create an immersive hospitality experience.Rather than positioning buildings as isolated objects within the landscape. Water becomes the primary organizing element, while architecture emerges organically from the landscape, minimizing visual impact and reinforcing a strong sense of place.The development aspires to become a benchmark for regenerative tourism by combining environmental stewardship, advanced technology, and contemporary hospitality within a cohesive masterplanning strategy.",
+    description: `The Living Archipelago is envisioned as a next-generation luxury resort where futuristic architecture, immersive landscape, and intelligent water systems operate as a unified ecological framework that collectively create an immersive hospitality experience.
+
+Rather than positioning buildings as isolated objects within the landscape. Water becomes the primary organizing element, while architecture emerges organically from the landscape, minimizing visual impact and reinforcing a strong sense of place.
+
+The development aspires to become a benchmark for regenerative tourism by combining environmental stewardship, advanced technology, and contemporary hospitality within a cohesive masterplanning strategy.`,
     images: {
       back: "/Purura/NewImages/Overall 11.png",
       center: "/Purura/NewImages/Overall 2.png",
@@ -368,7 +371,7 @@ export default function InvestmentBanner() {
                   }}
                 >
                   {/* Heading */}
-                  <h2 className="font-display text-[clamp(2.8rem,4.7vw,4rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-chrome1">
+                  <h2 className="font-display text-[clamp(2rem,4.7vw,3rem)] font-light uppercase leading-[0.91] tracking-[-0.045em] text-chrome1">
                     <motion.span
                       style={{ clipPath: headingLine1Reveal }}
                       className="block"
@@ -391,12 +394,16 @@ export default function InvestmentBanner() {
                   </h2>
 
                   {/* Description */}
-                  <motion.p
+                  <motion.div
                     style={{ clipPath: descriptionReveal }}
-                    className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px]"
+                    className="mt-8 space-y-5 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px]"
                   >
-                    {activeScene.description}
-                  </motion.p>
+                    {activeScene.description
+                      .split("\n\n")
+                      .map((paragraph, index) => (
+                        <p key={index}>{paragraph}</p>
+                      ))}
+                  </motion.div>
                 </motion.div>
               </AnimatePresence>
             </motion.div>

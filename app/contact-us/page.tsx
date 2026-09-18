@@ -30,11 +30,11 @@ export default function ContactUsPage() {
             Contact Us
           </p>
 
-          <h1 className="mt-6 text-5xl md:text-7xl font-bold leading-none tracking-[-0.06em] text-white font-display">
+          <h1 className="mt-6 text-[clamp(2rem,4.7vw,3rem)] font-bold leading-none tracking-[-0.06em] text-champagne font-display">
             Get in touch.
           </h1>
 
-          <p className="mt-8 text-lg leading-relaxed text-white/80 max-w-xl">
+          <p className="mt-8 text-md leading-relaxed text-white/80 max-w-xl">
             Have questions about investment, partnerships, or hospitality? Reach out
             and our team will respond within 24 hours.
           </p>

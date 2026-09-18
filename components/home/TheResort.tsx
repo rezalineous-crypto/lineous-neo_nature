@@ -64,7 +64,7 @@ export default function TheResort() {
     <section
       id="the-resort"
       ref={sectionRef}
-      className="relative bg-void dark:bg-ivory lg:h-[310dvh]"
+      className="relative bg-void dark:bg-ivory lg:h-[310dvh] overflow-hidden"
     >
       {/* Large architectural shell behind the form */}
       <motion.div
@@ -150,13 +150,12 @@ export default function TheResort() {
             </motion.p>
             <motion.h2
               style={{ x: titleX }}
-              className="text-[22vw] md:text-[20vw] lg:text-[6vw] leading-[0.95] tracking-[-0.04em] text-champagne font-display uppercase font-extralight"
+              className="text-[clamp(2rem,4.7vw,3rem)] leading-[0.95] tracking-[-0.04em] text-champagne font-display uppercase font-extralight"
             >
-              A <span className="font-extrabold text-chrome3 text-shadow-md">journey</span> <br />
+              A <span className="font-extrabold text-chrome3 text-shadow-md text-[clamp(2rem,4.7vw,3.5rem)]">journey </span>
               through
               <br />
-              <span className="text-chrome3 text-shadow-chrome3 uppercase font-extrabold  text-shadow-md">extraordinary</span>{" "}
-              <br />
+              <span className="text-chrome3 text-shadow-chrome3 uppercase font-extrabold  text-shadow-md text-[clamp(2rem,4.7vw,3.5rem)]">extraordinary</span>{" "}
               spaces
             </motion.h2>
           </div>
