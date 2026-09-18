@@ -376,14 +376,14 @@ export default function ExperiencePage() {
             className="relative z-10 max-w-6xl pb-20 pt-40 md:pb-28"
           >
             <div className="flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.4em] text-bone/75 font-mono">
-              <span className="h-px w-10 bg-champagne/70" />
+              {/* <span className="h-px w-10 bg-champagne/70" /> */}
               Experience
             </div>
 
             <h1 className="mt-7 max-w-6xl font-display text-[clamp(3.4rem,8.5vw,9rem)] font-bold leading-[0.87] tracking-[-0.075em] text-cream">
               Designed for
               <br />
-              <span className="text-champagne">Discovery.</span>
+              <span className="text-champagne">Discovery</span>
             </h1>
 
             <div className="mt-10 flex items-end justify-between gap-8">

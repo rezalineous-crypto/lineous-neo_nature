@@ -4,7 +4,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { customEase } from "./Hero";
 import { ArrowUpRight } from "lucide-react";
-import { architecturalEase } from "../layout/Footer";
 
 const metrics = [
   {
@@ -49,7 +48,7 @@ export default function Investment() {
         initial={{ opacity: 0, x: 80, rotate: 8 }}
         whileInView={{ opacity: 1, x: 0, rotate: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 1.8, delay: 0.15, ease: architecturalEase }}
+        transition={{ duration: 1.8, delay: 0.15 }}
         className="pointer-events-none absolute -right-[180px] top-[0%] h-[860px] w-[860px] opacity-[0.12] blur-[8px] *:rounded-2xl"
       >
         <div className="absolute inset-0 rotate-45 border-8 border-champagne/40" />
@@ -76,7 +75,7 @@ export default function Investment() {
                 : { opacity: 0, y: 40, filter: "blur(10px)" }
             }
             transition={{ duration: 1.2, delay: 0.4, ease: customEase }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
+            className="text-5xl md:text-6xl font-bold leading-[0.95] tracking-[-0.04em] text-charcoal font-display max-w-4xl"
           >
             A rare
             <br />
@@ -86,7 +85,7 @@ export default function Investment() {
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 1, delay: 0.6, ease: customEase }}
-            className="mt-8 max-w-xl text-lg md:text-xl leading-relaxed text-bone/60 font-display"
+            className="mt-8 max-w-xl text-lg md:text-lg leading-relaxed text-bone/60 font-display"
           >
             Positioned between Dhaka&rsquo;s expanding urban population and vast
             natural landscapes, Valuka presents a rare opportunity to create

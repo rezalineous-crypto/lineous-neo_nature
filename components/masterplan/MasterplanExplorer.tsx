@@ -136,7 +136,7 @@ export default function MasterplanExplorer() {
           Purura Resort
         </p>
 
-        <h2 className="font-display text-lg font-medium tracking-tight text-white md:text-xl">
+        <h2 className="font-display text-xl font-medium tracking-tight text-white md:text-4xl">
           Masterplan
         </h2>
       </motion.div>

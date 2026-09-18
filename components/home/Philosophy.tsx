@@ -94,7 +94,7 @@ const scenes: Scene[] = [
     accent: "THE VISION",
     accentBoldWords: ["VISION"],
     description:
-      "The Living Archipelago is envisioned as a next-generation luxury resort where futuristic architecture, immersive landscape, and intelligent water systems operate as a unified ecological framework that collectively create an immersive hospitality experience.",
+      "The Living Archipelago is envisioned as a next-generation luxury resort where futuristic architecture, immersive landscape, and intelligent water systems operate as a unified ecological framework that collectively create an immersive hospitality experience.Rather than positioning buildings as isolated objects within the landscape. Water becomes the primary organizing element, while architecture emerges organically from the landscape, minimizing visual impact and reinforcing a strong sense of place.The development aspires to become a benchmark for regenerative tourism by combining environmental stewardship, advanced technology, and contemporary hospitality within a cohesive masterplanning strategy.",
     images: {
       back: "/Purura/NewImages/Overall 11.png",
       center: "/Purura/NewImages/Overall 2.png",
@@ -250,7 +250,7 @@ export default function InvestmentBanner() {
     <>
       <section
         ref={sectionRef}
-        className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen"
+        className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen lg:py-32"
       >
         {/* ============================================================
           BOTANICAL BACKGROUND

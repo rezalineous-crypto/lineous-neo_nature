@@ -337,7 +337,7 @@ function PhilosophyHeroTitle() {
         once: true,
         amount: 0.3,
       }}
-      className="relative isolate min-h-[95svh] overflow-hidden bg-[#171611]"
+      className="relative isolate min-h-[100svh] overflow-hidden bg-[#171611]"
     >
       {/* ================================================================ */}
       {/* FULL-BLEED PHOTOGRAPH                                            */}
@@ -647,7 +647,7 @@ function StackedPrinciples() {
 This is intentionally NOT inside an overflow-hidden parent.
 The sticky viewport must be allowed to remain sticky for the
 entire 560vh stage. */}{" "}
-      <div className="sticky top-0 h-svh w-full overflow-hidden bg-void">
+      <div className="sticky top-20 h-svh w-full overflow-hidden bg-[#0d100e]">
         {" "}
         <PhilosophyStackAtmosphere progress={progress} />
         {/* Main stack */}
@@ -1016,7 +1016,7 @@ function StackedPrincipleCard({
         {/* Soft physical shadow */}{" "}
         <div className="absolute inset-[3%] translate-y-8 rounded-[1.5rem] bg-black/30 blur-[45px]" />
         {/* Main architectural panel */}
-        <div className="relative h-full w-full rounded-[1.5rem] border border-bone/[0.07] bg-[#101713]/[0.97] shadow-[0_35px_100px_rgba(0,0,0,0.15)]">
+        <div className="relative h-full w-full rounded-[1.5rem] border border-bone/[0.07] bg-[#141e19] shadow-[0_25px_80px_rgba(201,164,90,0.07)]">
           {/* Inner hairline */}
           <div className="pointer-events-none absolute inset-4 rounded-[1.15rem] border border-bone/[0.025]" />
 
@@ -1159,7 +1159,7 @@ function MobilePrinciple({
 
 export default function DesignPhilosophy() {
   return (
-    <section id="design-philosophy" className="relative bg-void">
+    <section id="design-philosophy" className="relative bg-[#101713]">
       {/* ================================================================== */}
       {/* HERO                                                               */}
       {/* ================================================================== */}
