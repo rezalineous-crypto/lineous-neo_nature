@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import {
   Space_Grotesk,
   JetBrains_Mono,
@@ -51,7 +52,9 @@ export default function RootLayout({
       className={`${display.variable} ${mono.variable} ${serif.variable}`}
     >
       <head>
-        <script
+        <Script
+          id="theme-cleanup"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `
         (function() {

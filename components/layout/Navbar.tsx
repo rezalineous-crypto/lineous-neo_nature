@@ -61,13 +61,30 @@ export default function Navbar(): React.JSX.Element {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const hasMounted = useRef(false);
   const hasNavigated = useRef(false);
-  const [showVideoIntro, setShowVideoIntro] = useState<boolean>(() => {
-    try {
-      return !sessionStorage.getItem("purura-intro-played");
-    } catch {
-      return false;
-    }
-  });
+  const [showVideoIntro, setShowVideoIntro] = useState<boolean>(false);
+
+  // SSR-safe: sessionStorage is unavailable during server render, so the
+  // initial state is `false` on both server and client (no hydration
+  // mismatch). The real value is read from sessionStorage only after the
+  // component mounts, deferred with requestAnimationFrame so the state
+  // update does not happen synchronously inside the effect body (which
+  // would trigger cascading renders).
+  useEffect(() => {
+    let active = true;
+    const frame = requestAnimationFrame(() => {
+      if (!active) return;
+      try {
+        const played = !!sessionStorage.getItem("purura-intro-played");
+        setShowVideoIntro(!played);
+      } catch {
+        setShowVideoIntro(false);
+      }
+    });
+    return () => {
+      active = false;
+      cancelAnimationFrame(frame);
+    };
+  }, []);
 
   const isHome = pathname === "/";
 

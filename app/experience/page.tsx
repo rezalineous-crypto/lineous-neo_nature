@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -14,37 +13,10 @@ import Image from "next/image";
 const experienceSections = [
   {
     number: "01",
-    eyebrow: "Augmented Nature",
-    title: "Nature, experienced beyond the ordinary.",
-    image: "/purura_resort_images/purura_render_16.jpg",
-    secondaryImage: "/purura_resort_images/purura_render_15.jpg",
-    items: [
-      {
-        title: "Seasonal Site Experience",
-        description: "Summer / Rainy Season / Winter",
-      },
-      {
-        title: "AR/VR Experience Dome",
-        description:
-          "Dome Structure & Shell, Projection System & Servers, VR/AR Headsets, Immersive Content & Software, HVAC & Interior Fit-outs",
-      },
-      {
-        title: "Digital Art Gallery & Projection Tunnels",
-        description:
-          "100 sft tunnel & projection gallery — Display Hardware, Media Servers & Mapping Software, Content & Animation, Labor, Acoustic Paneling & Installation",
-      },
-      {
-        title: "Night-time LED Landscape Shows",
-        description: "Immersive Landscapes",
-      },
-    ],
-  },
-  {
-    number: "02",
     eyebrow: "Smart Accommodation",
     title: "Accommodation, intelligently reimagined.",
-    image: "/purura_resort_images/purura_render_15.jpg",
-    secondaryImage: "/purura_resort_images/purura_render_16.jpg",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 2.png",
     items: [
       {
         title: "Contactless AI System & Facial Recognition Access",
@@ -81,11 +53,38 @@ const experienceSections = [
     ],
   },
   {
+    number: "02",
+    eyebrow: "Augmented Nature",
+    title: "Nature, experienced beyond the ordinary.",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 2.png",
+    items: [
+      {
+        title: "Seasonal Site Experience",
+        description: "Summer / Rainy Season / Winter",
+      },
+      {
+        title: "AR/VR Experience Dome",
+        description:
+          "Dome Structure & Shell, Projection System & Servers, VR/AR Headsets, Immersive Content & Software, HVAC & Interior Fit-outs",
+      },
+      {
+        title: "Digital Art Gallery & Projection Tunnels",
+        description:
+          "100 sft tunnel & projection gallery — Display Hardware, Media Servers & Mapping Software, Content & Animation, Labor, Acoustic Paneling & Installation",
+      },
+      {
+        title: "Night-time LED Landscape Shows",
+        description: "Immersive Landscapes",
+      },
+    ],
+  },
+  {
     number: "03",
     eyebrow: "Villas",
     title: "Villas shaped around the island concept.",
-    image: "/purura_resort_images/purura_render_15.jpg",
-    secondaryImage: "/purura_resort_images/purura_render_16.jpg",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 2.png",
     items: [
       {
         title: "Villa Island Concept Brief",
@@ -109,8 +108,8 @@ const experienceSections = [
     number: "04",
     eyebrow: "Hotels",
     title: "A hotel concept defined by its architecture.",
-    image: "/purura_resort_images/purura_render_15.jpg",
-    secondaryImage: "/purura_resort_images/purura_render_16.jpg",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 2.png",
     items: [
       {
         title: "Concept Brief",
@@ -138,8 +137,8 @@ const experienceSections = [
     number: "05",
     eyebrow: "Recreational & Future Wellness Zone",
     title: "A new dimension of recreation and wellness.",
-    image: "/purura_resort_images/purura_render_15.jpg",
-    secondaryImage: "/purura_resort_images/purura_render_16.jpg",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 2.png",
     items: [
       {
         title: "Biohacking Spa",
@@ -219,15 +218,15 @@ function EditorialImage({
 }) {
   return (
     <div className="absolute inset-0">
-    <Image
-      src="/Purura/NewImages/Overall 5.png"
-      alt="PURURA resort experience"
-      fill
-      priority
-      sizes="100vw"
-      className="object-cover"
-    />
-  </div>
+      <Image
+        src="/Purura/NewImages/Overall 5.png"
+        alt="PURURA resort experience"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+    </div>
   );
 }
 
@@ -297,10 +296,7 @@ function ExperienceSection({
             viewport={{ once: true, amount: 0.2 }}
             className="min-w-0 lg:pt-10"
           >
-            <SectionLabel
-              number={section.number}
-              eyebrow={section.eyebrow}
-            />
+            <SectionLabel number={section.number} eyebrow={section.eyebrow} />
 
             <h2 className="mt-7 max-w-xl font-display text-[clamp(2.6rem,4.5vw,5rem)] font-bold leading-[0.94] tracking-[-0.065em] text-bone">
               {section.title}
@@ -381,8 +377,7 @@ export default function ExperiencePage() {
             </div>
 
             <h1 className="mt-7 max-w-6xl font-display text-[clamp(2rem,4.7vw,7rem)] font-bold leading-[0.87] tracking-[-0.075em] text-cream">
-              Designed for 
-
+              Designed for
               <span className="text-champagne"> Discovery</span>
             </h1>
 

@@ -117,7 +117,7 @@ export const masterplanLocations: MasterplanLocation[] = [
    */
 
   {
-    id: "secondary-lobby",
+    id: "secondary-lobby-west",
     title: "Secondary Lobby, Lounge, Cafe",
     description:
       "A secondary hospitality hub connecting the resort's central zones.",
@@ -128,7 +128,7 @@ export const masterplanLocations: MasterplanLocation[] = [
     align: "center",
   },
   {
-    id: "secondary-lobby",
+    id: "secondary-lobby-east",
     title: "Secondary Lobby, Lounge, Cafe",
     description:
       "A secondary hospitality hub connecting the resort's central zones.",
