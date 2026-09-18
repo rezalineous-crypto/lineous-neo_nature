@@ -47,9 +47,9 @@ const descriptions = {
 };
 
 const backgroundVideos = {
-  discover: "/Purura/NewVideos/Video Project 1.mp4",
+  discover: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
   // retreat: "/AnimationOpt/hero-video2.mp4",
-  experience: "/Purura/NewVideos/Video Project 2.mp4",
+  experience: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738213/Video_Project_2.mp4",
   amenities:
     "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
 };

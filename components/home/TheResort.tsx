@@ -64,7 +64,7 @@ export default function TheResort() {
     <section
       id="the-resort"
       ref={sectionRef}
-      className="relative bg-void dark:bg-ivory lg:h-[310dvh] overflow-hidden"
+      className="relative bg-void dark:bg-ivory lg:h-[310dvh]"
     >
       {/* Large architectural shell behind the form */}
       <motion.div

@@ -41,7 +41,9 @@ export default function HomePage() {
         <Philosophy />
         <DesignPhilosophy />
         {/* <TheLand /> */}
-        <TheResort />
+        <div>
+          <TheResort />
+        </div>
         {/* <VillaShowcase /> */}
         <MasterplanExplorer />
         {/* <InvestmentInquiry /> */}
