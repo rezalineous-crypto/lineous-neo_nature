@@ -2,62 +2,110 @@
 
 import { motion } from "framer-motion";
 import Container from "@/components/layout/Container";
-import { customEase } from "@/components/home/Hero";
-import ParallaxImage from "@/components/home/ParallaxImage";
 import Image from "next/image";
 
-/**
- * Every image uses its own complete path.
- * Replace only the paths you have actual assets for.
- */
+const customEase = [0.16, 1, 0.3, 1] as const;
+
 const experienceSections = [
   {
     number: "01",
-    eyebrow: "Smart Accommodation",
-    title: "Accommodation, intelligently reimagined.",
+    title: "Accommodation",
     image: "/Purura/NewImages/Villa 1.png",
     secondaryImage: "/Purura/NewImages/Villa 2.png",
-    items: [
+
+    subsections: [
       {
-        title: "Contactless AI System & Facial Recognition Access",
-        description:
-          "Mid / High-End Enterprise Terminals, Smart Door Locks, Central Property Management Software (PMS), Installation & Cabling",
+        title: "Smart Accommodation",
+        items: [
+          {
+            title: "Contactless AI System & Facial Recognition Access",
+            description:
+              "Mid / High-End Enterprise Terminals, Smart Door Locks, Central Property Management Software (PMS), Installation & Cabling",
+          },
+          {
+            title: "Mobile App-Controlled Rooms",
+            description: "",
+          },
+          {
+            title: "Smart Lighting & Climate Control",
+            description:
+              "Guest Room Management Systems (GRMS), iFare RFID Key Card Switches, Decentralized Wi-Fi/IoT System, Smart AC Controllers",
+          },
+          {
+            title: "IoT Sensors and AI-powered HVAC Systems",
+            description:
+              "Tracks real-time temperature, humidity, and occupancy pattern — motion sensors, AI algorithms, Building Automation Systems (BAS)",
+          },
+          {
+            title: "Property Management System (PMS)",
+            description: "Automated Housekeeping & Maintenance",
+          },
+          {
+            title: "Predictive Revenue & Dynamic Pricing",
+            description:
+              "Historical booking data, local corporate travel trends, and online travel agency (OTA)",
+          },
+          {
+            title: "Hyper-Personalization",
+            description: "Guest feedback, travel preferences",
+          },
+        ],
       },
+
       {
-        title: "Mobile App-Controlled Rooms",
-        description: "",
+        title: "Villas",
+        items: [
+          {
+            title: "Villa Island Concept Brief",
+            description: "",
+          },
+          {
+            title: "Villa Typology",
+            description: "",
+          },
+          {
+            title: "Interior and Exterior",
+            description: "",
+          },
+          {
+            title: "Services",
+            description: "",
+          },
+        ],
       },
+
       {
-        title: "Smart Lighting & Climate Control",
-        description:
-          "Guest Room Management Systems (GRMS), iFare RFID Key Card Switches, Decentralized Wi-Fi/IoT System, Smart AC Controllers",
-      },
-      {
-        title: "IoT Sensors and AI-powered HVAC Systems",
-        description:
-          "Tracks real-time temperature, humidity, and occupancy pattern — motion sensors, AI algorithms, Building Automation Systems (BAS)",
-      },
-      {
-        title: "Property Management System (PMS)",
-        description: "Automated Housekeeping & Maintenance",
-      },
-      {
-        title: "Predictive Revenue & Dynamic Pricing",
-        description:
-          "Historical booking data, local corporate travel trends, and online travel agency (OTA)",
-      },
-      {
-        title: "Hyper-Personalization",
-        description: "Guest feedback, travel preferences",
+        title: "Hotels",
+        items: [
+          {
+            title: "Concept Brief",
+            description: "",
+          },
+          {
+            title: "Exterior Images",
+            description: "",
+          },
+          {
+            title: "Room Typology Brief",
+            description: "",
+          },
+          {
+            title: "Interior of the Rooms",
+            description: "",
+          },
+          {
+            title: "Services",
+            description: "",
+          },
+        ],
       },
     ],
   },
   {
     number: "02",
-    eyebrow: "Augmented Nature",
-    title: "Nature, experienced beyond the ordinary.",
-    image: "/Purura/NewImages/Villa 1.png",
-    secondaryImage: "/Purura/NewImages/Villa 2.png",
+    title: "Augmented Nature",
+    image: "/Purura/NewImages/Overall 5.png",
+    secondaryImage: "/Purura/NewImages/Overall 11.png",
     items: [
       {
         title: "Seasonal Site Experience",
@@ -74,71 +122,16 @@ const experienceSections = [
           "100 sft tunnel & projection gallery — Display Hardware, Media Servers & Mapping Software, Content & Animation, Labor, Acoustic Paneling & Installation",
       },
       {
-        title: "Night-time LED Landscape Shows",
-        description: "Immersive Landscapes",
+        title: "Night-time LED Landscape Shows & Immersive Landscapes",
+        description: "",
       },
     ],
   },
   {
     number: "03",
-    eyebrow: "Villas",
-    title: "Villas shaped around the island concept.",
-    image: "/Purura/NewImages/Villa 1.png",
-    secondaryImage: "/Purura/NewImages/Villa 2.png",
-    items: [
-      {
-        title: "Villa Island Concept Brief",
-        description: "",
-      },
-      {
-        title: "Villa Typology",
-        description: "",
-      },
-      {
-        title: "Interior and Exterior",
-        description: "",
-      },
-      {
-        title: "Services",
-        description: "",
-      },
-    ],
-  },
-  {
-    number: "04",
-    eyebrow: "Hotels",
-    title: "A hotel concept defined by its architecture.",
-    image: "/Purura/NewImages/Villa 1.png",
-    secondaryImage: "/Purura/NewImages/Villa 2.png",
-    items: [
-      {
-        title: "Concept Brief",
-        description: "",
-      },
-      {
-        title: "Exterior Images",
-        description: "",
-      },
-      {
-        title: "Room Typology Brief",
-        description: "",
-      },
-      {
-        title: "Interior of the Rooms",
-        description: "",
-      },
-      {
-        title: "Services",
-        description: "",
-      },
-    ],
-  },
-  {
-    number: "05",
-    eyebrow: "Recreational & Future Wellness Zone",
-    title: "A new dimension of recreation and wellness.",
-    image: "/Purura/NewImages/Villa 1.png",
-    secondaryImage: "/Purura/NewImages/Villa 2.png",
+    title: "Recreational & Future Wellness Zone",
+    image: "/Purura/NewImages/Overall 5.png",
+    secondaryImage: "/Purura/NewImages/Overall 11.png",
     items: [
       {
         title: "Biohacking Spa",
@@ -181,27 +174,68 @@ const experienceSections = [
 ];
 
 const reveal = {
-  hidden: { opacity: 0, y: 36 },
+  hidden: {
+    opacity: 0,
+    y: 35,
+  },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.85, ease: customEase },
+    transition: {
+      duration: 0.85,
+      ease: customEase,
+    },
   },
 };
 
-function SectionLabel({
-  number,
-  eyebrow,
+const imageReveal = {
+  hidden: { opacity: 0, scale: 1.08 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 1.1, ease: customEase },
+  },
+};
+
+function ExperienceItem({
+  title,
+  description,
+  index,
 }: {
-  number: string;
-  eyebrow: string;
+  title: string;
+  description: string;
+  index: number;
 }) {
   return (
-    <div className="flex items-center gap-4 text-[10px] font-semibold uppercase tracking-[0.35em] text-chrome1 font-mono">
-      <span className="text-champagne/70">{number}</span>
-      <span className="h-px w-8 bg-line" />
-      <span>{eyebrow}</span>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.65,
+        delay: index * 0.035,
+        ease: customEase,
+      }}
+      className="group border-b border-line py-5 md:py-6"
+    >
+      <div className="flex items-start gap-5">
+        <span className="pt-1 font-mono text-[9px] tracking-[0.1em] text-chrome1/45">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <h3 className="font-display text-lg font-semibold leading-snug tracking-[-0.025em] text-bone md:text-xl">
+            {title}
+          </h3>
+
+          {description && (
+            <p className="mt-3 max-w-xl text-sm leading-[1.8] text-haze">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -230,7 +264,23 @@ function EditorialImage({
   );
 }
 
-function ExperienceSection({
+function SectionImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative aspect-[4/5] overflow-hidden bg-graphite">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        className="object-cover"
+      />
+
+      <div className="pointer-events-none absolute inset-0 bg-black/10" />
+    </div>
+  );
+}
+
+function MainSection({
   section,
   index,
 }: {
@@ -240,106 +290,136 @@ function ExperienceSection({
   const reversed = index % 2 !== 0;
 
   return (
-    <section className="relative overflow-hidden py-28 md:py-40">
+    <section className="relative overflow-hidden py-24 md:py-36">
       <Container>
         <div
-          className={`grid items-start gap-16 lg:grid-cols-[0.95fr_1.05fr] lg:gap-24 ${
+          className={`grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
             reversed ? "lg:[&>div:first-child]:order-2" : ""
           }`}
         >
-          {/* Image composition */}
+          {/* DOUBLE-LAYERED IMAGE */}
+
           <motion.div
             variants={reveal}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            className="relative min-w-0 pb-16"
+            className="relative"
           >
-            <div className="relative aspect-[4/5] overflow-hidden bg-graphite">
-              <EditorialImage
-                src={section.image}
-                alt={section.eyebrow}
-                className="absolute inset-0 h-full w-full"
-                intensity={0.55}
-              />
-              <div className="pointer-events-none absolute inset-0 bg-void/10" />
-            </div>
-
-            {/* Overlapping parallax image */}
             <motion.div
-              initial={{ opacity: 0, y: 45 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true, amount: 0.15 }}
-              transition={{
-                duration: 1,
-                delay: 0.15,
-                ease: customEase,
-              }}
-              className={`absolute bottom-0 z-10 aspect-[4/5] w-[43%] overflow-hidden border-[10px] border-void ${
-                reversed ? "-left-5 md:-left-10" : "-right-5 md:-right-10"
-              }`}
+              variants={imageReveal}
+              className="relative aspect-[4/5] overflow-hidden"
             >
-              <EditorialImage
-                src={section.secondaryImage}
-                alt={`${section.eyebrow} detail`}
-                className="h-full w-full"
-                intensity={0.8}
-              />
+              <div className="absolute inset-0">
+                <Image
+                  src={section.image}
+                  alt={section.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="pointer-events-none absolute inset-0 bg-black/10" />
+
+              <span className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l border-t border-champagne/50" />
+              <span className="pointer-events-none absolute bottom-0 right-0 h-12 w-12 border-b border-r border-champagne/50" />
             </motion.div>
+
+            {section.secondaryImage && (
+              <motion.div
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1, delay: 0.15, ease: customEase }}
+                className="absolute -bottom-16 right-6 w-[38%] md:right-10 md:w-[32%]"
+              >
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={imageReveal}
+                  className="relative aspect-[0.8/1] overflow-hidden border-[8px] border-void"
+                >
+                  <div className="absolute inset-0">
+                    <Image
+                      src={section.secondaryImage}
+                      alt={`${section.title} detail`}
+                      fill
+                      sizes="(max-width: 1024px) 38vw, 32vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
           </motion.div>
 
-          {/* Text composition */}
+          {/* CONTENT */}
+
           <motion.div
             variants={reveal}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="min-w-0 lg:pt-10"
+            className="lg:pt-8"
           >
-            <SectionLabel number={section.number} eyebrow={section.eyebrow} />
+            {/* SECTION NUMBER */}
 
-            <h2 className="mt-7 max-w-xl font-display text-[clamp(2.6rem,4.5vw,5rem)] font-bold leading-[0.94] tracking-[-0.065em] text-bone">
+            <div className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.3em]">
+              <span className="text-champagne/70">{section.number}</span>
+
+              <span className="h-px w-8 bg-line" />
+            </div>
+
+            {/* SECTION TITLE */}
+
+            <h2 className="mt-6 max-w-xl font-display text-[clamp(2.5rem,4vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-bone">
               {section.title}
             </h2>
 
-            <div className="mt-12 border-t border-line">
-              {section.items.map((item, itemIndex) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{
-                    duration: 0.65,
-                    delay: itemIndex * 0.04,
-                    ease: customEase,
-                  }}
-                  className="group border-b border-line py-5 md:py-6"
-                >
-                  <div className="flex items-start gap-5">
-                    <span className="pt-1 text-[10px] font-mono tracking-[0.1em] text-chrome1/60">
-                      {String(itemIndex + 1).padStart(2, "0")}
-                    </span>
+            {/* REGULAR SECTION ITEMS */}
 
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-display text-lg font-semibold leading-snug tracking-[-0.025em] text-bone md:text-xl">
-                        {item.title}
-                      </h3>
+            {"items" in section && section.items && (
+              <div className="mt-12 border-t border-line">
+                {section.items.map((item, itemIndex) => (
+                  <ExperienceItem
+                    key={item.title}
+                    title={item.title}
+                    description={item.description}
+                    index={itemIndex}
+                  />
+                ))}
+              </div>
+            )}
 
-                      {item.description && (
-                        <p className="mt-3 max-w-lg text-sm leading-[1.8] text-haze">
-                          {item.description}
-                        </p>
-                      )}
+            {/* ACCOMMODATION SUBSECTIONS */}
+
+            {"subsections" in section && section.subsections && (
+              <div className="mt-12">
+                {section.subsections.map((subsection) => (
+                  <div key={subsection.title} className="mb-14 last:mb-0">
+                    <h3 className="mb-5 font-display text-xl font-medium tracking-[-0.025em] text-champagne md:text-2xl">
+                      {subsection.title}
+                    </h3>
+
+                    <div className="border-t border-line">
+                      {subsection.items.map((item, itemIndex) => (
+                        <ExperienceItem
+                          key={item.title}
+                          title={item.title}
+                          description={item.description}
+                          index={itemIndex}
+                        />
+                      ))}
                     </div>
-
-                    <span className="pt-1 text-chrome1/40 transition-transform duration-500 group-hover:translate-x-1">
-                      ↗
-                    </span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
       </Container>
@@ -352,7 +432,8 @@ function ExperienceSection({
 export default function ExperiencePage() {
   return (
     <main className="relative overflow-hidden bg-void">
-      {/* FULL-BLEED HERO — uses your original image path directly */}
+      {/* PAGE TITLE */}
+
       <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-void/20">
         <EditorialImage
           src="/Purura/NewImages/Overall 5.png"
@@ -396,39 +477,10 @@ export default function ExperiencePage() {
         </Container>
       </section>
 
-      {/* INTRODUCTION */}
-      {/* <section className="relative py-24 md:py-36">
-        <Container>
-          <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-20">
-            <motion.p
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="text-[10px] font-semibold uppercase tracking-[0.35em] text-chrome1 font-mono"
-            >
-              The Experience
-            </motion.p>
-
-            <motion.h2
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="max-w-4xl font-display text-[clamp(2rem,4vw,4.5rem)] font-semibold leading-[1.02] tracking-[-0.055em] text-bone"
-            >
-              A collection of spaces, systems, and environments.
-            </motion.h2>
-          </div>
-        </Container>
-      </section> */}
+      {/* EXPERIENCE CONTENT */}
 
       {experienceSections.map((section, index) => (
-        <ExperienceSection
-          key={section.number}
-          section={section}
-          index={index}
-        />
+        <MainSection key={section.number} section={section} index={index} />
       ))}
     </main>
   );
