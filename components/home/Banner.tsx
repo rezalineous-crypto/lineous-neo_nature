@@ -48,7 +48,7 @@ const descriptions = {
 
 const backgroundVideos = {
 
-  retreat: "/Purura/NewVideos/Entrance.webm",
+  retreat: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789848390/Entrance.webm",
 
   discover:
     "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
