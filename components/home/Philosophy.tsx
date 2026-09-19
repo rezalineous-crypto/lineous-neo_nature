@@ -252,8 +252,9 @@ export default function InvestmentBanner() {
   return (
     <>
       <section
+        id="philosophy"
         ref={sectionRef}
-        className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen lg:py-32"
+        className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen lg:py-16"
       >
         {/* ============================================================
           BOTANICAL BACKGROUND

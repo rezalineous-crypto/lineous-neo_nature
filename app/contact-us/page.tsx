@@ -47,10 +47,10 @@ export default function ContactUsPage() {
           transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
           className="mt-16 max-w-2xl w-full"
         >
-          <form className="space-y-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-[2rem] p-8 md:p-12">
+          <form className="space-y-8 bg-white/5 backdrop-blur-sm border border-champagne rounded-[2rem] p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label htmlFor="contact-first-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70 font-mono">
+                <label htmlFor="contact-first-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
                   First name
                 </label>
                 <input
@@ -62,7 +62,7 @@ export default function ContactUsPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="contact-last-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70 font-mono">
+                <label htmlFor="contact-last-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
                   Last name
                 </label>
                 <input
@@ -75,7 +75,7 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70 font-mono">
+              <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
                 Email
               </label>
               <input
@@ -87,7 +87,7 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-[0.25em] text-white/70 font-mono">
+              <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
                 Message
               </label>
               <textarea
@@ -100,7 +100,7 @@ export default function ContactUsPage() {
 
             <button
               type="submit"
-              className="w-full px-12 py-5 rounded-full bg-white text-black text-xs font-bold uppercase tracking-[0.28em] hover:bg-white/90 transition-colors"
+              className="w-full px-12 py-5 rounded-full bg-white text-black text-xs font-bold uppercase tracking-[0.28em] transition-colors ease-fluid duration-500 cursor-pointer hover:bg-champagne"
             >
               Send Message
             </button>

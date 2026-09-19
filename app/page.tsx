@@ -27,33 +27,20 @@ export default function HomePage() {
         <SectionNav
           items={[
             { label: "Philosophy", href: "#philosophy" },
-            { label: "The Land", href: "#the-land" },
+            { label: "Design Philosophy", href: "#design-philosophy" },
             { label: "The Resort", href: "#the-resort" },
-            { label: "Architecture", href: "#architecture" },
             { label: "Masterplan", href: "#masterplan-explorer" },
-            { label: "Investment", href: "#inquiry" },
-            { label: "Experiences", href: "#experiences" },
-            { label: "Residences", href: "#residences" },
-            { label: "Legacy", href: "#legacy" },
+            { label: "Investment", href: "#investment" },
           ]}
         />
         <Banner />
         <Philosophy />
         <DesignPhilosophy />
-        {/* <TheLand /> */}
         <div>
           <TheResort />
         </div>
-        {/* <VillaShowcase /> */}
         <MasterplanExplorer />
-        {/* <InvestmentInquiry /> */}
-        {/* <Experiences /> */}
-        {/* <Residences /> */}
         <Investment />
-        {/* <Architecture /> */}
-        {/* <Legacy /> */}
-        {/* <VillaCollection /> */}
-        {/* <Technology /> */}
       </main>
     </>
   );

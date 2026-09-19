@@ -176,7 +176,7 @@ function PhilosophyText({
           Design Principle
         </span>
       </div>
-      <h3 className="max-w-[560px] font-sans text-[clamp(2.35rem,3.8vw,4.6rem)] font-medium leading-[0.94] tracking-[-0.065em] text-champagne">
+      <h3 className="max-w-[560px] font-sans text-[clamp(2rem,4.7vw,3rem)] font-medium leading-[0.94] tracking-[-0.065em] text-champagne">
         {item.title}
       </h3>
       <p className="mt-7 max-w-[510px] font-sans text-[14px] leading-[1.8] text-champagne/70 md:text-[16px]">

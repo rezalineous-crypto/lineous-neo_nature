@@ -11,15 +11,15 @@ type Scene = {
 
 const scenes: Scene[] = [
   {
+    id: "retreat",
+    heading: "WHERE NATURE",
+    subheading: "BECOMES LUXURY",
+  },
+  {
     id: "discover",
     heading: "THE NEW",
     subheading: "ERA OF LUXUARY",
   },
-  // {
-  //   id: "retreat",
-  //   heading: "WHERE NATURE",
-  //   subheading: "BECOMES LUXURY",
-  // },
   {
     id: "experience",
     heading: "BESPOKEN",
@@ -33,11 +33,11 @@ const scenes: Scene[] = [
 ];
 
 const descriptions = {
+  retreat:
+    "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
+
   discover:
     "Discover a refined vision of progress, creating inspiring environments where timeless design and enduring quality come together seamlessly.",
-
-  // retreat:
-  //   "Retreat into an environment shaped by thoughtful architecture, natural harmony, and an elevated sense of comfort and belonging.",
 
   experience:
     "Experience a destination where every detail is curated, from architectural elegance to natural immersion, offering moments that linger long after you leave.",
@@ -47,9 +47,14 @@ const descriptions = {
 };
 
 const backgroundVideos = {
-  discover: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
-  // retreat: "/AnimationOpt/hero-video2.mp4",
-  experience: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738213/Video_Project_2.mp4",
+
+  retreat: "/Purura/NewVideos/Entrance.webm",
+
+  discover:
+    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
+
+  experience:
+    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738213/Video_Project_2.mp4",
   amenities:
     "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
 };
@@ -59,7 +64,7 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export default function InvestmentBanner() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeAutoPointer, setActiveAutoPointer] =
-    useState<keyof typeof descriptions>("discover");
+    useState<keyof typeof descriptions>("retreat");
 
   const [autoPhase, setAutoPhase] = useState<"open" | "hold" | "close">("open");
 
@@ -79,8 +84,8 @@ export default function InvestmentBanner() {
 
   useEffect(() => {
     const sequence: (keyof typeof descriptions)[] = [
+      "retreat",
       "discover",
-      // "retreat",
       "experience",
       "amenities",
     ];
