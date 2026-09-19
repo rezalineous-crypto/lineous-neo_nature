@@ -5,14 +5,20 @@ import { useRef } from "react";
 import Container from "@/components/layout/Container";
 import Image from "next/image";
 import StickyImageCollage from "@/components/home/StickyImageCollage";
+import {
+  BotanicalBottom,
+  BotanicalLeft,
+  BotanicalRight,
+  BotanicalWrapper,
+} from "@/components/home/BotanicalElements";
 import { customEase } from "@/components/home/Hero";
 
 const amenitySections = [
   {
     number: "01",
     eyebrow: "MICE",
-    image: "/Purura/NewImages/Entry 2.png",
-    secondaryImage: "/Purura/NewImages/Entry 3.png",
+    image: "/Purura/NewImages/Hotel 1.png",
+    secondaryImage: "/Purura/NewImages/Hotel 2.png",
     items: [
       {
         title: "Arrival & Welcoming Hub",
@@ -205,11 +211,63 @@ function MainSection({
       : []),
   ];
 
+  /* Botanical placement per section — quiet architectural traces */
+  const botanicalConfig = [
+    {
+      Component: BotanicalLeft,
+      wrapperClass:
+        "left-[-12%] bottom-[-12%] h-[75%] w-[42%] text-[#667052]/35",
+      yFrom: "18%",
+      yTo: "-12%",
+      rotateFrom: -1.5,
+      rotateTo: 1,
+    },
+    {
+      Component: BotanicalRight,
+      wrapperClass:
+        "-right-[5%] bottom-[-15%] h-[65%] w-[40%] text-[#667052]/30",
+      yFrom: "12%",
+      yTo: "-18%",
+      rotateFrom: 1.5,
+      rotateTo: -1,
+    },
+    {
+      Component: BotanicalBottom,
+      wrapperClass:
+        "left-[12%] bottom-[-1%] h-[42%] w-[76%] text-[#667052]/28",
+      yFrom: "20%",
+      yTo: "-8%",
+      rotateFrom: -0.5,
+      rotateTo: 0.5,
+    },
+  ];
+
+  const botConfig = botanicalConfig[index % botanicalConfig.length];
+  const BotComponent = botConfig.Component;
+
   return (
-    <section className="relative py-24 md:py-36">
-      <Container>
+    <section
+      ref={sectionRef}
+      className="relative py-24 md:py-36"
+    >
+      {/* BOTANICAL ELEMENT — quiet architectural trace */}
+      <BotanicalWrapper
+        scrollTarget={sectionRef}
+        yFrom={botConfig.yFrom}
+        yTo={botConfig.yTo}
+        opacityFrom={0}
+        opacityTo={1}
+        rotateFrom={botConfig.rotateFrom}
+        rotateTo={botConfig.rotateTo}
+        scaleFrom={0.97}
+        scaleTo={1}
+        className={`absolute z-0 ${botConfig.wrapperClass}`}
+      >
+        <BotComponent />
+      </BotanicalWrapper>
+
+      <Container className="relative z-10">
         <div
-          ref={sectionRef}
           className={`grid min-h-[100svh] items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
             reversed ? "lg:[&>div:first-child]:order-2" : ""
           }`}

@@ -5,6 +5,12 @@ import { useRef } from "react";
 import Container from "@/components/layout/Container";
 import Image from "next/image";
 import StickyImageCollage from "@/components/home/StickyImageCollage";
+import {
+  BotanicalBottom,
+  BotanicalLeft,
+  BotanicalRight,
+  BotanicalWrapper,
+} from "@/components/home/BotanicalElements";
 
 const customEase = [0.16, 1, 0.3, 1] as const;
 
@@ -299,11 +305,63 @@ function MainSection({
       : []),
   ];
 
+  /* Botanical placement per section — quiet architectural traces */
+  const botanicalConfig = [
+    {
+      Component: BotanicalLeft,
+      wrapperClass:
+        "left-[-12%] bottom-[-8%] h-[75%] w-[42%] text-[#667052]/35",
+      yFrom: "18%",
+      yTo: "-12%",
+      rotateFrom: -1.5,
+      rotateTo: 1,
+    },
+    {
+      Component: BotanicalRight,
+      wrapperClass:
+        "right-[-12%] top-[55%] h-[65%] w-[40%] text-[#667052]/30 ",
+      yFrom: "12%",
+      yTo: "-18%",
+      rotateFrom: 1.5,
+      rotateTo: 1,
+    },
+    {
+      Component: BotanicalBottom,
+      wrapperClass:
+        "left-[12%] bottom-[-14%] h-[42%] w-[76%] text-[#667052]/28",
+      yFrom: "20%",
+      yTo: "-8%",
+      rotateFrom: -0.5,
+      rotateTo: 0.5,
+    },
+  ];
+
+  const botConfig = botanicalConfig[index % botanicalConfig.length];
+  const BotComponent = botConfig.Component;
+
   return (
-    <section className="relative py-24 md:py-36">
+    <section
+      ref={sectionRef}
+      className="relative py-24 md:py-36"
+    >
+      {/* BOTANICAL ELEMENT — quiet architectural trace */}
+      <BotanicalWrapper
+        scrollTarget={sectionRef}
+        yFrom={botConfig.yFrom}
+        yTo={botConfig.yTo}
+        opacityFrom={0}
+        opacityTo={1}
+        rotateFrom={botConfig.rotateFrom}
+        rotateTo={botConfig.rotateTo}
+        scaleFrom={0.97}
+        scaleTo={1}
+        className={`absolute z-0 ${botConfig.wrapperClass}`}
+      >
+        <BotComponent />
+      </BotanicalWrapper>
+
       <Container>
         <div
-          ref={sectionRef}
           className={`grid min-h-[100svh] items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
             reversed ? "lg:[&>div:first-child]:order-2" : ""
           }`}
