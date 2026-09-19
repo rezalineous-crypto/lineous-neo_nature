@@ -1,91 +1,77 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import { useRef } from "react";
 import Container from "@/components/layout/Container";
+import Image from "next/image";
+import StickyImageCollage from "@/components/home/StickyImageCollage";
 import { customEase } from "@/components/home/Hero";
 
 const amenitySections = [
   {
-    number: "02",
-    eyebrow: "Next-Gen Dining",
-    title: "Where intelligent hospitality meets culinary artistry.",
-    intro:
-      "Dining at PURURA brings together refined cuisine, waterfront atmosphere, and a new generation of intelligent hospitality.",
-    image: "/Purura/NewImages/Restaurant 1.png",
-    secondaryImage: "/Purura/NewImages/Restaurant 2.png",
+    number: "01",
+    eyebrow: "MICE",
+    image: "/Purura/NewImages/Entry 2.png",
+    secondaryImage: "/Purura/NewImages/Entry 3.png",
     items: [
       {
-        title: "Main Kitchen & Dining",
+        title: "Arrival & Welcoming Hub",
         description:
-          "250 seats with automated service options, Cloud POS & ERP Software, Self-Ordering Kiosks, Robotic Food Delivery, Wireless Calling & Paging Systems, KDS and holographic menu displays.",
+          "Digital immersive gateway/ entrance plaza- LED display/projection, Security screening area",
       },
       {
-        title: "Fine Dining Waterfront Restaurant",
-        description:
-          "A destination restaurant positioned directly within the waterfront experience.",
+        title: "AI-assisted check-in pavilion",
+        description: "Hardware & Software Integration",
       },
       {
-        title: "Cocktail Bar / Pool Bar / Poolside Café",
-        description:
-          "Relaxed food and beverage spaces connected to the resort's pool and leisure environment.",
+        title: "AI concierge system",
+        description: "",
       },
       {
-        title: "Rooftop Café / Bar",
-        description:
-          "An elevated dining and social destination within the hotel building.",
+        title: "Smart parking with EV charging",
+        description: "5 charging port",
       },
       {
-        title: "Main Kitchen Design Concept",
-        description:
-          "Concept brief, capacity planning, and exterior and interior design imagery.",
+        title: "Convention hall, Seminar and Conference room, Exhibition halls",
+        description: "",
+      },
+      {
+        title: "Business lounge/ Lobby café",
+        description: "",
+      },
+      {
+        title: "Souvenir shop/ Convenience store/ Travel desk/ ATM corner/ Beauty salon/barbershop",
+        description: "",
       },
     ],
   },
 
   {
-    number: "01",
-    eyebrow: "MICE",
-    title:
-      "A new destination for meetings, conferences and meaningful gatherings.",
-    intro:
-      "PURURA's MICE environment connects arrival, hospitality, technology and large-scale gathering within one seamless destination.",
-    image: "/Purura/NewImages/Hotel 1.png",
-    secondaryImage: "/Purura/NewImages/Hotel 2.png",
+    number: "02",
+    eyebrow: "Next-Gen Dining",
+    image: "/Purura/NewImages/Restaurant 1.png",
+    secondaryImage: "/Purura/NewImages/Restaurant 2.png",
     items: [
       {
-        title: "Arrival & Welcoming Hub",
+        title: "Main kitchen and Dining",
         description:
-          "Digital immersive gateway and entrance plaza with LED display / projection and a dedicated security screening area.",
+          "(automated service options)/ (250 seats)- Cloud POS & ERP Software, Self-Ordering Kiosks, Robotic Food Delivery, Wireless Calling & Paging Systems, Kitchen Display Systems (KDS). Holographic menu displays",
       },
       {
-        title: "AI-Assisted Check-in Pavilion",
-        description:
-          "Integrated hardware and software systems designed around an intelligent arrival experience.",
+        title: "Fine dining Waterfront Restaurant",
+        description: "",
       },
       {
-        title: "AI Concierge System",
-        description:
-          "Technology-enabled guest assistance throughout the MICE and hospitality environment.",
+        title: "Cocktail bar/ Pool bar / Poolside Cafe",
+        description: "",
       },
       {
-        title: "Smart Parking with EV Charging",
-        description: "Smart parking infrastructure with 5 EV charging ports.",
+        title: "Rooftop Café/ Bar",
+        description: "Hotel building",
       },
       {
-        title: "Convention & Exhibition",
-        description:
-          "Convention hall, seminar and conference rooms, and exhibition halls for large-scale gatherings.",
-      },
-      {
-        title: "Business Lounge / Lobby Café",
-        description:
-          "A relaxed business environment for meetings, waiting and informal interaction.",
-      },
-      {
-        title: "Guest Services",
-        description:
-          "Souvenir shop, convenience store, travel desk, ATM corner, beauty salon and barbershop.",
+        title: "main kitchen design concept",
+        description: "brief. Capacity. Exterior and interior images.",
       },
     ],
   },
@@ -93,31 +79,24 @@ const amenitySections = [
   {
     number: "03",
     eyebrow: "Events",
-    title: "Spaces designed for celebration, movement and connection.",
-    intro:
-      "From the waterfront to the pool and open field, PURURA creates flexible environments for intimate gatherings and large-scale events.",
     image: "/Purura/NewImages/Overall 3.png",
     secondaryImage: "/Purura/NewImages/Overall 4.png",
     items: [
       {
-        title: "Waterfront Activities",
-        description:
-          "Waterfront programming ranging from intimate internal activities to larger-scale events.",
+        title: "waterfront activities",
+        description: "internal and large one,",
       },
       {
-        title: "Swimming Pool & Poolside Café",
-        description:
-          "A social leisure environment combining water, food and relaxed outdoor living.",
+        title: "swimming pool, poolside café",
+        description: "",
       },
       {
-        title: "Gaming Facilities",
-        description:
-          "Dedicated spaces for gaming and recreational entertainment.",
+        title: "Gaming facilities",
+        description: "",
       },
       {
-        title: "Multipurpose Events on the Field",
-        description:
-          "An adaptable open-field environment for concerts, celebrations and large-format events.",
+        title: "multipurpose events on the field",
+        description: "",
       },
     ],
   },
@@ -126,13 +105,13 @@ const amenitySections = [
 const reveal = {
   hidden: {
     opacity: 0,
-    y: 30,
+    y: 35,
   },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.9,
+      duration: 0.85,
       ease: customEase,
     },
   },
@@ -167,300 +146,158 @@ function EditorialImage({
   );
 }
 
-function ChapterLabel({
-  number,
-  eyebrow,
+function AmenityItem({
+  title,
+  description,
+  index,
 }: {
-  number: string;
-  eyebrow: string;
+  title: string;
+  description: string;
+  index: number;
 }) {
   return (
-    <div className="flex items-center gap-4 font-mono text-[15px] uppercase tracking-[0.32em] text-chrome2">
-      <span className="text-chrome2">{number}</span>
-      <span className="h-px w-8 bg-chrome2" />
-      <span>{eyebrow}</span>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.65,
+        delay: index * 0.035,
+        ease: customEase,
+      }}
+      className="group border-b border-line py-5 md:py-6"
+    >
+      <div className="flex items-start gap-5">
+        <span className="pt-1 font-mono text-[11px] tracking-[0.1em] text-chrome1">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        <div className="min-w-0 flex-1">
+          <h3 className="font-display text-lg font-semibold leading-snug tracking-[-0.025em] text-bone md:text-xl">
+            {title}
+          </h3>
+
+          {description && (
+            <p className="mt-3 max-w-xl text-sm leading-[1.8] text-haze">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
-function CornerLines() {
-  return (
-    <>
-      <span className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l border-t border-champagne/50" />
-      <span className="pointer-events-none absolute bottom-0 right-0 h-12 w-12 border-b border-r border-champagne/50" />
-    </>
-  );
-}
-
-function AmenityList({
-  items,
+function MainSection({
+  section,
+  index,
 }: {
-  items: {
-    title: string;
-    description: string;
-  }[];
+  section: (typeof amenitySections)[number];
+  index: number;
 }) {
-  return (
-    <div className="mt-12 border-t border-void/15">
-      {items.map((item, index) => (
-        <motion.div
-          key={item.title}
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{
-            duration: 0.65,
-            delay: index * 0.045,
-            ease: customEase,
-          }}
-          className="group border-b border-void/15 py-6"
-        >
-          <div className="grid grid-cols-[34px_1fr_auto] gap-4">
-            <span className="font-mono text-[12px] tracking-[0.15em] text-charcoal/35">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+  const reversed = index % 2 !== 0;
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-            <div>
-              <h3 className="font-display text-xl font-medium tracking-[-0.02em] text-charcoal md:text-xl">
-                {item.title}
-              </h3>
-
-              {item.description && (
-                <p className="mt-2 max-w-xl text- leading-[1.75] text-charcoal/55">
-                  {item.description}
-                </p>
-              )}
-            </div>
-
-            <span className="font-mono text-xs text-charcoal/25 transition-transform duration-500 group-hover:translate-x-1">
-              ↗
-            </span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
-function DiningChapter() {
-  const section = amenitySections[0];
+  const collageImages = [
+    { src: section.image, alt: section.eyebrow, priority: true },
+    ...(section.secondaryImage
+      ? [{ src: section.secondaryImage, alt: `${section.eyebrow} detail` }]
+      : []),
+  ];
 
   return (
-    <section className="relative bg- py-28 md:py-40 lg:py-52">
+    <section className="relative py-24 md:py-36">
       <Container>
-        <ChapterLabel number={section.number} eyebrow={section.eyebrow} />
+        <div
+          ref={sectionRef}
+          className={`grid min-h-[100svh] items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
+            reversed ? "lg:[&>div:first-child]:order-2" : ""
+          }`}
+        >
+          {/* STICKY IMAGE COLLAGE (desktop) */}
+          <div className="sticky top-42 hidden self-start lg:block">
+            <StickyImageCollage
+              images={collageImages}
+              enableParallax
+              scrollTarget={sectionRef}
+            />
+          </div>
 
-        <div className="mt-14 grid items-end gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-24">
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="relative"
-          >
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={imageReveal}
-              className="relative aspect-[1.35/1] overflow-hidden"
-            >
-              <EditorialImage src={section.image} alt={section.eyebrow} />
-
-              <CornerLines />
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 1,
-                delay: 0.15,
-                ease: customEase,
-              }}
-              className="absolute -bottom-16 right-6 w-[38%] md:right-10 md:w-[32%]"
-            >
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={imageReveal}
-                className="relative aspect-[0.8/1] overflow-hidden border-[8px] border-bone"
-              >
-                <EditorialImage
+          {/* IMAGE FOR MOBILE (lg:hidden) */}
+          <div className="lg:hidden">
+            <div className="relative aspect-[4/5] overflow-hidden bg-graphite">
+              <Image
+                src={section.image}
+                alt={section.eyebrow}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-black/10" />
+            </div>
+            {section.secondaryImage && (
+              <div className="relative mt-4 aspect-[4/5] overflow-hidden bg-graphite">
+                <Image
                   src={section.secondaryImage}
                   alt={`${section.eyebrow} detail`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
                 />
-              </motion.div>
-            </motion.div>
-          </motion.div>
+                <div className="pointer-events-none absolute inset-0 bg-black/10" />
+              </div>
+            )}
+          </div>
+
+          {/* CONTENT */}
 
           <motion.div
             variants={reveal}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
-            className="pb-3 lg:pb-10"
+            className="lg:pt-8"
           >
-            <h2 className="max-w-lg font-display text-[clamp(2.5rem,4.4vw,5rem)] font-medium leading-[0.94] tracking-[-0.055em] text-champagne">
-              {section.title}
-            </h2>
+            {/* SECTION NUMBER */}
 
-            {/* <p className="mt-7 max-w-md leading-[1.8] text-champagne">
-              {section.intro}
-            </p> */}
-          </motion.div>
-        </div>
+            <div className="flex items-center gap-4 font-mono text-[12px] uppercase tracking-[0.3em]">
+              <span className="text-champagne/70">{section.number}</span>
 
-        <div className="mt-28 lg:ml-[25%] lg:w-[65%]">
-          <AmenityList items={section.items} />
-        </div>
-      </Container>
-    </section>
-  );
-}
-
-function MiceChapter() {
-  const section = amenitySections[1];
-
-  return (
-    <section className="relative bg-void py-28 md:py-40 lg:py-52">
-      <Container>
-        <div className="grid gap-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="lg:pt-16"
-          >
-            <ChapterLabel number={section.number} eyebrow={section.eyebrow} />
-
-            <h2 className="mt-8 max-w-md font-display text-[clamp(2.4rem,4vw,4.6rem)] font-medium leading-[0.95] tracking-[-0.055em] text-champagne">
-              {section.title}
-            </h2>
-{/* 
-            <p className="mt-7 max-w-sm text-sm leading-[1.8] text-void/55">
-              {section.intro}
-            </p> */}
-
-            <div className="mt-12 h-px w-20 bg-champagne" />
-          </motion.div>
-
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-          >
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={imageReveal}
-              className="relative aspect-[1.2/0.82] overflow-hidden"
-            >
-              <EditorialImage src={section.image} alt={section.eyebrow} />
-
-              <CornerLines />
-            </motion.div>
-
-            <div className="relative ml-auto mt-[-12%] w-[52%] md:w-[40%] lg:mt-[-16%]">
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={imageReveal}
-                className="relative aspect-[1/1.1] overflow-hidden border-[8px] border-[#e8e4da]"
-              >
-                <EditorialImage
-                  src={section.secondaryImage}
-                  alt={`${section.eyebrow} detail`}
-                />
-              </motion.div>
+              <span className="h-px w-8 bg-line" />
             </div>
+
+            {/* SECTION EYEBROW */}
+
+            <h2 className="mt-6 max-w-xl font-display text-[clamp(2.5rem,4vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-bone">
+              {section.eyebrow}
+            </h2>
+
+            {/* SECTION ITEMS */}
+
+            {"items" in section && section.items && (
+              <div className="mt-12 border-t border-line">
+                {section.items.map((item, itemIndex) => (
+                  <AmenityItem
+                    key={item.title}
+                    title={item.title}
+                    description={item.description}
+                    index={itemIndex}
+                  />
+                ))}
+              </div>
+            )}
           </motion.div>
         </div>
-
-        <div className="mt-20 lg:ml-[25%] lg:w-[68%]">
-          <AmenityList items={section.items} />
-        </div>
       </Container>
-    </section>
-  );
-}
 
-function EventsChapter() {
-  const section = amenitySections[2];
-
-  return (
-    <section className="relative bg-bone/5 py-28 md:py-40 lg:py-52">
-      <Container>
-        <motion.div
-          variants={reveal}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          className="mx-auto max-w-2xl text-center"
-        >
-          <ChapterLabel number={section.number} eyebrow={section.eyebrow} />
-
-          <h2 className="mt-8 font-display text-[clamp(2.6rem,5vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.06em] text-champagne">
-            {section.title}
-          </h2>
-
-          {/* <p className="mx-auto mt-7 max-w-md leading-[1.8] text-champagne/55">
-            {section.intro}
-          </p> */}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.12 }}
-          transition={{ duration: 1, ease: customEase }}
-          className="relative mx-auto mt-20 max-w-6xl"
-        >
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.12 }}
-            variants={imageReveal}
-            className="relative aspect-[1.7/1] overflow-hidden"
-          >
-            <EditorialImage src={section.image} alt={section.eyebrow} />
-
-            <CornerLines />
-          </motion.div>
-
-          <div className="relative ml-auto mt-[-10%] w-[55%] md:w-[38%]">
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={imageReveal}
-              className="relative aspect-[1/0.8] overflow-hidden border-[8px] border-bone"
-            >
-              <EditorialImage
-                src={section.secondaryImage}
-                alt={`${section.eyebrow} detail`}
-              />
-            </motion.div>
-          </div>
-        </motion.div>
-
-        <div className="mx-auto mt-24 max-w-4xl">
-          <AmenityList items={section.items} />
-        </div>
-      </Container>
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-line/50" />
     </section>
   );
 }
 
 export default function AmenitiesPage() {
   return (
-    <main className="relative overflow-hidden bg-champagne/20 text-void">
+    <main className="relative bg-void">
       {/* ─────────────────────────────────────────────
           HERO
       ───────────────────────────────────────────── */}
@@ -498,7 +335,7 @@ export default function AmenitiesPage() {
             </div>
 
             <h1 className="mt-7 max-w-6xl font-display text-[clamp(2rem,4.7vw,7rem)] font-bold leading-[0.87] tracking-[-0.075em] text-cream">
-              Hospitality with 
+              Hospitality with
               <span className="text-champagne"> Intelligence</span>
             </h1>
 
@@ -518,64 +355,11 @@ export default function AmenitiesPage() {
         </Container>
       </section>
 
-      {/* ─────────────────────────────────────────────
-          INTRO
-      ───────────────────────────────────────────── */}
+      {/* AMENITY SECTIONS */}
 
-      {/* <section className="bg-bone py-28 md:py-36">
-        <Container>
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: customEase }}
-            className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:gap-20"
-          >
-            <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-void/40">
-              The PURURA Amenities
-            </div>
-
-            <p className="max-w-3xl font-display text-[clamp(1.7rem,3vw,3.3rem)] font-medium leading-[1.05] tracking-[-0.045em] text-void">
-              Every amenity is conceived as part of the destination itself — not
-              simply a service, but an environment for gathering, discovery and
-              experience.
-            </p>
-          </motion.div>
-        </Container>
-      </section> */}
-
-      {/* ─────────────────────────────────────────────
-          CHAPTERS
-      ───────────────────────────────────────────── */}
-
-      <MiceChapter />
-      <DiningChapter />
-      <EventsChapter />
-
-      {/* ─────────────────────────────────────────────
-          CLOSING
-      ───────────────────────────────────────────── */}
-
-      {/* <section className="bg-void py-32 md:py-44">
-        <Container>
-          <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-end">
-            <div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-champagne">
-                PURURA
-              </div>
-
-              <p className="mt-5 max-w-xl font-display text-2xl leading-[1.1] tracking-[-0.03em] text-bone md:text-3xl">
-                A destination where hospitality, technology and experience exist
-                as one.
-              </p>
-            </div>
-
-            <div className="font-mono text-[9px] uppercase tracking-[0.25em] text-bone/35">
-              Amenities / 03
-            </div>
-          </div>
-        </Container>
-      </section> */}
+      {amenitySections.map((section, index) => (
+        <MainSection key={section.number} section={section} index={index} />
+      ))}
     </main>
   );
 }

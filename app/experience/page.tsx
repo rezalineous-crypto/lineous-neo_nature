@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import Container from "@/components/layout/Container";
 import Image from "next/image";
+import StickyImageCollage from "@/components/home/StickyImageCollage";
 
 const customEase = [0.16, 1, 0.3, 1] as const;
 
@@ -219,7 +221,7 @@ function ExperienceItem({
       className="group border-b border-line py-5 md:py-6"
     >
       <div className="flex items-start gap-5">
-        <span className="pt-1 font-mono text-[9px] tracking-[0.1em] text-chrome1/45">
+        <span className="pt-1 font-mono text-[11px] tracking-[0.1em] text-chrome1">
           {String(index + 1).padStart(2, "0")}
         </span>
 
@@ -288,75 +290,58 @@ function MainSection({
   index: number;
 }) {
   const reversed = index % 2 !== 0;
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const collageImages = [
+    { src: section.image, alt: section.title, priority: true },
+    ...(section.secondaryImage
+      ? [{ src: section.secondaryImage, alt: `${section.title} detail` }]
+      : []),
+  ];
 
   return (
-    <section className="relative overflow-hidden py-24 md:py-36">
+    <section className="relative py-24 md:py-36">
       <Container>
         <div
-          className={`grid items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
+          ref={sectionRef}
+          className={`grid min-h-[100svh] items-start gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 ${
             reversed ? "lg:[&>div:first-child]:order-2" : ""
           }`}
         >
-          {/* DOUBLE-LAYERED IMAGE */}
+          {/* STICKY IMAGE COLLAGE (desktop) */}
+          <div className="sticky top-42 hidden self-start lg:block">
+            <StickyImageCollage
+              images={collageImages}
+              enableParallax
+              scrollTarget={sectionRef}
+            />
+          </div>
 
-          <motion.div
-            variants={reveal}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            className="relative"
-          >
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              variants={imageReveal}
-              className="relative aspect-[4/5] overflow-hidden"
-            >
-              <div className="absolute inset-0">
+          {/* IMAGE FOR MOBILE (lg:hidden) */}
+          <div className="lg:hidden">
+            <div className="relative aspect-[4/5] overflow-hidden bg-graphite">
+              <Image
+                src={section.image}
+                alt={section.title}
+                fill
+                sizes="100vw"
+                className="object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-black/10" />
+            </div>
+            {section.secondaryImage && (
+              <div className="relative mt-4 aspect-[4/5] overflow-hidden bg-graphite">
                 <Image
-                  src={section.image}
-                  alt={section.title}
+                  src={section.secondaryImage}
+                  alt={`${section.title} detail`}
                   fill
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  sizes="100vw"
                   className="object-cover"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-black/10" />
               </div>
-
-              <div className="pointer-events-none absolute inset-0 bg-black/10" />
-
-              <span className="pointer-events-none absolute left-0 top-0 h-12 w-12 border-l border-t border-champagne/50" />
-              <span className="pointer-events-none absolute bottom-0 right-0 h-12 w-12 border-b border-r border-champagne/50" />
-            </motion.div>
-
-            {section.secondaryImage && (
-              <motion.div
-                initial={{ opacity: 0, y: 35 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 1, delay: 0.15, ease: customEase }}
-                className="absolute -bottom-16 right-6 w-[38%] md:right-10 md:w-[32%]"
-              >
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={imageReveal}
-                  className="relative aspect-[0.8/1] overflow-hidden border-[8px] border-void"
-                >
-                  <div className="absolute inset-0">
-                    <Image
-                      src={section.secondaryImage}
-                      alt={`${section.title} detail`}
-                      fill
-                      sizes="(max-width: 1024px) 38vw, 32vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </motion.div>
-              </motion.div>
             )}
-          </motion.div>
+          </div>
 
           {/* CONTENT */}
 
@@ -369,7 +354,7 @@ function MainSection({
           >
             {/* SECTION NUMBER */}
 
-            <div className="flex items-center gap-4 font-mono text-[9px] uppercase tracking-[0.3em]">
+            <div className="flex items-center gap-4 font-mono text-[12px] uppercase tracking-[0.3em]">
               <span className="text-champagne/70">{section.number}</span>
 
               <span className="h-px w-8 bg-line" />
@@ -431,7 +416,7 @@ function MainSection({
 
 export default function ExperiencePage() {
   return (
-    <main className="relative overflow-hidden bg-void">
+    <main className="relative bg-void">
       {/* PAGE TITLE */}
 
       <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-void/20">

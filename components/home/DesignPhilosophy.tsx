@@ -630,6 +630,13 @@ function PhilosophyHeroTitle() {
 function StackedPrinciples() {
   const stageRef = useRef<HTMLDivElement>(null);
 
+  const headingRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: headingProgress } = useScroll({
+    target: headingRef,
+    offset: ["start end", "start 70%"],
+  });
+
   const { scrollYProgress } = useScroll({
     target: stageRef,
     offset: ["start start", "end end"],
@@ -642,7 +649,10 @@ function StackedPrinciples() {
   });
 
   return (
-    <section ref={stageRef} className="relative hidden h-[560vh] lg:block bg-[#f1f1e0]">
+    <section
+      ref={stageRef}
+      className="relative hidden h-[560vh] lg:block bg-[#f1f1e0]"
+    >
       {/* IMPORTANT:
 This is intentionally NOT inside an overflow-hidden parent.
 The sticky viewport must be allowed to remain sticky for the
@@ -650,6 +660,35 @@ entire 560vh stage. */}{" "}
       <div className="sticky top-20 h-svh w-full overflow-hidden ">
         {" "}
         <PhilosophyStackAtmosphere progress={progress} />
+
+        <motion.div
+          ref={headingRef}
+          style={{
+            opacity: useTransform(
+              headingProgress,
+             [0, 0.6, 0.85, 1],
+              [0, 1, 1, 1]
+            ),
+            y: useTransform(
+              headingProgress,
+              [0, 0.6, 0.85, 1],
+              [190, 0, -10, -60]
+            ),
+          }}
+          className="pointer-events-none absolute left-1/2 top-[40%]  -translate-x-1/2"
+        >
+          <div className="overflow-hidden">
+            <motion.h3
+              style={{
+                y: useTransform(headingProgress, [0, 0.3], ["110%", "0%"]),
+              }}
+              className="lg:whitespace-nowrap font-extrabold text-[clamp(1.5rem,2.8vw,4rem)] tracking-[0rem] text-chrome1/80 uppercase text-shadow-chrome1"
+            >
+              Things that makes us different
+            </motion.h3>
+          </div>
+        </motion.div>
+
         {/* Main stack */}
         <div className="absolute inset-0">
           {philosophyItems.map((item, index) => (
@@ -1098,7 +1137,7 @@ function StackedPrincipleCard({
         {/* Soft physical shadow */}{" "}
         <div className="absolute inset-[3%] translate-y-8 rounded-[1.5rem] bg-black/30 blur-[45px]" />
         {/* Main architectural panel */}
-        <div className="relative h-full w-full rounded-[1.5rem] border border-bone/[0.07] bg-[#141e19] shadow-[0_25px_80px_rgba(201,164,90,0.07)]">
+        <div className="relative h-full w-full rounded-[1.5rem] border border-bone/[0.07] bg-[#141e19] shadow-[0_25px_80px_rgba(201,164,90,0.07)] z-[120]">
           {/* Inner hairline */}
           <div className="pointer-events-none absolute inset-4 rounded-[1.15rem] border border-bone/[0.025]" />
 
