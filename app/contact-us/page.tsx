@@ -10,7 +10,7 @@ export default function ContactUsPage() {
       {/* Full-screen background image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/Purura/NewImages/Overall 1.png"
+          src="/Purura/NewImages/Overall 2.png"
           alt="Purura Resort Overview"
           className="w-full h-full object-cover"
         />

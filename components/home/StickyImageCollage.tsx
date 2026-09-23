@@ -1,8 +1,13 @@
 "use client";
 
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import Image from "next/image";
-import { useRef, type RefObject } from "react";
+import { useRef, useState, type RefObject } from "react";
 
 interface CollageImage {
   src: string;
@@ -20,19 +25,13 @@ interface StickyImageCollageProps {
   images: CollageImage[];
   className?: string;
   containerClassName?: string;
-  /** Height of the collage container (e.g., "h-172.5" for lg screens) */
   height?: string;
-  /** Whether to enable parallax scroll effects */
   enableParallax?: boolean;
-  /** Custom parallax config for each image layer */
   parallaxConfig?: {
     back?: Partial<ParallaxLayerConfig>;
     center?: Partial<ParallaxLayerConfig>;
     front?: Partial<ParallaxLayerConfig>;
   };
-  /** Optional external scroll target ref for parallax tracking.
-   *  Use this when the component is sticky/fixed and should track
-   *  the parent section's scroll instead of its own container. */
   scrollTarget?: RefObject<HTMLElement | null>;
 }
 
@@ -49,7 +48,6 @@ const RoundedCornerFrame = ({ className = "" }: { className?: string }) => (
     className={`pointer-events-none absolute -inset-1 z-20 h-[calc(100%+30px)] w-[calc(100%+30px)] overflow-visible ${className}`}
     fill="none"
   >
-    {/* Exposed top-left corner */}
     <path
       d="M 4 34 V 9 Q 4 4 9 4 H 34"
       stroke="#c8a158"
@@ -58,7 +56,6 @@ const RoundedCornerFrame = ({ className = "" }: { className?: string }) => (
       strokeLinejoin="round"
     />
 
-    {/* Exposed bottom-right corner */}
     <path
       d="M 72 102 H 97 Q 102 102 102 97 V 72"
       stroke="#c8a158"
@@ -78,6 +75,8 @@ interface ImageLayerProps {
   className: string;
   frameClassName?: string;
   zIndex: number;
+  onHover: () => void;
+  onLeave: () => void;
 }
 
 const ImageLayer = ({
@@ -86,9 +85,17 @@ const ImageLayer = ({
   className,
   frameClassName,
   zIndex,
+  onHover,
+  onLeave,
 }: ImageLayerProps) => (
-  <motion.div style={style} className={className}>
+  <motion.div
+    style={style}
+    className={className}
+    onMouseEnter={onHover}
+    onMouseLeave={onLeave}
+  >
     <RoundedCornerFrame className={frameClassName} />
+
     <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
       <motion.div
         initial={{ opacity: 0, scale: 1.08 }}
@@ -120,11 +127,15 @@ export default function StickyImageCollage({
 }: StickyImageCollageProps) {
   const internalRef = useRef<HTMLDivElement>(null);
 
-  // Use external scroll target if provided, otherwise use internal ref
-  const targetRef = (scrollTarget as RefObject<HTMLDivElement> | null) ?? internalRef;
+  const [hoveredImage, setHoveredImage] = useState<CollageImage | null>(null);
 
-  // Default parallax configurations matching Philosophy.tsx
-  const defaultParallaxConfig: Record<"back" | "center" | "front", ParallaxLayerConfig> = {
+  const targetRef =
+    (scrollTarget as RefObject<HTMLDivElement> | null) ?? internalRef;
+
+  const defaultParallaxConfig: Record<
+    "back" | "center" | "front",
+    ParallaxLayerConfig
+  > = {
     back: {
       y: ["-12%", "16%"],
       x: ["2%", "-2%"],
@@ -142,29 +153,42 @@ export default function StickyImageCollage({
     },
   };
 
-  // Merge configs with defaults, ensuring no undefined values
   const config: Record<"back" | "center" | "front", ParallaxLayerConfig> = {
-    back: { ...defaultParallaxConfig.back, ...parallaxConfig?.back },
-    center: { ...defaultParallaxConfig.center, ...parallaxConfig?.center },
-    front: { ...defaultParallaxConfig.front, ...parallaxConfig?.front },
+    back: {
+      ...defaultParallaxConfig.back,
+      ...parallaxConfig?.back,
+    },
+    center: {
+      ...defaultParallaxConfig.center,
+      ...parallaxConfig?.center,
+    },
+    front: {
+      ...defaultParallaxConfig.front,
+      ...parallaxConfig?.front,
+    },
   };
 
-  // Scroll parallax transforms
   const { scrollYProgress } = useScroll({
-    target: internalRef,
+    target: targetRef,
     offset: ["start end", "end start"],
   });
+
+  /* ======================================================
+     PARALLAX
+     ====================================================== */
 
   const backY = useTransform(
     scrollYProgress,
     [0, 1],
     enableParallax ? config.back.y : ["0%", "0%"]
   );
+
   const backX = useTransform(
     scrollYProgress,
     [0, 1],
     enableParallax ? config.back.x : ["0%", "0%"]
   );
+
   const backScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -176,11 +200,13 @@ export default function StickyImageCollage({
     [0, 1],
     enableParallax ? config.center.y : ["0%", "0%"]
   );
+
   const centerX = useTransform(
     scrollYProgress,
     [0, 1],
     enableParallax ? config.center.x : ["0%", "0%"]
   );
+
   const centerScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
@@ -192,31 +218,37 @@ export default function StickyImageCollage({
     [0, 1],
     enableParallax ? config.front.y : ["0%", "0%"]
   );
+
   const frontX = useTransform(
     scrollYProgress,
     [0, 1],
     enableParallax ? config.front.x : ["0%", "0%"]
   );
+
   const frontScale = useTransform(
     scrollYProgress,
     [0, 0.5, 1],
     enableParallax ? config.front.scale : [1, 1, 1]
   );
 
-  // Ensure we have at least 1 image, up to 3
+  /* ======================================================
+     IMAGES
+     ====================================================== */
+
   const [backImage, centerImage, frontImage] = images;
 
-  // Build style objects with proper typing for motion values
   const backStyle = {
     y: backY as MotionValue<string | number>,
     x: backX as MotionValue<string | number>,
     scale: backScale as MotionValue<number>,
   };
+
   const centerStyle = {
     y: centerY as MotionValue<string | number>,
     x: centerX as MotionValue<string | number>,
     scale: centerScale as MotionValue<number>,
   };
+
   const frontStyle = {
     y: frontY as MotionValue<string | number>,
     x: frontX as MotionValue<string | number>,
@@ -237,6 +269,8 @@ export default function StickyImageCollage({
             style={backStyle}
             className="absolute right-0 top-0 h-[61%] w-[67%] overflow-visible"
             zIndex={10}
+            onHover={() => setHoveredImage(backImage)}
+            onLeave={() => setHoveredImage(null)}
           />
         )}
 
@@ -249,6 +283,8 @@ export default function StickyImageCollage({
             style={centerStyle}
             className="absolute left-[19%] top-[24%] z-20 h-[57%] w-[43%] overflow-visible"
             zIndex={20}
+            onHover={() => setHoveredImage(centerImage)}
+            onLeave={() => setHoveredImage(null)}
           />
         )}
 
@@ -261,6 +297,8 @@ export default function StickyImageCollage({
             style={frontStyle}
             className="absolute bottom-[1%] left-0 z-30 h-[29%] w-[40%] overflow-visible"
             zIndex={30}
+            onHover={() => setHoveredImage(frontImage)}
+            onLeave={() => setHoveredImage(null)}
           />
         )}
 
@@ -270,11 +308,77 @@ export default function StickyImageCollage({
         {backImage && (
           <div className="pointer-events-none absolute right-0 top-0 z-10 h-[61%] w-[67%] shadow-[0_30px_70px_rgba(30,30,20,0.08)]" />
         )}
+
         {centerImage && (
           <div className="pointer-events-none absolute left-[19%] top-[24%] z-10 h-[57%] w-[43%] shadow-[0_30px_60px_rgba(30,30,20,0.12)]" />
         )}
+
         {frontImage && (
           <div className="pointer-events-none absolute bottom-[1%] left-0 z-40 h-[29%] w-[40%] shadow-[0_25px_50px_rgba(30,30,20,0.14)]" />
+        )}
+
+        {/* ======================================================
+           HOVER IMAGE PREVIEW
+           
+           One standardized frame for every image.
+           Object-contain ensures the ENTIRE source image
+           is visible regardless of its original aspect ratio.
+           ====================================================== */}
+        {hoveredImage && (
+          <>
+            {/* ======================================================
+       FULL PAGE DIM / FOCUS OVERLAY
+       ====================================================== */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease }}
+              className="pointer-events-none fixed inset-0 z-[80] bg-black/20"
+            />
+
+            {/* ======================================================
+       HOVER IMAGE PREVIEW
+       ====================================================== */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                scale: 0.94,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.94,
+              }}
+              transition={{
+                duration: 0.35,
+                ease,
+              }}
+              className="pointer-events-none absolute left-1/2 top-1/2 z-[100] h-[70%] w-[94%] -translate-x-1/2 -translate-y-1/2"
+            >
+              {/* Soft backdrop */}
+              <div className="absolute -inset-5 rounded-[1.75rem] bg-black/50 shadow-[0_30px_100px_rgba(20,20,10,0.22)] backdrop-blur-[3px]" />
+
+              {/* Gold corner frame */}
+              {/* <RoundedCornerFrame /> */}
+
+              {/* Image container */}
+              <div className="relative h-full w-full overflow-hidden rounded-2xl shadow-[0_20px_60px_rgba(20,20,10,0.16)]">
+                <div className="relative h-full w-full overflow-hidden rounded-xl">
+                  <Image
+                    src={hoveredImage.src}
+                    alt={hoveredImage.alt}
+                    fill
+                    sizes="(max-width: 768px) 90vw, 65vw"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </div>
     </div>

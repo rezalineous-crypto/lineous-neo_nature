@@ -18,8 +18,8 @@ const experienceSections = [
   {
     number: "01",
     title: "Accommodation",
-    image: "/Purura/NewImages/Villa 1.png",
-    secondaryImage: "/Purura/NewImages/Villa 2.png",
+    image: "/Purura/NewImages/AI1.jpeg",
+    secondaryImage: "/Purura/NewImages/AI2.jpeg",
 
     subsections: [
       {
@@ -59,61 +59,72 @@ const experienceSections = [
           },
         ],
       },
-
-      {
-        title: "Villas",
-        items: [
-          {
-            title: "Villa Island Concept Brief",
-            description: "",
-          },
-          {
-            title: "Villa Typology",
-            description: "",
-          },
-          {
-            title: "Interior and Exterior",
-            description: "",
-          },
-          {
-            title: "Services",
-            description: "",
-          },
-        ],
-      },
-
-      {
-        title: "Hotels",
-        items: [
-          {
-            title: "Concept Brief",
-            description: "",
-          },
-          {
-            title: "Exterior Images",
-            description: "",
-          },
-          {
-            title: "Room Typology Brief",
-            description: "",
-          },
-          {
-            title: "Interior of the Rooms",
-            description: "",
-          },
-          {
-            title: "Services",
-            description: "",
-          },
-        ],
-      },
     ],
   },
   {
     number: "02",
+    title: "THE FUTURE OF TROPICAL LIVING",
+    image: "/Purura/NewImages/Villa 1.png",
+    secondaryImage: "/Purura/NewImages/Villa 3.png",
+    thirdImage: "/Purura/NewImages/Villa 5.png",
+
+    items: [
+      {
+        title: "Villas",
+        description: "A Sculptural Villa Immersed in Landscape, Light & Water",
+      },
+      {
+        title: "Design Vision",
+        description:
+          "The villa is conceived as a futuristic tropical retreat where architecture, landscape, water, and technology merge into one continuous living environment.\n\nThe design uses bold angular geometry, elevated volumes, dramatic cantilevers, transparent façades, and sculptural structural elements to create a distinctive contemporary villa that feels both futuristic and deeply connected to nature.",
+      },
+      {
+        title: "Architectural Concept — “Floating Forms”",
+        description:
+          "The villa is composed of two sculptural wings positioned around a central landscaped and aquatic space.\n\nKey characteristics:\n\nStrong geometric roof planes\nFloating and cantilevered upper volumes\nAngled architectural walls\nLarge floor-to-ceiling glazing\nDouble-height living spaces\nDeep shaded terraces\nSculptural external staircases\nRecessed architectural lighting\nLightweight glass and metal elements\nNatural stone/concrete base\nStrong indoor–outdoor connections\n\nThe architecture creates a visual contrast between solid sculptural masses and transparent living spaces.",
+      },
+      {
+        title: "Spatial Concept — “Living Between Nature & Water”",
+        description:
+          "Rather than treating the landscape as an external element, the villa is organized around it.\n\nArrival → Living Spaces → Courtyard → Pool → Garden → Private Retreat\n\nThe central landscape becomes the heart of the villa, providing views, daylight, ventilation, privacy, and a continuous visual connection between different spaces.",
+      },
+    ],
+  },
+  {
+    number: "03",
+    title: "Hotels",
+    image: "/Purura/NewImages/Hotel 1.png",
+    secondaryImage: "/Purura/NewImages/Hotel 2.png",
+    thirdImage: "/Purura/NewImages/Hotel 3.png",
+
+    items: [
+      {
+        title: "THE FUTURE OF TROPICAL LIVING",
+        description: "",
+      },
+      {
+        title: "Design Vision",
+        description:
+          "A futuristic 5-star beachfront hotel conceived as a seamless extension of the tropical landscape and ocean, combining sculptural architecture, intelligent infrastructure, immersive water landscapes, and contemporary luxury.\n\nInspired by the reference hotel's fluid horizontal terraces, rounded corners, extensive glazing, and layered organic form, the design creates an architecture that feels light, aerodynamic, and naturally connected to its surroundings.",
+      },
+      {
+        title: "Architectural Language",
+        description:
+          "Fluid, aerodynamic building geometry\nLayered and cascading floor plates\nDeep cantilevered terraces with soft rounded edges\nFloor-to-ceiling curtain glazing\nContinuous horizontal architectural lighting\nMinimalist white/off-white architectural surfaces\nTransparent and semi-transparent public spaces\nSculptural roof forms and sky terraces\nStrong indoor–outdoor visual connections\n\nThe building should appear to float above the landscape, with the lower levels gradually dissolving into gardens, pools, and public spaces.",
+      },
+      {
+        title: "The Living Waterfront",
+        description:
+          "Water becomes the primary organizing element of the resort.\n\nA continuous landscape system connects:\n\nHotel → Lagoon Pool → Gardens → Leisure Decks → Beach → Ocean\n\nCurvilinear pools, reflective water surfaces, planted islands, water courts, and illuminated edges create a dynamic landscape that reinforces the futuristic architectural language.",
+      },
+    ],
+  },
+  {
+    number: "04",
     title: "Augmented Nature",
-    image: "/Purura/NewImages/Overall 5.png",
-    secondaryImage: "/Purura/NewImages/Overall 11.png",
+    image: "/Purura/NewImages/AI4.jpeg",
+    secondaryImage: "/Purura/NewImages/AI5.jpeg",
+    thirdImage: "/Purura/NewImages/AI6.jpeg",
     items: [
       {
         title: "Seasonal Site Experience",
@@ -136,7 +147,7 @@ const experienceSections = [
     ],
   },
   {
-    number: "03",
+    number: "05",
     title: "Recreational & Future Wellness Zone",
     image: "/Purura/NewImages/Overall 5.png",
     secondaryImage: "/Purura/NewImages/Overall 11.png",
@@ -303,6 +314,9 @@ function MainSection({
     ...(section.secondaryImage
       ? [{ src: section.secondaryImage, alt: `${section.title} detail` }]
       : []),
+    ...(section.thirdImage
+      ? [{ src: section.thirdImage, alt: `${section.title} detail 2` }]
+      : []),
   ];
 
   /* Botanical placement per section — quiet architectural traces */
@@ -318,8 +332,7 @@ function MainSection({
     },
     {
       Component: BotanicalRight,
-      wrapperClass:
-        "right-[-12%] top-[55%] h-[65%] w-[40%] text-[#667052]/30 ",
+      wrapperClass: "right-[-12%] top-[55%] h-[65%] w-[40%] text-[#667052]/30 ",
       yFrom: "12%",
       yTo: "-18%",
       rotateFrom: 1.5,
@@ -340,10 +353,7 @@ function MainSection({
   const BotComponent = botConfig.Component;
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 md:py-36"
-    >
+    <section ref={sectionRef} className="relative py-24 md:py-36">
       {/* BOTANICAL ELEMENT — quiet architectural trace */}
       <BotanicalWrapper
         scrollTarget={sectionRef}
@@ -399,6 +409,18 @@ function MainSection({
                 <div className="pointer-events-none absolute inset-0 bg-black/10" />
               </div>
             )}
+            {section.thirdImage && (
+              <div className="relative mt-4 aspect-[4/5] overflow-hidden bg-graphite">
+                <Image
+                  src={section.thirdImage}
+                  alt={`${section.title} detail 2`}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-black/10" />
+              </div>
+            )}
           </div>
 
           {/* CONTENT */}
@@ -420,7 +442,7 @@ function MainSection({
 
             {/* SECTION TITLE */}
 
-            <h2 className="mt-6 max-w-xl font-display text-[clamp(2.5rem,4vw,4.5rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-bone">
+            <h2 className="mt-6 max-w-xl font-display text-[clamp(2.5rem,4vw,4rem)] font-semibold leading-[0.95] tracking-[-0.06em] text-bone">
               {section.title}
             </h2>
 

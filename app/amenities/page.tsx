@@ -17,8 +17,9 @@ const amenitySections = [
   {
     number: "01",
     eyebrow: "MICE",
-    image: "/Purura/NewImages/Hotel 1.png",
-    secondaryImage: "/Purura/NewImages/Hotel 2.png",
+    image: "/Purura/NewImages/Entry 1.png",
+    secondaryImage: "/Purura/NewImages/Entry 2.png",
+    thirdImage: "/Purura/NewImages/AI3.jpeg",
     items: [
       {
         title: "Arrival & Welcoming Hub",
@@ -46,7 +47,8 @@ const amenitySections = [
         description: "",
       },
       {
-        title: "Souvenir shop/ Convenience store/ Travel desk/ ATM corner/ Beauty salon/barbershop",
+        title:
+          "Souvenir shop/ Convenience store/ Travel desk/ ATM corner/ Beauty salon/barbershop",
         description: "",
       },
     ],
@@ -57,6 +59,7 @@ const amenitySections = [
     eyebrow: "Next-Gen Dining",
     image: "/Purura/NewImages/Restaurant 1.png",
     secondaryImage: "/Purura/NewImages/Restaurant 2.png",
+    thirdImage:  "/Purura/NewImages/Restaurant 3.png",
     items: [
       {
         title: "Main kitchen and Dining",
@@ -209,6 +212,9 @@ function MainSection({
     ...(section.secondaryImage
       ? [{ src: section.secondaryImage, alt: `${section.eyebrow} detail` }]
       : []),
+    ...(section.thirdImage
+      ? [{ src: section.thirdImage, alt: `${section.eyebrow} detail 2` }]
+      : []),
   ];
 
   /* Botanical placement per section — quiet architectural traces */
@@ -233,8 +239,7 @@ function MainSection({
     },
     {
       Component: BotanicalBottom,
-      wrapperClass:
-        "left-[12%] bottom-[-1%] h-[42%] w-[76%] text-[#667052]/28",
+      wrapperClass: "left-[12%] bottom-[-1%] h-[42%] w-[76%] text-[#667052]/28",
       yFrom: "20%",
       yTo: "-8%",
       rotateFrom: -0.5,
@@ -246,10 +251,7 @@ function MainSection({
   const BotComponent = botConfig.Component;
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-24 md:py-36"
-    >
+    <section ref={sectionRef} className="relative py-24 md:py-36">
       {/* BOTANICAL ELEMENT — quiet architectural trace */}
       <BotanicalWrapper
         scrollTarget={sectionRef}

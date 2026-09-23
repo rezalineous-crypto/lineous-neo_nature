@@ -458,7 +458,7 @@ export default function Navbar(): React.JSX.Element {
                   className="absolute inset-0"
                 >
                   <Image
-                    src="/Purura/NewImages/Overall 5.png"
+                    src="/Purura/NewImages/Overall 2.png"
                     alt="PURURA resort"
                     fill
                     priority
