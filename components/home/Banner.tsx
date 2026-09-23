@@ -47,16 +47,18 @@ const descriptions = {
 };
 
 const backgroundVideos = {
-
   retreat: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789848914/Entrance.mp4",
+  discover: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
+  experience: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738213/Video_Project_2.mp4",
+  amenities: "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+};
 
-  discover:
-    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738199/Video_Project_1.mp4",
-
-  experience:
-    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789738213/Video_Project_2.mp4",
-  amenities:
-    "https://res.cloudinary.com/ddg2qawqw/video/upload/v1789192098/BirdView1.webm",
+// Poster images for video fallback (using existing images)
+const videoPosters = {
+  retreat: "/Purura/NewImages/Entry 1.png",
+  discover: "/Purura/NewImages/Overall 1.png",
+  experience: "/Purura/NewImages/Overall 2.png",
+  amenities: "/Purura/NewImages/Overall 11.png",
 };
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -65,8 +67,9 @@ export default function InvestmentBanner() {
   const [hovered, setHovered] = useState<string | null>(null);
   const [activeAutoPointer, setActiveAutoPointer] =
     useState<keyof typeof descriptions>("retreat");
-
   const [autoPhase, setAutoPhase] = useState<"open" | "hold" | "close">("open");
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedData, setPrefersReducedData] = useState(false);
 
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
 
@@ -75,6 +78,27 @@ export default function InvestmentBanner() {
 
   const activeScene =
     scenes.find((scene) => scene.id === activePointer) ?? scenes[0];
+
+  // Detect mobile and reduced data preference on mount
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    // Check prefers-reduced-data
+    const mediaQuery = window.matchMedia("(prefers-reduced-data: reduce)");
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedData(e.matches);
+    // Set initial value after mount to avoid synchronous setState in effect
+    setTimeout(() => setPrefersReducedData(mediaQuery.matches), 0);
+    mediaQuery.addEventListener("change", handler);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      mediaQuery.removeEventListener("change", handler);
+    };
+  }, []);
 
   /*
    * ============================================================
@@ -148,6 +172,21 @@ export default function InvestmentBanner() {
     });
   }, [activePointer]);
 
+  // Determine preload strategy: metadata on mobile/reduced-data, auto on desktop
+  const getPreload = () => {
+    if (isMobile || prefersReducedData) return "metadata";
+    return "auto";
+  };
+
+  // Handle scene navigation click/tap
+  const handleSceneSelect = (sceneId: keyof typeof descriptions) => {
+    setHovered(sceneId);
+    // Clear hover after a delay on mobile to allow tap to "stick"
+    if (isMobile) {
+      setTimeout(() => setHovered(null), 3000);
+    }
+  };
+
   return (
     <section className="relative min-h-[720px] w-full overflow-hidden bg-black text-ivory md:min-h-screen">
       {/* ============================================================
@@ -162,10 +201,11 @@ export default function InvestmentBanner() {
               videoRefs.current[id] = video;
             }}
             src={src}
+            poster={videoPosters[id as keyof typeof videoPosters]}
             muted
             playsInline
             autoPlay
-            preload="auto"
+            preload={getPreload()}
             animate={{
               opacity: activePointer === id ? 1 : 0,
               scale: activePointer === id ? 1 : 1.035,
@@ -181,8 +221,32 @@ export default function InvestmentBanner() {
               },
             }}
             className="absolute inset-0 h-full w-full object-cover"
+            // Disable video on mobile if prefers-reduced-data
+            style={prefersReducedData ? { display: "none" } : undefined}
           />
         ))}
+
+        {/* Static fallback image for reduced data / mobile */}
+        {prefersReducedData && (
+          <div className="absolute inset-0 z-10">
+            <motion.div
+              key={activePointer}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              initial={{ opacity: 0, scale: 1.035 }}
+              transition={{ duration: 1.8, ease }}
+              className="absolute inset-0"
+            >
+              <img
+                src={videoPosters[activePointer]}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            </motion.div>
+          </div>
+        )}
       </div>
 
       {/* ============================================================
@@ -368,11 +432,20 @@ export default function InvestmentBanner() {
               key={scene.id}
               type="button"
               aria-label={scene.id}
-              onMouseEnter={() => setHovered(scene.id)}
-              onMouseLeave={() => setHovered(null)}
+              aria-current={isActive ? "true" : "false"}
+              onMouseEnter={() => !isMobile && setHovered(scene.id)}
+              onMouseLeave={() => !isMobile && setHovered(null)}
               onFocus={() => setHovered(scene.id)}
               onBlur={() => setHovered(null)}
-              className="relative flex h-5 items-center"
+              onClick={() => handleSceneSelect(scene.id)}
+              onTouchStart={() => handleSceneSelect(scene.id)}
+              className="relative flex h-5 items-center touch-manipulation"
+              // Larger touch target on mobile
+              style={{
+                padding: isMobile ? "12px 8px" : "0",
+                minWidth: isMobile ? "44px" : "auto",
+                minHeight: isMobile ? "44px" : "auto",
+              }}
             >
               <motion.span
                 animate={{
@@ -384,6 +457,8 @@ export default function InvestmentBanner() {
                   ease,
                 }}
                 className="h-px bg-ivory"
+                // Thicker line on mobile for better visibility
+                style={{ height: isMobile ? "3px" : "1px" }}
               />
 
               {isActive && !hovered && (
@@ -398,6 +473,7 @@ export default function InvestmentBanner() {
                     ease: autoPhase === "hold" ? "linear" : ease,
                   }}
                   className="absolute left-0 h-px w-full origin-left bg-champagne"
+                  style={{ height: isMobile ? "3px" : "1px" }}
                 />
               )}
             </button>

@@ -5,6 +5,7 @@ import {
   motion,
   useScroll,
   useTransform,
+  MotionValue,
 } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -144,6 +145,345 @@ The development aspires to become a benchmark for regenerative tourism by combin
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
+/* ============================================================
+   MOBILE: Vertical image stack
+   ============================================================ */
+function MobileCollage({ activeScene }: { activeScene: Scene }) {
+  const images = [
+    { src: activeScene.images.back, alt: "Architectural overview", label: "Overview" },
+    { src: activeScene.images.center, alt: "Central perspective", label: "Perspective" },
+    { src: activeScene.images.front, alt: "Detail view", label: "Detail" },
+  ];
+
+  return (
+    <div className="lg:hidden relative mx-auto w-full max-w-[90vw]">
+      <div className="space-y-8">
+        {images.map((img, index) => (
+          <motion.div
+            key={img.src}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: index * 0.15, ease }}
+            className="relative"
+          >
+            <RoundedCornerFrame />
+            <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                priority={index === 0}
+                sizes="(max-width: 768px) 90vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="pointer-events-none absolute -inset-1 z-20 rounded-2xl shadow-[0_20px_50px_rgba(30,30,20,0.15)]" />
+            <div className="mt-3 text-center">
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-chrome1/60">
+                {img.label}
+              </span>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   DESKTOP: Collage layout (original)
+   ============================================================ */
+function DesktopCollage({
+  activeScene,
+  backY,
+  backX,
+  backScale,
+  centerY,
+  centerX,
+  centerScale,
+  frontY,
+  frontX,
+  frontScale,
+}: {
+  activeScene: Scene;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  backY: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  backX: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  backScale: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  centerY: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  centerX: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  centerScale: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  frontY: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  frontX: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  frontScale: any;
+}) {
+  return (
+    <div className="hidden lg:block relative mx-auto h-125 w-full max-w-175 sm:h-145 md:h-162.5 lg:h-172.5">
+      {/* ======================================================
+  BACK / LARGE ARCHITECTURAL IMAGE
+  ====================================================== */}
+
+      <motion.div
+        style={{
+          y: backY,
+          x: backX,
+          scale: backScale,
+        }}
+        className="absolute right-0 top-0 h-[61%] w-[67%] overflow-visible"
+      >
+        <RoundedCornerFrame />
+
+        <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={activeScene.images.back}
+              initial={{
+                opacity: 0,
+                scale: 1.08,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.03,
+              }}
+              transition={{
+                duration: 1.15,
+                ease,
+              }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeScene.images.back}
+                alt=""
+                fill
+                priority
+                sizes="(max-width: 768px) 70vw, 45vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      {/* ======================================================
+  BOTANICAL OVERLAY ON RIGHT
+  ====================================================== */}
+
+      <motion.div
+        style={{
+          y: frontY,
+          x: frontX,
+        }}
+        className="pointer-events-none absolute right-[-4%] top-[3%] z-40 h-[54%] w-[25%]"
+      >
+        <svg
+          viewBox="0 0 300 600"
+          className="h-full w-full"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M50 600C85 500 115 400 137 290C158 184 180 96 242 0"
+            stroke="#3F4739"
+            strokeWidth="2"
+          />
+
+          <path
+            d="M136 292C82 263 43 217 21 156"
+            stroke="#3F4739"
+            strokeWidth="1.5"
+          />
+
+          <path
+            d="M148 239C194 211 234 169 263 113"
+            stroke="#3F4739"
+            strokeWidth="1.5"
+          />
+
+          <path
+            d="M117 370C72 353 35 323 5 279"
+            stroke="#3F4739"
+            strokeWidth="1.5"
+          />
+
+          <path
+            d="M177 153C207 135 237 103 255 66"
+            stroke="#3F4739"
+            strokeWidth="1.5"
+          />
+
+          <ellipse
+            cx="48"
+            cy="181"
+            rx="16"
+            ry="54"
+            transform="rotate(-43 48 181)"
+            fill="#526049"
+            fillOpacity=".45"
+          />
+
+          <ellipse
+            cx="224"
+            cy="133"
+            rx="17"
+            ry="58"
+            transform="rotate(42 224 133)"
+            fill="#526049"
+            fillOpacity=".42"
+          />
+
+          <ellipse
+            cx="34"
+            cy="305"
+            rx="16"
+            ry="54"
+            transform="rotate(-48 34 305)"
+            fill="#526049"
+            fillOpacity=".38"
+          />
+
+          <ellipse
+            cx="217"
+            cy="75"
+            rx="14"
+            ry="50"
+            transform="rotate(37 217 75)"
+            fill="#526049"
+            fillOpacity=".4"
+          />
+
+          <ellipse
+            cx="75"
+            cy="235"
+            rx="13"
+            ry="45"
+            transform="rotate(-42 75 235)"
+            fill="#526049"
+            fillOpacity=".32"
+          />
+        </svg>
+      </motion.div>
+
+      {/* ======================================================
+  CENTER IMAGE
+  ====================================================== */}
+
+      <motion.div
+        style={{
+          y: centerY,
+          x: centerX,
+          scale: centerScale,
+        }}
+        className="absolute left-[19%] top-[24%] z-20 h-[57%] w-[43%] overflow-visible"
+      >
+        <RoundedCornerFrame />
+
+        <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={activeScene.images.center}
+              initial={{
+                opacity: 0,
+                scale: 1.08,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.04,
+              }}
+              transition={{
+                duration: 1.1,
+                ease,
+              }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeScene.images.center}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 45vw, 30vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      {/* ======================================================
+  FRONT / BOTTOM IMAGE
+  ====================================================== */}
+
+      <motion.div
+        style={{
+          y: frontY,
+          x: frontX,
+          scale: frontScale,
+        }}
+        className="absolute bottom-[1%] left-0 z-30 h-[29%] w-[40%] overflow-visible"
+      >
+        <RoundedCornerFrame />
+
+        <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+          <AnimatePresence mode="sync">
+            <motion.div
+              key={activeScene.images.front}
+              initial={{
+                opacity: 0,
+                scale: 1.1,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 1.04,
+              }}
+              transition={{
+                duration: 1,
+                ease,
+              }}
+              className="absolute inset-0"
+            >
+              <Image
+                src={activeScene.images.front}
+                alt=""
+                fill
+                sizes="(max-width: 768px) 42vw, 28vw"
+                className="object-cover"
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </motion.div>
+
+      {/* ======================================================
+  SUBTLE IMAGE SHADOWS
+  ====================================================== */}
+
+      <div className="pointer-events-none absolute right-0 top-0 z-10 h-[61%] w-[67%] shadow-[0_30px_70px_rgba(30,30,20,0.08)]" />
+
+      <div className="pointer-events-none absolute left-[19%] top-[24%] z-10 h-[57%] w-[43%] shadow-[0_30px_60px_rgba(30,30,20,0.12)]" />
+
+      <div className="pointer-events-none absolute bottom-[1%] left-0 z-40 h-[29%] w-[40%] shadow-[0_25px_50px_rgba(30,30,20,0.14)]" />
+    </div>
+  );
+}
+
 export default function InvestmentBanner() {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -265,7 +605,7 @@ export default function InvestmentBanner() {
             y: botanicalY,
             rotate: botanicalRotate,
           }}
-          className="pointer-events-none absolute bottom-[-22%] left-[-10%] z-0 h-[80%] w-[55%] opacity-[0.07]"
+          className="pointer-events-none absolute bottom-[-22%] left-[-10%] z-0 h-[80%] w-[55%] opacity-[0.07] lg:bottom-[-22%] lg:left-[-10%]"
         >
           <svg
             viewBox="0 0 700 800"
@@ -410,264 +750,25 @@ export default function InvestmentBanner() {
             </motion.div>
 
             {/* ========================================================
-              RIGHT — COLLAGE
+              RIGHT — COLLAGE (Responsive)
               ======================================================== */}
 
-            <div className="relative mx-auto h-125 w-full max-w-175 sm:h-145 md:h-162.5 lg:h-172.5">
-              {/* ======================================================
-      BACK / LARGE ARCHITECTURAL IMAGE
-      ====================================================== */}
+            {/* Mobile: Vertical stack */}
+            <MobileCollage activeScene={activeScene} />
 
-              <motion.div
-                style={{
-                  y: backY,
-                  x: backX,
-                  scale: backScale,
-                }}
-                className="absolute right-0 top-0 h-[61%] w-[67%] overflow-visible"
-              >
-                <RoundedCornerFrame />
-
-                <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
-                  <AnimatePresence mode="sync">
-                    <motion.div
-                      key={activeScene.images.back}
-                      initial={{
-                        opacity: 0,
-                        scale: 1.08,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 1.03,
-                      }}
-                      transition={{
-                        duration: 1.15,
-                        ease,
-                      }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={activeScene.images.back}
-                        alt=""
-                        fill
-                        priority
-                        sizes="(max-width: 768px) 70vw, 45vw"
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </motion.div>
-
-              {/* ======================================================
-      BOTANICAL OVERLAY ON RIGHT
-      ====================================================== */}
-
-              <motion.div
-                style={{
-                  y: frontY,
-                  x: frontX,
-                }}
-                className="pointer-events-none absolute right-[-4%] top-[3%] z-40 h-[54%] w-[25%]"
-              >
-                <svg
-                  viewBox="0 0 300 600"
-                  className="h-full w-full"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M50 600C85 500 115 400 137 290C158 184 180 96 242 0"
-                    stroke="#3F4739"
-                    strokeWidth="2"
-                  />
-
-                  <path
-                    d="M136 292C82 263 43 217 21 156"
-                    stroke="#3F4739"
-                    strokeWidth="1.5"
-                  />
-
-                  <path
-                    d="M148 239C194 211 234 169 263 113"
-                    stroke="#3F4739"
-                    strokeWidth="1.5"
-                  />
-
-                  <path
-                    d="M117 370C72 353 35 323 5 279"
-                    stroke="#3F4739"
-                    strokeWidth="1.5"
-                  />
-
-                  <path
-                    d="M177 153C207 135 237 103 255 66"
-                    stroke="#3F4739"
-                    strokeWidth="1.5"
-                  />
-
-                  <ellipse
-                    cx="48"
-                    cy="181"
-                    rx="16"
-                    ry="54"
-                    transform="rotate(-43 48 181)"
-                    fill="#526049"
-                    fillOpacity=".45"
-                  />
-
-                  <ellipse
-                    cx="224"
-                    cy="133"
-                    rx="17"
-                    ry="58"
-                    transform="rotate(42 224 133)"
-                    fill="#526049"
-                    fillOpacity=".42"
-                  />
-
-                  <ellipse
-                    cx="34"
-                    cy="305"
-                    rx="16"
-                    ry="54"
-                    transform="rotate(-48 34 305)"
-                    fill="#526049"
-                    fillOpacity=".38"
-                  />
-
-                  <ellipse
-                    cx="217"
-                    cy="75"
-                    rx="14"
-                    ry="50"
-                    transform="rotate(37 217 75)"
-                    fill="#526049"
-                    fillOpacity=".4"
-                  />
-
-                  <ellipse
-                    cx="75"
-                    cy="235"
-                    rx="13"
-                    ry="45"
-                    transform="rotate(-42 75 235)"
-                    fill="#526049"
-                    fillOpacity=".32"
-                  />
-                </svg>
-              </motion.div>
-
-              {/* ======================================================
-      CENTER IMAGE
-      ====================================================== */}
-
-              <motion.div
-                style={{
-                  y: centerY,
-                  x: centerX,
-                  scale: centerScale,
-                }}
-                className="absolute left-[19%] top-[24%] z-20 h-[57%] w-[43%] overflow-visible"
-              >
-                <RoundedCornerFrame />
-
-                <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
-                  <AnimatePresence mode="sync">
-                    <motion.div
-                      key={activeScene.images.center}
-                      initial={{
-                        opacity: 0,
-                        scale: 1.08,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 1.04,
-                      }}
-                      transition={{
-                        duration: 1.1,
-                        ease,
-                      }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={activeScene.images.center}
-                        alt=""
-                        fill
-                        sizes="(max-width: 768px) 45vw, 30vw"
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </motion.div>
-
-              {/* ======================================================
-      FRONT / BOTTOM IMAGE
-      ====================================================== */}
-
-              <motion.div
-                style={{
-                  y: frontY,
-                  x: frontX,
-                  scale: frontScale,
-                }}
-                className="absolute bottom-[1%] left-0 z-30 h-[29%] w-[40%] overflow-visible"
-              >
-                <RoundedCornerFrame />
-
-                <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
-                  <AnimatePresence mode="sync">
-                    <motion.div
-                      key={activeScene.images.front}
-                      initial={{
-                        opacity: 0,
-                        scale: 1.1,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        scale: 1,
-                      }}
-                      exit={{
-                        opacity: 0,
-                        scale: 1.04,
-                      }}
-                      transition={{
-                        duration: 1,
-                        ease,
-                      }}
-                      className="absolute inset-0"
-                    >
-                      <Image
-                        src={activeScene.images.front}
-                        alt=""
-                        fill
-                        sizes="(max-width: 768px) 42vw, 28vw"
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </motion.div>
-
-              {/* ======================================================
-      SUBTLE IMAGE SHADOWS
-      ====================================================== */}
-
-              <div className="pointer-events-none absolute right-0 top-0 z-10 h-[61%] w-[67%] shadow-[0_30px_70px_rgba(30,30,20,0.08)]" />
-
-              <div className="pointer-events-none absolute left-[19%] top-[24%] z-10 h-[57%] w-[43%] shadow-[0_30px_60px_rgba(30,30,20,0.12)]" />
-
-              <div className="pointer-events-none absolute bottom-[1%] left-0 z-40 h-[29%] w-[40%] shadow-[0_25px_50px_rgba(30,30,20,0.14)]" />
-            </div>
+            {/* Desktop: Original collage with parallax */}
+            <DesktopCollage
+              activeScene={activeScene}
+              backY={backY}
+              backX={backX}
+              backScale={backScale}
+              centerY={centerY}
+              centerX={centerX}
+              centerScale={centerScale}
+              frontY={frontY}
+              frontX={frontX}
+              frontScale={frontScale}
+            />
           </div>
         </div>
 
@@ -729,127 +830,3 @@ export default function InvestmentBanner() {
     </>
   );
 }
-
-/*
- * ======================================================
- * WATER VISION
- * A secondary section within this component: a looping
- * video on the left with editorial text on the right.
- * Same animation language as the banner above.
- * ======================================================
- */
-
-const waterBodyCopy = [
-  "Rather than positioning buildings as isolated objects within the landscape.",
-  "Water becomes the primary organizing element,",
-  "while architecture emerges organically from the landscape,",
-  "minimizing visual impact and reinforcing a strong sense of place.",
-  "The development aspires to become a benchmark for regenerative tourism",
-  "by combining environmental stewardship, advanced technology,",
-  "and contemporary hospitality within a cohesive masterplanning strategy.",
-];
-
-// export function WaterVision() {
-//   const sectionRef = useRef<HTMLElement>(null);
-
-//   const { scrollYProgress } = useScroll({
-//     target: sectionRef,
-//     offset: ["start end", "end start"],
-//   });
-
-//   const waterY = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-//   const waterScale = useTransform(
-//     scrollYProgress,
-//     [0, 0.5, 1],
-//     [1.04, 1, 1.04]
-//   );
-
-//   const bodyReveal = useTransform(
-//     scrollYProgress,
-//     [0.2, 0.45],
-//     ["inset(0 100% 0 0)", "inset(0 0% 0 0)"]
-//   );
-
-//   return (
-//     <section
-//       ref={sectionRef}
-//       className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen pt-20 lg:pb-40"
-//     >
-//       <div className="relative z-10 mx-auto flex min-h-190 max-w-375 items-center px-6 py-20 sm:px-10 md:min-h-screen md:px-12 lg:px-16 xl:px-20">
-//         <div className="grid w-full grid-cols-1 items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-//           {/* LEFT — VIDEO */}
-//           <motion.div
-//             style={{ y: waterY, scale: waterScale }}
-//             className="relative mx-auto h-125 w-full max-w-175 overflow-hidden sm:h-145 md:h-162.5 lg:h-172.5"
-//           >
-//             <RoundedCornerFrame className="z-20" />
-
-//             <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
-//               <video
-//                 className="h-full w-full object-cover"
-//                 playsInline
-//                 muted
-//                 loop
-//                 autoPlay
-//                 preload="auto"
-//                 poster="/Purura/NewImages/Villa2CR.png"
-//                 aria-label="Water and architecture at Purura"
-//               >
-//                 <source
-//                   src="/Opt video/Pool Side View with hotel.webm"
-//                   type="video/webm"
-//                 />
-//                 <source
-//                   src="/Opt video/reception building from pool view.webm"
-//                   type="video/webm"
-//                 />
-//               </video>
-
-//               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#171713]/25 via-transparent to-[#171713]/10" />
-//             </div>
-
-//             <div className="pointer-events-none absolute -inset-1 z-30 rounded-2xl shadow-[0_30px_70px_rgba(30,30,20,0.12)]" />
-//           </motion.div>
-
-//           {/* RIGHT — EDITORIAL TEXT */}
-//           <motion.div
-//             style={{ y: waterY }}
-//             className="relative z-30 max-w-132.5 lg:pl-4"
-//           >
-//             <motion.div
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true, amount: 0.3 }}
-//               transition={{ duration: 0.9, ease }}
-//             >
-//               {/* <span className="mb-6 block font-mono text-[8px] uppercase tracking-[0.5em] text-[#b99147] sm:text-[9px]">
-//                 Water &amp; Masterplan
-//               </span> */}
-
-//               <h2 className="font-display text-[clamp(2.4rem,4vw,4.4rem)] font-light uppercase leading-[0.92] tracking-[-0.04em] text-chrome1">
-//                 <motion.span style={{ clipPath: bodyReveal }} className="block">
-//                   Regenerative
-//                 </motion.span>
-//                 <motion.span
-//                   style={{ clipPath: bodyReveal }}
-//                   className="mt-1 block max-w-130"
-//                 >
-//                   Landscape
-//                 </motion.span>
-//               </h2>
-
-//               <motion.div
-//                 style={{ clipPath: bodyReveal }}
-//                 className="mt-8 font-sans text-[12px] leading-[1.55] text-[#30312c]/75 sm:text-[16px] text-left"
-//               >
-//                 {waterBodyCopy.map((paragraph, index) => (
-//                   <p key={index}>{paragraph}</p>
-//                 ))}
-//               </motion.div>
-//             </motion.div>
-//           </motion.div>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// }

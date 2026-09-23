@@ -18,6 +18,19 @@ export default function MasterplanExplorer() {
   const [hoveredLocationId, setHoveredLocationId] = useState<string | null>(
     null
   );
+  const [activeLocationId, setActiveLocationId] = useState<string | null>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch device on mount
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const detectTouch = useCallback(() => {
+    const hasTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
+      // @ts-expect-error - msMaxTouchPoints is non-standard
+      navigator.msMaxTouchPoints > 0;
+    setIsTouchDevice(hasTouch);
+  }, []);
 
   // ---------------------------------------------------------
   // Mouse parallax
@@ -57,10 +70,47 @@ export default function MasterplanExplorer() {
   const handleMouseLeave = useCallback(() => {
     mouseX.set(0);
     mouseY.set(0);
-    setHoveredLocationId(null);
-  }, [mouseX, mouseY]);
+    if (!isTouchDevice) {
+      setHoveredLocationId(null);
+    }
+  }, [mouseX, mouseY, isTouchDevice]);
 
-  const isExploring = hoveredLocationId !== null;
+  // Handle click/tap on hotspot
+  const handleHotspotClick = useCallback(
+    (locationId: string) => {
+      if (isTouchDevice) {
+        // On touch: toggle active state
+        setActiveLocationId((prev) => (prev === locationId ? null : locationId));
+      }
+    },
+    [isTouchDevice]
+  );
+
+  // Handle hover for desktop
+  const handleHotspotHover = useCallback(
+    (locationId: string) => {
+      if (!isTouchDevice) {
+        setHoveredLocationId(locationId);
+      }
+    },
+    [isTouchDevice]
+  );
+
+  // Handle leave for desktop
+  const handleHotspotLeave = useCallback(() => {
+    if (!isTouchDevice) {
+      setHoveredLocationId(null);
+    }
+  }, [isTouchDevice]);
+
+  // Close active hotspot when clicking outside (on touch devices)
+  const handleContainerClick = useCallback(() => {
+    if (isTouchDevice && activeLocationId) {
+      setActiveLocationId(null);
+    }
+  }, [isTouchDevice, activeLocationId]);
+
+  const isExploring = hoveredLocationId !== null || activeLocationId !== null;
 
   return (
     <section
@@ -69,12 +119,14 @@ export default function MasterplanExplorer() {
       className="relative h-screen w-full overflow-hidden bg-transparent"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleContainerClick}
+      onTouchStart={detectTouch}
     >
       {/* =====================================================
           MASTERPLAN IMAGE
       ====================================================== */}
 
-<motion.div
+      <motion.div
         className="absolute -inset-2"
         style={{
           x: imageX,
@@ -110,8 +162,6 @@ export default function MasterplanExplorer() {
           className="object-contain"
         />
       </motion.div>
-
- 
 
       {/* =====================================================
           CINEMATIC OVERLAY
@@ -179,12 +229,15 @@ export default function MasterplanExplorer() {
             index={index + 1}
             align={location.align}
             isHovered={hoveredLocationId === location.id}
+            isActive={activeLocationId === location.id}
             isDimmed={
               isExploring &&
-              hoveredLocationId !== location.id
+              hoveredLocationId !== location.id &&
+              activeLocationId !== location.id
             }
-            onHover={() => setHoveredLocationId(location.id)}
-            onLeave={() => setHoveredLocationId(null)}
+            onHover={() => handleHotspotHover(location.id)}
+            onLeave={handleHotspotLeave}
+            onClick={() => handleHotspotClick(location.id)}
           />
         ))}
       </div>
@@ -204,7 +257,7 @@ export default function MasterplanExplorer() {
           <span className="h-px w-8 bg-white/30" />
 
           <span className="font-mono text-[8px] uppercase tracking-[0.25em] text-white/60">
-            Explore the masterplan
+            {isTouchDevice ? "Tap to explore" : "Explore the masterplan"}
           </span>
 
           <span className="h-px w-8 bg-white/30" />

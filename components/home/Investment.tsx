@@ -49,7 +49,7 @@ export default function Investment() {
         whileInView={{ opacity: 1, x: 0, rotate: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1.8, delay: 0.15 }}
-        className="pointer-events-none absolute -right-[180px] top-[0%] h-[860px] w-[860px] opacity-[0.12] blur-[8px] *:rounded-2xl"
+        className="pointer-events-none absolute -right-[180px] top-[0%] h-[860px] w-[860px] opacity-[0.12] blur-[8px] *:rounded-2xl lg:-right-[180px] max-w-[calc(100vw+360px)]"
       >
         <div className="absolute inset-0 rotate-45 border-8 border-champagne/40" />
         <div className="absolute inset-[55px] rotate-45 border-4 border-champagne/50" />
@@ -105,15 +105,16 @@ export default function Investment() {
                 animate={
                   isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }
                 }
+                whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                 transition={{
                   duration: 0.8,
                   delay: 0.8 + index * 0.1,
                   ease: customEase,
                 }}
-                className="group relative bg-[#051b00]/50 rounded-2xl border border-void/10 dark:border-champagne/20 p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-champagne/30 dark:hover:border-champagne/40 transition-all duration-500 hover:-translate-y-1"
+                className="group relative bg-[#051b00]/50 rounded-2xl border border-void/10 dark:border-champagne/20 p-8 md:p-10 shadow-sm hover:shadow-lg hover:border-champagne/30 dark:hover:border-champagne/40 transition-all duration-500 hover:-translate-y-1 active:shadow-lg active:border-champagne/30 dark:active:border-champagne/40 active:-translate-y-0.5 touch-manipulation"
               >
                 {/* Top accent line */}
-                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-champagne/50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500" />
 
                 <p className="annotation text-champagne mb-4 text-xs">
                   {metric.label}

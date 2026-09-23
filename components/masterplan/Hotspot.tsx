@@ -18,9 +18,11 @@ interface HotspotProps {
 
   isHovered: boolean;
   isDimmed: boolean;
+  isActive: boolean;
 
   onHover: () => void;
   onLeave: () => void;
+  onClick: () => void;
 }
 
 export default function Hotspot({
@@ -34,8 +36,10 @@ export default function Hotspot({
   align = "center",
   isHovered,
   isDimmed,
+  isActive,
   onHover,
   onLeave,
+  onClick,
 }: HotspotProps) {
   const popupTransform =
     align === "left"
@@ -43,6 +47,8 @@ export default function Hotspot({
       : align === "right"
       ? "translateX(-100%)"
       : "translateX(-50%)";
+
+  const isVisible = isHovered || isActive;
 
   return (
     <>
@@ -64,8 +70,8 @@ export default function Hotspot({
             opacity: 0,
           }}
           animate={{
-            pathLength: isHovered ? 1 : 0,
-            opacity: isHovered ? 0.9 : 0,
+            pathLength: isVisible ? 1 : 0,
+            opacity: isVisible ? 0.9 : 0,
           }}
           transition={{
             duration: 0.45,
@@ -84,8 +90,8 @@ export default function Hotspot({
             scale: 0,
           }}
           animate={{
-            opacity: isHovered ? 1 : 0,
-            scale: isHovered ? 1 : 0,
+            opacity: isVisible ? 1 : 0,
+            scale: isVisible ? 1 : 0,
           }}
           transition={{
             duration: 0.3,
@@ -97,6 +103,7 @@ export default function Hotspot({
       <motion.button
         type="button"
         aria-label={`Explore ${label}`}
+        aria-expanded={isVisible}
         className="absolute z-40 -translate-x-1/2 -translate-y-1/2"
         style={{
           left: `${x}%`,
@@ -104,7 +111,7 @@ export default function Hotspot({
         }}
         animate={{
           opacity: isDimmed ? 0.3 : 1,
-          scale: isHovered ? 1.15 : 1,
+          scale: isVisible ? 1.15 : 1,
         }}
         transition={{
           duration: 0.3,
@@ -112,13 +119,15 @@ export default function Hotspot({
         }}
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
+        onClick={onClick}
+        onTouchStart={onClick}
       >
         {/* Wide ambient glow */}
         <motion.span
           className="absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full bg-champagne/20 blur-md"
           animate={{
-            scale: isHovered ? 1.15 : 0.8,
-            opacity: isHovered ? 0.8 : 0.35,
+            scale: isVisible ? 1.15 : 0.8,
+            opacity: isVisible ? 0.8 : 0.35,
           }}
           transition={{
             duration: 0.5,
@@ -129,11 +138,11 @@ export default function Hotspot({
         <motion.span
           className="absolute left-1/2 top-1/2 h-9 w-9 -translate-x-1/2 -translate-y-1/2 rounded-full border border-champagne/70"
           animate={{
-            scale: isHovered ? [1, 1.8] : [1, 1.45],
-            opacity: isHovered ? [0.8, 0] : [0.45, 0],
+            scale: isVisible ? [1, 1.8] : [1, 1.45],
+            opacity: isVisible ? [0.8, 0] : [0.45, 0],
           }}
           transition={{
-            duration: isHovered ? 1.2 : 2,
+            duration: isVisible ? 1.2 : 2,
             repeat: Infinity,
             ease: "easeOut",
           }}
@@ -146,8 +155,8 @@ export default function Hotspot({
         <motion.span
           className="absolute left-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-champagne"
           animate={{
-            rotate: isHovered ? 180 : 0,
-            scale: isHovered ? 1.1 : 1,
+            rotate: isVisible ? 180 : 0,
+            scale: isVisible ? 1.1 : 1,
           }}
           transition={{
             duration: 0.5,
@@ -158,7 +167,7 @@ export default function Hotspot({
         <motion.span
           className="relative block h-4 w-4 rounded-full border-2 border-white bg-champagne shadow-[0_0_12px_rgba(201,164,90,.95)]"
           animate={{
-            boxShadow: isHovered
+            boxShadow: isVisible
               ? [
                   "0 0 10px rgba(201,164,90,.9)",
                   "0 0 28px rgba(201,164,90,1)",
@@ -168,7 +177,7 @@ export default function Hotspot({
           }}
           transition={{
             duration: 1.4,
-            repeat: isHovered ? Infinity : 0,
+            repeat: isVisible ? Infinity : 0,
           }}
         >
           <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
@@ -185,7 +194,7 @@ export default function Hotspot({
 
       {/* POPUP */}
       <AnimatePresence>
-        {isHovered && (
+        {isVisible && (
           <motion.div
             className="pointer-events-none absolute z-[50] w-[230px] sm:w-[260px]"
             style={{

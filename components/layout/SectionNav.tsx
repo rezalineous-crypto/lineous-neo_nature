@@ -142,14 +142,11 @@ export default function SectionNav({ items }: SectionNavProps) {
 
   // --- Click Handler ---
   const handleClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
     href: string
   ) => {
     e.preventDefault();
     const id = href.replace("#", "");
-
-    // Collapse labels after click
-    // Handled by CSS :hover state removal
 
     if (lenis) {
       lenis.scrollTo(`#${id}`, {
@@ -173,8 +170,11 @@ export default function SectionNav({ items }: SectionNavProps) {
 
   return (
     <>
-      {/* Custom styles for premium dash navigator */}
+      {/* Custom styles for premium dash navigator (desktop) + mobile nav */}
       <style>{`
+        /* ============================================================
+           DESKTOP: Right-side dash navigator
+           ============================================================ */
         .dash-nav-container {
           position: fixed;
           right: 36px;
@@ -283,8 +283,120 @@ export default function SectionNav({ items }: SectionNavProps) {
           opacity: 0.9;
           transform: translateX(0);
         }
+
+        /* ============================================================
+           MOBILE: Bottom section navigator
+           ============================================================ */
+        .mobile-nav-container {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 50;
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          padding: 12px 16px;
+          background: ${
+            isDark
+              ? "rgba(27, 33, 29, 0.92)"
+              : "rgba(248, 243, 234, 0.92)"
+          };
+          backdrop-filter: blur(20px);
+          border-top: 1px solid ${
+            isDark ? "rgba(245, 240, 232, 0.08)" : "rgba(44, 40, 35, 0.08)"
+          };
+          opacity: 0;
+          transform: translateY(100%);
+          transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (min-width: 768px) {
+          .mobile-nav-container {
+            display: none;
+          }
+        }
+
+        .mobile-nav-container.visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .mobile-nav-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+          padding: 6px 10px;
+          cursor: pointer;
+          text-decoration: none;
+          border-radius: 8px;
+          transition: background 0.3s ease;
+          min-width: 60px;
+        }
+
+        .mobile-nav-item:active {
+          background: ${
+            isDark
+              ? "rgba(245, 240, 232, 0.1)"
+              : "rgba(44, 40, 35, 0.1)"
+          };
+        }
+
+        .mobile-nav-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background: ${
+            isDark ? "rgba(245, 240, 232, 0.35)" : "rgba(44, 40, 35, 0.35)"
+          };
+          border: 2px solid transparent;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .mobile-nav-item.active .mobile-nav-dot {
+          background: var(--color-champagne);
+          border-color: var(--color-champagne);
+          box-shadow: 0 0 12px rgba(201, 164, 90, 0.5);
+        }
+
+        .mobile-nav-label {
+          font-family: var(--font-display);
+          font-size: 9px;
+          font-weight: 500;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: ${
+            isDark ? "rgba(245, 240, 232, 0.55)" : "rgba(44, 40, 35, 0.55)"
+          };
+          opacity: 0;
+          transform: translateY(4px);
+          transition: opacity 0.3s ease, transform 0.3s ease, color 0.3s ease;
+          white-space: nowrap;
+        }
+
+        .mobile-nav-item.active .mobile-nav-label {
+          opacity: 1;
+          transform: translateY(0);
+          color: var(--color-champagne);
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .dash-nav-container,
+          .dash-item,
+          .dash-line,
+          .dash-label,
+          .mobile-nav-container,
+          .mobile-nav-dot,
+          .mobile-nav-label {
+            transition-duration: 0.001ms !important;
+          }
+        }
       `}</style>
 
+      {/* DESKTOP: Right-side dash navigator */}
       <nav
         ref={navRef}
         className={`dash-nav-container ${isVisible ? "visible" : ""}`}
@@ -309,6 +421,33 @@ export default function SectionNav({ items }: SectionNavProps) {
               <span className="dash-label">{item.label}</span>
               <span className="dash-line" aria-hidden="true" />
             </a>
+          );
+        })}
+      </nav>
+
+      {/* MOBILE: Bottom section navigator */}
+      <nav
+        className={`mobile-nav-container ${isVisible ? "visible" : ""}`}
+        aria-label="Section navigation (mobile)"
+      >
+        {items.map((item, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <button
+              key={item.href}
+              type="button"
+              onClick={(e) => handleClick(e, item.href)}
+              className="mobile-nav-item"
+              aria-current={isActive ? "true" : undefined}
+              aria-label={`Go to ${item.label}`}
+            >
+              <span
+                className="mobile-nav-dot"
+                aria-hidden="true"
+              />
+              <span className="mobile-nav-label">{item.label}</span>
+            </button>
           );
         })}
       </nav>
