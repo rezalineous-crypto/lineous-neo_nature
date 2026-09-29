@@ -426,7 +426,7 @@ export default function SectionNav({ items }: SectionNavProps) {
       </nav>
 
       {/* MOBILE: Bottom section navigator */}
-      <nav
+      {/* <nav
         className={`mobile-nav-container ${isVisible ? "visible" : ""}`}
         aria-label="Section navigation (mobile)"
       >
@@ -450,7 +450,7 @@ export default function SectionNav({ items }: SectionNavProps) {
             </button>
           );
         })}
-      </nav>
+      </nav> */}
     </>
   );
 }

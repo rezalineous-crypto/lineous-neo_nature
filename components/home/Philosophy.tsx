@@ -167,7 +167,7 @@ function MobileCollage({ activeScene }: { activeScene: Scene }) {
             className="relative"
           >
             <RoundedCornerFrame />
-            <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl">
+            <div className="absolute inset-0 z-10 overflow-hidden rounded-2xl h-[300px]">
               <Image
                 src={img.src}
                 alt={img.alt}
@@ -594,7 +594,7 @@ export default function InvestmentBanner() {
       <section
         id="philosophy"
         ref={sectionRef}
-        className="relative min-h-190 w-full overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen lg:py-16"
+        className="relative min-h-290 w-full lg:overflow-hidden bg-[#f3f0e8] text-[#171713] md:min-h-screen lg:py-16"
       >
         {/* ============================================================
           BOTANICAL BACKGROUND
@@ -681,8 +681,8 @@ export default function InvestmentBanner() {
           MAIN LAYOUT
           ============================================================ */}
 
-        <div className="relative z-10 mx-auto flex min-h-190 max-w-375 items-center px-6 py-20 sm:px-10 md:min-h-screen md:px-12 lg:px-16 xl:px-20">
-          <div className="grid w-full grid-cols-1 items-center gap-14 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6">
+        <div className="relative z-10 mx-auto flex min-h-190 max-w-375 lg:items-center px-6 py-20 sm:px-10 md:min-h-screen md:px-12 lg:px-16 xl:px-20">
+          <div className="grid w-full grid-cols-1 items-center gap- lg:grid-cols-[0.82fr_1.18fr] lg:gap-6">
             {/* ========================================================
               LEFT — EDITORIAL TEXT
               ======================================================== */}

@@ -1234,7 +1234,7 @@ function MobilePrinciple({
         duration: 0.8,
         ease: customEase,
       }}
-      className="relative border-b border-line/50 py-16"
+      className="relative border-b border-line/50 py-16 bg-[#141e19]"
     >
       {" "}
       <div className="mb-12 flex items-center justify-between">

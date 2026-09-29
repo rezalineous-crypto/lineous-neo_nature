@@ -188,7 +188,7 @@ export default function InvestmentBanner() {
   };
 
   return (
-    <section className="relative min-h-[720px] w-full overflow-hidden bg-black text-ivory md:min-h-screen">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black text-ivory md:min-h-screen">
       {/* ============================================================
           CINEMATIC VIDEO BACKGROUND
           ============================================================ */}
@@ -269,7 +269,7 @@ export default function InvestmentBanner() {
           SCENE HEADING
           ============================================================ */}
 
-      <div className="absolute bottom-[15%] left-7 z-20 w-[calc(100%-3.5rem)] md:bottom-[13%] md:left-[7%] md:w-[65vw] lg:w-[58vw]">
+      <div className="absolute bottom-[25%] left-7 z-20 w-[calc(100%-3.5rem)] md:bottom-[13%] md:left-[7%] md:w-[65vw] lg:w-[58vw]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activePointer}
@@ -351,7 +351,7 @@ export default function InvestmentBanner() {
                     },
                   },
                 }}
-                className="font-display text-[clamp(3rem,6.5vw,4rem)] leading-[0.86] tracking-[-0.055em] text-ivory font-light"
+                className="font-display text-[clamp(2rem,6.5vw,4rem)] leading-[0.86] tracking-[-0.055em] text-ivory font-light"
               >
                 {activeScene.heading}
               </motion.h1>
@@ -381,7 +381,7 @@ export default function InvestmentBanner() {
                     },
                   },
                 }}
-                className="ml-[7vw] font-display text-[clamp(3rem,6.5vw,4.5rem)] leading-[0.86] tracking-[-0.055em] text-ivory/85 font-bold"
+                className="md:ml-[7vw] font-display text-[clamp(2rem,6.5vw,4.5rem)] leading-[0.86] tracking-[-0.055em] text-ivory/85 font-bold"
               >
                 {activeScene.subheading}
               </motion.h1>

@@ -214,14 +214,14 @@ export default function Navbar(): React.JSX.Element {
         animate={{ y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
         className={`fixed ${
-          isHome ? "top-0 md:top-4" : scrolled ? "top-4" : "top-0"
+          isHome ? "top-2 md:top-4" : scrolled ? "top-4" : "top-0"
         } left-1/2 -translate-x-1/2 z-[99] transition-all duration-500`}
       >
         <Container
           className={`overflow-hidden ${
             pathname === "/"
               ? scrolled
-                ? "rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
+                ? "rounded-2xl md:rounded-3xl bg-[var(--color-void)]/85 backdrop-blur-3xl shadow-[0_18px_60px_rgba(31,26,21,0.1)] border border-champagne/70"
                 : "bg-transparent"
               : `bg-transparent  ${
                   scrolled
@@ -232,7 +232,7 @@ export default function Navbar(): React.JSX.Element {
         >
           <div
             className={`flex items-center justify-between transition-all duration-500 ${
-              scrolled ? "h-20" : "h-28"
+              scrolled ? "h-16 md:h-20" : "h-16 md:h-28"
             }`}
           >
             {/* =====================================================
