@@ -6,7 +6,7 @@ import SectionNav from "@/components/layout/SectionNav";
 import ScrollColorTransition from "@/components/home/ScrollColorTransition";
 import Banner from "@/components/home/Banner";
 import DesignPhilosophy from "@/components/home/DesignPhilosophy";
-import PururaMap from "@/components/map/PururaMap";
+import PururaMapBasic from "@/components/map/PururaMapBasic";
 
 
 export default function HomePage() {
@@ -29,9 +29,9 @@ export default function HomePage() {
         <div>
           <TheResort />
         </div>
-        <MasterplanExplorer />
         <Investment />
-        <PururaMap />
+        <MasterplanExplorer />
+        <PururaMapBasic />
       </main>
     </>
   );

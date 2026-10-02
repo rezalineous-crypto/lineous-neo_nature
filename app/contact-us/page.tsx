@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "@/components/layout/Container";
 import { customEase } from "@/components/home/Hero";
+import PururaMap from "@/components/map/PururaMap";
 
 export default function ContactUsPage() {
   return (
@@ -35,8 +36,8 @@ export default function ContactUsPage() {
           </h1>
 
           <p className="mt-8 text-md leading-relaxed text-white/80 max-w-xl">
-            Have questions about investment, partnerships, or hospitality? Reach out
-            and our team will respond within 24 hours.
+            Have questions about investment, partnerships, or hospitality? Reach
+            out and our team will respond within 24 hours.
           </p>
         </motion.div>
 
@@ -50,7 +51,10 @@ export default function ContactUsPage() {
           <form className="space-y-8 bg-white/5 backdrop-blur-sm border border-champagne rounded-[2rem] p-8 md:p-12">
             <div className="grid md:grid-cols-2 gap-8">
               <div className="space-y-2">
-                <label htmlFor="contact-first-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
+                <label
+                  htmlFor="contact-first-name"
+                  className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono"
+                >
                   First name
                 </label>
                 <input
@@ -62,7 +66,10 @@ export default function ContactUsPage() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="contact-last-name" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
+                <label
+                  htmlFor="contact-last-name"
+                  className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono"
+                >
                   Last name
                 </label>
                 <input
@@ -75,7 +82,10 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
+              <label
+                htmlFor="contact-email"
+                className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono"
+              >
                 Email
               </label>
               <input
@@ -87,7 +97,10 @@ export default function ContactUsPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono">
+              <label
+                htmlFor="contact-message"
+                className="text-xs font-semibold uppercase tracking-[0.25em] text-champagne font-mono"
+              >
                 Message
               </label>
               <textarea
@@ -107,6 +120,8 @@ export default function ContactUsPage() {
           </form>
         </motion.div>
       </Container>
+
+      <PururaMap />
     </main>
   );
 }

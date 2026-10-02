@@ -29,6 +29,27 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
+## Environment variables
+
+Create a `.env.local` file in the project root:
+
+```bash
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_key_here
+```
+
+The map component ([`components/map/PururaMap.tsx`](components/map/PururaMap.tsx))
+falls back to a plain Google Maps embed when this variable is missing, so the
+site still renders without a key.
+
+**Before deploying**, restrict the key in the Google Cloud console:
+
+- **APIs & Services → Credentials → your key → Edit**
+- **Application restrictions → HTTP referrers**: `https://your-domain.com/*` and
+  `http://localhost:3000/*`
+- **API restrictions → Restrict key → Maps JavaScript API**
+- Set a **budget alert** on the billing page. The Maps JavaScript API requires
+  billing; usage beyond the monthly credit is charged to the account.
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.

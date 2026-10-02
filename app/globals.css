@@ -328,3 +328,44 @@ html.lenis {
   clip-path: inset(0 0 0 0);
 }
 
+/* ──────────────────────────────────────────────────────────
+   Google Maps — chrome overrides
+   The default white bubble, its tail and its close button
+   are stripped so only the themed InfoWindow content shows.
+   ────────────────────────────────────────────────────────── */
+.purura-map .gm-style .gm-style-iw {
+  background: transparent;
+  border-radius: 18px;
+  box-shadow: none;
+  padding: 0;
+  overflow: visible;
+}
+
+.purura-map .gm-style .gm-style-iw-t {
+  background: transparent;
+  border-radius: 18px;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.purura-map .gm-style .gm-style-iw-d {
+  overflow: visible !important;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+.purura-map .gm-style .gm-style-iw-c {
+  padding: 0 !important;
+}
+
+/* Replaced by the close button inside our own InfoWindow markup */
+.purura-map .gm-style .gm-style-iw-chr {
+  display: none !important;
+}
+
+/* Hide Google's grey "Use Ctrl + scroll" hint box */
+.purura-map .gm-style .gm-style-proportional-cd {
+  display: none;
+}
+
+
