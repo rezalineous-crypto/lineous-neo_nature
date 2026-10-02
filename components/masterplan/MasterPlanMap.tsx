@@ -24,11 +24,11 @@ type Spot = {
 const spots: Spot[] = [
   {
     id: "beach",
-    label: "Private Beach",
+    label: "Private Water Park",
     top: "72%",
     left: "22%",
     description: "Pristine white sand beach with exclusive cabanas and sunset views over the natural landscape.",
-    features: ["Private Cabanas", "Sunset Lounge", "Water Sports", "Beach Dining"],
+    features: ["Private Cabanas", "Sunset Lounge", "Water Sports", "Water Park Dining"],
     image: "/purura_resort_images/purura_render_18.jpg",
     icon: <Waves className="w-5 h-5" />,
     color: "#f5e6d3",
@@ -38,7 +38,7 @@ const spots: Spot[] = [
     label: "Luxury Villas",
     top: "48%",
     left: "42%",
-    description: "Overwater and beachfront villas with private pools and butler service.",
+    description: "Overwater and waterfront villas with private pools and butler service.",
     features: ["Private Pool", "Butler Service", "Ocean View", "Smart Home"],
     image: "/purura_resort_images/purura_render_11.jpg",
     icon: <Building2 className="w-5 h-5" />,

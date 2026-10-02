@@ -105,7 +105,7 @@ const experienceSections = [
       {
         title: "Design Vision",
         description:
-          "A futuristic 5-star beachfront hotel conceived as a seamless extension of the tropical landscape and ocean, combining sculptural architecture, intelligent infrastructure, immersive water landscapes, and contemporary luxury.\n\nInspired by the reference hotel's fluid horizontal terraces, rounded corners, extensive glazing, and layered organic form, the design creates an architecture that feels light, aerodynamic, and naturally connected to its surroundings.",
+          "A futuristic 5-star waterfront hotel conceived as a seamless extension of the tropical landscape and water landscape, combining sculptural architecture, intelligent infrastructure, immersive water landscapes, and contemporary luxury.\n\nInspired by the reference hotel's fluid horizontal terraces, rounded corners, extensive glazing, and layered organic form, the design creates an architecture that feels light, aerodynamic, and naturally connected to its surroundings.",
       },
       {
         title: "Architectural Language",
@@ -115,7 +115,7 @@ const experienceSections = [
       {
         title: "The Living Waterfront",
         description:
-          "Water becomes the primary organizing element of the resort.\n\nA continuous landscape system connects:\n\nHotel → Lagoon Pool → Gardens → Leisure Decks → Beach → Ocean\n\nCurvilinear pools, reflective water surfaces, planted islands, water courts, and illuminated edges create a dynamic landscape that reinforces the futuristic architectural language.",
+          "Water becomes the primary organizing element of the resort.\n\nA continuous landscape system connects:\n\nHotel → Lagoon Pool → Gardens → Leisure Decks → Water Park → \n\nCurvilinear pools, reflective water surfaces, planted islands, water courts, and illuminated edges create a dynamic landscape that reinforces the futuristic architectural language.",
       },
     ],
   },

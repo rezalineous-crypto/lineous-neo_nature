@@ -6,6 +6,7 @@ import SectionNav from "@/components/layout/SectionNav";
 import ScrollColorTransition from "@/components/home/ScrollColorTransition";
 import Banner from "@/components/home/Banner";
 import DesignPhilosophy from "@/components/home/DesignPhilosophy";
+import PururaMap from "@/components/map/PururaMap";
 
 export default function HomePage() {
   return (
@@ -29,6 +30,7 @@ export default function HomePage() {
         </div>
         <MasterplanExplorer />
         <Investment />
+        <PururaMap />
       </main>
     </>
   );

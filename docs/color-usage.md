@@ -417,7 +417,7 @@ opacity: 0.5;
 
 | Hex | Spot | Usage |
 |---|---|---|
-| `#f5e6d3` | Private Beach | Spot marker |
+| `#f5e6d3` | Private Water Park | Spot marker |
 | `#8EC5FF` | Luxury Villas | Spot marker |
 | `#3ab0c0` | Ocean Bar | Spot marker |
 | `#4a8c3f` | Spa Retreat | Spot marker |
@@ -427,8 +427,8 @@ opacity: 0.5;
 
 | Hex | Path | Usage |
 |---|---|---|
-| `#8EC5FF` | Villa → Beach | Path stroke |
-| `#C9A9FF` | Beach → Bar | Path stroke |
+| `#8EC5FF` | Villa → Water Park | Path stroke |
+| `#C9A9FF` | Water Park → Bar | Path stroke |
 | `#4a8c3f` | Bar → Spa | Path stroke |
 | `#f5e6d3` | Spa → Dock | Path stroke |
 
