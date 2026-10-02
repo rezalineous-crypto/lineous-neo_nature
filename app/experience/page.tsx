@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Container from "@/components/layout/Container";
 import Image from "next/image";
 import StickyImageCollage from "@/components/home/StickyImageCollage";
@@ -13,6 +13,12 @@ import {
 } from "@/components/home/BotanicalElements";
 
 const customEase = [0.16, 1, 0.3, 1] as const;
+
+/* HERO BANNER VIDEO */
+
+const BANNER_VIDEO =
+  "https://res.cloudinary.com/ddg2qawqw/video/upload/v1790966315/Experience_Banner.mp4";
+const BANNER_POSTER = "/Purura/NewImages/Overall 5.png";
 
 const experienceSections = [
   {
@@ -258,27 +264,93 @@ function ExperienceItem({
   );
 }
 
-function EditorialImage({
-  src,
-  alt,
-  intensity = 0.45,
-  className = "",
-}: {
-  src: string;
-  alt: string;
-  intensity?: number;
-  className?: string;
-}) {
+function BannerVideo({ src, poster }: { src: string; poster: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const [isReady, setIsReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [prefersReducedData, setPrefersReducedData] = useState(false);
+
+  const inView = useInView(containerRef, { amount: 0.1 });
+
+  /* Device + data preference detection (mirrors components/home/Banner.tsx) */
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-data: reduce)");
+    const handler = (e: MediaQueryListEvent) => setPrefersReducedData(e.matches);
+    setTimeout(() => setPrefersReducedData(mediaQuery.matches), 0);
+    mediaQuery.addEventListener("change", handler);
+
+    return () => {
+      window.removeEventListener("resize", checkMobile);
+      mediaQuery.removeEventListener("change", handler);
+    };
+  }, []);
+
+  /* Stop decoding once the banner scrolls away */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || prefersReducedData) return;
+
+    if (inView) {
+      video.play().catch(() => {
+        /* autoplay refused — poster stays visible */
+      });
+    } else {
+      video.pause();
+    }
+  }, [inView, prefersReducedData]);
+
+  const getPreload = () => {
+    if (isMobile || prefersReducedData) return "metadata";
+    return "auto";
+  };
+
+  const showVideo = isReady && !prefersReducedData;
+
   return (
-    <div className="absolute inset-0">
-      <Image
-        src="/Purura/NewImages/Overall 5.png"
-        alt="PURURA resort experience"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover"
+    <div ref={containerRef} className="absolute inset-0 overflow-hidden bg-void">
+      <motion.video
+        ref={videoRef}
+        src={src}
+        poster={poster}
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload={getPreload()}
+        aria-hidden="true"
+        tabIndex={-1}
+        disablePictureInPicture
+        disableRemotePlayback
+        onCanPlay={() => setIsReady(true)}
+        initial={{ opacity: 0, scale: 1.035 }}
+        animate={showVideo ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.035 }}
+        transition={{
+          opacity: { duration: 1.8, ease: customEase },
+          scale: { duration: 2.8, ease: customEase },
+        }}
+        className="absolute inset-0 h-full w-full object-cover"
+        style={prefersReducedData ? { display: "none" } : undefined}
       />
+
+      {/* Static fallback for reduced data / restricted autoplay */}
+      {!isReady || prefersReducedData ? (
+        <div className="absolute inset-0">
+          <Image
+            src={poster}
+            alt="PURURA resort experience"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -500,15 +572,12 @@ export default function ExperiencePage() {
       {/* PAGE TITLE */}
 
       <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-void/20">
-        <EditorialImage
-          src="/Purura/NewImages/Overall 5.png"
-          alt="PURURA resort experience"
-          className="absolute inset-0 h-full w-full"
-          intensity={0.3}
-        />
+        <BannerVideo src={BANNER_VIDEO} poster={BANNER_POSTER} />
 
-        <div className="pointer-events-none absolute inset-0 bg-black/20" />
+        {/* CINEMATIC GRADING — keeps the headline legible over the footage */}
+        <div className="pointer-events-none absolute inset-0 bg-black/25" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black via-void/10 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.28)_100%)]" />
 
         <Container className="w-full">
           <motion.div

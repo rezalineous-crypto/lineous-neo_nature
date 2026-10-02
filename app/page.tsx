@@ -8,6 +8,7 @@ import Banner from "@/components/home/Banner";
 import DesignPhilosophy from "@/components/home/DesignPhilosophy";
 import PururaMap from "@/components/map/PururaMap";
 
+
 export default function HomePage() {
   return (
     <>
