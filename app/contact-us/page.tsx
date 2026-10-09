@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Container from "@/components/layout/Container";
 import { customEase } from "@/components/home/Hero";
-import PururaMap from "@/components/map/PururaMap";
+import PururaMapBasic from "@/components/map/PururaMapBasic";
 
 export default function ContactUsPage() {
   return (
@@ -19,7 +19,7 @@ export default function ContactUsPage() {
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      <Container className="relative z-10 flex min-h-screen items-center justify-center py-24 md:py-32">
+      <Container className="relative z-10 flex flex-col md:flex-row min-h-screen items-center justify-center py-24 md:py-32">
         <motion.div
           initial={{ opacity: 0, y: 36 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ export default function ContactUsPage() {
         </motion.div>
       </Container>
 
-      <PururaMap />
+      <PururaMapBasic />
     </main>
   );
 }

@@ -447,16 +447,6 @@ export default function PururaMapBasic({ className = "" }: PururaMapProps) {
 
           {/* MAP */}
           <div className="relative">
-            {/* Architectural corner accents */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-px -top-px z-20 h-16 w-16 border-l border-t border-[#C9A45A]/70 sm:h-20 sm:w-20"
-            />
-
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-px -right-px z-20 h-16 w-16 border-b border-r border-[#C9A45A]/70 sm:h-20 sm:w-20"
-            />
 
             {/* Map frame */}
             <div className="relative overflow-hidden rounded-[1.5rem] bg-[#DDD9CF] shadow-[0_25px_80px_rgba(23,37,29,0.08)] sm:rounded-[2rem]">
