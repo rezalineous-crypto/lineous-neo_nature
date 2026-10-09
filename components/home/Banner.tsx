@@ -209,7 +209,7 @@ export default function InvestmentBanner() {
           CINEMATIC VIDEO BACKGROUND
           ============================================================ */}
 
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden" suppressHydrationWarning>
         {introDone &&
           Object.entries(backgroundVideos).map(([id, src]) => (
             <motion.video

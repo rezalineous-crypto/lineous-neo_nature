@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { cookies } from "next/headers";
 import {
   Space_Grotesk,
@@ -15,6 +14,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ToastProvider } from "@/components/ui/Toast";
 import IntroGate from "@/components/intro/IntroGate";
+import ThemeCleanupScript from "@/components/ThemeCleanupScript";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -73,28 +73,12 @@ export default async function RootLayout({
         />
         {/* Fallback for browsers that ignore as="video" */}
         <link rel="prefetch" href="/intro/intro.1080.mp4" as="video" />
-
-        <Script
-          id="theme-cleanup"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-        (function() {
-          try {
-            if (!localStorage.getItem('theme-cleanup-done')) {
-              localStorage.removeItem('theme-default');
-              localStorage.removeItem('theme-session');
-              localStorage.setItem('theme-cleanup-done', '1');
-              document.documentElement.setAttribute('data-theme', 'light');
-            }
-          } catch (e) {}
-        })();
-      `,
-          }}
-        />
       </head>
 
       <body>
+        {/* Theme cleanup script (Client Component, must be in body) */}
+        <ThemeCleanupScript />
+
         {/* Always mounted so it can cross-fade after the refresh. */}
         <IntroGate active={!introSeen} />
 
