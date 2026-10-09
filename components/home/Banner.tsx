@@ -70,8 +70,23 @@ export default function InvestmentBanner() {
   const [autoPhase, setAutoPhase] = useState<"open" | "hold" | "close">("open");
   const [isMobile, setIsMobile] = useState(false);
   const [prefersReducedData, setPrefersReducedData] = useState(false);
+  const [introDone, setIntroDone] = useState(
+    typeof document !== "undefined" &&
+      document.cookie.includes("purura_intro=1")
+  );
 
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  // Listen for intro completion event
+  useEffect(() => {
+    const arm = () => setIntroDone(true);
+    window.addEventListener("purura:intro-done", arm);
+    const t = window.setTimeout(arm, 4000); // safety net
+    return () => {
+      window.removeEventListener("purura:intro-done", arm);
+      window.clearTimeout(t);
+    };
+  }, []);
 
   const activePointer =
     (hovered as keyof typeof descriptions | null) ?? activeAutoPointer;
@@ -172,8 +187,9 @@ export default function InvestmentBanner() {
     });
   }, [activePointer]);
 
-  // Determine preload strategy: metadata on mobile/reduced-data, auto on desktop
+  // Determine preload strategy: none until intro done, then metadata on mobile/reduced-data, auto on desktop
   const getPreload = () => {
+    if (!introDone) return "none";
     if (isMobile || prefersReducedData) return "metadata";
     return "auto";
   };
@@ -194,37 +210,38 @@ export default function InvestmentBanner() {
           ============================================================ */}
 
       <div className="absolute inset-0 overflow-hidden">
-        {Object.entries(backgroundVideos).map(([id, src]) => (
-          <motion.video
-            key={id}
-            ref={(video) => {
-              videoRefs.current[id] = video;
-            }}
-            src={src}
-            poster={videoPosters[id as keyof typeof videoPosters]}
-            muted
-            playsInline
-            autoPlay
-            preload={getPreload()}
-            animate={{
-              opacity: activePointer === id ? 1 : 0,
-              scale: activePointer === id ? 1 : 1.035,
-            }}
-            transition={{
-              opacity: {
-                duration: 1.8,
-                ease,
-              },
-              scale: {
-                duration: 2.8,
-                ease,
-              },
-            }}
-            className="absolute inset-0 h-full w-full object-cover"
-            // Disable video on mobile if prefers-reduced-data
-            style={prefersReducedData ? { display: "none" } : undefined}
-          />
-        ))}
+        {introDone &&
+          Object.entries(backgroundVideos).map(([id, src]) => (
+            <motion.video
+              key={id}
+              ref={(video) => {
+                videoRefs.current[id] = video;
+              }}
+              src={src}
+              poster={videoPosters[id as keyof typeof videoPosters]}
+              muted
+              playsInline
+              autoPlay
+              preload={getPreload()}
+              animate={{
+                opacity: activePointer === id ? 1 : 0,
+                scale: activePointer === id ? 1 : 1.035,
+              }}
+              transition={{
+                opacity: {
+                  duration: 1.8,
+                  ease,
+                },
+                scale: {
+                  duration: 2.8,
+                  ease,
+                },
+              }}
+              className="absolute inset-0 h-full w-full object-cover"
+              // Disable video on mobile if prefers-reduced-data
+              style={prefersReducedData ? { display: "none" } : undefined}
+            />
+          ))}
 
         {/* Static fallback image for reduced data / mobile */}
         {prefersReducedData && (

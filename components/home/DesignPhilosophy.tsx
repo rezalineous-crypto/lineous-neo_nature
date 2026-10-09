@@ -365,7 +365,6 @@ function PhilosophyHeroTitle() {
           src="/Purura/NewImages/Overall 1.png"
           alt=""
           fill
-          priority
           sizes="100vw"
           className="object-cover"
         />

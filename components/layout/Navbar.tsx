@@ -11,7 +11,6 @@ import {
 import { useLayoutEffect, useEffect, useRef, useState } from "react";
 import Container from "./Container";
 import BrandIntro from "./BrandIntro";
-import VideoIntro from "@/components/intro/VideoIntro";
 // import ThemeToggle from "@/components/ThemeToggle";
 import GoldCTAButton from "@/components/ui/GoldCTAButton";
 import { ChevronDown } from "lucide-react";
@@ -61,30 +60,6 @@ export default function Navbar(): React.JSX.Element {
   const [expandedMenu, setExpandedMenu] = useState<string | null>(null);
   const hasMounted = useRef(false);
   const hasNavigated = useRef(false);
-  const [showVideoIntro, setShowVideoIntro] = useState<boolean>(false);
-
-  // SSR-safe: sessionStorage is unavailable during server render, so the
-  // initial state is `false` on both server and client (no hydration
-  // mismatch). The real value is read from sessionStorage only after the
-  // component mounts, deferred with requestAnimationFrame so the state
-  // update does not happen synchronously inside the effect body (which
-  // would trigger cascading renders).
-  useEffect(() => {
-    let active = true;
-    const frame = requestAnimationFrame(() => {
-      if (!active) return;
-      try {
-        const played = !!sessionStorage.getItem("purura-intro-played");
-        setShowVideoIntro(!played);
-      } catch {
-        setShowVideoIntro(false);
-      }
-    });
-    return () => {
-      active = false;
-      cancelAnimationFrame(frame);
-    };
-  }, []);
 
   const isHome = pathname === "/";
 
@@ -161,13 +136,27 @@ export default function Navbar(): React.JSX.Element {
 
   /*
    * Trigger BrandIntro on route changes only (not on initial mount).
+   * Suppress on post-intro router.refresh() via sessionStorage flag.
    */
   useLayoutEffect(() => {
     if (!hasMounted.current || !hasNavigated.current) {
       hasNavigated.current = true;
       return;
     }
-    setShowBrandIntro(true);
+
+    // Check for suppression flag set by IntroGate.complete()
+    if (typeof window !== "undefined") {
+      const suppress = sessionStorage.getItem("purura_suppress_brand_intro");
+      if (suppress === "1") {
+        sessionStorage.removeItem("purura_suppress_brand_intro");
+        return;
+      }
+    }
+
+    // Defer to avoid synchronous setState in effect (ESLint)
+    window.setTimeout(() => {
+      setShowBrandIntro(true);
+    }, 0);
   }, [pathname]);
 
   const width = useTransform(scrollY, [0, 120], ["100%", "92%"]);
@@ -189,14 +178,7 @@ export default function Navbar(): React.JSX.Element {
   return (
     <>
       <AnimatePresence mode="wait">
-        {showVideoIntro ? (
-          <VideoIntro
-            key="video-intro"
-            onComplete={() => {
-              setShowVideoIntro(false);
-            }}
-          />
-        ) : showBrandIntro ? (
+        {showBrandIntro ? (
           <BrandIntro
             key={`brand-intro-${pathname}`}
             minimumDuration={3000}
@@ -461,7 +443,6 @@ export default function Navbar(): React.JSX.Element {
                     src="/Purura/NewImages/Overall 2.png"
                     alt="PURURA resort"
                     fill
-                    priority
                     sizes="50vw"
                     className="object-cover"
                   />

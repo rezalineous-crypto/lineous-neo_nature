@@ -172,7 +172,7 @@ function MobileCollage({ activeScene }: { activeScene: Scene }) {
                 src={img.src}
                 alt={img.alt}
                 fill
-                priority={index === 0}
+                priority={false}
                 sizes="(max-width: 768px) 90vw"
                 className="object-cover"
               />
@@ -267,7 +267,6 @@ function DesktopCollage({
                 src={activeScene.images.back}
                 alt=""
                 fill
-                priority
                 sizes="(max-width: 768px) 70vw, 45vw"
                 className="object-cover"
               />

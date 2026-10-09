@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { cookies } from "next/headers";
 import {
   Space_Grotesk,
   JetBrains_Mono,
@@ -13,6 +14,7 @@ import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import ScrollProgress from "@/components/ScrollProgress";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ToastProvider } from "@/components/ui/Toast";
+import IntroGate from "@/components/intro/IntroGate";
 
 const display = Space_Grotesk({
   subsets: ["latin"],
@@ -41,17 +43,37 @@ export const metadata: Metadata = {
     "A Regenerative Waterfront Futuristic Resort Integrating Landscape, Architecture, and Intelligent Infrastructure",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const introSeen = (await cookies()).get("purura_intro")?.value === "1";
+
   return (
     <html
       lang="en"
       className={`${display.variable} ${mono.variable} ${serif.variable}`}
     >
       <head>
+        {/* Highest-priority network requests on the site */}
+        <link
+          rel="preload"
+          href="/intro/intro.720.mp4"
+          as="video"
+          type="video/mp4"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          href="/intro/poster.avif"
+          as="image"
+          type="image/avif"
+          fetchPriority="high"
+        />
+        {/* Fallback for browsers that ignore as="video" */}
+        <link rel="prefetch" href="/intro/intro.1080.mp4" as="video" />
+
         <Script
           id="theme-cleanup"
           strategy="beforeInteractive"
@@ -71,27 +93,28 @@ export default function RootLayout({
           }}
         />
       </head>
+
       <body>
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:rounded-lg focus:bg-void focus:px-4 focus:py-2 focus:text-bone focus:ring-2 focus:ring-chrome1"
-        >
-          Skip to main content
-        </a>
-        <ToastProvider>
-          <ThemeProvider>
-            <SmoothScroll>
-              <div className="grain-overlay" />
-              <ScrollProgress />
-              <Navbar />
-              <main id="main-content" className="relative">
-                {children}
-              </main>
-              <Footer />
-              <WhatsAppButton />
-            </SmoothScroll>
-          </ThemeProvider>
-        </ToastProvider>
+        {/* Always mounted so it can cross-fade after the refresh. */}
+        <IntroGate active={!introSeen} />
+
+        {/* ONLY when the intro is done do we ship the entire site. */}
+        {introSeen ? (
+          <ToastProvider>
+            <ThemeProvider>
+              <SmoothScroll>
+                <div className="grain-overlay" />
+                <ScrollProgress />
+                <Navbar />
+                <div id="main-content" className="relative">
+                  {children}
+                </div>
+                <Footer />
+                <WhatsAppButton />
+              </SmoothScroll>
+            </ThemeProvider>
+          </ToastProvider>
+        ) : null}
       </body>
     </html>
   );
