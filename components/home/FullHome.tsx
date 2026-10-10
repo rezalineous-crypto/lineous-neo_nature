@@ -3,6 +3,7 @@
 import Philosophy from "./Philosophy";
 import TheResort from "./TheResort";
 import Investment from "./Investment";
+import ExperienceAmenitiesPreview from "./ExperienceAmenitiesPreview";
 import SectionNav from "@/components/layout/SectionNav";
 import ScrollColorTransition from "./ScrollColorTransition";
 import Banner from "./Banner";
@@ -34,6 +35,7 @@ export default function FullHome() {
       <Banner />
       <Philosophy />
       <DesignPhilosophy />
+      <ExperienceAmenitiesPreview />
       <TheResort />
       <Investment />
       <MasterplanExplorer />
