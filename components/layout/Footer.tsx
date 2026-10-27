@@ -242,49 +242,33 @@ export default function Footer() {
           <div className="flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
             {/* Left */}
             <div className="flex flex-col gap-2">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-bone/70/50">
-                  PROJECT
+              <Link
+                href="https://www.facebook.com/share/19ZkxTSwmY/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[8px] tracking-[0.22em] text-bone/70/40 transition-colors duration-300 hover:text-chrome1 group"
+              >
+                Designed by{" "}
+                <span className="font-semibold group-hover:font-bold group-hover:text-[9px]">
+                  ARE BD
                 </span>
-
-                <span className="h-px w-5 bg-chrome1/40" />
-
-                <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-chrome1/75">
-                  PURURA
-                </span>
-              </div>
-
-              <p className="font-sans text-[9px] uppercase tracking-[0.22em] text-bone/70/45">
-                A destination designed to endure
-              </p>
+              </Link>
             </div>
 
             {/* Center architectural marker */}
             <div className="hidden items-center gap-4 md:flex">
-              <span className="font-mono text-[8px] tracking-[0.3em] text-bone/70/40">
-                EST.
-              </span>
-
-              <span className="font-mono text-[9px] tracking-[0.2em] text-bone/70/70">
-                2026
-              </span>
-
-              <span className="h-px w-12 bg-line/30" />
-
-              <span className="font-mono text-[8px] uppercase tracking-[0.3em] text-bone/70/40">
-                FUTURE / PLACE / VALUE
-              </span>
-            </div>
-
-            {/* Right */}
-            <div className="flex flex-col gap-2 md:items-end">
               <p className="font-mono text-[8px] uppercase tracking-[0.28em] text-bone/70/50">
                 © 2026 PURURA
               </p>
-
+              |
               <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-bone/70/35">
                 All rights reserved
               </p>
+            </div>
+
+            {/* Right */}
+            <div className="flex flex-col gap-2 md:items-end opacity-0">
+              dfgdfgdfsgfgs
             </div>
           </div>
         </motion.div>

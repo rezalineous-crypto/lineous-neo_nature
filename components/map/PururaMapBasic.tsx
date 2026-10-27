@@ -12,7 +12,7 @@ interface PururaMapProps {
 
 /**
  * PURURA LOCATION
- * Base Technologies Industrial Zone
+ * Purura Resorts
  *
  * Coordinates:
  * 24.427548° N
@@ -20,10 +20,10 @@ interface PururaMapProps {
  */
 
 const MAP_URL =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d350.12929527315697!2d90.393589!3d24.427548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37566f70a02fb0bd%3A0xd3b157402c6e6969!2sBase%20Technologies%20Industrial%20Zone!5e0!3m2!1sen!2sbd!4v1790930848388!5m2!1sen!2sbd";
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d350.12929527315697!2d90.393589!3d24.427548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x37566f70a02fb0bd%3A0xd3b157402c6e6969!2sPurura%20Resorts!5e0!3m2!1sen!2sbd!4v1790930848388!5m2!1sen!2sbd";
 
 const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/place/Base+Technologies+Industrial+Zone/@24.4275202,90.3926829,308m/";
+  "https://www.google.com/maps/dir//''/data=!4m7!4m6!1m1!4e2!1m2!1m1!1s0x37566f70a02fb0bd:0xd3b157402c6e6969!3e0?g_mp=CiVnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLkdldFBsYWNlEAMYASAF";
 
 const COORDINATE_LINES = ["24° 25' 39.2\" N", "90° 23' 36.9\" E"];
 
@@ -384,7 +384,7 @@ export default function PururaMapBasic({ className = "" }: PururaMapProps) {
                 </h3>
 
                 <p className="mt-5 max-w-[280px] font-display text-sm leading-[1.8] text-void/60">
-                  Base Technologies Industrial Zone
+                  Purura Resorts
                   <br />
                   Bhaluka, Mymensingh
                   <br />
@@ -447,12 +447,11 @@ export default function PururaMapBasic({ className = "" }: PururaMapProps) {
 
           {/* MAP */}
           <div className="relative">
-
             {/* Map frame */}
             <div className="relative overflow-hidden rounded-[1.5rem] bg-[#DDD9CF] shadow-[0_25px_80px_rgba(23,37,29,0.08)] sm:rounded-[2rem]">
               <iframe
                 src={MAP_URL}
-                title="PURURA Resort Location — Base Technologies Industrial Zone"
+                title="Purura Resorts — Google Maps Location"
                 className="block h-[430px] w-full border-0 sm:h-[520px] lg:h-[600px]"
                 loading="lazy"
                 allowFullScreen
@@ -479,7 +478,7 @@ export default function PururaMapBasic({ className = "" }: PururaMapProps) {
           </p>
 
           <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-void/40">
-            24.427548 / 90.393589
+            Purura Resorts
           </span>
         </motion.div>
       </Container>
