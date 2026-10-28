@@ -246,7 +246,7 @@ export default function Footer() {
                 href="https://www.facebook.com/share/19ZkxTSwmY/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[8px] tracking-[0.22em] text-bone/70/40 transition-colors duration-300 hover:text-chrome1 group"
+                className="font-mono text-[12px] tracking-[0.22em] text-bone/70/40 transition-colors duration-300 hover:text-chrome1 group"
               >
                 Designed by{" "}
                 <span className="font-semibold group-hover:font-bold group-hover:text-[9px]">
@@ -257,11 +257,11 @@ export default function Footer() {
 
             {/* Center architectural marker */}
             <div className="hidden items-center gap-4 md:flex">
-              <p className="font-mono text-[8px] uppercase tracking-[0.28em] text-bone/70/50">
+              <p className="font-mono text-[12px] uppercase tracking-[0.28em] text-bone/70/50">
                 © 2026 PURURA
               </p>
               |
-              <p className="font-mono text-[8px] uppercase tracking-[0.22em] text-bone/70/35">
+              <p className="font-mono text-[12px] uppercase tracking-[0.22em] text-bone/70/35">
                 All rights reserved
               </p>
             </div>
